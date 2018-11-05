@@ -1,0 +1,68 @@
+@charset 'utf-8';
+
+
+/// Branding 'Site logo' default properties.
+///
+/// @group components
+///
+/// @example scss - Usage.
+///   .block__site-logo {
+///     @extend %branding-site-logo-defaults;
+///   }
+///
+///   // CSS Output
+///   //
+///   .block__site-logo {
+///     padding-top: 0.5rem;
+///     padding-bottom: 0.5rem;
+///     margin-right: 1rem;
+///     color: #f8f9fa;
+///     display: inline-block;
+///     ...
+///   }
+///
+/// @see scss/components/blocks/_branding.scss
+///
+/// @requires {mixin} properties
+/// @requires {variable} branding-site-logo-properties
+
+%branding-site-logo-defaults {
+  @include properties($branding-site-logo-properties);
+  display: inline-block;
+  text-decoration: none;
+  line-height: inherit;
+  white-space: nowrap;
+}
+
+
+/// Branding 'Logo image' default properties.
+///
+/// @group components
+///
+/// @example scss - Usage.
+///   .block__site-logo {
+///     
+///     // Inner image
+///     //
+///     > img {
+///       @extend %branding-site-logo-image-defaults;
+///     }
+///   }
+///
+///   // CSS Output
+///   //
+///   .block__site-logo > img {
+///     display: inline-block;
+///     vertical-align: middle;
+///     margin-right: 1rem;
+///   }
+///
+/// @see scss/components/blocks/_branding.scss
+///
+/// @requires {mixin} properties
+/// @requires {variable} branding-site-logo-image-properties
+
+%branding-site-logo-image-defaults {
+  @include properties($branding-site-logo-image-properties);
+  display: inline-block;
+}

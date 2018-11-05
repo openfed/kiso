@@ -1,0 +1,35 @@
+
+//
+// @file
+// Site identity (Logo image, name and slogan of the site).
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Branding block
+//
+// 1. You should first extend 'Branding' default properties (provided by the
+//    Sass Framework) which will be added within your compiled CSS output.
+// 2. Additional CSS properties can be added from this points.
+//
+.block {
+
+  // Site logo
+  //
+  &__site-logo {
+    @extend %branding-site-logo-defaults; // 1
+    // 2 ...
+
+    // Inner image
+    //
+    > img {
+      @extend %branding-site-logo-image-defaults; // 1
+      // 2 ...
+    }
+  }
+}

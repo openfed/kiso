@@ -1,0 +1,20 @@
+uuid: 182218cc-ce54-49d4-99dd-9cf88e71af03
+langcode: en
+status: true
+dependencies:
+  theme:
+    - kiso
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: kiso_page_title
+theme: kiso
+region: content
+weight: -4
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

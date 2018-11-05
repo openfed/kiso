@@ -1,0 +1,62 @@
+@charset 'utf-8';
+
+
+/// Mixin to print couple of property/value which are stored in a Sass map.
+///
+/// @group helpers
+///
+/// @param {Map} $declarations
+///   - The map containing all properties/values as ['key']: [value].
+///
+/// @example scss
+///   // Map of default properties.
+///   //
+///   $element-defaults: (
+///     'position': relative,
+///     'display': flex,
+///     'flex-wrap': wrap,
+///     'align-items': center,
+///     'justify-content': space-between,
+///   );
+///
+///   .element {
+///     @include properties($element-defaults);
+///   }
+///
+///   // CSS Output
+///   //
+///   .element {
+///     position: relative;
+///     display: flex;
+///     flex-wrap: wrap;
+///     align-items: center;
+///     justify-content: space-between;
+///   }
+///
+/// @requires {mixin} rem
+/// @requires {function} contains-number
+
+@mixin properties(
+  $declarations
+) {
+
+  @each $property, $values in $declarations {
+    
+    @if length($values) == 1 {
+      $value: $values;
+
+      @if $value == 0 or type-of($value) != 'number' {
+        #{$property}: $value;
+      }
+      @else {
+        @include rem($property, $value);
+      }
+    }
+    @else if contains-number($values) {
+      @include rem($property, $values);
+    }
+    @else {
+      #{$property}: $values;
+    }
+  }
+}

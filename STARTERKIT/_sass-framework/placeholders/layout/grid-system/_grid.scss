@@ -1,0 +1,90 @@
+@charset 'utf-8';
+
+
+/// Grid container default properties.
+///
+/// @group layout
+///
+/// @see {mixin} make-container
+
+%container-defaults {
+  width: 100%;
+  margin: {
+    right: auto;
+    left: auto;
+  }
+}
+
+
+/// Grid row default properties.
+///
+/// @group layout
+///
+/// @see {mixin} make-row
+
+%row-defaults {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/// Reset grid row default properties.
+///
+/// Remove the negative margin from default grid row, then the horizontal padding
+/// from all immediate children columns elements (to prevent runaway style inheritance).
+///
+/// @group layout
+///
+/// @see scss/layout/grid.scss
+
+%row-reset-defaults {
+  margin: {
+    right: 0;
+    left: 0;
+  }
+
+  // All immediate children columns element
+  //
+  > * {
+    padding: {
+      right: 0;
+      left: 0;
+    }
+  }
+}
+
+
+/// Grid column (First, applying everything but the paddings) default properties.
+///
+/// @group layout
+///
+/// @see {mixin} make-column-ready
+///
+/// 1. Prevent columns from becoming too narrow when at smaller grid tiers by
+///    always setting `width: 100%;`. This works because we use `flex` values
+///    later on to override this initial width.
+/// 2. Prevent collapsing.
+
+%column-defaults {
+  position: relative;
+  width: 100%; // 1
+  min-height: 1px; // 2
+}
+
+
+/// Grid column (Next, apply the paddings) default properties.
+///
+/// @group layout
+///
+/// @see scss/layout/grid.scss
+///
+/// @requires {placeholder} column-defaults
+/// @requires {mixin} rem
+
+%column-ready-defaults {
+  @extend %column-defaults;
+  padding: {
+    @include rem(right, ($grid-gutter-width / 2));
+    @include rem(left, ($grid-gutter-width / 2));
+  }
+}

@@ -1,0 +1,64 @@
+@charset 'utf-8';
+
+
+/// Retreive a color from the "All colors" Sass map.
+///
+/// @group helpers
+///
+/// @param {String} $key
+///   - Color's name.
+///
+/// @return {Color}
+///   The HEX color code indexed by '$key', or 'null'
+///   if the map doesn't contain the given key.
+///
+/// @requires {variable} colors
+
+@function color(
+  $key: 'blue'
+) {
+
+  @return map-get($colors, $key);
+}
+
+
+/// Retreive a color from the “Theme colors” Sass map.
+///
+/// @group helpers
+///
+/// @param {String} $key
+///   - Theme color’s name.
+///
+/// @return {Color}
+///   The HEX color code indexed by '$key', or 'null'
+///   if the map doesn't contain the given key.
+///
+/// @requires {variable} theme-colors
+
+@function theme-color(
+  $key: 'primary'
+) {
+
+  @return map-get($theme-colors, $key);
+}
+
+
+/// Retreive a color from the “Grayscales” Sass map.
+///
+/// @group helpers
+///
+/// @param {String} $key
+///   - Grayscale’s name.
+///
+/// @return {Color}
+///   The HEX color code indexed by '$key', or 'null'
+///   if the map doesn't contain the given key.
+///
+/// @requires {variable} grays
+
+@function grayscale(
+  $key: '100'
+) {
+
+  @return map-get($grays, $key);
+}

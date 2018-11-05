@@ -1,0 +1,288 @@
+@charset 'utf-8';
+
+
+/// Generate container width, and override it in media queries.
+///
+/// @group layout
+///
+/// @param {Number} $gutter [$grid-gutter-width]
+///   - Width value of the gutters.
+///
+/// @example scss - Usage.
+///   .container {
+///     @include make-container(20px);
+///     ...
+///   }
+///
+///   // CSS Output
+///   //
+///   .container {
+///     width: 100%;
+///     margin-right: auto;
+///     margin-left: auto;
+///   }
+///   .container {
+///     padding-right: 10px;
+///     padding-left: 10px;
+///     ...
+///   }
+///
+/// @requires {variable} grid-gutter-width
+/// @requires {mixin} rem
+/// @requires {placeholder} container-defaults
+
+@mixin make-container(
+  $gutter: $grid-gutter-width
+) {
+
+  @extend %container-defaults;
+  padding: {
+    @include rem(right, ($gutter / 2));
+    @include rem(left, ($gutter / 2));
+  }
+}
+
+
+/// For each breakpoint, define the maximum width of the container in a media query.
+///
+/// @group layout
+///
+/// @param {Map} $max-widths [$container-max-widths]
+///   - Map of all container maximum widths.
+///
+/// @param {Map} $breakpoints [$grid-breakpoints]
+///   - Map of all breakpoints to search in.
+///
+/// @example scss - Usage.
+///   .container {
+///     ...
+///     @include make-container-max-widths;
+///   }
+///
+///   // CSS Output
+///   //
+///   .container {
+///     ...
+///   }
+///   @media (min-width: 576px) {
+///     .container {
+///       max-width: 540px;
+///     }
+///   }
+///   @media (min-width: 768px) {
+///     .container {
+///       max-width: 750px;
+///     }
+///   }
+///   ...
+///   @media (min-width: 1200px) {
+///     .container {
+///       max-width: 1170px;
+///     }
+///   }
+///
+/// @requires {variable} container-max-widths
+/// @requires {variable} grid-breakpoints
+/// @requires {mixin} rem
+/// @requires {mixin} breakpoint-up
+
+@mixin make-container-max-widths(
+  $max-widths: $container-max-widths,
+  $breakpoints: $grid-breakpoints
+) {
+
+  @each $breakpoint, $container-max-width in $max-widths {
+    @include breakpoint-up($breakpoint, $breakpoints) {
+      @include rem(max-width, $container-max-width);
+    }
+  }
+}
+
+
+/// Generate a row (wrapper) for a series of columns.
+///
+/// @group layout
+///
+/// @param {Number} $gutter [$grid-gutter-width]
+///   - Width value of the gutters.
+///
+/// @example scss - Usage.
+///   .row {
+///     @include make-row(20px);
+///   }
+///
+///   // CSS Output
+///   //
+///   .row {
+///     display: flex;
+///     flex-wrap: wrap;
+///   }
+///   .row {
+///     margin-right: 10px;
+///     margin-left: 10px;
+///   }
+///
+/// @requires {variable} grid-gutter-width
+/// @requires {mixin} rem
+/// @requires {placeholder} row-defaults
+
+@mixin make-row(
+  $gutter: $grid-gutter-width
+) {
+
+  @extend %row-defaults;
+  margin: {
+    @include rem(right, ($gutter / -2));
+    @include rem(left, ($gutter / -2));
+  }
+}
+
+
+/// Make the element grid-ready (applying everything but the width).
+///
+/// @group layout
+///
+/// @param {Number} $gutter [$grid-gutter-width]
+///   - Width value of the gutters.
+///
+/// @example scss - Usage.
+///   .column {
+///     @include make-column-ready(20px);
+///     ...
+///   }
+///
+///   // CSS Output
+///   //
+///   .column {
+///     position: relative;
+///     width: 100%;
+///     min-height: 1px;
+///   }
+///   .column {
+///     padding-right: 10px;
+///     padding-left: 10px;
+///     ...
+///   }
+///
+/// @requires {variable} grid-gutter-width
+/// @requires {mixin} rem
+/// @requires {placeholder} column-defaults
+
+@mixin make-column-ready(
+  $gutter: $grid-gutter-width
+) {
+
+  @extend %column-defaults;
+  padding: {
+    @include rem(right, ($gutter / 2));
+    @include rem(left, ($gutter / 2));
+  }
+}
+
+
+/// Generate specific width that span multiple columns.
+///
+/// @group layout
+///
+/// @param {Number} $size
+///   - Number of columns to span.
+///
+/// @param {Number} $columns [$grid-columns]
+///   - Number of columns in the grid.
+///
+/// @example scss - Usage.
+///   .column-5 {
+///     @include make-column(5);
+///   }
+///
+///   // CSS Output
+///   //
+///   .column-5 {
+///     flex: 0 0 41.66667%;
+///     max-width: 41.66667%;
+///   }
+///
+/// @requires {variable} grid-columns
+///
+/// 1. Add a 'max-width' to ensure content within each column does not blow out
+///    the width of the column. Applies to IE10+ and Firefox. Chrome and Safari
+///    do not appear to require this.
+
+@mixin make-column(
+  $size,
+  $columns: $grid-columns
+) {
+
+  $width: percentage($size / $columns);
+
+  flex: 0 0 $width;
+  max-width: $width; // 1
+}
+
+
+/// Move columns to the right by increasing the left margin
+/// of a column by * columns.
+///
+/// @group layout
+///
+/// @param {Number} $offset
+///   - Number of columns to offset.
+///
+/// @param {Number} $columns [$grid-columns]
+///   - Number of columns in the grid.
+///
+/// @example scss - Usage.
+///   .offset-3 {
+///     @include make-column-offset(3);
+///   }
+///
+///   // CSS Output
+///   //
+///   .offset-3 {
+///     margin-left: 25%;
+///   }
+///
+/// @requires {variable} grid-columns
+
+@mixin make-column-offset(
+  $offset,
+  $columns: $grid-columns
+) {
+
+  $width: percentage($offset / $columns);
+
+  margin-left: $width;
+}
+
+
+/// Easily control the visual order of your columns.
+///
+/// @group layout
+///
+/// @param {Number} $order
+///   - Position of the column to reordered. Quickly order
+///     first one element by applying order: -1.
+///
+/// @param {Number} $columns [$grid-columns]
+///   - Number of columns in the grid.
+///
+/// @example scss - Usage.
+///   .order-7 {
+///     @include make-column-order(7);
+///   }
+///
+///   // CSS Output
+///   //
+///   .order-7 {
+///     order: 7;
+///   }
+///
+/// @requires {variable} grid-columns
+
+@mixin make-column-order(
+  $order,
+  $columns: $grid-columns
+) {
+
+  order: if($order <= $columns, $order, $columns);
+}

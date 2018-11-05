@@ -1,0 +1,96 @@
+@charset 'utf-8';
+
+
+/// Generate PX/REM value which is relative to the font-size defined for the html element.
+///
+/// REM stands for root em. Basically, instead of being relative to the font-size of its
+/// direct parent, it's relative to the font-size defined for the html element.
+///
+/// @group typography
+///
+/// @param {String} $property
+///   - Accepts (almost) any property as an input, not only "font-size".
+///
+/// @param {*} $values
+///   - Accepts either "px" or "rem" as an input value. Also accepts multiple values,
+///     like "10px 20px" (for padding or margin as an example).
+///
+/// @param {Number} $root [16px]
+///   - The browser default (16 pixels) font-size.
+///
+/// @example scss - Usage.
+///   .element {
+///     @include rem('padding-right', 15px);
+///     @include rem('padding-left', 15px);
+///   }
+///
+///   // CSS Output
+///   //
+///   .element {
+///     padding-right: 15px; // Fallback for IE8.
+///     padding-right: 0.9375rem;
+///     padding-left: 15px; // Fallback for IE8.
+///     padding-left: 0.9375rem;
+///   }
+///
+/// @requires {variable} enable-legacy-support-for-ie8
+/// @requires {function} strip-units
+
+@mixin rem(
+  $property,
+  $values,
+  $root: 16px
+) {
+
+  $px:  ();
+  $rem: ();
+
+  @if not unitless($root) {
+    $root: strip-units($root);
+  }
+
+  @if $values {
+    
+    @each $value in $values {
+
+      @if $value == 0 or type-of($value) != 'number' {
+        $px:  append($px, $value);
+        $rem: append($rem, $value);
+      }
+      @else {
+        $unit: unit($value);
+        $val:  strip-units($value);
+
+        @if $unit == 'px' {
+          $px:  append($px, $value);
+          
+          @if $val == 1 {
+            $rem: append($rem, $value);
+          }
+          @else {
+            $rem: append($rem, ($val / $root + rem));
+          }
+        }
+        @else if $unit == 'rem' {
+          $px:  append($px, ($val * $root + px));
+          $rem: append($rem, $value);
+        }
+        @else {
+          $px:  append($px, $value);
+          $rem: append($rem, $value);
+        }
+      }
+    }
+
+    @if $px == $rem {
+      #{$property}: $px;
+    }
+    @else {
+
+      @if $enable-legacy-support-for-ie8 {
+        #{$property}: $px; // Fallback for IE8.
+      }
+      #{$property}: $rem;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+uuid: 2b55db8a-a7cf-4a20-8734-6bfdac12d586
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - kiso
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: kiso_messages
+theme: kiso
+region: help
+weight: -5
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

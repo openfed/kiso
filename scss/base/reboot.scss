@@ -1,0 +1,61 @@
+
+//
+// @file
+// Reboot definition.
+//
+// Normalization of HTML elements, extends Normalize.css to remove
+// styles targeting irrelevant browsers while applying new styles.
+//
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+
+// Document root
+//
+// 1. Change the default font family in all browsers.
+// 2. Change from `box-sizing: content-box` so that `width` is not affected
+//    by `padding` or `border`.
+// 3. Setting @viewport causes scrollbars to overlap content in IE11 and Edge,
+//    so we force a non-overlapping, non-auto-hiding scrollbar to counteract.
+// 4. Change the default tap highlight to be completely transparent in iOS.
+//
+html {
+  font-family: sans-serif; // 1
+  box-sizing: border-box; // 2
+  -ms-overflow-style: scrollbar; // 3
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); // 4
+}
+
+// All elements
+//
+* {
+  box-sizing: inherit; // 1
+  
+  // Pseudo-elements
+  //
+  &::before,
+  &::after {
+    box-sizing: inherit; // 1
+  }
+}
+
+// Make viewport responsive
+//
+// IE10+ doesn't honor `<meta name="viewport">` in some cases.
+//
+@at-root {
+  @-ms-viewport { width: device-width; }
+}
+
+// HTML5 elements
+//
+// Shim for "new" HTML5 structural elements to display correctly (IE10, older browsers).
+//
+dialog,
+hgroup {
+  display: block;
+}

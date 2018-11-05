@@ -1,0 +1,41 @@
+normalize:
+  remote: https://github.com/necolas/normalize.css
+  version: "8.0.0"
+  license:
+    name: MIT
+    url: https://github.com/necolas/normalize.css/blob/master/LICENSE.md
+    gpl-compatible: true
+  css:
+    base:
+      css/base/normalize.css: { weight: -20 }
+
+framework:
+  version: VERSION
+  css:
+    base:
+      css/base/reboot.css: {}
+    component:
+      css/components/blocks/language-interface.css: {}
+  js:
+    js/init.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/drupalSettings
+
+back-to-top:
+  css:
+    component:
+      css/components/back-to-top.css: {}
+  js:
+    js/back-to-top.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+smooth-scroll:
+  js:
+    js/smooth-scroll.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

@@ -1,0 +1,36 @@
+
+//
+// @file
+// Display property.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// When you have a <div> container in a form with class="container-inline"
+// all containers and labels get a "display: inline" when using default Drupal
+// Core CSS. On <div> containers this breaks some style like margin and padding.
+// Here we set the display style to "inline-block" instead.
+//
+.container-inline {
+
+  // Containers and labels which need to be on a signle line.
+  //
+  div,
+  label {
+    display: inline-block;
+    width: auto;
+    text-align: initial;
+    vertical-align: middle;
+  }
+
+  // Details contents always need to be rendered as block.
+  //
+  .details-wrapper {
+    display: block;
+  }
+}

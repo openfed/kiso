@@ -1,0 +1,25 @@
+@charset 'utf-8';
+
+
+/// Float clearing default properties.
+///
+/// @group helpers
+///
+/// @example scss - Usage.
+///   .element {
+///     @extend %clearfix-defaults;
+///   }
+///
+///   // CSS Output
+///   //
+///   .element::after {
+///     content: '';
+///     display: table;
+///     clear: both;
+///   }
+///
+/// @requires {mixin} clearfix
+
+%clearfix-defaults {
+  @include clearfix($extend: false);
+}

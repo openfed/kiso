@@ -1,0 +1,65 @@
+
+//
+// @file
+// Wrappers compose general arrangement for section containers
+// which wrap up the regions.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Page wrappers
+//
+// 1. You should first extend 'Page wrappers' default properties (provided by
+//    the Sass Framework) which will be added within your compiled CSS output.
+// 2. Additional CSS properties can be added from this points.
+//
+.page {
+
+  // All wrappers
+  //
+  &__wrapper {
+    @extend %page-wrappers-defaults; // 1
+    // 2 ...
+
+    // Loop through few page wrapper names (Toolbar, Header
+    // (Banner), Footnotes and Footer (Contentinfo)) .
+    //
+    @each $wrapper-name in 'tools', 'header', 'postscript', 'footer' {
+
+      // Page wrapper ($wrapper-name)
+      //
+      &--#{$wrapper-name} {
+        @extend %page-wrapper-#{$wrapper-name}-defaults; // 1
+      }
+    }
+
+    // Toolbar wrapper
+    //
+    &--tools {}
+
+    // Header (Banner) wrapper
+    //
+    &--header {}
+
+    // Featured content wrapper
+    //
+    &--highlighted {}
+
+    // Content (Main) wrapper
+    //
+    &--content {}
+
+    // Footnotes wrapper
+    //
+    &--postscript {}
+
+    // Footer (Contentinfo) wrapper
+    //
+    &--footer {}
+  }
+}

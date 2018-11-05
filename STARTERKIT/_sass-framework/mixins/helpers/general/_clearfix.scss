@@ -1,0 +1,81 @@
+@charset 'utf-8';
+
+
+/// Provides an easy way to include a clearfix for containing floats.
+///
+/// @group helpers
+///
+/// Based on the micro clearfix hack by Nicolas Gallagher, with the :before
+/// pseudo selector removed to allow normal top margin collapse.
+///
+/// @link http://nicolasgallagher.com/micro-clearfix-hack
+///   - A new micro clearfix hack – Nicolas Gallagher
+///
+/// Extending (@extend) is not possible across media contexts. Reasons why we cannot
+/// extend across different media contexts are strictly technical at this point.
+/// Still, this is something quite annoying to deal with. To work around this issue,
+/// the less worse idea is to wrap placeholders with a mixin so you can choose either
+/// to '@extend' or to '@include', depending on whether your in a '@media' block or not.
+///
+/// @param {Bool} $extend [true]
+///   - Choose either to '@extend' or to '@include', depending on whether your
+///     in a '@media' block or not.
+///
+/// @example scss - Default usage.
+///   .element {
+///     @include clearfix;
+///   }
+///
+///   // CSS Output
+///   //
+///   .element::after {
+///     content: '';
+///     display: table;
+///     clear: both;
+///   }
+///
+/// @example scss - Usage across '@media' context.
+///   .element {
+///     @include breakpoint-up(medium) {
+///       @include clearfix($extend: false);
+///     }
+///   }
+///
+///   // CSS Output
+///   //
+///   @media (min-width: 768px) {
+///     .element::after {
+///       content: '';
+///       display: table;
+///       clear: both;
+///     }
+///   }
+///
+/// @requires {placeholder} clearfix-defaults
+/// @requires {variable} $enable-extend-directive
+/// @requires {variable} enable-legacy-support-for-ie6
+/// @requires {variable} enable-legacy-support-for-ie7
+
+@mixin clearfix(
+  $extend: $enable-extend-directive
+) {
+
+  @if $extend {
+    @extend %clearfix-defaults;
+  }
+  @else {
+    
+    @if ($enable-legacy-support-for-ie6 or $enable-legacy-support-for-ie7) {
+      *position: relative;
+      *zoom: 1;
+    }
+    
+    // After selector
+    //
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}

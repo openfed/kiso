@@ -1,0 +1,18 @@
+
+//
+// @file
+// Layout "Page" rules definition.
+//
+// It is defining arrangement of elements (wrappers, sections, regions ...)
+// for how general layout should look like through pages.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../config/imports';
+
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+@import
+  'page/wrapper',
+  'page/section';

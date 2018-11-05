@@ -1,0 +1,22 @@
+@charset 'utf-8';
+
+
+/// Strips the units from a value.
+///
+/// @group helpers
+///
+/// @param {Number} $value
+///   - The value to strip of its unit.
+///
+/// @return {Number}
+///   The value unitless.
+///   e.g. 16px -> 16.
+///
+/// @access private
+
+@function strip-units(
+  $value
+) {
+
+  @return ($value / ($value * 0 + 1));
+}

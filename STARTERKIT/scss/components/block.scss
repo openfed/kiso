@@ -1,0 +1,19 @@
+
+//
+// @file
+// Components "Block" rules definition.
+//
+// Components rules consist of reusable, discrete UI elements; components
+// should comprise the bulk of Drupal’s CSS. It should be designed to exist
+// as a standalone component. Components can easily be moved to different
+// parts of the layout without breaking.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../config/imports';
+
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+@import
+  'blocks/branding';

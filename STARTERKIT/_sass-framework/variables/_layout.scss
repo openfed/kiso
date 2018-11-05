@@ -1,0 +1,255 @@
+
+///
+/// @file
+/// Layout & Grid system variables
+///
+/// Variables for laying out pages, including wrapping containers & grid system.
+///
+/// General variable structure:
+/// Variable format should follow the `$component-modifier-state-property` order.
+///
+
+
+/// Table of Contents
+///
+/// Grid breakpoints
+/// Grid containers
+/// Grid columns
+/// Grid gutter width
+/// Layout arrangement / Page wrappers
+/// Layout arrangement / Page sections
+
+
+/// Grid breakpoints
+///
+/// Define the minimum dimensions at which your layout will change,
+/// adapting to different screen sizes, for use in media queries.
+///
+/// @prop {Number} xsmall [0]
+///   - Extra small devices (Portrait phones, less than 576px).
+///
+/// @prop {Number} small [576px]
+///   - Small devices (Landscape phones, 576px and up).
+///
+/// @prop {Number} medium [768px]
+///   - Medium devices (Tablets, 768px and up).
+///
+/// @prop {Number} large [992px]
+///   - Large devices (Desktops, 992px and up).
+///
+/// @prop {Number} xlarge [1200px]
+///   - Extra large devices (Large desktops, 1200px and up).
+///
+/// @see {function} breakpoint-next
+/// @see {function} breakpoint-min
+/// @see {function} breakpoint-max
+/// @see {function} breakpoint-infix
+/// @see {mixin} breakpoint-up
+/// @see {mixin} breakpoint-down
+/// @see {mixin} breakpoint-between
+/// @see {mixin} breakpoint
+/// @see {mixin} make-container-max-widths
+///
+/// @type Map
+
+$grid-breakpoints: () !default;
+$grid-breakpoints: map-merge(
+  (
+    xsmall: 0,
+    small:  576px,
+    medium: 768px,
+    large:  992px,
+    xlarge: 1200px,
+  ),
+  $grid-breakpoints
+);
+
+
+/// Grid containers
+///
+/// Define the maximum width of `.container` for different screen sizes.
+///
+/// @prop {Number} small [540px]
+///   - Maximum container width for small devices.
+///
+/// @prop {Number} medium [750px]
+///   - Maximum container width for medium devices.
+///
+/// @prop {Number} large [990px]
+///   - Maximum container width for large devices.
+///
+/// @prop {Number} xlarge [1170px]
+///   - Maximum container width for extra large devices.
+///
+/// @see {mixin} make-container-max-widths
+///
+/// @type Map
+
+$container-max-widths: () !default;
+$container-max-widths: map-merge(
+  (
+    small:  540px,
+    medium: 750px,
+    large:  990px,
+    xlarge: 1170px,
+  ),
+  $container-max-widths
+);
+
+
+/// Grid columns
+///
+/// Set the number of columns.
+///
+/// @see {mixin} make-column
+/// @see {mixin} make-column-offset
+/// @see {mixin} make-column-order
+///
+/// @type Number
+
+$grid-columns: 12 !default;
+
+
+/// Grid gutter width
+///
+/// Specify the width of the gutters.
+///
+/// @see {mixin} make-container
+/// @see {mixin} make-row
+/// @see {mixin} make-column-ready
+/// @see {placeholder} column-ready-defaults
+/// @see {varialble} page-wrappers-defaults
+///
+/// @type Number
+
+$grid-gutter-width: 30px !default;
+
+
+/// Layout arrangement
+///
+/// Page wrappers
+
+
+/// Map of default properties for all wrappers.
+///
+/// @prop {List} padding
+///   - Paddings rhythm applied on all wrappers.
+///
+/// @see {placeholder} page-wrappers-defaults
+///
+/// @type Map
+
+$page-wrappers-properties: () !default;
+$page-wrappers-properties: map-merge(
+  (
+    'padding': round($grid-gutter-width / 4) round($grid-gutter-width / 2),
+  ),
+  $page-wrappers-properties
+);
+
+
+/// Background properties for the "Toolbar wrapper".
+///
+/// @prop {Color | Bool} key
+///   - List of background properties.
+///
+/// @see {placeholder} page-wrapper-tools-defaults
+///
+/// @type Map
+
+$page-wrapper-tools-properties: () !default;
+$page-wrapper-tools-properties: map-merge(
+  (
+    'color': $gray-200,
+    'image': false,
+  ),
+  $page-wrapper-tools-properties
+);
+
+
+/// Background properties for the "Header (Banner) wrapper".
+///
+/// @prop {Color | String} key
+///   - List of background properties.
+///
+/// @see {placeholder} page-wrapper-header-defaults
+///
+/// @type Map
+
+$page-wrapper-header-properties: () !default;
+$page-wrapper-header-properties: map-merge(
+  (
+    'color':           theme-color('primary'),
+    'image':           'banner-header',
+    'image-size':      cover,
+    'image-path':      '/themes/contrib/kiso/images/banners',
+    'image-extension': 'jpg',
+    'image-repeat':    repeat,
+  ),
+  $page-wrapper-header-properties
+);
+
+
+/// Background properties for the "Footnotes wrapper".
+///
+/// @prop {Color | Bool} key
+///   - List of background properties.
+///
+/// @see {placeholder} page-wrapper-postscript-defaults
+///
+/// @type Map
+
+$page-wrapper-postscript-properties: () !default;
+$page-wrapper-postscript-properties: map-merge(
+  (
+    'color': $gray-300,
+    'image': false,
+  ),
+  $page-wrapper-postscript-properties
+);
+
+
+/// Background properties for the "Footer (Contentinfo) wrapper".
+///
+/// @prop {Color | Bool} key
+///   - List of background properties.
+///
+/// @see {placeholder} page-wrapper-footer-defaults
+///
+/// @type Map
+
+$page-wrapper-footer-properties: () !default;
+$page-wrapper-footer-properties: map-merge(
+  (
+    'color': theme-color('primary'),
+    'image': false,
+  ),
+  $page-wrapper-footer-properties
+);
+
+
+/// Layout arrangement
+///
+/// Page sections
+
+
+/// Map of properties for the Header (Banner) section.
+///
+/// @prop {String} align-items
+///   - Vertical align for the container items.
+///
+/// @prop {String} justify-content
+///   - Space out brand from logo.
+///
+/// @see {placeholder} page-section-header-defaults
+///
+/// @type Map
+
+$page-section-header-properties: () !default;
+$page-section-header-properties: map-merge(
+  (
+    'align-items':     center,
+    'justify-content': space-between,
+  ),
+  $page-section-header-properties
+);

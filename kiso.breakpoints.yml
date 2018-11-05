@@ -1,0 +1,35 @@
+kiso.xsmall:
+  label: 'extra small'
+  mediaQuery: ''
+  weight: 0
+  multipliers:
+    - 1x
+    - 2x
+kiso.small:
+  label: small
+  mediaQuery: 'all and (min-width: 480px)'
+  weight: 1
+  multipliers:
+    - 1x
+    - 2x
+kiso.medium:
+  label: medium
+  mediaQuery: 'all and (min-width: 768px)'
+  weight: 2
+  multipliers:
+    - 1x
+    - 2x
+kiso.large:
+  label: large
+  mediaQuery: 'all and (min-width: 960px)'
+  weight: 3
+  multipliers:
+    - 1x
+    - 2x
+kiso.xlarge:
+  label: 'extra large'
+  mediaQuery: 'all and (min-width: 1280px)'
+  weight: 4
+  multipliers:
+    - 1x
+    - 2x

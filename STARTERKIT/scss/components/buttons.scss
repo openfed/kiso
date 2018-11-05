@@ -1,0 +1,23 @@
+
+//
+// @file
+// Button styles for actions in forms, dialogs, and more.
+//
+// Components rules consist of reusable, discrete UI elements; components
+// should comprise the bulk of Drupal’s CSS. It should be designed to exist
+// as a standalone component. Components can easily be moved to different
+// parts of the layout without breaking.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../config/imports';
+
+.button {
+
+  // Toggle button
+  // Button for toggling the Header (Collapsible) when in its collapsed state.
+  //
+  &--toggler {
+    display: none;
+  }
+}

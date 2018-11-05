@@ -1,0 +1,179 @@
+@charset 'utf-8';
+
+
+/// Only display content to screen readers.
+///
+/// @group helpers
+///
+/// @link http://a11yproject.com/posts/how-to-hide-content
+///   - How-to: Hide content - The A11Y Project
+///
+/// @link http://hugogiraudel.com/2016/10/13/css-hide-and-seek/
+///   - CSS Hide-and-Seek
+///
+/// Extending (@extend) is not possible across media contexts. Reasons why we cannot
+/// extend across different media contexts are strictly technical at this point.
+/// Still, this is something quite annoying to deal with. To work around this issue,
+/// the less worse idea is to wrap placeholders with a mixin so you can choose either
+/// to '@extend' or to '@include', depending on whether your in a '@media' block or not.
+///
+/// @param {Bool} $extend [true]
+///   - Choose either to '@extend' or to '@include', depending on whether your
+///     in a '@media' block or not.
+///
+/// @example scss - Default usage.
+///   .element {
+///     @include visually-hidden;
+///   }
+///
+///   // CSS Output
+///   //
+///   .element {
+///     position: absolute !important;
+///     clip: rect(1px, 1px, 1px, 1px) !important;
+///     ...
+///     border: 0 !important;
+///     white-space: nowrap !important;
+///   }
+///
+/// @example scss - Usage across '@media' context.
+///   .element {
+///     @include breakpoint-up(medium) {
+///       @include visually-hidden($extend: false);
+///     }
+///   }
+///
+///   // CSS Output
+///   //
+///   @media (min-width: 768px) {
+///     .element {
+///       position: absolute !important;
+///       clip: rect(1px, 1px, 1px, 1px) !important;
+///       ...
+///       border: 0 !important;
+///       white-space: nowrap !important;
+///     }
+///   }
+///
+/// @requires {placeholder} screen-reader-only-defaults
+/// @requires {variable} $enable-extend-directive
+/// @requires {variable} enable-legacy-support-for-ie6
+/// @requires {variable} enable-legacy-support-for-ie7
+
+@mixin visually-hidden(
+  $extend: $enable-extend-directive
+) {
+
+  @if $extend {
+    @extend %screen-reader-only-defaults;
+  }
+  @else {
+    position: absolute !important;
+    @if ($enable-legacy-support-for-ie6 or $enable-legacy-support-for-ie7) {
+      clip: rect(1px 1px 1px 1px) !important; // IE6 and IE7 use the wrong syntax.
+    }
+    clip: rect(1px, 1px, 1px, 1px) !important;
+    clip-path: inset(50%) !important;
+    overflow: hidden !important;
+    height: 1px !important;
+    width: 1px !important;
+    padding: 0 !important;
+    border: 0 !important;
+    white-space: nowrap !important;
+  }
+}
+
+
+/// Only display content when it’s focused.
+///
+/// @group helpers
+///
+/// Use in conjunction with ´@include visually-hidden;´ to only display
+/// content when it's focused. Useful for "Skip to main content" links.
+///
+/// @link https://www.w3.org/TR/2013/NOTE-WCAG20-TECHS-20130905/G1
+///   - G1: Adding a link at the top of each page that goes directly to the main content area
+///
+/// Extending (@extend) is not possible across media contexts. Reasons why we cannot
+/// extend across different media contexts are strictly technical at this point.
+/// Still, this is something quite annoying to deal with. To work around this issue,
+/// the less worse idea is to wrap placeholders with a mixin so you can choose either
+/// to '@extend' or to '@include', depending on whether your in a '@media' block or not.
+///
+/// @param {Bool} $extend [true]
+///   - Choose either to '@extend' or to '@include', depending on whether your
+///     in a '@media' block or not.
+///
+/// @example scss - Default usage.
+///   .element {
+///     @include visually-hidden;
+///     @include focusable;
+///   }
+///
+///   // CSS Output
+///   //
+///   .element {
+///     position: absolute !important;
+///     clip: rect(1px, 1px, 1px, 1px) !important;
+///     ...
+///     border: 0 !important;
+///     white-space: nowrap !important;
+///   }
+///   .element:focus,
+///   .element:active {
+///     clip: auto !important;
+///     ...
+///     white-space: normal !important;
+///   }
+///
+/// @example scss - Usage across '@media' context.
+///   .element {
+///     @include breakpoint-up(medium) {
+///       @include visually-hidden($extend: false);
+///       @include focusable($extend: false);
+///     }
+///   }
+///
+///   // CSS Output
+///   //
+///   @media (min-width: 768px) {
+///     .element {
+///       position: absolute !important;
+///       clip: rect(1px, 1px, 1px, 1px) !important;
+///       ...
+///       border: 0 !important;
+///       white-space: nowrap !important;
+///     }
+///     .element:focus,
+///     .element:active {
+///       clip: auto !important;
+///       ...
+///       white-space: normal !important;
+///     }
+///   }
+///
+/// @requires {placeholder} screen-reader-only-focusable-defaults
+/// @requires {variable} $enable-extend-directive
+              
+@mixin focusable(
+  $extend: $enable-extend-directive
+) {
+
+  @if $extend {
+    @extend %screen-reader-only-focusable-defaults;
+  }
+  @else {
+    
+    // Focus and active states
+    //
+    &:focus,
+    &:active {
+      clip: auto !important;
+      clip-path: none !important;
+      overflow: visible !important;
+      width: auto !important;
+      height: auto !important;
+      white-space: normal !important;
+    }
+  }
+}

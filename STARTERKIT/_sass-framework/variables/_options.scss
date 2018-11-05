@@ -1,0 +1,90 @@
+
+///
+/// @file
+/// Options
+///
+/// Quickly modify global styling by enabling or disabling optional features.
+///
+
+
+/// Enable or disable the Grid Sytem classes.
+///
+/// @see scss/layout/grid.scss
+///
+/// @type Bool
+
+$enable-grid-classes: true !default;
+
+
+/// Choose either to use the '@extend' or the '@include' Sass directive.
+///
+/// @see {mixin} clearfix
+/// @see {mixin} visually-hidden
+/// @see {mixin} focusable
+///
+/// @type Bool
+
+$enable-extend-directive: true !default;
+
+
+/// Enable or disable the retina fallback for images.
+///
+/// @see {mixin} background
+///
+/// @type Bool
+
+$enable-retina-fallback: false !default;
+
+
+/// Followong variables are used by many mixins to add additional CSS
+/// to support specific versions of IE or specific vendor prefixes.
+
+
+/// Enable or disable the browser support to the legacy IE6.
+///
+/// @see {mixin} clearfix
+/// @see {mixin} visually-hidden
+///
+/// @type Bool
+
+$enable-legacy-support-for-ie6:  false !default;
+
+
+/// Enable or disable the browser support to the legacy IE7.
+///
+/// @see {mixin} clearfix
+/// @see {mixin} visually-hidden
+///
+/// @type Bool
+
+$enable-legacy-support-for-ie7:  false !default;
+
+
+/// Enable or disable the browser support to the legacy IE8.
+///
+/// @see {mixin} rem
+///
+/// @type Bool
+
+$enable-legacy-support-for-ie8:  false !default;
+
+
+/// Enable or disable the browser support to the legacy IE9.
+///
+/// @type Bool
+
+$enable-legacy-support-for-ie9:  true !default;
+
+
+/// Enable or disable the browser support to the legacy IE10.
+///
+/// @type Bool
+
+$enable-legacy-support-for-ie10: true !default;
+
+
+/// Enable or disable the browser support to the legacy IE11.
+///
+/// @type Bool
+
+$enable-legacy-support-for-ie11: true !default;

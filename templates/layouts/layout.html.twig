@@ -1,0 +1,34 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display a generic layout.
+ *
+ * You will find same variables as in the core 'layout.html.twig' template.
+ *
+ * Custom variables:
+ * - visible_region_classes: This array may contain one or more of the following
+ *   class pattern:
+ *   - is-visible--[region_name]: The region name visibility. For example, if the
+ *     region is 'sidebar_first' it would result in 'is-visible--sidebar-first'.
+ *
+ * @see template_preprocess_layout()
+ * @see kiso_preprocess_layout()
+ */
+#}
+{%
+  set classes = [
+    'layout',
+    'layout--' ~ layout.id|clean_class,
+  ]
+%}
+{% if content %}
+  <div{{ attributes.addClass(classes, visible_region_classes) }}>
+    {% for region in layout.getRegionNames %}
+      {% if content[region]|render|striptags %}
+        <div{{ region_attributes[region].addClass('layout__region', 'layout__region--' ~ region|clean_class) }}>
+          {{ content[region] }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endif %}

@@ -1,0 +1,48 @@
+# Defines theme information
+name: 'Kiso 基礎'
+description: 'Base theme for Drupal 8 websites build around accessibility and simplicity.'
+type: theme
+base theme: false
+version: VERSION
+core: 8.x
+
+# Defines regions
+regions:
+  tools: 'Toolbar'
+  header: 'Header'
+  header_collapsible: 'Header (Collapsible)'
+  highlighted: 'Highlighted (Featured content)'
+  help: 'Help'
+  breadcrumb: 'Breadcrumb'
+  content: 'Main content'
+  navigation: 'Navigation sidebar (Left)'
+  complementary: 'Related content sidebar (Right)'
+  postscript: 'Postscript (Footnotes)'
+  footer: 'Footer'
+  related: 'Related blocks (Hidden)'
+  page_top: 'Page Top' # Needed by Drupal Core
+  page_bottom: 'Page Bottom' # Needed by Drupal Core
+
+# Defines style libraries
+libraries:
+  - 'kiso/normalize'
+  - 'kiso/framework'
+
+# Defines CKEditor styles
+ckeditor_stylesheets:
+  - 'css/components/ckeditor.css'
+
+# Libraries overrides
+libraries-override:
+  # Float clearing, Invisible content & Screenreaders
+  system/base:
+    css:
+      component:
+        css/components/container-inline.module.css: 'css/components/utilities/container-inline.css'
+        css/components/clearfix.module.css: 'css/components/utilities/clearfix.css'
+        css/components/hidden.module.css: 'css/components/utilities/hidden.css'
+  # Federal Header
+  openfed_federalheader/header :
+    css:
+      theme:
+        assets/styles/openfed_federalheader.css: 'css/components/blocks/openfed-federalheader.css'

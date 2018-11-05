@@ -1,0 +1,58 @@
+
+///
+/// @file
+/// Components rule variables
+///
+/// Font, line-height, padding, margin, color and more... for common elements.
+///
+/// General variable structure:
+/// Variable format should follow the `$component-modifier-state-property` order.
+///
+
+
+/// Table of Contents
+///
+/// Branding
+
+
+/// Branding
+///
+/// Map of properties for the "Site logo" element.
+///
+/// @prop {Color | Number} key
+///   - List of the default "Site logo" properties.
+///
+/// @see {placeholder} branding-site-logo-defaults
+///
+/// @type Map
+
+$branding-site-logo-properties: () !default;
+$branding-site-logo-properties: map-merge(
+  (
+    'padding-top':    0.5rem,
+    'padding-bottom': 0.5rem,
+    'margin-right':   1rem,
+    'color':          $gray-100,
+    'font-size':      1.25rem,
+  ),
+  $branding-site-logo-properties
+);
+
+
+/// Map of properties for the "Logo" image.
+///
+/// @prop {String | Number} key
+///   - List of the default "Logo" (Image) properties.
+///
+/// @see {placeholder} branding-site-logo-image-defaults
+///
+/// @type Map
+
+$branding-site-logo-image-properties: () !default;
+$branding-site-logo-image-properties: map-merge(
+  (
+    'vertical-align': middle,
+    'margin-right':   map-get($branding-site-logo-properties, 'margin-right'),
+  ),
+  $branding-site-logo-image-properties
+);

@@ -1,0 +1,43 @@
+# Set the following "name:" and "description:" using your own theme name and description.
+# The text you put in the "name:" line is free and doesn't need to exactly match your theme name.
+name: 'THEMETITLE'
+description: 'Custom sub-theme, inherits from the Kiso (基礎) base theme. Read the README.md from this folder.'
+core: 8.x
+type: theme
+base theme: kiso
+
+# Change "THEMENAME" to your theme machine name and
+# defines libraries group in which we can add css/js.
+libraries:
+  - 'THEMENAME/global-styling'
+  - 'THEMENAME/global-scripts'
+
+# Because regions are not inherited, any region including standard Drupal regions
+# as well as Kiso (基礎) base theme regions must be defined in the sub-theme.
+# Fell free to add some custom regions for your sub-theme.
+regions:
+  tools: 'Toolbar'
+  header: 'Header'
+  header_collapsible: 'Header (Collapsible)'
+  highlighted: 'Highlighted (Featured content)'
+  help: 'Help'
+  breadcrumb: 'Breadcrumb'
+  content: 'Main content'
+  navigation: 'Navigation sidebar (Left)'
+  complementary: 'Related content sidebar (Right)'
+  postscript: 'Postscript (Footnotes)'
+  footer: 'Footer'
+  related: 'Related blocks (Hidden)'
+
+# Stylesheet(s) need(s) to be added to the CKEditor frame to reflect the website
+# typography (font family/size/weight, line height...) and components (Headings,
+# Lead body copy, Inline text elements, Blockquotes, Lists...) look&feel using
+# the theme colors.
+ckeditor_stylesheets:
+  - 'css/components/ckeditor.css'
+
+# Change "THEMENAME" to your theme machine name and this will automatically
+# extend with JavaScript and CSS files from Kiso (基礎) base theme.
+libraries-extend:
+  kiso/framework:
+    - 'THEMENAME/framework'

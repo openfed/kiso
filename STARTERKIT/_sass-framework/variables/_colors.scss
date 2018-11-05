@@ -1,0 +1,205 @@
+
+///
+/// @file
+/// Kiso’s default palette
+///
+/// Define the color palette which will be used through all site pages.
+///
+
+
+/// Most colors that currently make up Kiso’s default palette—used throughout the
+/// framework for things such as button variations, alert variations, form validation
+/// indicators—lead to sufficient color contrast (compliant with the recommended
+/// WCAG 2.0 color contrast ratio of 4.5:1) when used against a white back(fore)ground.
+///
+/// If modified, authors will need to manually modify/extend these default colors
+/// to ensure adequate color contrast ratios.
+
+
+/// Define all colors as consistent color scheme for use across the theme.
+///
+/// @type Color
+
+$slate:   #405b77 !default;
+$blue:    #0071eb !default;
+$indigo:  #6610f2 !default;
+$purple:  #6f42c1 !default;
+$pink:    #e01a76 !default;
+$red:     #dc3545 !default;
+$orange:  #c05702 !default;
+$green:   #218739 !default;
+$teal:    #008081 !default;
+$cyan:    #187699 !default;
+
+
+/// Define all grayscales as consistent shades of gray for use across the theme.
+///
+/// @type Color
+
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #868e96 !default;
+$gray-700: #495057 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+
+
+/// Map of default color scheme.
+///
+/// @prop {Color} slate
+///   - The "Slate" color.
+///
+/// @prop {Color} blue
+///   - The "Blue" color.
+///
+/// @prop {Color} indigo
+///   - The "Indigo" color.
+///
+/// @prop {Color} purple
+///   - The "Purple" color.
+///
+/// @prop {Color} pink
+///   - The "Pink" color.
+///
+/// @prop {Color} red
+///   - The "Red" color.
+///
+/// @prop {Color} orange
+///   - The "Orange" color.
+///
+/// @prop {Color} green
+///   - The "Green" color.
+///
+/// @prop {Color} teal
+///   - The "Teal" color.
+///
+/// @prop {Color} cyan
+///   - The "Cyan" color.
+///
+/// @prop {Color} gray
+///   - The "Gray" color.
+///
+/// @prop {Color} gray-dark
+///   - The "Dark gray" color.
+///
+/// @see {function} color
+///
+/// @type Map
+
+$colors: () !default;
+$colors: map-merge(
+  (
+    'slate':     $slate,
+    'blue':      $blue,
+    'indigo':    $indigo,
+    'purple':    $purple,
+    'pink':      $pink,
+    'red':       $red,
+    'orange':    $orange,
+    'green':     $green,
+    'teal':      $teal,
+    'cyan':      $cyan,
+    'gray':      $gray-600,
+    'gray-dark': $gray-800,
+  ),
+  $colors
+);
+
+
+/// Map of theme color scheme.
+///
+/// @prop {Color} primary
+///   - The color for "Primary" status.
+///
+/// @prop {Color} secondary
+///   - The color for "Secondary" status.
+///
+/// @prop {Color} success
+///   - The color for "Success" status.
+///
+/// @prop {Color} info
+///   - The color for "Information" status.
+///
+/// @prop {Color} warning
+///   - The color for "Warning" status.
+///
+/// @prop {Color} danger
+///   - The color for "Danger" status.
+///
+/// @prop {Color} light
+///   - The color for "Light" status.
+///
+/// @prop {Color} dark
+///   - The color for "Dark" status.
+///
+/// @see {function} theme-color
+///
+/// @type Map
+
+$theme-colors: () !default;
+$theme-colors: map-merge(
+  (
+    'primary':   $slate,
+    'secondary': $gray-600,
+    'success':   $green,
+    'info':      $cyan,
+    'warning':   $orange,
+    'danger':    $red,
+    'light':     $gray-100,
+    'dark':      $gray-800,
+  ),
+  $theme-colors
+);
+
+
+/// Map of shades of gray.
+///
+/// @prop {Color} 100
+///   - The gray swatch "100".
+///
+/// @prop {Color} 200
+///   - The gray swatch "200".
+///
+/// @prop {Color} 300
+///   - The gray swatch "300".
+///
+/// @prop {Color} 400
+///   - The gray swatch "400".
+///
+/// @prop {Color} 500
+///   - The gray swatch "500".
+///
+/// @prop {Color} 600
+///   - The gray swatch "600".
+///
+/// @prop {Color} 700
+///   - The gray swatch "700".
+///
+/// @prop {Color} 800
+///   - The gray swatch "800".
+///
+/// @prop {Color} 900
+///   - The gray swatch "900".
+///
+/// @see {function} grayscale
+///
+/// @type Map
+
+$grays: () !default;
+$grays: map-merge(
+  (
+    '100': $gray-100,
+    '200': $gray-200,
+    '300': $gray-300,
+    '400': $gray-400,
+    '500': $gray-500,
+    '600': $gray-600,
+    '700': $gray-700,
+    '800': $gray-800,
+    '900': $gray-900,
+  ),
+  $grays
+);

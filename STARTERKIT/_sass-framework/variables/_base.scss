@@ -1,0 +1,70 @@
+
+///
+/// @file
+/// Base rule variables
+///
+/// Font, line-height, padding, margin, color and more... for HTML elements.
+///
+/// General variable structure:
+/// Variable format should follow the `$component-modifier-state-property` order.
+///
+
+
+/// Table of Contents
+///
+/// Fonts
+/// Body
+/// Media
+
+
+/// Fonts
+///
+/// Font, line-height, and color for body text, headings, and more.
+///
+/// @type List
+
+$font-family-sans-serif: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif !default;
+$font-family-monospace:  Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default;
+/// Define below all your font families which will be used for the text body through all pages.
+/// $font-family-roboto: "Roboto", sans-serif !default;
+
+
+/// Body
+///
+/// Map of properties for the `<body>` element.
+///
+/// @prop {Color | String | Number} key
+///   - List of the default body properties.
+///
+/// @see {placeholder} body-defaults
+///
+/// @type Map
+///
+/// 1. Go easy on the eyes and use something other than
+///    "#000" for text.
+/// 2. As a best practice, apply a default `background-color`.
+
+$body-properties: () !default;
+$body-properties: map-merge(
+  (
+    'color':            grayscale('700'), // 1
+    'background-color': white, // 2
+    'font-family':      $font-family-sans-serif,
+    'font-size':        1rem,
+    'font-weight':      400,
+    'line-height':      1.5,
+  ),
+  $body-properties
+);
+
+
+/// Media
+///
+/// @see {mixin} background
+///
+/// @type Map
+
+$image-folder-path:        '../../images' !default;
+$image-fallback-extension: 'png' !default;
+$image-retina-media-query: 'only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx)';
+$image-retina-suffix:      '@2x';

@@ -1,0 +1,131 @@
+
+//
+// @file
+// "Grid System" arrangements.
+//
+// Powerful mobile-first `Flexbox` grid to build layouts of all shapes
+// and sizes using a twelve column system and five responsive tiers.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import "../config/imports";
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies above
+// while also maintaining Drupal's SMACSS structure.
+
+
+// Container widths
+//
+// Set the container width, and override it for fixed navbars in media queries.
+//
+@if $enable-grid-classes {
+  .container {
+    @include make-container;
+    @include make-container-max-widths;
+  }
+}
+
+// Fluid container
+//
+// Utilizes the mixin meant for fixed width containers, but with 100% width for
+// fluid, full width layouts.
+//
+@if $enable-grid-classes {
+  .container-fluid {
+    @include make-container;
+    width: 100%;
+  }
+}
+
+// Row
+//
+// Rows contain and clear the floats of your columns.
+//
+@if $enable-grid-classes {
+  .row {
+    @include make-row;
+  }
+
+  // Reset gutters
+  //
+  .no-gutters {
+    @extend %row-reset-defaults;
+  }
+}
+
+// Columns
+//
+// Common styles for small and large grid columns
+//
+@if $enable-grid-classes {
+  @each $breakpoint in map-keys($grid-breakpoints) {
+    $infix: breakpoint-infix($breakpoint);
+
+    // Allow columns to stretch full width below their breakpoints.
+    //
+    @for $i from 1 through $grid-columns {
+      .column#{$infix}-#{$i} {
+        @extend %column-ready-defaults;
+      }
+    }
+    .column#{$infix},
+    .column#{$infix}-auto {
+      @extend %column-ready-defaults;
+    }
+
+    @include breakpoint-up($breakpoint) {
+
+      // Provide basic `.column-{breakpoint}` classes
+      // for equal-width flexbox columns.
+      //
+      // 1. Reset earlier grid tiers.
+      //
+      .column#{$infix} {
+        flex: {
+          basis: 0;
+          grow: 1;
+        }
+        max-width: 100%;
+      }
+      .column#{$infix}-auto {
+        flex: 0 0 auto;
+        width: auto;
+        max-width: none; // 1
+      }
+
+      // Provide `.column-{breakpoint}-{size}` classes
+      // for spanning flexbox columns.
+      //
+      @for $i from 1 through $grid-columns {
+        .column#{$infix}-#{$i} {
+          @include make-column($i);
+        }
+      }
+
+      // Provide `.order-{breakpoint}-{size}` classes
+      // for reordering flexbox columns.
+      //
+      @for $i from 1 through $grid-columns {
+        .order#{$infix}-#{$i} {
+          @include make-column-order($i);
+        }
+      }
+
+      // Provide `.offset-{breakpoint}-{size}` classes
+      // for offsetting flexbox columns.
+      //
+      @for $i from 0 through $grid-columns {
+        .offset#{$infix}-#{$i} {
+          @include make-column-offset($i);
+        }
+      }
+    }
+  }
+}

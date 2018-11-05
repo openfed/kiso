@@ -1,0 +1,22 @@
+uuid: 7e452811-6a11-4e36-94f9-9d2d38266221
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - kiso
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: kiso_content
+theme: kiso
+region: content
+weight: -3
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

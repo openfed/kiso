@@ -8,6 +8,7 @@
  * Custom variables:
  * - derivative_plugin_id: Useful class according to the generated
  *   module (Provider).
+ * - block_region: The block region embedding the current block.
  * - block_wrapper: HTML element which wraps the block according to
  *   the configured label of the block if visible. In this case, the
  *   output will be a '<section>' element. In the opposite case, if
@@ -27,6 +28,7 @@
     'block',
     'block--' ~ configuration.provider|clean_class,
     'block--' ~ configuration.provider|clean_class ~ '--' ~ derivative_plugin_id|clean_class,
+    'block--region-' ~ block_region|clean_class,
   ]
 %}
 {# Provide WAI-ARIA attributes/landmarks for screen readers according to the display settings for the label. #}

@@ -1,0 +1,49 @@
+
+//
+// @file
+// Default root styles to provide better page-wide.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// ROOT elements
+//
+// 1. Additional CSS properties can be added from this points.
+
+// Page body
+//
+body {
+  // As a best practice, apply a default `background-color`.
+  @include background($color: $body-base-background-color);
+  // Go easy on the eyes and use something other than "#000" for text.
+  color: $body-base-color;
+  font: {
+    @include rem('size', $body-base-font-size);
+    family: $body-base-font-family;
+    weight: $body-base-font-weight;
+  }
+  line-height: $body-base-line-height;
+  // 1 ...
+}
+
+// Horizontal rules
+//
+hr {
+  border: {
+    top: {
+      @include rem('width', $component-border-width);
+      color: map-get($component-border-colors, 'dark');
+      style: $component-border-style;
+    }
+  }
+  margin: {
+    @include rem('top', map-get($component-margins, 'medium'));
+    @include rem('bottom', map-get($component-margins, 'medium'));
+  }
+  // 1 ...
+}

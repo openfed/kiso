@@ -18,6 +18,7 @@
 /// Grid gutter width
 /// Layout arrangement / Page wrappers
 /// Layout arrangement / Page sections
+/// Reusable selectors
 
 
 /// Grid breakpoints
@@ -37,8 +38,8 @@
 /// @prop {Number} large [992px]
 ///   - Large devices (Desktops, 992px and up).
 ///
-/// @prop {Number} xlarge [1200px]
-///   - Extra large devices (Large desktops, 1200px and up).
+/// @prop {Number} xlarge [1230px]
+///   - Extra large devices (Large desktops, 1230px and up).
 ///
 /// @see {function} breakpoint-next
 /// @see {function} breakpoint-min
@@ -59,7 +60,7 @@ $grid-breakpoints: map-merge(
     small:  576px,
     medium: 768px,
     large:  992px,
-    xlarge: 1200px,
+    xlarge: 1230px,
   ),
   $grid-breakpoints
 );
@@ -78,7 +79,7 @@ $grid-breakpoints: map-merge(
 /// @prop {Number} large [990px]
 ///   - Maximum container width for large devices.
 ///
-/// @prop {Number} xlarge [1170px]
+/// @prop {Number} xlarge [1200px]
 ///   - Maximum container width for extra large devices.
 ///
 /// @see {mixin} make-container-max-widths
@@ -91,7 +92,7 @@ $container-max-widths: map-merge(
     small:  540px,
     medium: 750px,
     large:  990px,
-    xlarge: 1170px,
+    xlarge: 1200px,
   ),
   $container-max-widths
 );
@@ -123,133 +124,3 @@ $grid-columns: 12 !default;
 /// @type Number
 
 $grid-gutter-width: 30px !default;
-
-
-/// Layout arrangement
-///
-/// Page wrappers
-
-
-/// Map of default properties for all wrappers.
-///
-/// @prop {List} padding
-///   - Paddings rhythm applied on all wrappers.
-///
-/// @see {placeholder} page-wrappers-defaults
-///
-/// @type Map
-
-$page-wrappers-properties: () !default;
-$page-wrappers-properties: map-merge(
-  (
-    'padding': round($grid-gutter-width / 4) round($grid-gutter-width / 2),
-  ),
-  $page-wrappers-properties
-);
-
-
-/// Background properties for the "Toolbar wrapper".
-///
-/// @prop {Color | Bool} key
-///   - List of background properties.
-///
-/// @see {placeholder} page-wrapper-tools-defaults
-///
-/// @type Map
-
-$page-wrapper-tools-properties: () !default;
-$page-wrapper-tools-properties: map-merge(
-  (
-    'color': $gray-200,
-    'image': false,
-  ),
-  $page-wrapper-tools-properties
-);
-
-
-/// Background properties for the "Header (Banner) wrapper".
-///
-/// @prop {Color | String} key
-///   - List of background properties.
-///
-/// @see {placeholder} page-wrapper-header-defaults
-///
-/// @type Map
-
-$page-wrapper-header-properties: () !default;
-$page-wrapper-header-properties: map-merge(
-  (
-    'color':           theme-color('primary'),
-    'image':           'banner-header',
-    'image-size':      cover,
-    'image-path':      '/themes/contrib/kiso/images/banners',
-    'image-extension': 'jpg',
-    'image-repeat':    repeat,
-  ),
-  $page-wrapper-header-properties
-);
-
-
-/// Background properties for the "Footnotes wrapper".
-///
-/// @prop {Color | Bool} key
-///   - List of background properties.
-///
-/// @see {placeholder} page-wrapper-postscript-defaults
-///
-/// @type Map
-
-$page-wrapper-postscript-properties: () !default;
-$page-wrapper-postscript-properties: map-merge(
-  (
-    'color': $gray-300,
-    'image': false,
-  ),
-  $page-wrapper-postscript-properties
-);
-
-
-/// Background properties for the "Footer (Contentinfo) wrapper".
-///
-/// @prop {Color | Bool} key
-///   - List of background properties.
-///
-/// @see {placeholder} page-wrapper-footer-defaults
-///
-/// @type Map
-
-$page-wrapper-footer-properties: () !default;
-$page-wrapper-footer-properties: map-merge(
-  (
-    'color': theme-color('primary'),
-    'image': false,
-  ),
-  $page-wrapper-footer-properties
-);
-
-
-/// Layout arrangement
-///
-/// Page sections
-
-
-/// Map of properties for the Header (Banner) section.
-///
-/// @prop {String} align-items
-///   - Vertical align for the container items.
-///
-/// @prop {String} justify-content
-///   - Space out brand from logo.
-///
-/// @see {placeholder} page-section-header-defaults
-///
-/// @type Map
-
-$page-section-header-properties: () !default;
-$page-section-header-properties: map-merge(
-  (
-    'align-items':     center,
-    'justify-content': space-between,
-  ),
-  $page-section-header-properties
-);

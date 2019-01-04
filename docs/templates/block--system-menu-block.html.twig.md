@@ -10,6 +10,7 @@ You will find same variables as in the core '[block.html.twig](https://api.drupa
 
 ### Custom variables:
 * **derivative_plugin_id**: Useful class according to the generated module (Provider).
+* **block_region**: The block region embedding the current block.
 * **heading_id**: A valid HTML ID and guaranteed unique used as value for the WAI-ARIA `aria-labelledby` attribute to point to an existing element by its (unique) ID. If a heading (hX) is present in the region, consider using it as the label.
 
 > #### See also
@@ -29,6 +30,7 @@ You will find same variables as in the core '[block.html.twig](https://api.drupa
  * Custom variables:
  * - derivative_plugin_id: Useful class according to the generated
  *   module (Provider).
+ * - block_region: The block region embedding the current block.
  * - heading_id: A valid HTML ID and guaranteed unique used as value for the
  *   WAI-ARIA 'aria-labelledby' attribute to point to an existing element by
  *   its (unique) ID. If a heading (hX) is present in the region, consider
@@ -43,6 +45,7 @@ You will find same variables as in the core '[block.html.twig](https://api.drupa
     'block',
     'block--menu',
     'block--menu--' ~ derivative_plugin_id|clean_class,
+    'block--region-' ~ block_region|clean_class,
   ]
 %}
 {# Provide WAI-ARIA attributes for screen readers according to the display settings for the label. #}

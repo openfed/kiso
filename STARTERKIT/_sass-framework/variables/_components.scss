@@ -3,7 +3,7 @@
 /// @file
 /// Components rule variables
 ///
-/// Font, line-height, padding, margin, color and more... for common elements.
+/// Font, spacing, borders, box model and more... for common elements.
 ///
 /// General variable structure:
 /// Variable format should follow the `$component-modifier-state-property` order.
@@ -12,47 +12,272 @@
 
 /// Table of Contents
 ///
+/// Components (Spacing)
+/// Components (Borders)
+/// Components (Fonts)
+/// Components (States)
+/// Components (Effects)
 /// Branding
 
 
-/// Branding
+/// Components (Spacing)
+/// ====================================================================================================
+/// Define common paddings and margins.
+
+
+/// Map of common vertical padding sizes used by the components.
 ///
-/// Map of properties for the "Site logo" element.
+/// @prop {Number} small [0.25rem]
+///   - Compact size for the vertical padding rhythm.
 ///
-/// @prop {Color | Number} key
-///   - List of the default "Site logo" properties.
+/// @prop {Number} medium [0.375rem]
+///   - Default size for the vertical padding rhythm.
 ///
-/// @see {placeholder} branding-site-logo-defaults
+/// @prop {Number} large [0.5rem]
+///   - Expanded size for the vertical padding rhythm.
 ///
 /// @type Map
 
-$branding-site-logo-properties: () !default;
-$branding-site-logo-properties: map-merge(
+$component-vertical-paddings: () !default;
+$component-vertical-paddings: map-merge(
   (
-    'padding-top':    0.5rem,
-    'padding-bottom': 0.5rem,
-    'margin-right':   1rem,
-    'color':          $gray-100,
-    'font-size':      1.25rem,
+    'small':  0.25rem,
+    'medium': 0.375rem,
+    'large':  0.5rem,
   ),
-  $branding-site-logo-properties
+  $component-vertical-paddings
 );
 
 
-/// Map of properties for the "Logo" image.
+/// Map of common horizontal padding sizes used by the components.
 ///
-/// @prop {String | Number} key
-///   - List of the default "Logo" (Image) properties.
+/// @prop {Number} small [0.5rem]
+///   - Compact size for the horizontal padding rhythm.
 ///
-/// @see {placeholder} branding-site-logo-image-defaults
+/// @prop {Number} medium [0.75rem]
+///   - Default size for the horizontal padding rhythm.
+///
+/// @prop {Number} large [1.25rem]
+///   - Expanded size for the horizontal padding rhythm.
 ///
 /// @type Map
 
-$branding-site-logo-image-properties: () !default;
-$branding-site-logo-image-properties: map-merge(
+$component-horizontal-paddings: () !default;
+$component-horizontal-paddings: map-merge(
   (
-    'vertical-align': middle,
-    'margin-right':   map-get($branding-site-logo-properties, 'margin-right'),
+    'small':  0.5rem,
+    'medium': 0.75rem,
+    'large':  1.25rem,
   ),
-  $branding-site-logo-image-properties
+  $component-horizontal-paddings
+);
+
+
+/// Map of common margin sizes used by the components.
+///
+/// @prop {Number} small [0.5rem]
+///   - Compact size for the margin rhythm.
+///
+/// @prop {Number} medium [1rem]
+///   - Default size for the margin rhythm.
+///
+/// @prop {Number} large [2rem]
+///   - Expanded size for the margin rhythm.
+///
+/// @type Map
+
+$component-margins: () !default;
+$component-margins: map-merge(
+  (
+    'small':  0.5rem,
+    'medium': 1rem,
+    'large':  2rem,
+  ),
+  $component-margins
+);
+
+
+/// Components (Borders)
+/// ====================================================================================================
+/// Define common width, style, color and radius for borders.
+
+
+/// The common border width used by the components.
+///
+/// @type Number
+
+$component-border-width: 1px !default;
+
+
+/// The common border style used by the components.
+///
+/// @type String
+
+$component-border-style: solid !default;
+
+
+/// Map of common border color brightnesses used by the components.
+///
+/// @prop {Color} light [$gray-300]
+///   - Intense brightness for the border color.
+///
+/// @prop {Color} neutral [$gray-600]
+///   - Middle brightness for the border color.
+///
+/// @prop {Color} dark [$gray-800]
+///   - Intense darkness for the border color.
+///
+/// @type Map
+
+$component-border-colors: () !default;
+$component-border-colors: map-merge(
+  (
+    'light':   $gray-300,
+    'neutral': $gray-600,
+    'dark':    $gray-800,
+  ),
+  $component-border-colors
+);
+
+
+/// Map of common border radius sizes used by the components.
+///
+/// @prop {Number} small [0.125rem]
+///   - Compact size for the border radius rounding.
+///
+/// @prop {Number} medium [0.25rem]
+///   - Default size for the border radius rounding.
+///
+/// @prop {Number} large [0.375rem]
+///   - Expanded size for the border radius rounding.
+///
+/// @type Map
+
+$component-border-radiuses: () !default;
+$component-border-radiuses: map-merge(
+  (
+    'small':  0.125rem,
+    'medium': 0.25rem,
+    'large':  0.375rem,
+  ),
+  $component-border-radiuses
+);
+
+
+/// Components (Fonts)
+/// ====================================================================================================
+/// Define common font settings.
+
+
+/// Map of common font thicknesses used by the components.
+///
+/// @prop {Number} light [300]
+///   - Thin weight for the font thickness.
+///
+/// @prop {Number} regular [400]
+///   - Normal weight for the font thickness.
+///
+/// @prop {Number} medium [500]
+///   - Middle weight for the font thickness.
+///
+/// @prop {Number} bold [700]
+///   - Heavy weight for the font thickness.
+///
+/// @prop {Number} bolder [800]
+///   - Strong weight for the font thickness.
+///
+/// @type Map
+
+$component-font-weights: () !default;
+$component-font-weights: map-merge(
+  (
+    'light':   300,
+    'regular': 400,
+    'medium':  500,
+    'bold':    700,
+    'bolder':  800,
+  ),
+  $component-font-weights
+);
+
+
+/// Components (States)
+/// ====================================================================================================
+/// Define common default, light/dark, hover, focus and active states.
+
+
+/// Map of common text color states used by the components.
+///
+/// @prop {Color} active [theme-color('primary')]
+///   - Activated state for the text color.
+///
+/// @prop {Color} muted [$gray-700]
+///   - Discrete state for the text color.
+///
+/// @type Map
+
+$component-state-colors: () !default;
+$component-state-colors: map-merge(
+  (
+    'active': theme-color('primary'),
+    'muted':  $gray-700,
+  ),
+  $component-state-colors
+);
+
+
+/// Map of common background color states used by the components.
+///
+/// @prop {Color} active [map-get($component-state-colors, 'active')]
+///   - Activated state for the background color.
+///
+/// @prop {Color} light [$gray-100]
+///   - Intense brightness state for the background color.
+///
+/// @prop {Color} dark [$gray-900]
+///   - Intense darkness state for the background color.
+///
+/// @type Map
+
+$component-state-background-colors: () !default;
+$component-state-background-colors: map-merge(
+  (
+    'active': map-get($component-state-colors, 'active'),
+    'light':  $gray-100,
+    'dark':   $gray-900,
+  ),
+  $component-state-background-colors
+);
+
+
+/// Components (Effects)
+/// ====================================================================================================
+/// Define common shadow, transition effects.
+
+
+/// Map of common box shadow lengths used by the components.
+///
+/// @prop {List} small [0 .125rem .25rem rgba(black, .075)]
+///   - Reduced length for the box shadow.
+///
+/// @prop {List} medium [0 .5rem 1rem rgba(black, .15)]
+///   - Default length for the box shadow.
+///
+/// @prop {List} large [0 1rem 3rem rgba(black, .175)]
+///   - Expanded length for the box shadow.
+///
+/// @prop {List} inset [inset 0 1px 1px rgba(black, .075)]
+///   - Inner length for the box shadow.
+///
+/// @type Map
+
+$component-box-shadows: () !default;
+$component-box-shadows: map-merge(
+  (
+    'small':  0 .125rem .25rem rgba(black, .075),
+    'medium': 0 .5rem 1rem rgba(black, .15),
+    'large':  0 1rem 3rem rgba(black, .175),
+    'inset':  inset 0 1px 1px rgba(black, .075),
+  ),
+  $component-box-shadows
 );

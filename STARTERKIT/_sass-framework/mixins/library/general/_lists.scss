@@ -1,0 +1,81 @@
+@charset 'utf-8';
+
+
+/// List variants
+///
+/// Easily set out variant styles for all kind of lists.
+///
+/// @group library
+///
+/// @param {String} $style
+///   - The expected style to be applied.
+///
+/// @param {Number} $unstyled-padding-left [0]
+///   - The left padding applied on all (un)ordered unstyled lists.
+///
+/// @param {String} $inline-item-vertical-align [top]
+///   - The vertical alignment applied on all inline list items.
+///
+/// @param {Number} $inline-item-margin-left [map-get($component-margins, 'small')]
+///   - The left margin applied on all inline list items (Excepted the first child).
+///
+/// @example scss - Usage.
+///   .item-list ul {
+///     @include list-variant('unstyled');
+///   }
+///   ul.links.inline {
+///     @include list-variant('inline');
+///   }
+///
+///   // CSS Output
+///   //
+///   .item-list ul {
+///     padding-left: 0;
+///     list-style: outside none none;
+///   }
+///   ul.links.inline {
+///     padding-left: 0;
+///     list-style: outside none none;
+///   }
+///   ul.links.inline > li {
+///     display: inline-block;
+///     vertical-align: top;
+///   }
+///   ul.links.inline > li:not(:first-child) {
+///     margin-left: 0.5rem;
+///   }
+///
+/// @requires {variable} component-margins
+/// @requires {mixin} rem
+
+@mixin list-variant(
+  $style,
+  $unstyled-padding-left: 0,
+  $inline-item-vertical-align: top,
+  $inline-item-margin-left: map-get($component-margins, 'small')
+) {
+
+  @if $style == 'unstyled' or $style == 'inline' {
+    @include rem('padding-left', $unstyled-padding-left);
+    list-style: outside none none;
+
+    @if $style == 'inline' {
+
+      // List items (Immediate children)
+      //
+      > li {
+        display: inline-block;
+        vertical-align: $inline-item-vertical-align;
+
+        // List items (Immediate children / Excepted the first child)
+        //
+        &:not(:first-child) {
+          @include rem('margin-left', $inline-item-margin-left);
+        }
+      }
+    }
+  }
+  @else {
+    @warn "Unrecognized or missing style: '#{$style}'";
+  }
+}

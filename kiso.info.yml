@@ -3,7 +3,7 @@ name: 'Kiso 基礎'
 description: 'Base theme for Drupal 8 websites build around accessibility and simplicity.'
 type: theme
 base theme: false
-version: VERSION
+version: '8.x-1.x-dev' # Last packaged version: 8.x-1.1-dev
 core: 8.x
 
 # Defines regions

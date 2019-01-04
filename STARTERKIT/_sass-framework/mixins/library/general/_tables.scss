@@ -1,0 +1,64 @@
+@charset 'utf-8';
+
+
+/// Table variants
+///
+/// Easily set out variant styles for all tables.
+///
+/// @group library
+///
+/// @param {String} $style
+///   - The expected style to be applied.
+///
+/// @param {String} $striped-background-color [map-get($component-state-background-colors, 'light')]
+///   - The background color applied on all (Striped rows) tables.
+///
+/// @param {String} $hover-background-color [map-get($component-state-background-colors, 'active')]
+///   - The background color applied on all (Hoverable rows) tables.
+///
+/// @example scss - Usage.
+///   table.table-striped {
+///     @include table-variant('striped');
+///   }
+///   table.table-hover {
+///     @include table-variant('hover');
+///   }
+///
+///   // CSS Output
+///   //
+///   table.table-striped tbody tr:nth-of-type(2n+1) {
+///     background-color: #f8f9fa;
+///   }
+///   table.table-hover tbody tr:hover {
+///     background-color: #f1f4f8;
+///   }
+///
+/// @requires {variable} component-state-background-colors
+/// @requires {mixin} background
+
+@mixin table-variant(
+  $style,
+  $striped-background-color: map-get($component-state-background-colors, 'light'),
+  $hover-background-color: map-get($component-state-background-colors, 'active')
+) {
+
+  @if $style == 'striped' {
+    
+    // Table rows (Odd) inside table bodies
+    //
+    tbody tr:nth-of-type(odd) {
+      @include background($color: $striped-background-color);
+    }
+  }
+  @else if $style == 'hover' {
+
+    // Table rows inside table bodies (Hover state)
+    //
+    tbody tr:hover {
+      @include background($color: lighten($hover-background-color, 60%));
+    }
+  }
+  @else {
+    @warn "Unrecognized or missing style: '#{$style}'";
+  }
+}

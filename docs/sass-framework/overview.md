@@ -2,12 +2,22 @@
 Sass Framework
 ==========
 
+## Reboot
+
+The *Drupal “Kiso” (基礎) base theme* provides a collection of element-specific CSS changes in an unchangeable file. Extending Normalize, this "*Reboot*" builds upon best practices to provide an elegant, consistent, and simple baseline to start theming.
+
+Here are some guidelines and reasons for choosing what to override in the "*Reboot*" file:
+
+ - Avoid `margin-top`. Vertical margins can collapse, yielding unexpected results. More importantly though, a single direction of `margin` is a simpler mental model.
+ - Keep declarations of `font`-related properties to a minimum, using `inherit` whenever possible.
+ - The `box-sizing` is globally set on every element—including `*::before` and `*::after`, to `border-box`. This ensures that the declared width of element is never exceeded due to padding or border.
+ - The `<body>` also sets a global `text-align`. This is inherited later by data tables and some form elements to prevent inconsistencies.
+
+## Sass
+
 The *Sass Framework* theming is accomplished by **Sass variables, Sass maps, and utility CSS**. There’s no dedicated "make up" theming; instead, you can enable built-in Sass variables options to add gradients, shadows, and more.
 
 The *Sass Framework* is **components-oriented**. It means that those should be abstract and decoupled enough that you can build new components quickly from existing parts without having to recode patterns. As new components and features are needed, it should be easy to add, modify and extend CSS without breaking (or refactoring) styles from the existing framework.
-
-
-## Sass
 
 Utilize our *Sass Framework* files to [**take advantage of variables, maps, mixins and more**](index.md).
 
@@ -24,6 +34,7 @@ your-sub-theme-folder/
 ├── _sass-framework
 │   ├── functions/
 │   ├── mixins/
+│   ├── placeholders/
 │   ├── variables/
 │   └── _include-all.scss
 └── scss/
@@ -38,18 +49,18 @@ your-sub-theme-folder/
 
 ### Importing
 
-In your `_imports.scss`, you will import *Sass Framework* source Sass files. You have two options: include the full import stack, or pick the parts you need. We encourage option A, because your have to be aware there are some requirements and dependencies across our components.
+In your `_imports.scss`, you will import *Sass Framework* source Sass files. You have two options: Include the full import stack (*A*), or pick the parts you need (*B*). We encourage option *A*, because your have to be aware there are some requirements and dependencies across our components.
 
 ```scss
 // _imports.scss
-// Option A: Include all of the 'Sass Framwork'
+// Option A: Include all of the 'Sass Framwork' source files
 
 @import '../../_sass-framework/include-all';
 ```
 
 ```scss
 // _imports.scss
-// Option B: Include parts of the 'Sass Framwork'
+// Option B: Include parts of the 'Sass Framwork' you need
 
 @import '../../_sass-framework/functions/helpers/general';
 @import '../../_sass-framework/variables/options';
@@ -58,7 +69,7 @@ In your `_imports.scss`, you will import *Sass Framework* source Sass files. You
 @import '../../_sass-framework/mixins/typography/general';
 ```
 
-With that setup in place, you can begin to modify any of the Sass variables and maps in your `_variable-overrides.scss`.
+With that setup in place, you can begin to override any of the Sass variables and maps in your `_variable-overrides.scss`.
 
 ### Variable and map defaults
 
@@ -73,44 +84,54 @@ Here’s an example that changes the `background-color` and `color` for the `<bo
 ```scss
 // _variable-overrides.scss
 // Both variable overrides for the 'background-color' and 'color' CSS properties:
-$body-base-color: #111;
-$body-base-background-color: #ccc;
+$body-base-color: $gray-900; // #212529
+$body-base-background-color: $gray-100; // #f8f9fa
+```
 
+```scss
 // _imports.scss
+// Your own variable overrides defined here above:
+@import 'variable-overrides';
 // The 'Sass Framework' and its default variables:
 @import '../../_sass-framework/include-all';
 ```
 
-To modify an existing color in our `$theme-colors` map, add the following to your `_variable-overrides.scss` file:
+To modify existing colors and/or add new ones in the `$theme-colors` map, add the following to your `_variable-overrides.scss` file:
 
 ```scss
 // _variable-overrides.scss
-// Your overrides for the "Theme color scheme" map:
+// Override default 'Kiso' colors:
+$red: #d13416;
+$green: #48782b;
+$cyan: #0372d1;
+$orange: #c34c09;
+// Add your own colors:
+$midnight: #0f5153;
+$sap: #48782b;
+$violet: #c0057a;
+
+// Your overrides and new colors for the "Theme color scheme" map:
 $theme-colors: (
-  'primary': #0074d9,
-  'danger': #ff4136,
+  'primary': $midnight,
+  'energy': $sap,
+  'intellectual-property': $violet,
 );
 ```
 
-To add a new color to `$theme-colors`, add the new key and value as followed:
+To remove colors from `$theme-colors`, or any other map, use the `map-remove` *Sass Script function* (within separate file `_map-removals.scss` for example) . Be aware you must insert it after you import *Sass Framework* source Sass files: 
 
 ```scss
-// _variable-overrides.scss
-// Your new color for the "Theme color scheme" map:
-$theme-colors: (
-  'custom-color': #900,
-);
+// _map-removals.scss
+// Remove "info", "light" and "dark" (key/value) from the "Theme color scheme" map:
+$theme-colors: map-remove($theme-colors, 'info', 'light', 'dark');
 ```
-
-To remove colors from `$theme-colors`, or any other map, use `map-remove`. Be aware you must insert it after you import *Sass Framework* source Sass files:
 
 ```scss
 // _imports.scss
 // The 'Sass Framework' and its default variables
 @import '../../_sass-framework/include-all';
-
-// Remove "info", "light" and "dark" (key/value) the "Theme color scheme" map:
-$theme-colors: map-remove($theme-colors, "info", "light", "dark");
+// Your map removals defined here above:
+@import 'map-removals';
 ```
 
 #### Required keys
@@ -121,7 +142,7 @@ For example, The *Sass Framework* uses the `primary`, `success`, and `danger` ke
 
 ### Recompile
 
-When making any changes to the *Sass Framework* variables, you will need to save your changes and recompile the entire Sass files. Doing so will output a brand new set of predefined look and feel. Make sure to output to the proper CSS file path:
+When making any overrides to the *Sass Framework* variables, you will need to save your changes and recompile the entire Sass files. Doing so will output a brand new set of predefined look and feel. Make sure to output to the proper CSS file path:
 
 ```
 sass compile scss/base/*.scss > css/components/*.css

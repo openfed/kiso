@@ -23,7 +23,7 @@
 /// @return {String | Null}
 ///
 /// @example scss - Usage.
-///   $next: breakpoint-next('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px), ('xsmall', 'small', 'medium', 'large', 'xlarge'));
+///   $next: breakpoint-next('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px), ('xsmall', 'small', 'medium', 'large', 'xlarge'));
 ///   => 'medium'
 ///
 /// @requires {variable} grid-breakpoints
@@ -54,7 +54,7 @@
 /// @return {Number | Null}
 ///
 /// @example scss - Usage.
-///   $minimum: breakpoint-min('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px));
+///   $minimum: breakpoint-min('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px));
 ///   => 576px
 ///
 /// @requires {variable} grid-breakpoints
@@ -84,7 +84,7 @@
 /// @return {Number | Null}
 ///
 /// @example scss - Usage.
-///   $maximum: breakpoint-max('large', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px));
+///   $maximum: breakpoint-max('large', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px));
 ///   => 1199px
 ///
 /// @requires {function} breakpoint-next
@@ -117,9 +117,9 @@
 /// @return {String}
 ///
 /// @example scss - Usage.
-///   $infix: breakpoint-infix('xsmall', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px));
+///   $infix: breakpoint-infix('xsmall', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px));
 ///   => ''  (Returns a blank string)
-///   $infix: breakpoint-infix('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px));
+///   $infix: breakpoint-infix('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px));
 ///   => '-small'
 ///
 /// @requires {function} breakpoint-min

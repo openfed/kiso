@@ -1,0 +1,20 @@
+uuid: b719fe59-7ded-4ab6-a439-6ef2eda35728
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - kiso
+id: kiso_searchform
+theme: kiso
+region: header_collapsible
+weight: 0
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form'
+  provider: search
+  label_display: '0'
+visibility: {  }

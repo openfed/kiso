@@ -12,8 +12,8 @@ _core:
   default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
 id: kiso_main_menu
 theme: kiso
-region: header
-weight: -5
+region: header_collapsible
+weight: -1
 provider: null
 plugin: 'system_menu_block:main'
 settings:

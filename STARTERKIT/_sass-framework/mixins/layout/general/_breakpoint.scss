@@ -26,7 +26,7 @@
 ///
 /// @example scss - Usage.
 ///   .element {
-///     @include breakpoint-up('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px)) {
+///     @include breakpoint-up('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px)) {
 ///       ...
 ///     }
 ///   }
@@ -79,7 +79,7 @@
 ///
 /// @example scss - Usage.
 ///   .element {
-///     @include breakpoint-down('large', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px)) {
+///     @include breakpoint-down('large', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px)) {
 ///       ...
 ///     }
 ///   }
@@ -134,7 +134,7 @@
 ///
 /// @example scss - Usage.
 ///   .element {
-///     @include breakpoint-between('small', 'large', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px)) {
+///     @include breakpoint-between('small', 'large', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px)) {
 ///       ...
 ///     }
 ///   }
@@ -185,7 +185,7 @@
 ///
 /// @example scss - Usage.
 ///   .element {
-///     @include breakpoint('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1200px)) {
+///     @include breakpoint('small', ('xsmall': 0, 'small': 576px, 'medium': 768px, 'large': 992px, 'xlarge': 1230px)) {
 ///       ...
 ///     }
 ///   }

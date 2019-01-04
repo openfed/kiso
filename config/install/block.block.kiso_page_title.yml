@@ -9,7 +9,7 @@ _core:
 id: kiso_page_title
 theme: kiso
 region: content
-weight: -4
+weight: -3
 provider: null
 plugin: page_title_block
 settings:

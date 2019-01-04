@@ -1,8 +1,7 @@
 
 //
 // @file
-// Wrappers compose general arrangement for section containers
-// which wrap up the regions.
+// General arrangement for section wrappers.
 //
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -14,37 +13,38 @@
 
 // Page wrappers
 //
-// 1. You should first extend 'Page wrappers' default properties (provided by
-//    the Sass Framework) which will be added within your compiled CSS output.
-// 2. Additional CSS properties can be added from this points.
-//
 .page {
 
   // All wrappers
   //
   &__wrapper {
-    @extend %page-wrappers-defaults; // 1
-    // 2 ...
-
-    // Loop through few page wrapper names (Toolbar, Header
-    // (Banner), Footnotes and Footer (Contentinfo)) .
-    //
-    @each $wrapper-name in 'tools', 'header', 'postscript', 'footer' {
-
-      // Page wrapper ($wrapper-name)
-      //
-      &--#{$wrapper-name} {
-        @extend %page-wrapper-#{$wrapper-name}-defaults; // 1
-      }
-    }
 
     // Toolbar wrapper
     //
-    &--tools {}
+    &--tools {
+      padding: {
+        @include rem('top', map-get($component-vertical-paddings, 'large'));
+        @include rem('bottom', map-get($component-vertical-paddings, 'large'));
+      }
+    }
 
     // Header (Banner) wrapper
     //
-    &--header {}
+    &--header {
+      @include background(
+        $color: theme-color('primary'),
+        $image-path: '/themes/contrib/kiso/images/banners',
+        $image: 'banner-header',
+        $image-extension: 'jpg',
+        $image-repeat: repeat,
+        $image-size: cover,
+        $retina-fallback: false
+      );
+      padding: {
+        @include rem('top', map-get($component-vertical-paddings, 'large'));
+        @include rem('bottom', map-get($component-vertical-paddings, 'large'));
+      }
+    }
 
     // Featured content wrapper
     //
@@ -52,7 +52,13 @@
 
     // Content (Main) wrapper
     //
-    &--content {}
+    &--content {
+      @include background($color: grayscale('100'));
+      padding: {
+        @include rem('top', (map-get($component-vertical-paddings, 'large') * 6));
+        @include rem('bottom', (map-get($component-vertical-paddings, 'large') * 6));
+      }
+    }
 
     // Footnotes wrapper
     //
@@ -60,6 +66,12 @@
 
     // Footer (Contentinfo) wrapper
     //
-    &--footer {}
+    &--footer {
+      @include background($color: grayscale('300'));
+      padding: {
+        @include rem('top', (map-get($component-vertical-paddings, 'large') * 6));
+        @include rem('bottom', (map-get($component-vertical-paddings, 'large') * 6));
+      }
+    }
   }
 }

@@ -12,6 +12,21 @@
 // Import Sass variables, functions, mixins and placeholders.
 @import '../config/imports';
 
+/// Create local CSS selectors needed to detect the region embedding the current block.
+///
+/// @type String
+
+$regions:                   '.block--region';
+$region-tools:              '#{$regions}-tools';
+$region-header:             '#{$regions}-header';
+$region-header-collapsible: '#{$regions}-header-collapsible';
+$region-highlighted:        '#{$regions}-highlighted';
+$region-content:            '#{$regions}-content';
+$region-navigation:         '#{$regions}-navigation';
+$region-complementary:      '#{$regions}-complementary';
+$region-postscript:         '#{$regions}-postscript';
+$region-footer:             '#{$regions}-footer';
+
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 

@@ -10,6 +10,7 @@ You will find same variables as in the core '[block.html.twig](https://api.drupa
 
 ### Custom variables:
 * **derivative_plugin_id**: Useful class according to the generated module (Provider).
+* **block_region**: The block region embedding the current block.
 * **block_wrapper**: HTML element which wraps the block according to the configured label of the block if visible. In this case, the output will be a `<section>` element. In the opposite case, if invisible configured block label, the output will the default  `<div role="region">` wrapper with a suitable landmark.
 * **heading_id**: A valid HTML ID and guaranteed unique used as value for the WAI-ARIA `aria-labelledby` attribute to point to an existing element by its (unique) ID. If a heading (hX) is present in the region, consider using it as the label.
 
@@ -30,6 +31,7 @@ You will find same variables as in the core '[block.html.twig](https://api.drupa
  * Custom variables:
  * - derivative_plugin_id: Useful class according to the generated
  *   module (Provider).
+ * - block_region: The block region embedding the current block.
  * - block_wrapper: HTML element which wraps the block according to
  *   the configured label of the block if visible. In this case, the
  *   output will be a '<section>' element. In the opposite case, if
@@ -49,6 +51,7 @@ You will find same variables as in the core '[block.html.twig](https://api.drupa
     'block',
     'block--' ~ configuration.provider|clean_class,
     'block--' ~ configuration.provider|clean_class ~ '--' ~ derivative_plugin_id|clean_class,
+    'block--region-' ~ block_region|clean_class,
   ]
 %}
 {# Provide WAI-ARIA attributes/landmarks for screen readers according to the display settings for the label. #}

@@ -171,13 +171,16 @@ function kiso_preprocess(&$variables, $hook) {
 function kiso_preprocess_html(&$variables) {
   // Added body classes when sidebar(s) has (have) content.
   if (!empty($variables['page']['navigation']) && !empty($variables['page']['complementary'])) {
+    $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'two-sidebars';
   }
   elseif (!empty($variables['page']['navigation'])) {
+    $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'one-sidebar';
     $variables['attributes']['class'][] = 'is-visible--navigation';
   }
   elseif (!empty($variables['page']['complementary'])) {
+    $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'one-sidebar';
     $variables['attributes']['class'][] = 'is-visible--complementary';
   }
@@ -275,5 +278,16 @@ function kiso_preprocess_block(&$variables) {
         $variables['derivative_plugin_id'] = $elements['#id'];
       }
       break;
+  }
+
+  // Prepare the '$variables['block_region']' variable to add specific
+  // block class according to the region it is placed in.
+  if (isset($elements['#id'])) {
+    $block = Block::load($elements['#id']);
+    $variables['block_region'] = $block->getRegion();
+  }
+  // This 'else if' is only for 'page_manager' module.
+  else if (isset($elements['#configuration']['region'])) {
+    $variables['block_region'] = $elements['#configuration']['region'];
   }
 }

@@ -19,13 +19,12 @@
 // @see https://css-tricks.com/sass-style-guide/
 // @see https://sass-guidelin.es
 
-// Body
+// Imports "elements" partials
 //
-// 1. You should first extend 'Boby' default properties (provided by the
-//    Sass Framework) which will be added within your compiled CSS output.
-// 2. Additional CSS properties can be added from this points.
-//
-body {
-  @extend %body-defaults; // 1
-  // 2 ...
-}
+@import
+  'root',
+  'typography',
+  'media',
+  'code',
+  'tables',
+  'forms';

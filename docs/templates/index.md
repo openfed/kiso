@@ -45,3 +45,6 @@ Default Kiso's theme implementation for the Main page content block.
 
 * [`block--system-menu-block.html.twig`](block--system-menu-block.html.twig.md) :  
 Kiso's theme override to display a menu block.
+
+* [`block--system-branding-block.html.twig`](block--system-branding-block.html.twig.md) :  
+Kiso's theme override to display a branding block.

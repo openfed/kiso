@@ -21,9 +21,9 @@ Pages with well-structured content are essential for many web users, for example
 * **People using certain browser plugins** can use landmark roles to jump to specific sections on a page.
 * There are additional benefits to a good, accessible page structure, beyond those experienced by people with disabilities. As an example, search engines can use the data to better index the content of a page.
 
-## Related WCAG 2.0 resources
+## Related WCAG 2.1 resources
 
-* [SC 1.3.1 - Info and Relationships](https://www.w3.org/WAI/WCAG20/quickref/#qr-content-structure-separation-programmatic) (Level A)
-* [SC 2.4.1 - Bypass Blocks](https://www.w3.org/WAI/WCAG20/quickref/#qr-navigation-mechanisms-skip) (Level A)
-* [SC 2.4.6 - Headings and Labels](https://www.w3.org/WAI/WCAG20/quickref/#qr-navigation-mechanisms-descriptive) (Level AA)
-* [SC 2.4.10 - Section Headings](https://www.w3.org/WAI/WCAG20/quickref/#qr-navigation-mechanisms-headings) (Level AAA)
+* [SC 1.3.1 - Info and Relationships](https://www.w3.org/WAI/WCAG21/quickref/?currentsidebar=%23col_overview#info-and-relationships) (Level A)
+* [SC 2.4.1 - Bypass Blocks](https://www.w3.org/WAI/WCAG21/quickref/?currentsidebar=%23col_overview#bypass-blocks) (Level A)
+* [SC 2.4.6 - Headings and Labels](https://www.w3.org/WAI/WCAG21/quickref/?currentsidebar=%23col_overview#headings-and-labels) (Level AA)
+* [SC 2.4.10 - Section Headings](https://www.w3.org/WAI/WCAG21/quickref/?currentsidebar=%23col_overview#section-headings) (Level AAA)

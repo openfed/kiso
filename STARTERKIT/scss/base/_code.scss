@@ -1,0 +1,60 @@
+
+//
+// @file
+// Styles for inline and multiline blocks of code.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// 'All kind of code' default properties.
+//
+// 1. Use the following '%code-defaults' placeholder to create
+//    default properties which will be extended to all kind of code.
+//
+%code-defaults {
+  font: {
+    @include rem('size', ($body-base-font-size * 0.9));
+    family: $font-family-monospace;
+  }
+}
+
+// Inline code
+//
+code {
+  @extend %code-defaults; // 1
+  @include rem('padding', map-get($component-vertical-paddings, 'small') map-get($component-horizontal-paddings, 'small'));
+  @include rem('border-radius', map-get($component-border-radiuses, 'medium'));
+  @include background($color: map-get($component-state-background-colors, 'light'));
+  color: red;
+}
+
+// Code blocks
+//
+pre {
+  @extend %code-defaults; // 1
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  @include rem('max-height', 340px);
+  color: map-get($component-state-colors, 'muted');
+}
+
+// Keyboard code
+//
+kbd {
+  @extend %code-defaults; // 1
+  @include rem('padding', map-get($component-vertical-paddings, 'small') map-get($component-horizontal-paddings, 'small'));
+  @include rem('border-radius', map-get($component-border-radiuses, 'medium'));
+  @include background($color: map-get($component-state-background-colors, 'dark'));
+  color: $body-base-background-color;
+  box-shadow: map-get($component-box-shadows, 'inset');
+
+  // Nested code (Keyboard)
+  //
+  kbd {
+    font-weight: map-get($component-font-weights, 'bold');
+  }
+}

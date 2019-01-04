@@ -25,23 +25,23 @@
 
 {% block content %}
   {% if site_logo or site_name %}
-    <a href="{{ path('<front>') }}" title="{{ 'Back to the home page'|t }}" rel="home" class="block__site-logo">
+    <a href="{{ path('<front>') }}" title="{{ 'Back to the home page'|t }}" rel="home" class="block__branding">
 
       {% if site_logo %}
-        <img src="{{ site_logo }}" alt="{{ 'Back to @site_name home page'|t({ '@site_name': alt_text }) }}" width="60" height="60">
+        <img src="{{ site_logo }}" alt="{{ 'Back to @site_name home page'|t({ '@site_name': alt_text }) }}" width="60" height="60" class="block__site-logo">
       {% endif %}
 
       {% if site_name %}
-        <span class="site-name" aria-hidden="{{ is_hidden }}">{{ site_name }} <span class="visually-hidden">home page</span></span>
+        <span class="block__site-name" aria-hidden="{{ is_hidden }}">{{ '@site_name <span class="visually-hidden">home page</span>'|t({ '@site_name': site_name }) }}</span>
       {% endif %}
 
     </a>
     {% if site_name and is_front %}
-      <h1 class="visually-hidden">{{ site_name }} home page</span></h1>
+      <h1 class="visually-hidden">{{ '@site_name home page'|t({ '@site_name': site_name }) }}</h1>
     {% endif %}
   {% endif %}
 
   {% if site_slogan %}
-    <small class="site-slogan">{{ site_slogan }}</small>
+    <small class="block__site-slogan">{{ site_slogan }}</small>
   {% endif %}
 {% endblock %}

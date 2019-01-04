@@ -43,8 +43,8 @@ You will find same variables as in the core '[page.html.twig](https://api.drupal
  * You will find same variables as in the core 'page.html.twig' template.
  * 
  * Custom variables:
- * - has_tools, has_header, has_header_collapsible, has_highlighted, has_postscript,
- *   has_footer: Properly detect if regions are empty.
+ * - has_tools, has_header, has_header_collapsible, has_highlighted, has_navigation,
+ *   has_complementary, has_postscript, has_footer: Properly detect if regions are empty.
  *
  * Regions:
  * - page.tools: Items for the Toolbar region.
@@ -53,7 +53,9 @@ You will find same variables as in the core '[page.html.twig](https://api.drupal
  * - page.highlighted: Items for the Highlighted (Featured content) region.
  * - page.help: Dynamic help text, mostly for admin pages.
  * - page.breadcrumb: Items for the Breadcrumb region.
- * - page.content: The current page content (Using 'Panels' to build page layouts).
+ * - page.content: The current page content.
+ * - page.navigation: Items for the Navigation sidebar (Left) region.
+ * - page.complementary: Items for the Related content sidebar (Right) region.
  * - page.postscript: Items for the Postscript (Footnotes) region.
  * - page.footer: Items for the Footer region.
  *
@@ -82,7 +84,7 @@ You will find same variables as in the core '[page.html.twig](https://api.drupal
       <header class="page__section page__section--header {{ container }}" role="banner">
         {{ page.header }}
         {# This button is used as the toggle for the Header (Collapsible) #}
-        <button type="button" class="toggle-button" aria-controls="headerCollapsible" aria-expanded="false"><span>Menu</span></button>
+        <button type="button" class="button--toggler" aria-controls="headerCollapsible" aria-expanded="false"><span>Menu</span></button>
         {{ page.header_collapsible }}
       </header>
     </div>
@@ -105,12 +107,52 @@ You will find same variables as in the core '[page.html.twig](https://api.drupal
   {{ page.breadcrumb }}
 {% endblock %}
 
-{# Content (Use 'Panels' to build page layouts) #}
-{% block content %}
+{# Main #}
+{% block main %}
   <div class="page__wrapper page__wrapper--content">
-    <div class="page__section page__section--content {{ container }}">
-      {{ page.content }}
-    </div>
+
+    {% if has_navigation or has_complementary %}
+      <div class="{{ container }}">
+        <div class="row">
+    {% endif %}
+
+      {# Main content #}
+      {%
+        set content_classes = [
+          'page__section',
+          'page__section--content',
+          has_navigation or has_complementary ? '' : container,
+        ]
+      %}
+      {% block content %}
+        <main{{ content_attributes.addClass(content_classes).setAttribute('role', 'main') }}>
+          {{ page.content }}
+        </main>
+      {% endblock %}
+
+      {# Navigation sidebar (Left) #}
+      {% if has_navigation %}
+        {% block navigation %}
+          <div class="page__section page__section--navigation" aria-label="{{ 'Navigation sidebar'|t }}">
+            {{ page.navigation }}
+          </div>
+        {% endblock %}
+      {% endif %}
+
+      {# Related content sidebar (Right) #}
+      {% if has_complementary %}
+        {% block complementary %}
+          <div class="page__section page__section--complementary" aria-label="{{ 'Related content sidebar'|t }}">
+            {{ page.complementary }}
+          </div>
+        {% endblock %}
+      {% endif %}
+
+    {% if has_navigation or has_complementary %}
+        </div>
+      </div>
+    {% endif %}
+
   </div>
 {% endblock %}
 

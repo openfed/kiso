@@ -1,0 +1,39 @@
+
+//
+// @file
+// Styles for creating a wide variety of forms.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Form labels
+//
+label {
+  @include rem('margin-bottom', map-get($component-margins, 'small'));
+}
+
+// Fieldsets
+//
+fieldset {
+  @include rem('padding', map-get($component-vertical-paddings, 'large') map-get($component-horizontal-paddings, 'large'));
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  @include rem('border-radius', map-get($component-border-radiuses, 'medium'));
+  border: {
+    @include rem('width', ($component-border-width * 3));
+    color: map-get($component-border-colors, 'light');
+    style: $component-border-style;
+  }
+}
+
+// Fieldset legends
+//
+legend {
+  @include rem('margin-bottom', map-get($component-margins, 'small'));
+  @include rem('font-size', ($body-base-font-size * 1.5));
+  padding: 0;
+}

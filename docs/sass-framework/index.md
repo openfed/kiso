@@ -4,36 +4,27 @@ Sass Reference
 
 Utilize our [*Sass Framework*](overview.md) files to take advantage of the following *functions*, *placeholders*, *mixins*, *variables* and *maps*.
 
-## Base
-
-### Elements
-
-#### Mixins
-
-* [`document-root`](mixin-document-root.md) :  
-Mixin setting default 'Document root' properties.
-
-* [`body`](mixin-body.md) :  
-Mixin setting default 'Body' properties.
-
 ## Helpers
 
 ### General
 
 #### Functions
 
-* [`strip-units($val)`](function-strip-units.md) :  
+* [`contains-number($values)`](function-contains-number.md) :  
+Checks if a list contains a number(s).
+
+* [`strip-units($value)`](function-strip-units.md) :  
 Strips the units from a value.
 
 #### Placeholders
 
-* [`%clearfix-defaults`](placeholder-clearfix.md) :  
+* [`%clearfix-defaults`](placeholder-clearfix-defaults.md) :  
 Float clearing default properties.
 
-* [`%screen-reader-only-defaults`](placeholder-screen-reader-only.md) :  
+* [`%screen-reader-only-defaults`](placeholder-screen-reader-only-defaults.md) :  
 Content to screen readers default properties.
 
-* [`%screen-reader-only-focusable-defaults`](placeholder-screen-reader-only-focusable.md) :  
+* [`%screen-reader-only-focusable-defaults`](placeholder-screen-reader-only-focusable-defaults.md) :  
 Focused content default properties.
 
 #### Mixins
@@ -47,107 +38,124 @@ Only display content to screen readers.
 * [`focusable($extend)`](mixin-focusable.md) :  
 Only display content when it's focused.
 
-### Media
-
-#### Mixins
-
-* [`background($color, $image, $image-size, $image-path, $image-extension, $image-repeat, ...)`](mixin-background.md) :  
-Mixin for background images with retina fallback.
-
 ### Color
 
 #### Functions
 
-* [`color($key)`](function-color.md) :  
+* `color($key)` :  
 Retreive a color from the "*All colors*" Sass map.
 
-* [`theme-color($key)`](function-theme-color.md) :  
+* `theme-color($key)` :  
 Retreive a color from the "*Theme colors*" Sass map.
 
-* [`grayscale($key)`](function-grayscale.md) :  
+* `grayscale($key)` :  
 Retreive a color from the "*Grayscales*" Sass map.
 
-## Layout
+### Media
 
+#### Mixins
+
+* `background($color, $image, $image-size, $image-path, $image-extension, $image-repeat, ...)` :  
+Mixin for background images with retina fallback.
+
+### Support
+
+#### Mixins
+
+* `properties($declarations)` :  
+Mixin to print couple of property/value which are stored in a Sass map.
+
+## Layout
 
 ### General
 
 #### Functions
 
-* [`breakpoint-next($name, $breakpoints, $breakpoint-names)`](function-breakpoint-next.md) :  
+* `breakpoint-next($name, $breakpoints, $breakpoint-names)` :  
 Retreive the name of the next breakpoint.
 
-* [`breakpoint-min($name, $breakpoints)`](function-breakpoint-min.md) :  
+* `breakpoint-min($name, $breakpoints)` :  
 Retreive the minimum breakpoint width.
 
-* [`breakpoint-max($name, $breakpoints)`](function-breakpoint-max.md) :  
+* `breakpoint-max($name, $breakpoints)` :  
 Retreive the maximum breakpoint width.
 
-* [`breakpoint-infix($name, $breakpoints)`](function-breakpoint-infix.md) :  
+* `breakpoint-infix($name, $breakpoints)` :  
 Retreive a blank string if smallest (xsmall) breakpoint, otherwise returns the name with a dash infront.
 
 #### Mixins
 
-* [`breakpoint-up($name, $breakpoints)`](mixin-breakpoint-up.md) :  
+* `breakpoint-up($name, $breakpoints)` :  
 Generate Media Query of at least the minimum breakpoint width.
 
-* [`breakpoint-down($name, $breakpoints)`](mixin-breakpoint-down.md) :  
+* `breakpoint-down($name, $breakpoints)` :  
 Generate Media Query of at most the maximum breakpoint width.
 
-* [`breakpoint-between($lower, $upper, $breakpoints)`](mixin-breakpoint-between.md) :  
+* `breakpoint-between($lower, $upper, $breakpoints)` :  
 Generate Media Query that spans multiple breakpoint widths.
 
-* [`breakpoint($name, $breakpoints)`](mixin-breakpoint.md) :  
+* `breakpoint($name, $breakpoints)` :  
 Generate Media Query between the breakpoint's minimum and maximum widths.
 
-### Arrangement
-
-#### Mixins
-
-* [`page-wrapper($wrapper-name)`](mixin-page-wrapper.md) :  
-Mixin setting default 'Page wrappers' properties.
+* `flex($aligns, $flow)` :  
+Quickly manage the layout, alignment of navigation, components, and more with a full suite of flexbox utilities.
 
 ### Grid System
 
 #### Placeholders
 
-* [`%container-defaults`](placeholder-container.md) :  
+* `%container-defaults` :  
 Grid container default properties.
 
-* [`%row-defaults`](placeholder-row.md) :  
+* `%row-defaults` :  
 Grid row default properties.
 
-* [`%row-reset-defaults`](placeholder-row-reset.md) :  
+* `%row-reset-defaults` :  
 Reset grid row default properties.
 
-* [`%column-defaults`](placeholder-column.md) :  
+* `%column-defaults` :  
 Grid column default properties.
 
-* [`%column-ready-defaults`](placeholder-column-ready.md) :  
+* `%column-ready-defaults` :  
 Grid column (with paddings) default properties.
 
 #### Mixins
 
-* [`make-container($gutter)`](mixin-make-container.md) :  
+* `make-container($gutter)` :  
 Generate container width, and override it in media queries.
 
-* [`make-container-max-widths($max-widths, $breakpoints)`](mixin-make-container-max-widths.md) :  
+* `make-container-max-widths($max-widths, $breakpoints)` :  
 For each breakpoint, define the maximum width of the container in a media query.
 
-* [`make-row($gutter)`](mixin-make-row.md) :  
+* `make-row($gutter)` :  
 Generate a row (wrapper) for a series of columns.
 
-* [`make-column-ready($gutter)`](mixin-make-column-ready.md) :  
+* `make-column-ready($gutter)` :  
 Make the element grid-ready (applying everything but the width).
 
-* [`make-column($size, $columns)`](mixin-make-column.md) :  
+* `make-column($size, $columns)` :  
 Generate specific width that span multiple columns.
 
-* [`make-column-offset($offset, $columns)`](mixin-make-column-offset.md) :  
-Offsetting columns.
+* `make-column-offset($offset, $columns)` :  
+Move columns to the right by increasing the left margin of a column by * columns.
 
-* [`make-column-order($order, $columns)`](mixin-make-column-order.md) :  
-Reordering columns.
+* `make-column-order($order, $columns)` :  
+Easily control the visual order of your columns.
+
+## Library
+
+### General
+
+#### Mixins
+
+* `list-variant($style, $unstyled-padding-left, $inline-item-vertical-align, $inline-item-margin-left)` :  
+Easily set out variant styles for all kind of lists.
+
+* `paragraph-variant($style, $lead-font-size, $lead-font-weight)` :  
+Easily set out variant styles for all paragraphs.
+
+* `table-variant($style, $striped-background-color, $hover-background-color)` :  
+Easily set out variant styles for all tables.
 
 ## Typography
 
@@ -155,108 +163,137 @@ Reordering columns.
 
 #### Mixins
 
-* [`rem($property, $values, $root)`](mixin-rem.md) :  
+* `rem($property, $values, $root)` :  
 Generate PX/REM value which is relative to the font-size defined for the html element.
 
 ## Variables
 
 ### Options
 
-* [`$enable-grid-classes`](variable-enable-grid-classes.md) :  
+* `$enable-grid-classes` :  
 Enable or disable the *Grid Sytem* classes
 
-* [`$enable-extend-directive`](variable-enable-extend-directive.md) :  
+* `$enable-extend-directive` :  
 Choose either to use the `@extend` or the `@include` Sass directive.
 
-* [`$enable-retina-fallback`](variable-enable-retina-fallback.md) :  
+* `$enable-retina-fallback` :  
 Enable or disable the retina fallback for images.
 
-* [`$enable-legacy-support-for-ie6`](variable-enable-legacy-support-for-ie6.md) :  
+* `$enable-legacy-support-for-ie6` :  
 Enable or disable the browser support to Internet Explorer 6.
 
-* [`$enable-legacy-support-for-ie7`](variable-enable-legacy-support-for-ie7.md) :  
+* `$enable-legacy-support-for-ie7` :  
 Enable or disable the browser support to Internet Explorer 7.
 
-* [`$enable-legacy-support-for-ie8`](variable-enable-legacy-support-for-ie8.md) :  
+* `$enable-legacy-support-for-ie8` :  
 Enable or disable the browser support to Internet Explorer 8.
 
-* [`$enable-legacy-support-for-ie9`](variable-enable-legacy-support-for-ie9.md) :  
+* `$enable-legacy-support-for-ie9` :  
 Enable or disable the browser support to Internet Explorer 9.
 
-* [`$enable-legacy-support-for-ie10`](variable-enable-legacy-support-for-ie10.md) :  
+* `$enable-legacy-support-for-ie10` :  
 Enable or disable the browser support to Internet Explorer 10.
 
-* [`$enable-legacy-support-for-ie11`](variable-enable-legacy-support-for-ie11.md) :  
+* `$enable-legacy-support-for-ie11` :  
 Enable or disable the browser support to Internet Explorer 11.
 
 ### Kiso's default palette
 
-* [`$colors`](variable-colors.md) :  
+* `$colors` :  
 Map of color scheme
 
-* [`$theme-colors`](variable-theme-colors.md) :  
+* `$theme-colors` :  
 Map of theme color scheme
 
-* [`$grays`](variable-grays.md) :  
+* `$grays` :  
 Map of grayscales
 
-### Base rules
+### Base rule variables
 
-* [`$root-font-family`](variable-root-font-family.md) :  
-Font family of the document root.
-
-* [`$font-family-sans-serif`](variable-font-family-sans-serif.md) :  
+* `$font-family-sans-serif` :  
 Sans-serif font family.
 
-* [`$font-family-monospace`](variable-font-family-monospace.md) :  
+* `$font-family-monospace` :  
 Monospace font family.
 
-* [`$body-base-color`](variable-body-base-color.md) :  
+* `$body-base-color` :  
 The base text color applied on the document body.
 
-* [`$body-base-background-color`](variable-body-base-background-color.md) :  
+* `$body-base-background-color` :  
 The base background color applied on the document body.
 
-* [`$body-base-font-family`](variable-body-base-font-family.md) :  
+* `$body-base-font-family` :  
 The base font family applied on the document body.
 
-* [`$body-base-font-size`](variable-body-base-font-size.md) :  
+* `$body-base-font-size` :  
 The base font size applied on the document body.
 
-* [`$body-base-font-weight`](variable-body-base-font-weight.md) :  
+* `$body-base-font-weight` :  
 The base font weight applied on the document body.
 
-* [`$body-base-line-height`](variable-body-base-line-height.md) :  
+* `$body-base-line-height` :  
 The base text line height applied on the document body.
 
-* [`$image-folder-path`](variable-image-folder-path.md) :  
+* `$heading-[1-6]-font-size` :  
+The default font sizes applied on each heading type.
+
+* `$image-folder-path` :  
 The default path to the image folder.
 
-* [`$image-fallback-extension`](variable-image-fallback-extension.md) :  
+* `$image-fallback-extension` :  
 The default file extension for images.
 
-* [`$image-retina-media-query`](variable-image-retina-media-query.md) :  
+* `$image-retina-media-query` :  
 The retina display media query string.
 
-* [`$image-retina-suffix`](variable-image-retina-suffix.md) :  
+* `$image-retina-suffix` :  
 The default suffix for images with retina fallback.
 
-### Layout rules
+### Layout & Grid system variables
 
-* [`$grid-breakpoints`](variable-grid-breakpoints.md) :  
+* `$grid-breakpoints` :  
 Map of breakpoints for responsive design.
 
-* [`$container-max-widths`](variable-container-max-widths.md) :  
+* `$container-max-widths` :  
 Map of the `.container` maximum widths for different screen sizes.
 
-* [`$grid-columns`](variable-grid-columns.md) :  
+* `$grid-columns` :  
 The number of columns of the *Grid System*.
 
-* [`$grid-gutter-width`](variable-grid-gutter-width.md) :  
+* `$grid-gutter-width` :  
 The width of the gutters between each *Grid System* columns.
 
-* [`$page-wrappers-padding`](variable-page-wrappers-padding.md) :  
-Page wrappers paddings rhythm.
+### Components rule variables
 
-* [`$page-wrappers-backgrounds`](variable-page-wrappers-backgrounds.md) :  
-Map of the page wrappers backgrounds properties.
+* `$component-vertical-paddings` :  
+Map of common vertical padding sizes used by the components.
+
+* `$component-horizontal-paddings` :  
+Map of common horizontal padding sizes used by the components.
+
+* `$component-margins` :  
+Map of common margin sizes used by the components.
+
+* `$component-border-width` :  
+The common border width used by the components.
+
+* `$component-border-style` :  
+The common border style used by the components.
+
+* `$component-border-colors` :  
+Map of common border color brightnesses used by the components.
+
+* `$component-border-radiuses` :  
+Map of common border radius sizes used by the components.
+
+* `$component-font-weights` :  
+Map of common font thicknesses used by the components.
+
+* `$component-state-colors` :  
+Map of common text color states used by the components.
+
+* `$component-state-background-colors` :  
+Map of common background color states used by the components.
+
+* `$component-box-shadows` :  
+Map of common box shadow lengths used by the components.

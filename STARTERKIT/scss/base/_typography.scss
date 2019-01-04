@@ -1,0 +1,204 @@
+
+//
+// @file
+// Typography styles for headings, body text, lists, and more.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// 'Headings' default properties.
+//
+// 1. Use the following '%headings-defaults' placeholder to create
+//    default properties which will be extended to each heading type.
+//
+%headings-defaults {
+  @include rem('margin-bottom', map-get($component-margins, 'small'));
+  color: inherit;
+  font: {
+    family: inherit;
+    weight: map-get($component-font-weights, 'medium');
+  }
+  line-height: 1.2;
+}
+// Headings 1
+//
+h1 {
+  @extend %headings-defaults; // 1
+  @include rem('font-size', $heading-1-font-size);
+}
+// Headings 2
+//
+h2 {
+  @extend %headings-defaults; // 1
+  @include rem('font-size', $heading-2-font-size);
+}
+// Headings 3
+//
+h3 {
+  @extend %headings-defaults; // 1
+  @include rem('font-size', $heading-3-font-size);
+}
+// Headings 4
+//
+h4 {
+  @extend %headings-defaults; // 1
+  @include rem('font-size', $heading-4-font-size);
+}
+// Headings 5
+//
+h5 {
+  @extend %headings-defaults; // 1
+  @include rem('font-size', $heading-5-font-size);
+}
+// Headings 6
+//
+h6 {
+  @extend %headings-defaults; // 1
+  @include rem('font-size', $heading-6-font-size);
+}
+
+// Paragraphs
+//
+p {
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+}
+
+// Links
+//
+a {
+  color: map-get($component-state-colors, 'active');
+  text-decoration: underline;
+
+  // Links (Hover state)
+  //
+  &:hover {
+    color: darken(map-get($component-state-colors, 'active'), 15%);
+    text-decoration: none;
+  }
+
+  // Links (Focus state)
+  //
+  &:focus {
+    @include background($color: map-get($component-state-background-colors, 'active'));
+    color: $body-base-background-color;
+  }
+
+  // Links (Active state)
+  //
+  &:active {}
+}
+
+// Acronyms
+//
+acronym[title] {
+  @include rem('font-size', ($body-base-font-size * 0.9));
+}
+
+// Addresses
+//
+address {
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+}
+
+// '(Un)Ordered lists' default properties.
+//
+// 1. Use the following '%lists-defaults' placeholder to create default
+//    properties which will be extended to each list type.
+//
+%lists-defaults {
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+
+  // Nested unordered lists
+  //
+  ul {
+    margin-bottom: 0;
+  }
+
+  // Nested ordered lists
+  //
+  ol {
+    margin-bottom: 0;
+  }
+}
+// Unordered lists
+//
+ul {
+  @extend %lists-defaults; // 1
+}
+// Ordered lists
+//
+ol {
+  @extend %lists-defaults; // 1
+}
+
+// Definition lists
+//
+dl {
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+
+  // Definition titles
+  //
+  dt {
+    font-weight: map-get($component-font-weights, 'bold');
+  }
+
+  // Definition data
+  //
+  dd {
+    margin: {
+      @include rem('bottom', map-get($component-margins, 'small'));
+      left: 0;
+    }
+  }
+}
+
+// Blockquotes
+//
+blockquote {
+  @include rem('padding', map-get($component-vertical-paddings, 'large') map-get($component-horizontal-paddings, 'large'));
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  @include rem('font-size', ($body-base-font-size * 1.25));
+  border-left: {
+    @include rem('width', ($component-border-width * 5));
+    color: map-get($component-border-colors, 'light');
+    style: $component-border-style;
+  }
+
+  // Inner footer (Source identification)
+  //
+  footer {
+    color: map-get($component-state-colors, 'muted');
+
+    // Before selector
+    //
+    &::before {
+      content: '\2014 \00A0';
+    }
+  }
+}
+
+// Emphasis
+//
+small {
+  font: {
+    @include rem('size', ($body-base-font-size * 0.8));
+    weight: map-get($component-font-weights, 'regular');
+  }
+}
+// Emphasis (Bolder text)
+//
+strong {
+  font-weight: map-get($component-font-weights, 'bolder');
+  color: inherit;
+}
+// Emphasis (Highlighted text)
+//
+mark {
+  @include rem('padding', map-get($component-vertical-paddings, 'small'));
+  @include background($color: lighten(yellow, 43%));
+}

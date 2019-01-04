@@ -11,7 +11,7 @@ _core:
 id: kiso_branding
 theme: kiso
 region: header
-weight: -6
+weight: 0
 provider: null
 plugin: system_branding_block
 settings:

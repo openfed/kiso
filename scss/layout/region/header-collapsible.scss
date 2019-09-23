@@ -1,0 +1,33 @@
+
+//
+// @file
+// General arrangement for the Header (Collapsible) region layout.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Regions
+//
+#{$regions} {
+
+  // Header (Collapsible) region
+  //
+  &--header-collapsible {
+    @include flex(right middle, row nowrap);
+    flex: {
+      basis: auto;
+      grow: 1;
+    }
+  }
+}

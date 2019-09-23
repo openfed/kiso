@@ -1,6 +1,6 @@
 normalize:
   remote: https://github.com/necolas/normalize.css
-  version: "8.0.0"
+  version: "8.0.1"
   license:
     name: MIT
     url: https://github.com/necolas/normalize.css/blob/master/LICENSE.md
@@ -9,24 +9,113 @@ normalize:
     base:
       css/base/normalize.css: { weight: -20 }
 
-framework:
+font-awesome:
+  remote: https://fortawesome.github.io/Font-Awesome/
+  version: 5.10.2
+  license:
+    name: MIT
+    url: https://fontawesome.com/license/free/
+    gpl-compatible: true
+  css:
+    theme:
+      https://use.fontawesome.com/releases/v5.10.2/css/all.css: { type: external, minified: true }
+
+reboot:
   version: VERSION
   css:
     base:
       css/base/reboot.css: {}
+
+elements:
+  version: VERSION
+  css:
+    base:
+      css/base/elements/selection.css: {}
+      css/base/elements/root.css: {}
+      css/base/elements/headings.css: {}
+      css/base/elements/typography.css: {}
+      css/base/elements/blockquotes.css: {}
+      css/base/elements/lists.css: {}
+      css/base/elements/media.css: {}
+      css/base/elements/code.css: {}
+      css/base/elements/tables.css: {}
+      css/base/elements/forms.css: {}
+
+layout:
+  version: VERSION
+  css:
+    layout:
+      css/layout/grid.css: {}
+      css/layout/page/wrapper.css: {}
+      css/layout/page/section.css: {}
+      css/layout/region/header-collapsible.css: {}
+
+blocks:
+  version: VERSION
+  css:
     component:
-      css/components/blocks/language-interface.css: {}
-  js:
-    js/init.min.js: {}
-  dependencies:
-    - core/drupal
-    - core/jquery
-    - core/drupalSettings
+      css/components/block/branding.css: {}
+
+navigations:
+  version: VERSION
+  css:
+    component:
+      css/components/navigation/breadcrumb.css: {}
+      css/components/navigation/menu.css: {}
+      css/components/navigation/menu-menubar.css: {}
+      css/components/navigation/menu-footer.css: {}
+      css/components/navigation/action-links.css: {}
+      css/components/navigation/links.css: {}
+      css/components/navigation/tabs.css: {}
+      css/components/navigation/pager.css: {}
+      css/components/dataset/item-list.css: {}
+
+forms:
+  version: VERSION
+  css:
+    component:
+      css/components/form/button.css: {}
+      css/components/form/element.css: {}
+      css/components/form/element-label.css: {}
+      css/components/form/controls.css: {}
+      css/components/form/checks.css: {}
+
+fields:
+  version: VERSION
+  css:
+    component:
+      css/components/field/label-inline.css: {}
+      css/components/field/text-formatted.css: {}
+      css/components/field/multiple-value-form.css: {}
+
+nodes:
+  version: VERSION
+  css:
+    component:
+      css/components/node/unpublished.css: {}
+
+miscs:
+  version: VERSION
+  css:
+    component:
+      css/components/misc/skip-link.css: {}
+
+messages:
+  version: VERSION
+  css:
+    component:
+      css/components/misc/messages.css: {}
+
+links--language-block:
+  version: VERSION
+  css:
+    component:
+      css/components/navigation/links--language-block.css: {}
 
 back-to-top:
   css:
     component:
-      css/components/back-to-top.css: {}
+      css/components/misc/back-to-top.css: {}
   js:
     js/back-to-top.min.js: {}
   dependencies:

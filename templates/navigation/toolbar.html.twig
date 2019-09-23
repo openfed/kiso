@@ -1,0 +1,43 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for the administrative toolbar.
+ *
+ * You will find same variables as in the core 'toolbar.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - ARIA11: Using ARIA landmarks to identify regions of a page.
+ * - SC 4.1.2 Name, Role, Value (Level A):
+ *   - ARIA14: Using aria-label to provide an invisible label where a visible
+ *     label cannot be used.
+ *
+ * @see template_preprocess_toolbar()
+ */
+#}
+<div{{ attributes.addClass('toolbar') }}>
+  <nav aria-label="{{ toolbar_heading }}"{{ toolbar_attributes.addClass('toolbar__bar', 'clearfix')|without('aria-label', 'role') }}>
+    {% for key, tab in tabs %}
+      {% set tray = trays[key] %}
+      <div{{ tab.attributes.addClass('toolbar__tab') }}>
+        {{ tab.link }}
+        {% spaceless %}
+          <div{{ tray.attributes }}>
+            {% if tray.label %}
+              <nav class="toolbar-lining clearfix" aria-label="{{ tray.label }}">
+            {% else %}
+              <div class="toolbar-lining clearfix">
+            {% endif %}
+            {{ tray.links }}
+            {% if tray.label %}
+              </nav>
+            {% else %}
+              </div>
+            {% endif %}
+          </div>
+        {% endspaceless %}
+      </div>
+    {% endfor %}
+  </nav>
+  {{ remainder }}
+</div>

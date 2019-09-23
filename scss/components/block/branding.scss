@@ -1,0 +1,62 @@
+
+//
+// @file
+// Branding
+//
+// Site identity (Logo image, name and slogan of the site).
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Branding block
+//
+#{$blocks} {
+
+  // Branding block when embedded inside the Header (Banner) region.
+  //
+  #{$region-header} & {
+    
+    // Branding
+    //
+    &__branding {
+      @include rem('margin-right', map-get($component-margins, 'medium'));
+      @include rem('font-size', ($body-base-font-size * 1.25));
+      display: inline-block;
+      color: $body-base-color;
+      line-height: inherit;
+      white-space: nowrap;
+
+      // Branding (Hover state)
+      //
+      &:hover {
+        color: $body-base-color;
+        text-decoration: none;
+      }
+    }
+
+    // Site logo
+    //
+    &__site-logo {
+      @include rem('width', 3.75rem);
+      @include rem('height', 3.75rem);
+      display: inline-block;
+    }
+
+    // Site name
+    //
+    &__site-name {
+      @include rem('margin-left', map-get($component-margins, 'small'));
+    }
+  }
+}

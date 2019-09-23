@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for an individual form element.
+ *
+ * You will find same variables as in the core 'field-multiple-value-form.html.twig' template.
+ *
+ * @see template_preprocess_field_multiple_value_form()
+ */
+#}
+{% if multiple %}
+  <div class="form-item js-form-item">
+    {{ table }}
+    {% if description.content %}
+      <div{{ description.attributes.addClass('form-description') }} >{{ description.content }}</div>
+    {% endif %}
+    {% if button %}
+      <div class="clearfix">{{ button }}</div>
+    {% endif %}
+  </div>
+{% else %}
+  {% for element in elements %}
+    {{ element }}
+  {% endfor %}
+{% endif %}

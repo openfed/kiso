@@ -1,0 +1,168 @@
+
+//
+// @file
+// General arrangement for sections layout.
+//
+// It is defining arrangement of elements (sections) for
+// how general layout should look like through pages.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+/// Create local variables to manage the column widths.
+///
+/// @type Number (unitless)
+
+$column-navigation-medium-width:    6;
+$column-complementary-medium-width: 6;
+
+$column-content-large-width:        6;
+$column-navigation-large-width:     3;
+$column-complementary-large-width:  3;
+
+// Page sections
+//
+#{$pages} {
+
+  // All sections
+  //
+  &__section {
+
+    // Toolbar section
+    //
+    &--tools {
+      @include flex(justify middle);
+    }
+
+    // Header (Banner) section
+    //
+    &--header {
+      @include flex(left middle);
+    }
+
+    // Content (Main) section
+    //
+    &--content {
+
+      // Content (Main) section when there is at least one visible sidebar.
+      //
+      #{$sidebar-visible} & {
+        @include make-column-ready;
+      }
+
+      // Content (Main) section when sidebars together.
+      //
+      #{$sidebar-both-visible} & {
+
+        // Responsiveness
+        // Properties for at least large devices (Desktops, 992px and up).
+        //
+        @include breakpoint-up('large') {
+          @include make-column($column-content-large-width);
+        }
+      }
+
+      // Content (Main) section when there is the Navigation sidebar (Left) only.
+      //
+      #{$sidebar-navigation-visible} & {
+
+        // Responsiveness
+        // Properties for at least large devices (Desktops, 992px and up).
+        //
+        @include breakpoint-up('large') {
+          @include make-column($column-content-large-width + $column-complementary-large-width);
+        }
+      }
+
+      // Content (Main) section when there is the Related content sidebar (Right) only.
+      //
+      #{$sidebar-complementary-visible} & {
+
+        // Responsiveness
+        // Properties for at least large devices (Desktops, 992px and up).
+        //
+        @include breakpoint-up('large') {
+          @include make-column($column-content-large-width + $column-navigation-large-width);
+        }
+      }
+    }
+
+    // Navigation sidebar (Left) section
+    //
+    &--navigation {
+      @include make-column-ready;
+
+      // Navigation sidebar (Left) section when sidebars together.
+      //
+      #{$sidebar-both-visible} & {
+
+        // Responsiveness
+        // Properties for at least medium devices (Tablets, 768px and up).
+        //
+        @include breakpoint-up('medium') {
+          @include make-column($column-navigation-medium-width);
+        }
+      }
+
+      // Navigation sidebar (Left) section when it is the only one to be visible.
+      //
+      #{$sidebar-visible} & {
+
+        // Responsiveness
+        // Properties for at least large devices (Desktops, 992px and up).
+        //
+        @include breakpoint-up('large') {
+          @include make-column($column-navigation-large-width);
+          @include make-column-order(-1);
+        }
+      }
+    }
+
+    // Related content sidebar (Right) section
+    //
+    &--complementary {
+      @include make-column-ready;
+
+      // Related content sidebar (Right) section when sidebars together.
+      //
+      #{$sidebar-both-visible} & {
+
+        // Responsiveness
+        // Properties for at least medium devices (Tablets, 768px and up).
+        //
+        @include breakpoint-up('medium') {
+          @include make-column($column-complementary-medium-width);
+        }
+      }
+
+      // Related content sidebar (Right) section when it is the only one to be visible.
+      //
+      #{$sidebar-visible} & {
+
+        // Responsiveness
+        // Properties for at least large devices (Desktops, 992px and up).
+        //
+        @include breakpoint-up('large') {
+          @include make-column($column-complementary-large-width);
+        }
+      }
+    }
+
+    // Footer (Contentinfo) section
+    //
+    &--footer {
+      @include flex(center middle);
+    }
+  }
+}

@@ -30,7 +30,57 @@
 
   // Details contents always need to be rendered as block.
   //
-  .details-wrapper {
+  .details__wrapper {
     display: block;
+  }
+
+  // Add colon after inner labels.
+  //
+  label:after,
+  .label:after {
+    content: ':';
+
+    // Remove the colon for labels in check boxes/radio buttons groups.
+    //
+    .form-radios &,
+    .form-checkboxes &,
+    .form-item--type-radios &,
+    .form-item--type-checkboxes & {
+      content: '';
+    }
+  }
+
+  // Form items (Radio buttons)
+  //
+  .form-item--type-radio {
+    
+    // Set horizontal margin for inner form items (Radio button groups).
+    //
+    .form-radios &,
+    .form-item--type-radios & {
+      margin-right: 1rem;
+    }
+  }
+
+  // Form items (Checkboxes)
+  //
+  .form-item--type-checkbox {
+    
+    // Set horizontal margin for inner form items (Radio button groups).
+    //
+    .form-checkboxes &,
+    .form-item--type-checkboxes & {
+      margin-right: 1rem;
+    }
+  }
+
+  // Reset inner form actions wrappers.
+  //
+  .form-actions,
+  &.form-actions {
+    margin: {
+      top: 0;
+      bottom: 0;
+    }
   }
 }

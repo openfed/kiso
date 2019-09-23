@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for a local task link.
+ *
+ * You will find same variables as in the core 'menu-local-task.html.twig' template.
+ *
+ * Note: This template renders the content for each task item in
+ * menu-local-tasks.html.twig.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H48: Using ol, ul and dl for lists or groups of links.
+ *
+ * @see template_preprocess_menu_local_task()
+ * @see kiso_preprocess_menu_local_task()
+ */
+#}
+{%
+  set classes = [
+    'tabs__item',
+    is_active ? 'is-active',
+  ]
+%}
+<li{{ attributes.addClass(classes) }}>{{ link }}</li>

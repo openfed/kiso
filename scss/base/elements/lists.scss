@@ -1,0 +1,62 @@
+
+//
+// @file
+// Lists
+//
+// Set out default styles for all lists.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+/// Lists default properties.
+///
+/// @requires {mixin} lists
+///   - See the mixin for available local variables
+///     to customize `Lists` visual style.
+
+%lists-defaults {
+  @include lists;
+}
+
+// Unordered lists
+//
+ul {
+  @extend %lists-defaults;
+}
+// Ordered lists
+//
+ol {
+  @extend %lists-defaults;
+}
+
+// Definition lists
+//
+dl {
+  @include rem('margin-bottom', map-get($component-margins, 'xlarge'));
+
+  // Definition titles
+  //
+  dt {
+    font-weight: map-get($component-font-weights, 'bold');
+  }
+
+  // Definition data
+  //
+  dd {
+    margin: {
+      @include rem('bottom', map-get($component-margins, 'xsmall'));
+      left: 0;
+    }
+  }
+}

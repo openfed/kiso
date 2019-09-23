@@ -1,0 +1,76 @@
+
+//
+// @file
+// Tables
+//
+// Opt-in styles for data tables.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Basic tables
+//
+table {
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  @include background($color: transparent);
+
+  // Nested tables
+  //
+  table {
+    @include background($color: $body-base-background-color);
+  }
+}
+
+// Table cells
+//
+th,
+td {
+  @include rem('padding', map-get($component-vertical-paddings, 'large'));
+  border-top: {
+    @include rem('width', $component-border-width);
+    color: map-get($component-border-colors, 'neutral');
+    style: $component-border-style;
+  }
+}
+
+// Table captions
+//
+caption {
+  padding: {
+    @include rem('top', map-get($component-vertical-paddings, 'large'));
+    @include rem('bottom', map-get($component-vertical-paddings, 'large'));
+  }
+  color: map-get($component-state-colors, 'muted');
+  caption-side: bottom;
+}
+
+// Table cells (Headers)
+//
+thead th {
+  border-bottom: {
+    @include rem('width', ($component-border-width * 2));
+    color: map-get($component-border-colors, 'neutral');
+    style: $component-border-style;
+  }
+}
+
+// Table bodies (Start from the second)
+//
+tbody + tbody {
+  border-top: {
+    @include rem('width', ($component-border-width * 2));
+    color: map-get($component-border-colors, 'neutral');
+    style: $component-border-style;
+  }
+}

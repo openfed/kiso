@@ -2,16 +2,16 @@
 # to define new layout settings. You can see that the "Kiso Generic Page"
 # layout declares a "Main content" and a "Related content" region.
 #
-# Add a 'complementary' region name and all inner "blocks" will be wrapped
-# (by default) using the HTML5 '<aside>' element. This is for blocks which
-# need to assign the 'complementary' landmark role to each content designed
-# to be complementary to the main content (at a similar level in the DOM
-# hierarchy).
+# Add a 'complementary' region (machine) name and all inner "blocks" will
+# be wrapped (by default) using the HTML5 '<aside>' element. This is for
+# blocks which need to assign the 'Complementary' landmark role to each
+# content designed to be complementary to the main content (at a similar
+# level in the DOM hierarchy).
 
 # Defines the "Kiso Generic Page" layout
 generic:
   label: 'Kiso Generic Page'
-  path: templates/layouts
+  path: layouts
   template: layout
   category: 'Kiso layouts'
   default_region: content

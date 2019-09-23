@@ -2,292 +2,51 @@
 
 /**
  * @file
- * Functions to support theming in the Kiso theme.
+ * Theme file.
+ *
+ * The Drupal "Kiso" (基礎) base theme provides a custom solution for keeping this file
+ * as clean as possible while the code grows. All [pre]process and hook functions live
+ * inside the `./includes` directory (rather than directly in this file).
+ *
+ * [THEMENAME]_page_attachments_alter() = ./includes/alter.page-attachments.inc
+ * [THEMENAME]_theme_suggestions_alter() = ./includes/alter.theme-suggestions.inc
+ * [THEMENAME]_[pre]process_html() = ./includes/[pre]process.html.inc
+ * [THEMENAME]_[pre]process_comment_wrapper() = ./includes/[pre]process.comment-wrapper.inc
+ * etc.
  */
 
-use Drupal\Core\Render\Element;
-use Drupal\Component\Utility\Html;
-use Drupal\block\Entity\Block;
+// Define constant variable for the `./includes` directory.
+define('INCLUDES_FOLDER', 'includes');
 
 /**
- * Alter attachments (typically assets) to a page before it is rendered.
+ * Includes a theme file.
  *
- * @param array &$attachments
- *   Array of all attachments provided by hook_page_attachments() implementations.
- *
- * @see hook_page_attachments_alter()
+ * @param string $theme
+ *   Name of the theme to use for base path.
+ * @param string $path
+ *   Path relative to $theme.
  */
-function kiso_page_attachments_alter(array &$attachments) {
-  $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
-  $attachments['#attached']['html_head_link'][] = array(
-    array(
-      'rel' => 'apple-touch-icon',
-      'sizes' => '180x180',
-      'href' => '/' . $theme_path . '/images/favicons/apple-touch-icon.png'
-    )
-  );
-  $attachments['#attached']['html_head_link'][] = array(
-    array(
-      'rel' => 'icon',
-      'type' => 'image/png',
-      'sizes' => '32x32',
-      'href' => '/' . $theme_path . '/images/favicons/favicon.png'
-    )
-  );
-  $attachments['#attached']['html_head_link'][] = array(
-    array(
-      'rel' => 'icon',
-      'type' => 'image/png',
-      'sizes' => '64x64',
-      'href' => '/' . $theme_path . '/images/favicons/favicon@2x.png'
-    )
-  );
-  $attachments['#attached']['html_head_link'][] = array(
-    array(
-      'rel' => 'manifest',
-      'href' => '/' . $theme_path . '/images/favicons/manifest.json'
-    )
-  );
-  $attachments['#attached']['html_head_link'][] = array(
-    array(
-      'rel' => 'mask-icon',
-      'href' => '/' . $theme_path . '/images/favicons/safari-pinned-tab.svg',
-      'color' => '#817c00'
-    )
-  );
-  $attachments['#attached']['html_head'][] = array(
-    array(
-      '#tag' => 'meta',
-      '#attributes' => array(
-        'name' => 'msapplication-config',
-        'content' => '/' . $theme_path . '/images/favicons/browserconfig.xml',
-      )
-    ),
-    'msapplication-config',
-  );
-  $attachments['#attached']['html_head'][] = array(
-    array(
-      '#tag' => 'meta',
-      '#attributes' => array(
-        'name' => 'theme-color',
-        'content' => '#ffffff',
-      )
-    ),
-    'theme-color',
-  );
-}
-
-/**
- * Alters named suggestions for all theme hooks.
- *
- * Implements hook_theme_suggestions_alter().
- */
-function kiso_theme_suggestions_alter(array &$suggestions, array $variables, $hook) {
-  // Logic for altering suggestions based on hook name.
-  switch ($hook) {
-
-    // Theme hook: 'page'.
-    case 'page':
-      // Add template suggestions for pages 40[x].
-      $http_error_suggestions = [
-        '401',
-        '403',
-        '404',
-      ];
-      if ($exception = \Drupal::request()->get('exception')) {
-        $status_code = $exception->getStatusCode();
-        if (in_array($status_code, $http_error_suggestions)) {
-          $suggestions[] = $hook . '__error';
-        }
-      }
-      // Add template suggestions for content type.
-      if ($node = \Drupal::request()->attributes->get('node')) {
-        array_splice($suggestions, 1, 0, 'page__node__' . $node->getType());
-      }
-      break;
-
-    // Theme hook: 'block'.
-    case 'block':
-      // Prepare the '$region' variable to add specific block
-      // templates according to the region it is placed in.
-      if (isset($variables['elements']['#id'])) {
-        $block = Block::load($variables['elements']['#id']);
-        $region = $block->getRegion();
-      }
-      // This 'else if' is only for 'page_manager' module.
-      else if (isset($variables['elements']['#configuration']['region'])) {
-        $region = $variables['elements']['#configuration']['region'];
-      }
-
-      // Add template suggestion for blocks which need to use HTML5 '<aside>'
-      // element to assign the 'complementary' landmark role to each content
-      // designed to be complementary to the main content (at a similar level
-      // in the DOM hierarchy).
-      if (isset($region) && $region == 'complementary') {
-        $suggestions[] = $hook . '__' . $region . '_block';
-      }
-      break;
+function kiso_include($theme, $path) {
+  static $themes = array();
+  if (!isset($themes[$theme])) {
+    $themes[$theme] = drupal_get_path('theme', $theme);
+  }
+  if ($themes[$theme] && ($file = DRUPAL_ROOT . '/' . $themes[$theme] . '/' . $path) && file_exists($file) && pathinfo($file, PATHINFO_EXTENSION) === 'inc') {
+    include_once $file;
   }
 }
 
 /**
- * Implements hook_preprocess().
+ * Declare various [pre]process/hook functions.
+ *
+ * All [pre]process/hook functions must live (via include) inside this
+ * file so they are properly detected when drupal_alter() is invoked.
  */
-function kiso_preprocess(&$variables, $hook) {
-  try {
-    $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
-  }
-  catch (Exception $e) {
-    $variables['is_front'] = FALSE;
-  }
-  // Ensure the cache varies correctly (new in Drupal 8.3).
-  $variables['#cache']['contexts'][] = 'url.path.is_front';
-
-  $backtotop_enable = theme_get_setting('backtotop_enable');
-  $backtotop_label = theme_get_setting('backtotop_label');
-  $backtotop_offset = theme_get_setting('backtotop_offset');
-  $backtotop_mobile_hide = theme_get_setting('backtotop_mobile_hide');
-  if (isset($backtotop_enable) and $backtotop_enable == '1') {
-    $variables['#attached']['library'][] = 'kiso/back-to-top';
-  }
-  if (isset($backtotop_label)) {
-    $variables['#attached']['drupalSettings']['kiso']['backtotop']['label'] = $backtotop_label;
-  }
-  if (isset($backtotop_offset)) {
-    $variables['#attached']['drupalSettings']['kiso']['backtotop']['offset'] = $backtotop_offset;
-  }
-  if (isset($backtotop_mobile_hide)) {
-    $variables['#attached']['drupalSettings']['kiso']['backtotop']['mobile_hide'] = $backtotop_mobile_hide;
-  }
-  $smoothscroll_enable = theme_get_setting('smoothscroll_enable');
-  if (isset($smoothscroll_enable) and $smoothscroll_enable == '1') {
-    $variables['#attached']['library'][] = 'kiso/smooth-scroll';
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK() for html.html.twig.
- */
-function kiso_preprocess_html(&$variables) {
-  // Added body classes when sidebar(s) has (have) content.
-  if (!empty($variables['page']['navigation']) && !empty($variables['page']['complementary'])) {
-    $variables['attributes']['class'][] = 'sidebar';
-    $variables['attributes']['class'][] = 'two-sidebars';
-  }
-  elseif (!empty($variables['page']['navigation'])) {
-    $variables['attributes']['class'][] = 'sidebar';
-    $variables['attributes']['class'][] = 'one-sidebar';
-    $variables['attributes']['class'][] = 'is-visible--navigation';
-  }
-  elseif (!empty($variables['page']['complementary'])) {
-    $variables['attributes']['class'][] = 'sidebar';
-    $variables['attributes']['class'][] = 'one-sidebar';
-    $variables['attributes']['class'][] = 'is-visible--complementary';
-  }
-  else {
-    $variables['attributes']['class'][] = 'no-sidebars';
-  }
-
-  // Add body classes related to node content.
-  $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node) {
-    // Set the a class on unpublished nodes.
-    if (!$node->status->value) {
-      $variables['attributes']['class'][] = 'page--node--unpublished';
+if (is_dir(__DIR__ . '/' . INCLUDES_FOLDER)) {
+  $files = scandir(__DIR__ . '/' . INCLUDES_FOLDER);
+  if (!empty($files)) {
+    foreach ($files as $file) {
+      kiso_include('kiso', INCLUDES_FOLDER . '/' . $file);
     }
-  }
-
-  // WCAG 2.0 - Guideline 3.1.1 – Language of Page (Level A).
-  // The default human language of each Web page can be programmatically determined.
-  //
-  // Technique H57: Using language attributes on the html element.
-  //   The objective of this technique is to identify the default language
-  //   of a document by providing the lang and xml:lang attribute on the
-  //   html element (HTML5 uses both the lang and the xml:lang attributes).
-  $language = \Drupal::languageManager()->getCurrentLanguage();
-  if ($variables['html_attributes']->offsetExists('lang')) {
-    $variables['html_attributes']->setAttribute('xml:lang', $variables['html_attributes']->offsetGet('lang'));
-  }
-  else {
-    $language_id = $language->getId();
-    $variables['html_attributes']->setAttribute('lang', $language_id);
-    $variables['html_attributes']->setAttribute('xml:lang', $language_id);
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK() for page.html.twig.
- */
-function kiso_preprocess_page(&$variables) {
-  // Properly detect if regions are empty.
-  // See: https://www.drupal.org/node/953034
-  // See: https://drupal.stackexchange.com/questions/175389/how-do-i-properly-detect-if-region-is-empty
-  $theme = \Drupal::theme()->getActiveTheme()->getName();
-  $regions = system_region_list($theme);
-  foreach ($regions as $key => $value) {
-    $variables['has_' . $key] = !empty(strip_tags(render($variables['page'][$key])));
-  }
-
-  // Creates variables from theme settings.
-  $variables['container_fluid'] = theme_get_setting('container_fluid');
-  $variables['backtotop_enable'] = theme_get_setting('backtotop_enable');
-
-  // Create variable for status code.
-  if ($exception = \Drupal::request()->get('exception')) {
-    $status_code = $exception->getStatusCode();
-    $variables['status_code'] = $status_code;
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK() for layout.html.twig.
- */
-function kiso_preprocess_layout(&$variables) {
-  $region_labels = isset($variables['layout']) ? $variables['layout']->getRegionLabels() : [];
-
-  foreach (Element::children($variables['content']) as $name) {
-    // Add classes for each visible region.
-    if (!empty(strip_tags(render($variables['content'][$name])))) {
-      $variables['visible_region_classes'][] = 'is-visible--' . Html::cleanCssIdentifier($name);
-    }
-
-    // Region provides a unique label which can be read by assistive technology.
-    $variables['region_attributes'][$name]['aria-label'] = isset($region_labels[$name]) ? $region_labels[$name] : 'Undefined';
-  }
-}
-
-/**
- * Implements hook_preprocess_HOOK() for block.html.twig.
- */
-function kiso_preprocess_block(&$variables) {
-  $elements = $variables['elements'];
-  $provider = $elements['#configuration']['provider'];
-
-  // Manage blocks based on the generated module
-  // (Provider) and add a useful class.
-  switch ($provider) {
-
-    // "Custom block" provider.
-    case 'block_content':
-      $variables['derivative_plugin_id'] = (isset($elements['#id'])) ? $elements['#id'] : $elements['#derivative_plugin_id'];
-      break;
-
-    // Any other provider.
-    default:
-      if (empty($elements['#derivative_plugin_id']) && isset($elements['#id'])) {
-        $variables['derivative_plugin_id'] = $elements['#id'];
-      }
-      break;
-  }
-
-  // Prepare the '$variables['block_region']' variable to add specific
-  // block class according to the region it is placed in.
-  if (isset($elements['#id'])) {
-    $block = Block::load($elements['#id']);
-    $variables['block_region'] = $block->getRegion();
-  }
-  // This 'else if' is only for 'page_manager' module.
-  else if (isset($elements['#configuration']['region'])) {
-    $variables['block_region'] = $elements['#configuration']['region'];
   }
 }

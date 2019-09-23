@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display primary and secondary local tasks.
+ *
+ * You will find same variables as in the core 'menu-local-tasks.html.twig' template.
+ *
+ * Each item in these variables (primary and secondary) can be individually
+ * themed in menu-local-task.html.twig.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H48: Using ol, ul and dl for lists or groups of links.
+ */
+#}
+{% set classes = ['tabs__items'] %}
+  
+{% if primary %}
+  <ul{{ attributes.addClass(classes, 'tabs__items--primary') }}>{{ primary }}</ul>
+{% endif %}
+{% if secondary %}
+  <ul{{ attributes.addClass(classes, 'tabs__items--secondary') }}>{{ secondary }}</ul>
+{% endif %}

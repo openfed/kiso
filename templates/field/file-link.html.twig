@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display a link to a file.
+ *
+ * You will find same variables as in the core 'file-link.html.twig' template.
+ *
+ * @see template_preprocess_file_link()
+ */
+#}
+{{ attach_library('kiso/file') }}
+<span{{ attributes }}>{{ icon }} {{ link }}</span>

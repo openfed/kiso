@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to present all user data.
+ *
+ * You will find same variables as in the core 'node.html.twig' template.
+ *
+ * This template is used when viewing a registered user's page,
+ * e.g., example.com/user/123. 123 being the user's ID.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - Wrapping content types (news, document, event...) using the `article`
+ *     element.
+ *
+ * @see template_preprocess_user()
+ */
+#}
+<article{{ attributes.addClass('user-profile') }}>
+  {% if content %}
+    {{- content -}}
+  {% endif %}
+</article>

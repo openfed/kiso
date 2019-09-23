@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for a marker for new or updated content.
+ *
+ * You will find same variables as in the core 'mark.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H49: Using semantic markup to mark emphasized or special text.
+ */
+#}
+{% if logged_in %}
+  <mark class="marker">
+    {% if status is constant('MARK_NEW') %}
+      {{ 'New'|t }}
+    {% elseif status is constant('MARK_UPDATED') %}
+      {{ 'Updated'|t }}
+    {% endif %}
+  </mark>
+{% endif %}

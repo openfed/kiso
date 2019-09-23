@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display a view of "HTML list" of rows.
+ *
+ * You will find same variables as in the core 'views-view-list.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H48: Using ol, ul and dl for lists or groups of links.
+ *
+ * @see template_preprocess_views_view_list()
+ */
+#}
+{% if attributes -%}
+  <div{{ attributes }}>
+{% endif %}
+  {% if title %}
+    <h3>{{ title }}</h3>
+  {% endif %}
+
+  <{{ list.type }}{{ list.attributes }}>
+
+    {% for row in rows %}
+      {%
+        set row_classes = [
+          default_row_class ? 'view__row',
+        ]
+      %}
+      <li{{ row.attributes.addClass(row_classes) }}>
+        {{- row.content -}}
+      </li>
+    {% endfor %}
+
+  </{{ list.type }}>
+
+{% if attributes -%}
+  </div>
+{% endif %}

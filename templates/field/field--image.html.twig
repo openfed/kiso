@@ -1,0 +1,103 @@
+{#
+/**
+ * @file
+ * Default Kiso's theme implementation for an "Image" (Using `figure`
+ * element wrapper) field type.
+ *
+ * You will find same variables as in the core 'field.html.twig' template.
+ *
+ * The HTML5 `<figure>` and `<figcaption>` elements can be used to group
+ * image and description/title/label semantically. Adding `role="group"`
+ * to the figure (when available caption) maintains backward compatibility
+ * with web browsers that don’t support the native semantics of the
+ * `<figure>` element.
+ *
+ * Based on the intended use cases for figures and their captions, as well
+ * as the current screen reader support for these elements, the following
+ * markup pattern should be considered if you want to ensure the semantics
+ * are conveyed to as wide of an audience as possible but not taking into
+ * account IE11 browser and lower.
+ *
+ * <figure aria-label="repeat figcaption content here">
+ *   <!-- figure content. if an image, provide alt text -->
+ *   <figcaption>
+ *     Caption for the figure.
+ *   </figcaption>
+ * </figure>
+ *
+ * Use `aria-label` attribute for macOS VoiceOver + Chrome.
+ *
+ * If not for the fact VoiceOver + Chrome does not support an accessible
+ * name from `aria-labelledby`, that attribute would have been preferred /
+ * pointed to an ID on the `<figcaption>`.
+ *
+ * Custom variables:
+ * - multiple: Redefines the default `multiple` flag to know if we have
+ *   more than 1 items to display for the current field result.
+ *
+ * Related WCAG resources:
+ * - SC 1.1.1 Non-text Content (Level A):
+ *   - G196: Using a text alternative on one item within a group of images that
+ *     describes all items in the group.
+ * - SC 4.1.2 Name, Role, Value (Level A):
+ *   - ARIA14: Using aria-label to provide an invisible label where a visible
+ *     label cannot be used.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+{% set multiple = items|length > 1 ? TRUE : FALSE %}
+
+{% if label_hidden %}
+  {% if multiple %}
+    <figure{{ attributes.setAttribute('aria-label', label).addClass(classes, 'field__items') }}>
+      {% for key, item in items %}
+        {% if element['#items'][key].title is defined and element['#items'][key].title %}
+          <figure{{ item.attributes.setAttribute('role', 'group').setAttribute('aria-label', element['#items'][key].title).addClass('field__item') }}>
+            {{ item.content }}
+          </figure>
+        {% else %}
+          {{ item.content }}
+        {% endif %}
+      {% endfor %}
+    </figure>
+  {% else %}
+    {% for key, item in items %}
+      {% if element['#items'][key].title is defined and element['#items'][key].title %}
+        {% set attributes = attributes.setAttribute('role', 'group').setAttribute('aria-label', element['#items'][key].title) %}
+      {% else %}
+        {% set attributes = attributes.setAttribute('aria-label', label) %}
+      {% endif %}
+      <figure{{ attributes.addClass(classes, 'field__item') }}>
+        {{ item.content }}
+      </figure>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <figure{{ attributes.setAttribute('role', 'group').setAttribute('aria-label', label).addClass(classes, multiple ? 'field__items') }}>
+    <figcaption{{ title_attributes.addClass(title_classes) }}>{{ label }}</figcaption>
+    {% for key, item in items %}
+      {% if element['#items'][key].title is defined and element['#items'][key].title %}
+        <figure{{ item.attributes.setAttribute('role', 'group').setAttribute('aria-label', element['#items'][key].title).addClass('field__item') }}>
+          {{ item.content }}
+        </figure>
+      {% else %}
+        {{ item.content }}
+      {% endif %}
+    {% endfor %}
+  </figure>
+{% endif %}

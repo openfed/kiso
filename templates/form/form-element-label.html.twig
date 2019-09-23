@@ -1,0 +1,30 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for a form element label.
+ *
+ * You will find same variables as in the core 'form-element-label.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 3.3.3 Error Suggestion (Level AA):
+ *   - ARIA2: Identifying a required field with the aria-required property.
+ *
+ * @see template_preprocess_form_element_label()
+ */
+#}
+{%
+  set classes = [
+    required ? 'form-required',
+    required ? 'js-form-required',
+    title_display == 'after' ? 'option',
+    title_display == 'invisible' ? 'visually-hidden',
+  ]
+%}
+{# Provide WAI-ARIA 'data-required' attribute to reinforce its required property for some assistive technology users. #}
+{% if required %}
+  {% set attributes = attributes.setAttribute('data-required', 'true') %}
+{% endif %}
+
+{% if title is not empty or required -%}
+  <label{{ attributes.addClass(classes) }}>{{ title }}</label>
+{%- endif %}

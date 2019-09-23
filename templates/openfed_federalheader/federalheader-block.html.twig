@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display the federal header block.
+ *
+ * You will find same variables as in the core 'federalheader-block.html.twig' template.
+ */
+#}
+{%- if other_information -%}
+  <small class="block--openfed-federalheader__link">{{ other_information }}</small>
+{%- endif -%}
+{%- if module_path -%}
+  <img src="{{ module_path }}/assets/images/federalheader_logo.svg" alt="{{ 'Logo of the Belgian Federal Authorities'|t }}" class="block--openfed-federalheader__logo">
+{%- endif -%}

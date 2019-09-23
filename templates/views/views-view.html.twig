@@ -1,0 +1,87 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for a main view template.
+ *
+ * You will find same variables as in the core 'views-view.html.twig' template.
+ *
+ * To avoid relying on markup structure and overly-generic class names, define
+ * a component’s element explicitly, prefixing them with the component’s name
+ * followed by two underscores.
+ *
+ * Create component variants explicitly, adding a suffix with the variant name
+ * preceded by two dashes. Both base and modifier classes must appear together
+ * in the markup.
+ *
+ * Class names should use full words rather than abbreviations and a dash
+ * between words.
+ *
+ * @see https://www.drupal.org/docs/develop/standards/css/css-architecture-for-drupal-8
+ * - 2. Define component elements (sub-objects) using their own classes,
+ * - 3. Extend components using modifier classes,
+ * - 6. Formatting Class Names.
+ *
+ * @see template_preprocess_views_view()
+ */
+#}
+{%
+  set classes = [
+    'view',
+    'view--name-' ~ id|clean_class,
+    'view--display-' ~ display_id|clean_class,
+    'view--id-' ~ id,
+    'view--display-id-' ~ display_id,
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{ attributes.addClass(classes) }}>
+  {{ title_prefix }}
+  {{ title }}
+  {{ title_suffix }}
+
+  {% if header %}
+    <header class="view__header">
+      {{ header }}
+    </header>
+  {% endif %}
+
+  {% if exposed %}
+    <div class="view__filters">
+      {{ exposed }}
+    </div>
+  {% endif %}
+
+  {% if attachment_before %}
+    <div class="view__attachment view__attachment--before">
+      {{ attachment_before }}
+    </div>
+  {% endif %}
+
+  {% if rows %}
+    <div class="view__content">
+      {{ rows }}
+    </div>
+  {% elseif empty %}
+    <div class="view__empty">
+      {{ empty }}
+    </div>
+  {% endif %}
+
+  {{ pager }}
+
+  {% if attachment_after %}
+    <div class="view__attachment view__attachment--after">
+      {{ attachment_after }}
+    </div>
+  {% endif %}
+
+  {{ more }}
+
+  {% if footer %}
+    <footer class="view__footer">
+      {{ footer }}
+    </footer>
+  {% endif %}
+
+  {{ feed_icons }}
+</div>

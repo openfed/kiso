@@ -1,0 +1,79 @@
+
+//
+// @file
+// Visual styles for buttons.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Buttons
+//
+.button {
+  @include button;
+
+  // Toggle button
+  //
+  &--toggler {
+
+    // Responsiveness
+    // Properties for at most medium devices (Tablets, 991px and down).
+    //
+    @include breakpoint-down('medium') {
+      /* Use a background image to prevent screen readers from announcing the text. */
+      @include background(
+        $color: transparent,
+        $image-path: '../../../images/icons',
+        $image: 'hamburger',
+        $image-extension: 'svg',
+        $image-size: 28px 28px,
+        $retina-fallback: false
+      );
+      @include rem('width', 1.75rem);
+      @include rem('height', 1.75rem);
+      padding: 0;
+      border: 0 none;
+      margin-left: auto;
+
+      // Toggle button (Hover and focus states)
+      //
+      &:hover,
+      &:focus {
+        @include background($color: transparent);
+      }
+
+      // Toggle button (Expanded state)
+      //
+      &[aria-expanded="true"] {
+        /* Use a background image to prevent screen readers from announcing the text. */
+        @include background(
+          $image-path: '../../../images/icons',
+          $image: 'ex',
+          $image-extension: 'svg',
+          $retina-fallback: false
+        );
+      }
+
+      // Inner "MENU" text.
+      //
+      span {
+        @include visually-hidden($extend: false);
+      }
+    }
+    // Properties for at least large devices (Desktops, 992px and up).
+    //
+    @include breakpoint-up('large') {
+      display: none;
+    }
+  }
+}

@@ -15,6 +15,13 @@
  *   text for the logo.
  * - is_front: A flag indicating if the current page is the front page.
  *
+ * Related WCAG resources:
+ * - SC 1.1.1 Non-text Content (Level A):
+ *   - H37: Using alt attributes on img elements.
+ * - SC 2.4.4 Link Purpose (In Context) (Level A):
+ *   - C7: Providing a supplemental description of the purpose of a link using CSS
+ *     to hide a portion of the link text.
+ *
  * @see template_preprocess_block()
  * @see kiso_preprocess()
  * @see kiso_preprocess_block()
@@ -28,7 +35,7 @@
     <a href="{{ path('<front>') }}" title="{{ 'Back to the home page'|t }}" rel="home" class="block__branding">
 
       {% if site_logo %}
-        <img src="{{ site_logo }}" alt="{{ 'Back to @site_name home page'|t({ '@site_name': alt_text }) }}" width="60" height="60" class="block__site-logo">
+        <img src="{{ site_logo }}" alt="{{ 'Back to @site_name home page'|t({ '@site_name': alt_text }) }}" class="block__site-logo">
       {% endif %}
 
       {% if site_name %}

@@ -1,0 +1,68 @@
+
+//
+// @file
+// Headings
+//
+// All HTML headings, <h1> through <h6>.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+/// Headings default properties.
+///
+/// @requires {mixin} headings
+///   - See the mixin for available local variables
+///     to customize `Headings` visual style.
+
+%headings-defaults {
+  @include headings;
+}
+
+// Headings 1
+//
+h1 {
+  @extend %headings-defaults;
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  @include rem('font-size', $heading-1-font-size);
+}
+// Headings 2
+//
+h2 {
+  @extend %headings-defaults;
+  @include rem('font-size', $heading-2-font-size);
+}
+// Headings 3
+//
+h3 {
+  @extend %headings-defaults;
+  @include rem('font-size', $heading-3-font-size);
+}
+// Headings 4
+//
+h4 {
+  @extend %headings-defaults;
+  @include rem('font-size', $heading-4-font-size);
+}
+// Headings 5
+//
+h5 {
+  @extend %headings-defaults;
+  @include rem('font-size', $heading-5-font-size);
+}
+// Headings 6
+//
+h6 {
+  @extend %headings-defaults;
+  @include rem('font-size', $heading-6-font-size);
+}

@@ -1,0 +1,63 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display a field.
+ *
+ * You will find same variables as in the core 'field.html.twig' template.
+ *
+ * Custom variables:
+ * - label_wrapper: HTML element which wraps the field label according to
+ *   its display position (visually_hidden, inline or above).
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H42: Using h1-h6 to identify headings.
+ *   - H48: Using ol, ul and dl for lists or groups of links.
+ *
+ * @see template_preprocess_field()
+ */
+#}
+{%
+  set classes = [
+    'field',
+    'field--name-' ~ field_name|clean_class,
+    'field--type-' ~ field_type|clean_class,
+    'field--label-' ~ label_display,
+  ]
+%}
+{%
+  set title_classes = [
+    'field__label',
+    label_display == 'visually_hidden' ? 'visually-hidden',
+  ]
+%}
+{% set label_wrapper = label_display == 'above' ? 'h2' : 'div' %}
+
+{% if label_hidden %}
+  {% if multiple %}
+    <ul{{ attributes.addClass(classes, 'field__items') }}>
+      {% for item in items %}
+        <li{{ item.attributes.addClass('field__item') }}>{{ item.content }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    {% for item in items %}
+      <div{{ attributes.addClass(classes, 'field__item') }}>{{ item.content }}</div>
+    {% endfor %}
+  {% endif %}
+{% else %}
+  <div{{ attributes.addClass(classes) }}>
+    <{{ label_wrapper }}{{ title_attributes.addClass(title_classes) }}>{{ label }}</{{ label_wrapper }}>
+    {% if multiple %}
+      <ul class="field__items">
+        {% for item in items %}
+          <li{{ item.attributes.addClass('field__item') }}>{{ item.content }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      {% for item in items %}
+        <div{{ item.attributes.addClass('field__item') }}>{{ item.content }}</div>
+      {% endfor %}
+    {% endif %}
+  </div>
+{% endif %}

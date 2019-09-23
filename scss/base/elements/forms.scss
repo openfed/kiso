@@ -1,0 +1,49 @@
+
+//
+// @file
+// Forms
+//
+// Styles for creating a wide variety of forms.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Form labels
+//
+label {
+  @include rem('margin-bottom', map-get($component-margins, 'xsmall'));
+  font-weight: map-get($component-font-weights, 'bold');
+}
+
+// Fieldsets
+//
+fieldset {
+  @include rem('padding-bottom', map-get($component-vertical-paddings, 'xlarge'));
+  border-bottom: {
+    @include rem('width', $component-border-width);
+    color: map-get($component-border-colors, 'neutral');
+    style: $component-border-style;
+  }
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+}
+
+// Fieldset legends
+//
+legend {
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  font: {
+    @include rem('size', $heading-2-font-size);
+    weight: map-get($component-font-weights, 'bold');
+  }
+}

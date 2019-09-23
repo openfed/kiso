@@ -1,0 +1,12 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for displaying a username.
+ *
+ * You will find same variables as in the core 'username.html.twig' template.
+ *
+ * @see template_preprocess_username()
+ */
+#}
+{% set username_wrapper = link_path ? 'a' : 'span' %}
+<{{ username_wrapper }}{{ attributes.addClass('user-name') }}>{{ name }}{{ extra }}</{{ username_wrapper }}>

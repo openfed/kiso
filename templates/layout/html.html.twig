@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for the basic structure of a single Drupal page.
+ *
+ * You will find same variables as in the core 'html.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 3.1.1 Language of Page (Level A):
+ *   - H57: Using language attributes on the html element.
+ * - SC 2.4.1 Bypass Blocks (Level A):
+ *   - G1: Adding a link at the top of each page that goes directly to the
+ *     main content area.
+ * - SC 2.4.2 Page Titled (Level A):
+ *   - H25: Providing a title using the title element.
+ *
+ * @see kiso_page_attachments_alter()
+ * @see template_preprocess_html()
+ * @see kiso_preprocess_html()
+ */
+#}
+{%
+  set body_classes = [
+    logged_in ? 'user-logged-in' : 'not-logged-in',
+    not root_path ? 'page--frontpage' : 'page--' ~ root_path|clean_class,
+    node_type ? 'page--node-type-' ~ node_type|clean_class,
+    db_offline ? 'db-offline',
+  ]
+%}
+{# Enable the "Back to top" button. #}
+{% if backtotop_enable %}
+  {% set attributes = attributes.setAttribute('id', 'top') %}
+{% endif %}
+<!DOCTYPE html>
+<html{{ html_attributes }}>
+  <head>
+    <head-placeholder token="{{ placeholder_token }}">
+    <title>{{ head_title|safe_join(' | ') }}</title>
+    <css-placeholder token="{{ placeholder_token }}">
+    <js-placeholder token="{{ placeholder_token }}">
+  </head>
+  <body{{ attributes.addClass(body_classes) }}>
+    {# Keyboard navigation/accessibility link to main content section in page.html.twig. #}
+    <a href="#main-content" class="visually-hidden focusable skip-link">
+      {{- 'Skip to main content'|t -}}
+    </a>
+    {{ page_top }}
+    {{ page }}
+    {{ page_bottom }}
+    <js-bottom-placeholder token="{{ placeholder_token|raw }}">
+    <noscript class="noscript">
+      {% set enable_js_url = 'http://www.enable-javascript.com/' %}
+      {% trans %}
+        For full functionality of this site it is necessary to enable JavaScript.<br>
+        Here are the <a href="{{ enable_js_url|raw }}" target="_blank"> instructions how to enable JavaScript in your web browser</a>.
+      {% endtrans %}
+    </noscript>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for a fieldset element and its children.
+ *
+ * You will find same variables as in the core 'fieldset.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H71: Providing a description for groups of form controls using fieldset
+ *     and legend elements.
+ *
+ * @see template_preprocess_fieldset()
+ */
+#}
+{%
+  set classes = [
+    'form-item',
+    'form-wrapper',
+    'js-form-item',
+    'js-form-wrapper',
+  ]
+%}
+<fieldset{{ attributes.addClass(classes) }}>
+  {%
+    set legend_span_classes = [
+      'fieldset-legend',
+      required ? 'form-required',
+      required ? 'js-form-required',
+    ]
+  %}
+  {#  Always wrap fieldset legends in a <span> for CSS positioning. #}
+  <legend{{ legend.attributes }}>
+    <span{{ legend_span.attributes.addClass(legend_span_classes) }}>{{ legend.title }}</span>
+  </legend>
+  <div class="fieldset-wrapper">
+    {% if errors %}
+      <small class="form-item__error-message">
+        <strong>{{ errors }}</strong>
+      </small>
+    {% endif %}
+    {% if prefix %}
+      <span class="field-prefix">{{ prefix }}</span>
+    {% endif %}
+    {{ children }}
+    {% if suffix %}
+      <span class="field-suffix">{{ suffix }}</span>
+    {% endif %}
+    {% if description.content %}
+      <small{{ description.attributes.addClass('form-description') }}>{{ description.content }}</small>
+    {% endif %}
+  </div>
+</fieldset>

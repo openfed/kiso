@@ -13,31 +13,21 @@
   // To understand behaviors, see https://drupal.org/node/756722#behaviors
   Drupal.behaviors.backtotop = {
     attach: function (context, settings) {
-      // Initialize variables for the "Back to Top" link
+      // Initialize variables for the "Back to Top" link.
       var offset = 300;
-      var label = Drupal.t('Back to top');
       var mobile_hide = 0;
       var $body = $('body');
       var body_class = 'back-to-top-visible';
-      var link_id = 'back-to-top';
-      // Retrieve theme settings if they exist
+      // Retrieve theme settings if they exist.
       if (drupalSettings.kiso.backtotop.offset) {
-        var offset = drupalSettings.kiso.backtotop.offset;
-      }
-      if (drupalSettings.kiso.backtotop.label) {
-        var label = Drupal.t(drupalSettings.kiso.backtotop.label);
+        offset = drupalSettings.kiso.backtotop.offset;
       }
       if (drupalSettings.kiso.backtotop.mobile_hide) {
-        var mobile_hide = Drupal.t(drupalSettings.kiso.backtotop.mobile_hide);
+        mobile_hide = Drupal.t(drupalSettings.kiso.backtotop.mobile_hide);
       }
 
       // Execute code once the DOM is ready.
       $(document).ready(function () {
-
-        if (!$('#' + link_id).length) {
-          $body.prepend('<span id="top"></span>');
-          $body.append('<a href="#top" class="' + link_id + '" title="' + label + '">' + label + '</a>');
-        }
 
         if (mobile_hide === 0) {
           $body.addClass(body_class);

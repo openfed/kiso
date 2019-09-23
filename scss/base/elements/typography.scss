@@ -1,0 +1,73 @@
+
+//
+// @file
+// Typography
+//
+// Default styles for body text, inline elements, lists, and more.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Paragraphs
+//
+p {
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+}
+
+// Links
+//
+a {
+  color: map-get($component-state-colors, 'link');
+  text-decoration: none;
+
+  // Links (Hover state)
+  //
+  &:hover {
+    color: map-get($component-state-colors, 'hover');
+    text-decoration: underline;
+  }
+}
+
+// Inline text elements
+//
+small {
+  font: {
+    @include rem('size', ($body-base-font-size * 0.8));
+    weight: map-get($component-font-weights, 'regular');
+  }
+}
+// Strong emphasis (Bolder text)
+//
+strong {
+  font-weight: map-get($component-font-weights, 'extra-bold');
+  color: inherit;
+}
+// Mark (Highlighted text)
+//
+mark {
+  @include rem('padding', map-get($component-vertical-paddings, 'small'));
+  @include background($color: lighten(yellow, 43%));
+}
+
+// Acronyms
+//
+acronym[title] {
+  @include rem('font-size', ($body-base-font-size * 0.9));
+}
+
+// Addresses
+//
+address {
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+}

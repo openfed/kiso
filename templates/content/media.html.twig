@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display a media item.
+ *
+ * You will find same variables as in the core 'media.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - Wrapping content types (news, document, event...) using the `article`
+ *     element.
+ *
+ * @see template_preprocess_media()
+ */
+#}
+{%
+  set classes = [
+    'media',
+    'media--type-' ~ media.bundle()|clean_class,
+    view_mode ? 'media--view-mode-' ~ view_mode|clean_class,
+    not media.isPublished() ? 'media--unpublished',
+  ]
+%}
+<article{{ attributes.addClass(classes)|without('role') }}>
+  {{ title_suffix.contextual_links }}
+
+  {% if content %}
+    <div{{ content_attributes.addClass('media__content') }}>
+      {{ content }}
+    </div>
+  {% endif %}
+  
+</article>

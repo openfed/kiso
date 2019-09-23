@@ -1,0 +1,136 @@
+
+//
+// @file
+// Visual styles for 'Controls' form elements.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+/// Form controls default properties.
+///
+/// @requires {mixin} form-control
+///   - See the mixin for available local variables
+///     to customize `Form controls` visual style.
+
+%form-control-defaults {
+  @include form-control;
+}
+
+// Form elements
+//
+#{$forms} {
+
+  // Loop through all different 'Textfield' #type form elements
+  // (Textfields, Telephone number, E-mail address, Entering a URL, Search field,
+  // Numeric input -- with special numeric validation, Color picker, Date and Time
+  // picker) to set default properties.
+  //
+  @each $input-type in (
+    'text',
+    'tel',
+    'email',
+    'url',
+    'search',
+    'number',
+    'color',
+    'date',
+    'time',
+  ) {
+
+    // 'Textfield' types
+    //
+    &-#{$input-type} {
+      @extend %form-control-defaults;
+    }
+  }
+
+  // File uploads
+  //
+  &-file {
+    display: block;
+    width: 100%;
+
+    // File and button uploads which need to be on a signle line.
+    //
+    #{$forms}-managed-file & {
+      display: inline-block;
+      width: auto;
+      text-align: initial;
+      vertical-align: middle;
+    }
+  }
+
+  // Selects
+  //
+  &-select {
+
+    // Selects (Excepted for Pop-up calendars)
+    //
+    &:not([class*="datepicker"]) {
+      @extend %form-control-defaults;
+      @include rem('padding-right', (map-get($component-horizontal-paddings, 'medium') + $body-base-font-size));
+      /* Use a background image to prevent screen readers from announcing the text. */
+      @include background(
+        $image-path: '../../../images/icons',
+        $image: 'twistie-down',
+        $image-extension: 'svg',
+        $image-position: right 0.5rem center,
+        $retina-fallback: false
+      );
+      appearance: none;
+      display: inline-block;
+      vertical-align: middle;
+
+      // MS IE selected option text (Focus state).
+      //
+      // Suppress the nested default white text on blue background highlight given to
+      // the selected option text when the (still closed) <select> receives focus
+      // in IE and (under certain conditions) Edge, as it looks bad and cannot be made to
+      // match the appearance of the native widget.
+      //
+      &:focus::-ms-value {
+        @include background($color: white);
+        color: $body-base-color;
+      }
+
+      // Selects with `size` & `multiple` attributes.
+      //
+      &[multiple],
+      &[size]:not([size="1"]) {
+        @include rem('padding-right', map-get($component-horizontal-paddings, 'medium'));
+        background-image: none;
+        height: auto;
+      }
+    }
+  }
+
+  // Textareas
+  //
+  &-textarea {
+    @extend %form-control-defaults;
+    height: auto;
+    margin: 0;
+
+    // Resizable
+    //
+    &--resize {
+
+      // Horizontal resize
+      //
+      &-horizontal {
+        resize: horizontal;
+      }
+    }
+  }
+}

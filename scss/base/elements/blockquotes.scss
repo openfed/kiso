@@ -1,0 +1,51 @@
+
+//
+// @file
+// Blockquotes
+//
+// For quoting blocks of content from another source within your document.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Blockquotes
+//
+blockquote {
+  @include rem('padding', map-get($component-vertical-paddings, 'large') map-get($component-horizontal-paddings, 'large'));
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  @include rem('font-size', ($body-base-font-size * 1.25));
+  border-left: {
+    @include rem('width', ($component-border-width * 5));
+    color: map-get($component-border-colors, 'neutral');
+    style: $component-border-style;
+  }
+
+  // All inner elements (Direct children)
+  //
+  > * {
+    margin-bottom: 0;
+  }
+
+  // Inner footer (Source identification)
+  //
+  footer {
+    color: map-get($component-state-colors, 'muted');
+
+    // Before selector
+    //
+    &::before {
+      content: '\2014 \00A0';
+    }
+  }
+}

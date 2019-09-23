@@ -3,7 +3,7 @@ name: 'Kiso 基礎'
 description: 'Base theme for Drupal 8 websites build around accessibility and simplicity.'
 type: theme
 base theme: false
-version: '8.x-1.x-dev' # Last packaged version: 8.x-1.1-dev
+version: '8.x-2.x-dev' # Last packaged version: 8.x-2.0-dev
 core: 8.x
 
 # Defines regions
@@ -26,7 +26,7 @@ regions:
 # Defines style libraries
 libraries:
   - 'kiso/normalize'
-  - 'kiso/framework'
+  - 'kiso/font-awesome'
 
 # Defines CKEditor styles
 ckeditor_stylesheets:
@@ -45,4 +45,4 @@ libraries-override:
   openfed_federalheader/header :
     css:
       theme:
-        assets/styles/openfed_federalheader.css: 'css/components/blocks/openfed-federalheader.css'
+        assets/styles/openfed_federalheader.css: 'css/components/openfed_federalheader/federalheader-block.css'

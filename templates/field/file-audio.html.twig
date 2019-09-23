@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display the file entity as an audio tag.
+ *
+ * You will find same variables as in the core 'file-audio.html.twig' template.
+ */
+#}
+{{ attach_library('kiso/file') }}
+<audio {{ attributes }}>
+  {% for file in files %}
+    <source {{ file.source_attributes }} />
+  {% endfor %}
+</audio>

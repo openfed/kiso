@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display a set of links.
+ *
+ * You will find same variables as in the core 'links.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H48: Using ol, ul and dl for lists or groups of links.
+ *
+ * @see template_preprocess_links()
+ */
+#}
+{% if links -%}
+  {%- if heading -%}
+    {%- if heading.level -%}
+      <{{ heading.level }}{{ heading.attributes }}>{{ heading.text }}</{{ heading.level }}>
+    {%- else -%}
+      <h2{{ heading.attributes }}>{{ heading.text }}</h2>
+    {%- endif -%}
+  {%- endif -%}
+  <ul{{ attributes }}>
+    {%- for item in links -%}
+      <li{{ item.attributes.removeAttribute('hreflang') }}>
+        {%- if item.link -%}
+          {{ item.link }}
+        {%- elseif item.text_attributes -%}
+          <span{{ item.text_attributes }}>{{ item.text }}</span>
+        {%- else -%}
+          {{ item.text }}
+        {%- endif -%}
+      </li>
+    {%- endfor -%}
+  </ul>
+{%- endif %}

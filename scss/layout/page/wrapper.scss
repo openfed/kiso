@@ -1,0 +1,85 @@
+
+//
+// @file
+// General arrangement for section wrappers.
+//
+// It is defining arrangement of elements (wrappers) for
+// how general layout should look like through pages.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Page wrappers
+//
+.page {
+
+  // All wrappers
+  //
+  &__wrapper {
+
+    // Toolbar wrapper
+    //
+    &--tools {
+      padding: {
+        @include rem('top', 1.5rem);
+        @include rem('bottom', 1.5rem);
+      }
+    }
+
+    // Header (Banner) wrapper
+    //
+    &--header {
+      padding: {
+        @include rem('top', 1rem);
+        @include rem('bottom', 1rem);
+      }
+    }
+
+    // Highlighted (Featured content) wrapper
+    //
+    &--highlighted {
+      padding: {
+        @include rem('top', 4rem);
+        @include rem('bottom', 4rem);
+      }
+    }
+
+    // Content (Main) wrapper
+    //
+    &--content {
+      padding: {
+        @include rem('top', 3rem);
+        @include rem('bottom', 6rem);
+      }
+    }
+
+    // Postscript (Footnotes) wrapper
+    //
+    &--postscript {
+      padding: {
+        @include rem('top', 2rem);
+        @include rem('bottom', 2rem);
+      }
+    }
+
+    // Footer (Contentinfo) wrapper
+    //
+    &--footer {
+      padding: {
+        @include rem('top', 1rem);
+        @include rem('bottom', 1rem);
+      }
+    }
+  }
+}

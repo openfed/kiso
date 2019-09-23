@@ -1,0 +1,25 @@
+{#
+/**
+ * @file
+ * Default Kiso's theme implementation for the Tabs block.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - ARIA11: Using ARIA landmarks to identify regions of a page.
+ * - SC 4.1.2 Name, Role, Value (Level A):
+ *   - ARIA14: Using aria-label to provide an invisible label where a visible
+ *     label cannot be used.
+ * 
+ * @see block--bare.html.twig
+ * 
+ * @ingroup themeable
+ */
+#}
+{% extends "block--bare.html.twig" %}
+{% block content %}
+  {% if content %}
+    <nav class="tabs" aria-label="{{ 'Tabs'|t }}">
+      {{ content }}
+    </nav>
+  {% endif %}
+{% endblock %}

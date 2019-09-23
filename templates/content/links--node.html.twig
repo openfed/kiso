@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Default Kiso's theme implementation to display node links.
+ *
+ * You will find same variables as in the core 'links.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H48: Using ol, ul and dl for lists or groups of links.
+ *
+ * @see template_preprocess_links()
+ *
+ * @ingroup themeable
+ */
+#}
+{% if links %}
+  <div class="node__links">
+    {% include "links.html.twig" %}
+  </div>
+{% endif %}

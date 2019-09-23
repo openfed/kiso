@@ -1,16 +1,3 @@
-# Your sub-theme should extend this library to load with the compiled JavaScript
-# and CSS of the Kiso (基礎) base theme.
-framework:
-  css:
-    base:
-      css/base/elements.css: {}
-    layout:
-      css/layout/grid.css: {}
-      css/layout/page.css: {}
-    component:
-      css/components/buttons.css: {}
-      css/components/block.css: {}
-
 # These lines define your THEMENAME/global-styling (CSS) library.
 global-styling:
   css:

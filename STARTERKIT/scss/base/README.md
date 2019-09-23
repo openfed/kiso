@@ -5,9 +5,10 @@ The 'base/' folder holds what we might call the boilerplate code for the project
 
 To avoid 'undoing' styles in components, base styles should reflect the simplest possible appearance of each HTML element.
 
-Be aware Kiso (基礎) base theme (including the Sass Framework) already provide few HTML elements base rules.
+Be aware Kiso (基礎) base theme (including the 'Framework SASS') already provide few HTML elements base rules.
 
 *Take a look at (without modifying):*
 
 * ./kiso/scss/base/
-* ./THEMENAME/_sass-framework/placeholders/elements/
+* ./THEMENAME/_sass-framework/mixins/library/general/_headings.scss
+* ./THEMENAME/_sass-framework/mixins/library/general/_lists.scss

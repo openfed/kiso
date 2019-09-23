@@ -1,0 +1,61 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for comments.
+ *
+ * You will find same variables as in the core 'comment.html.twig' template.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - Wrapping content types (news, document, event...) using the `article`
+ *     element.
+ *
+ * @see template_preprocess_comment()
+ */
+#}
+{% if threaded %}
+  {{ attach_library('kiso/indented') }}
+{% endif %}
+{%
+  set classes = [
+    'comment',
+    status != 'published' ? 'comment--status-' ~ status,
+    comment.owner.anonymous ? 'comment--anonymous',
+    author_id and author_id == commented_entity.getOwnerId() ? 'comment--author-' ~ commented_entity.getEntityTypeId(),
+    'js-comment',
+  ]
+%}
+<article{{ attributes.addClass(classes)|without('role') }}>
+  {#
+    Hide the "new" indicator by default, let a piece of JavaScript ask the
+    server which comments are new for the user. Rendering the final "new"
+    indicator here would break the render cache.
+  #}
+  <mark class="hidden" data-comment-timestamp="{{ new_indicator_timestamp }}"></mark>
+
+  <footer class="comment__meta">
+    {{ user_picture }}
+    <p class="comment__submitted"><small>{{ submitted }}</small></p>
+
+    {#
+      Indicate the semantic relationship between parent and child comments for
+      accessibility. The list is difficult to navigate in a screen reader
+      without this information.
+    #}
+    {% if parent %}
+      <p class="comment__parent visually-hidden">{{ parent }}</p>
+    {% endif %}
+
+    {{ permalink }}
+  </footer>
+
+  <div{{ content_attributes.addClass('comment__content') }}>
+    {{ title_prefix }}
+    {% if title %}
+      <h3{{ title_attributes }}>{{ title }}</h3>
+    {% endif %}
+    {{ title_suffix }}
+    {{ content }}
+  </div>
+  
+</article>

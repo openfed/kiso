@@ -1,0 +1,61 @@
+
+//
+// @file
+// Visual styles for form element labels.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Form elements
+//
+#{$forms} {
+
+  // Looks like a label but don't use the `<label>` markup.
+  //
+  &-wrapper .label {
+    @include rem('margin-bottom', map-get($component-margins, 'xsmall'));
+    display: inline-block;
+    width: auto;
+    font: {
+      size: inherit;
+      weight: map-get($component-font-weights, 'bold');
+    }
+  }
+
+  // Identify required fields with a star icon (SVG image).
+  //
+  &-required::after {
+    @include rem('width', 6px);
+    @include rem('height', 6px);
+    @include rem('margin', 0 map-get($component-margins, 'xsmall'));
+    /* Use a background image to prevent screen readers from announcing the text. */
+    @include background(
+      $image-path: '../../../images/icons',
+      $image: 'required',
+      $image-extension: 'svg',
+      $image-size: 6px 6px,
+      $retina-fallback: false
+    );
+    content: '';
+    display: inline-block;
+    vertical-align: super;
+  }
+}
+
+// Override default bottom margin of the checkbox/radio label options.
+//
+label.option {
+  margin-bottom: 0;
+  font-weight: map-get($component-font-weights, 'regular');
+}

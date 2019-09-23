@@ -1,0 +1,31 @@
+{#
+/**
+ * @file
+ * Kiso's theme override of a link with separate title and URL elements.
+ *
+ * You will find same variables as in the core 'link-formatter-link-separate.html.twig' template.
+ *
+ * Custom variables:
+ * - link_wrapper: HTML element which wraps the link according
+ *   to if we have a title to display.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - H48: Using ol, ul and dl for lists or groups of links.
+ *
+ * @see template_preprocess()
+ * @see template_preprocess_link_formatter_link_separate()
+ */
+#}
+{% set link_wrapper = title ? 'dl' : 'div' %}
+
+{% spaceless %}
+  <{{ link_wrapper }}{{ attributes.addClass('link') }}>
+    {% if title %}
+      <dt class="link link__title">{{ title }}</dt>
+      <dd class="link link__url">{{ link }}</dd>
+    {% else %}
+      <div class="link link__url">{{ link }}</div>
+    {% endif %}
+  </{{ link_wrapper }}>
+{% endspaceless %}

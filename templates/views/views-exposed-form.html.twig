@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for a views exposed form.
+ *
+ * You will find same variables as in the core 'views-exposed-form.html.twig' template.
+ *
+ * @see template_preprocess_views_exposed_form()
+ */
+#}
+{% if q is not empty %}
+  {#
+    This ensures that, if clean URLs are off, the 'q' is added first,
+    as a hidden form element, so that it shows up first in the POST URL.
+  #}
+{{ q }}
+{% endif %}
+<div class="views-exposed-form container-inline clearfix">
+  {{ form }}
+</div>

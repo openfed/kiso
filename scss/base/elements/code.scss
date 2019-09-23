@@ -1,0 +1,73 @@
+
+//
+// @file
+// Code
+//
+// Styles for inline and multiline blocks of code.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// 'All kind of code' default properties.
+//
+// Use the following '%code-defaults' placeholder to create
+// default properties which will be extended to all kind of code.
+//
+%code-defaults {
+  font: {
+    @include rem('size', ($body-base-font-size * 0.9));
+    family: $font-family-monospace;
+  }
+}
+
+// Inline code
+//
+code {
+  @extend %code-defaults;
+  color: red;
+}
+
+// Code blocks
+//
+pre {
+  @extend %code-defaults;
+  @include rem('padding', map-get($component-vertical-paddings, 'medium') map-get($component-horizontal-paddings, 'medium'));
+  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  @include rem('border-radius', map-get($component-border-radiuses, 'medium'));
+  @include rem('max-height', 340px);
+  @include background($color: map-get($component-state-background-colors, 'light'));
+  color: map-get($component-state-colors, 'dark');
+  border: {
+    @include rem('width', $component-border-width);
+    color: map-get($component-border-colors, 'dark');
+    style: $component-border-style;
+  }
+}
+
+// Keyboard code
+//
+kbd {
+  @extend %code-defaults;
+  @include rem('padding', map-get($component-vertical-paddings, 'small') map-get($component-horizontal-paddings, 'small'));
+  @include rem('border-radius', map-get($component-border-radiuses, 'small'));
+  @include background($color: map-get($component-state-background-colors, 'dark'));
+  color: $body-base-background-color;
+  box-shadow: map-get($component-box-shadows, 'inset');
+
+  // Nested code (Keyboard)
+  //
+  kbd {
+    font-weight: map-get($component-font-weights, 'bold');
+  }
+}

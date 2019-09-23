@@ -36,8 +36,3 @@ regions:
 ckeditor_stylesheets:
   - 'css/components/ckeditor.css'
 
-# Change "THEMENAME" to your theme machine name and this will automatically
-# extend with JavaScript and CSS files from Kiso (基礎) base theme.
-libraries-extend:
-  kiso/framework:
-    - 'THEMENAME/framework'

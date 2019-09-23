@@ -1,0 +1,37 @@
+{#
+/**
+ * @file
+ * Kiso's theme override for a details element.
+ *
+ * You will find same variables as in the core 'details.html.twig' template.
+ *
+ * @see template_preprocess_details()
+ */
+#}
+<details{{ attributes.addClass('form-details') }}>
+  {%- if title -%}
+    {%
+      set summary_classes = [
+        required ? 'form-required',
+        required ? 'js-form-required',
+      ]
+    %}
+    <summary{{ summary_attributes.addClass('form-details__heading', summary_classes) }}>{{ title }}</summary>
+  {%- endif -%}
+  <div class="form-details__wrapper">
+    {% if errors %}
+      <small class="form-item__error-message">
+        <strong>{{ errors }}</strong>
+      </small>
+    {% endif %}
+    {%- if description -%}
+      <small class="form-description">{{ description }}</small>
+    {%- endif -%}
+    {%- if children -%}
+      {{ children }}
+    {%- endif -%}
+    {%- if value -%}
+      {{ value }}
+    {%- endif -%}
+  </div>
+</details>

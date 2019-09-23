@@ -1,0 +1,40 @@
+{#
+/**
+ * @file
+ * Kiso's theme override of a datetime form wrapper.
+ *
+ * You will find same variables as in the core 'datetime-wrapper.html.twig' template.
+ *
+ * @see template_preprocess_datetime_wrapper()
+ */
+#}
+{%
+  set title_classes = [
+    'label',
+    required ? 'form-required',
+    required ? 'js-form-required',
+  ]
+%}
+{# Provide WAI-ARIA labels to identify and wrapping all datetime form controls within a single container using the 'group' role. #}
+{% if title and element['#id'] %}
+  {% set label_id = element['#id']|clean_id ~ '-label' %}
+  {% set attributes = attributes.setAttribute('role', 'group').setAttribute('aria-labelledby', label_id) %}
+  {% set title_attributes = title_attributes.setAttribute('id', label_id) %}
+{% endif %}
+
+<div{{ attributes }}>
+  {% if title %}
+    <div{{ title_attributes.addClass(title_classes) }}>{{ title }}</div>
+  {% endif %}
+  {{ content }}
+  {% if errors %}
+    <small class="form-item__error-message">
+      <strong>{{ errors }}</strong>
+    </small>
+  {% endif %}
+  {% if description %}
+    <small{{ description_attributes.addClass('form-description') }}>
+      {{ description }}
+    </small>
+  {% endif %}
+</div>

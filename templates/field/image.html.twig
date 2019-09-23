@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Kiso's theme override of an image (Using `figcaption` element which
+ * provides a descriptive label).
+ *
+ * You will find same variables as in the core 'image.html.twig' template.
+ *
+ * @see template_preprocess_image()
+ */
+#}
+{%
+  set classes = [
+    style_name ? 'image-style--' ~ style_name|clean_class,
+  ]
+%}
+<img{{ attributes.addClass(classes)|without('title') }} />
+{% if attributes.title is defined and attributes.title %}
+  <figcaption>{{ attributes.title|raw }}</figcaption>
+{% endif %}

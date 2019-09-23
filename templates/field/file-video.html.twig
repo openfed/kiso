@@ -1,0 +1,14 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display the file entity as a video tag.
+ *
+ * You will find same variables as in the core 'file-video.html.twig' template.
+ */
+#}
+{{ attach_library('kiso/file') }}
+<video {{ attributes }}>
+  {% for file in files %}
+    <source {{ file.source_attributes }} />
+  {% endfor %}
+</video>

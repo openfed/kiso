@@ -1,0 +1,86 @@
+
+//
+// @file
+// Visual styles for 'Checkboxes and Radio buttons' form elements.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+/// Form check-lists default properties.
+///
+/// @requires {mixin} form-check
+///   - See the mixin for available local variables
+///     to customize `Form check-lists` visual style.
+
+%form-check-defaults {
+  @include form-check;
+}
+
+// Form elements
+//
+#{$forms} {
+
+  // Checkboxes
+  //
+  &-checkbox {
+    @extend %form-check-defaults;
+
+    // Indicators
+    //
+    ~ label.option::before {
+
+      // Conditionally set a `border-radius`.
+      //
+      @if $enable-rounded {
+        @include rem('border-radius', map-get($component-border-radiuses, 'medium'));
+      }
+    }
+
+    // Indicators (Checked state)
+    //
+    &:checked ~ label.option::before {
+      /* Use a background image to prevent screen readers from announcing the text. */
+      @include background(
+        $color: map-get($component-state-background-colors, 'dark'),
+        $image-path: '../../../images/icons',
+        $image: 'check',
+        $image-extension: 'svg',
+        $image-size: 10px 10px,
+        $retina-fallback: false
+      );
+      border-color: map-get($component-state-border-colors, 'dark');
+    }
+  }
+
+  // Radios
+  //
+  &-radio {
+    @extend %form-check-defaults;
+
+    // Indicators
+    //
+    ~ label.option::before {
+      border-radius: 50%;
+    }
+
+    // Indicators (Checked state)
+    //
+    &:checked ~ label.option::before {
+      border: {
+        @include rem('width', ($component-border-width * 5));
+        color: map-get($component-state-border-colors, 'dark');
+      }
+    }
+  }
+}

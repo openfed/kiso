@@ -1,0 +1,20 @@
+uuid: 1dcf989f-21b1-49fd-95d8-5497897b573e
+langcode: en
+status: true
+dependencies:
+  module:
+    - openfed_federalheader
+  theme:
+    - kiso
+id: federalheader
+theme: kiso
+region: tools
+weight: 0
+provider: null
+plugin: federal_header_block
+settings:
+  id: federal_header_block
+  label: 'Federal header'
+  provider: openfed_federalheader
+  label_display: '0'
+visibility: {  }

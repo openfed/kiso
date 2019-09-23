@@ -1,0 +1,20 @@
+uuid: b1e6d32d-12ee-4a32-acfc-f707efed1d3b
+langcode: en
+status: true
+dependencies:
+  module:
+    - language
+  theme:
+    - kiso
+id: languageswitcher
+theme: kiso
+region: tools
+weight: -1
+provider: null
+plugin: 'language_block:language_interface'
+settings:
+  id: 'language_block:language_interface'
+  label: 'Language switcher'
+  provider: language
+  label_display: '0'
+visibility: {  }

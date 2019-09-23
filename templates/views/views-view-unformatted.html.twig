@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display a view of "Unformatted list" of rows.
+ *
+ * You will find same variables as in the core 'views-view-unformatted.html.twig' template.
+ *
+ * @see template_preprocess_views_view_unformatted()
+ */
+#}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+{% for row in rows %}
+  {%
+    set row_classes = [
+      default_row_class ? 'view__row',
+    ]
+  %}
+  <div{{ row.attributes.addClass(row_classes) }}>
+    {{- row.content -}}
+  </div>
+{% endfor %}

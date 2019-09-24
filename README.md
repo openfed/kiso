@@ -11,14 +11,14 @@ Drupal "Kiso" (基礎) base theme
 * [Stylesheets (Baseline)](https://github.com/openfed/kiso/tree/master/scss/README.md)
 * [Sass framework](https://github.com/smillart/Framework-SASS-Source-Files)
 * [Templates](https://github.com/openfed/kiso/tree/master/templates/)
-* [Accessibility](https://github.com/openfed/kiso/tree/master/docs/accessibility/overview.md)
+* [Accessibility](https://github.com/openfed/kiso/blob/master/docs/accessibility.md)
 
 ## About Kiso
 
 **In a nutshell:**
 
  1. *Kiso* rewrites [Templates](https://github.com/openfed/kiso/tree/master/templates/) from *Drupal* core only if it makes sense to do so, in order to meet specific requirements;
- 2. *Kiso* is built with [Accessibility](https://github.com/openfed/kiso/tree/master/docs/accessibility/overview.md) and [CSS coding standards for Drupal](https://www.drupal.org/docs/develop/standards/css/css-coding-standards) in mind;
+ 2. *Kiso* is built with [Accessibility](https://github.com/openfed/kiso/blob/master/docs/accessibility.md) and [CSS coding standards for Drupal](https://www.drupal.org/docs/develop/standards/css/css-coding-standards) in mind;
  3. *Kiso* use a mobile-first [Flexbox grid system](https://github.com/openfed/kiso/tree/master/scss/layout/README.md) to build layouts of all shapes and sizes thanks to a twelve column system, five default responsive tiers, Sass variables and mixins, and dozens of predefined classes;
  4. *Kiso* [Stylesheets (Baseline)](https://github.com/openfed/kiso/tree/master/scss/README.md) is based on the [Drupal 8's CSS (file) organization](https://www.drupal.org/docs/develop/standards/css/css-file-organization-for-drupal-8), [SMACSS](https://smacss.com/ "Scalable and Modular Architecture for CSS") & [BEM](http://bem.info/ "Block, Element, Modifier").
 

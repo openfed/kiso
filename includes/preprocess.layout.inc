@@ -5,6 +5,7 @@
  * Prepares variables for Panels layout templates.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Render\Element;
 
 /**

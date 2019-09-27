@@ -24,7 +24,7 @@ function kiso_theme_suggestions_page_alter(array &$suggestions, array $variables
   if ($exception = \Drupal::request()->get('exception')) {
     $status_code = $exception->getStatusCode();
     if (in_array($status_code, $http_error_suggestions)) {
-      $suggestions[] = $hook . '__error';
+      $suggestions[] = 'page__error';
     }
   }
   // Add template suggestions for content type.
@@ -63,6 +63,6 @@ function kiso_theme_suggestions_block_alter(array &$suggestions, array $variable
   // designed to be complementary to the main content (at a similar level
   // in the DOM hierarchy).
   if (isset($region) && $region == 'complementary') {
-    $suggestions[] = $hook . '__' . $region . '_block';
+    $suggestions[] = 'block__' . $region . '_block';
   }
 }

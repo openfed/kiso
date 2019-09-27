@@ -32,7 +32,7 @@ Alternative browsers which use the latest version of WebKit, Blink, or Gecko, wh
 
 ## Release
 
-**Last updated:** 23 Sep 2019 at 16:28 UTC  
+**Last updated:** 27 Sep 2019 at 12:50 UTC  
 **Theme version:** 8.x-2.x-dev  
-**Last packaged version:** 8.x-2.0-dev  
-**Development release from tag:** v2.0-dev  
+**Last packaged version:** 8.x-2.2-dev  
+**Development release from tag:** 2.2  

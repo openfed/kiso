@@ -25,7 +25,6 @@ ul.links {
   //
   &--language-block {
     @include list-variant('inline',
-      $list-inline-item-vertical-align: middle,
       $list-inline-item-margin-left: map-get($component-margins, 'xsmall')
     );
     margin-bottom: 0;

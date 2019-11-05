@@ -3,7 +3,7 @@ name: 'Kiso 基礎'
 description: 'Base theme for Drupal 8 websites build around accessibility and simplicity.'
 type: theme
 base theme: false
-version: '8.x-2.x-dev' # Last packaged version: 8.x-2.0-dev
+version: '8.x-2.x-dev'
 core: 8.x
 
 # Defines regions
@@ -27,6 +27,9 @@ regions:
 libraries:
   - 'kiso/normalize'
   - 'kiso/font-awesome'
+  - 'kiso/font-open-sans'
+  - 'kiso/font-muli'
+  - 'kiso/visual-styling'
 
 # Defines CKEditor styles
 ckeditor_stylesheets:

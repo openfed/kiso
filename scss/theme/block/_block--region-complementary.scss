@@ -1,0 +1,52 @@
+
+//
+// @file
+// Blocks when embedded inside the Related content sidebar (Right) region.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Blocks
+//
+#{$blocks} {
+
+  // Blocks (Related content sidebar)
+  //
+  &--region-complementary {
+    @include rem('padding', (map-get($component-vertical-paddings, 'large') * 2) map-get($component-horizontal-paddings, 'xlarge'));
+    @include background($color: white);
+    border: {
+      @include rem('width', $component-border-width);
+      color: map-get($component-border-colors, 'light');
+      style: $component-border-style;
+      radius: map-get($component-border-radiuses, 'medium');
+    }
+
+    // Blocks (Navigation sidebar / Excepted the first child)
+    //
+    &:not(:first-child) {
+      @include rem('margin-top', map-get($component-margins, 'large'));
+    }
+
+    // Block elements
+    //
+    #{$blocks} {
+
+      // Blocks (Title)
+      //
+      &__title {
+        @include rem('margin-bottom', map-get($component-margins, 'medium'));
+        font: {
+          @include rem('size', $body-base-font-size);
+          weight: map-get($component-font-weights, 'semi-bold');
+        }
+        text-transform: uppercase;
+      }
+    }
+  }
+}

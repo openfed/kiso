@@ -41,7 +41,7 @@ function kiso_page_attachments_alter(array &$attachments) {
   $attachments['#attached']['html_head_link'][] = array(
     array(
       'rel' => 'manifest',
-      'href' => '/' . $theme_path . '/images/favicons/manifest.json'
+      'href' => '/' . $theme_path . '/images/favicons/site.webmanifest'
     )
   );
   $attachments['#attached']['html_head_link'][] = array(

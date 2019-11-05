@@ -1,0 +1,42 @@
+
+//
+// @file
+// Default styles for body text, inline elements, lists, and more.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Paragraphs
+//
+p {
+  @include rem('margin-bottom', map-get($component-margins, 'xlarge'));
+}
+
+// Links
+//
+a {
+  color: map-get($component-state-colors, 'link');
+
+  // Links (Hover state)
+  //
+  &:hover {
+    color: map-get($component-state-colors, 'hover');
+  }
+}
+
+// Strong emphasis (Bolder text)
+//
+strong {
+  color: theme-color('primary');
+}
+
+// Addresses
+//
+address {
+  @include rem('margin-bottom', map-get($component-margins, 'xlarge'));
+}

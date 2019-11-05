@@ -1,0 +1,65 @@
+
+//
+// @file
+// Visual styles for 'Controls' form elements.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Form controls default properties.
+//
+%form-control-defaults {
+  border-color: map-get($component-border-colors, 'neutral');
+  box-shadow: map-get($component-box-shadows, 'small');
+}
+
+// Form elements
+//
+#{$forms} {
+
+  // Loop through all different 'Textfield' #type form elements
+  // (Textfields, Telephone number, E-mail address, Entering a URL, Search field,
+  // Numeric input -- with special numeric validation, Color picker, Date and Time
+  // picker) to set default properties.
+  //
+  @each $input-type in (
+    'text',
+    'tel',
+    'email',
+    'url',
+    'search',
+    'number',
+    'color',
+    'date',
+    'time',
+  ) {
+
+    // 'Textfield' types
+    //
+    &-#{$input-type} {
+      @extend %form-control-defaults;
+    }
+  }
+
+  // Selects
+  //
+  &-select {
+
+    // Selects (Excepted for Pop-up calendars)
+    //
+    &:not([class*="datepicker"]) {
+      @extend %form-control-defaults;
+    }
+  }
+
+  // Textareas
+  //
+  &-textarea {
+    @extend %form-control-defaults;
+  }
+}

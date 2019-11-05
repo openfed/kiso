@@ -25,6 +25,55 @@
   //
   &--text-formatted {
 
+    // Body embedded images (Fixed maximum width)
+    //
+    // The resize image behavior is used in responsive design where image is resizing
+    // automatically to fit a maximum width within its container. The `max-width`
+    // CSS property is used to create resize image property to avoid excessive image
+    // sizes in the body text, in a way adapted between each responsive breakpoint.
+    //
+    img {
+      @include rem('margin', 0 auto map-get($component-margins, 'medium'));
+      display: block;
+
+      // Responsiveness
+      // Properties for at least medium devices (Tablets, 768px and up).
+      //
+      @include breakpoint-up('medium') {
+        max-width: 70%;
+      }
+
+      // Body embedded images (Floating)
+      //
+      &.align {
+
+        // Loop through all different body embedded "Floating" (Right and left) images.
+        //
+        @each $align in (
+          'right',
+          'left',
+        ) {
+
+          // Set the correct side.
+          //
+          $side: if($align == 'right', 'left', 'right');
+
+          // Body embedded images (Floating)
+          //
+          &-#{$align} {
+
+            // Responsiveness
+            // Properties for at least medium devices (Tablets, 768px and up).
+            //
+            @include breakpoint-up('medium') {
+              @include rem('margin-#{$side}', map-get($component-margins, 'xlarge'));
+              max-width: 50%;
+            }
+          }
+        }
+      }
+    }
+
     // Body text links
     //
     // These must present a "non-color designator" (typically underline hypertext links

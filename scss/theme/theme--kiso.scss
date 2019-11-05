@@ -1,0 +1,50 @@
+
+//
+// @file
+// Kiso (基礎) theme rules definition.
+//
+// Purely visual styling (look-and-feel) for the components. Ideally,
+// these should be separated enough from a component's structure to be
+// "swappable", and omitting these entirely should not break the
+// component's functionality or basic usability.
+//
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// `Framework SASS` source files variables and maps overrides.
+@import '../config/variable-overrides';
+
+// Import the full stack of the `Framework SASS` source files.
+@import '../../_sass-framework/include-all';
+
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+@import
+  'elements/selection',
+  'elements/root',
+  'elements/headings',
+  'elements/typography',
+  'elements/blockquotes',
+  'elements/lists',
+  'elements/media',
+  'elements/tables',
+  'elements/forms',
+  'page/wrapper',
+  'page/section',
+  'block/branding',
+  'block/block--region-navigation',
+  'block/block--region-complementary',
+  'navigation/links--language-block',
+  'navigation/menu-menubar',
+  'navigation/breadcrumb',
+  'navigation/tabs',
+  'form/button',
+  'form/element-label',
+  'form/controls',
+  'form/checks',
+  'field/text-formatted',
+  'misc/messages';

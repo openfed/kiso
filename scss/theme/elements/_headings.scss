@@ -1,0 +1,61 @@
+
+//
+// @file
+// All HTML headings, <h1> through <h6>.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Headings default properties.
+//
+%headings-defaults {
+  font: {
+    family: $font-family-muli;
+    weight: map-get($component-font-weights, 'regular');
+  }
+  color: theme-color('primary');
+}
+
+// Headings 1
+//
+h1 {
+  @extend %headings-defaults;
+  @include rem('padding-bottom', 3rem);
+  @include rem('margin-bottom', map-get($component-margins, 'xxlarge'));
+  border-bottom: {
+    @include rem('width', $component-border-width);
+    color: map-get($component-border-colors, 'neutral');
+    style: $component-border-style;
+  }
+  font-weight: map-get($component-font-weights, 'light');
+}
+// Headings 2
+//
+h2 {
+  @extend %headings-defaults;
+}
+// Headings 3
+//
+h3 {
+  @extend %headings-defaults;
+}
+// Headings 4
+//
+h4 {
+  @extend %headings-defaults;
+}
+// Headings 5
+//
+h5 {
+  @extend %headings-defaults;
+}
+// Headings 6
+//
+h6 {
+  @extend %headings-defaults;
+}

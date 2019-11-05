@@ -1,0 +1,21 @@
+
+//
+// @file
+// Default root styles to provide better page-wide.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Page body
+//
+body {
+  @include background($color: $body-base-background-color);
+  color: $body-base-color;
+  font-family: $body-base-font-family;
+  line-height: $body-base-line-height;
+}

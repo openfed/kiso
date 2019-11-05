@@ -1,0 +1,57 @@
+
+//
+// @file
+// Site identity (Logo image, name and slogan of the site).
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Branding block
+//
+#{$blocks} {
+
+  // Branding block when embedded inside the Header (Banner) region.
+  //
+  #{$region-header} & {
+    
+    // Branding
+    //
+    &__branding {
+      color: map-get($component-state-colors, 'active');
+
+      // Branding (Hover state)
+      //
+      &:hover {
+        color: map-get($component-state-colors, 'active');
+      }
+    }
+
+    // Site logo
+    //
+    &__site-logo {
+      @include rem('width', 4rem);
+      @include rem('height', 4rem);
+
+      // Site logo when we are on the (Front) page.
+      //
+      #{$page-front} & {
+        @include rem('width', 5rem);
+        @include rem('height', 5rem);
+      }
+    }
+
+    // Site name
+    //
+    &__site-name {
+      @include rem('margin-left', map-get($component-margins, 'medium'));
+      display: inline-block;
+      vertical-align: middle;
+      text-transform: uppercase;
+    }
+  }
+}

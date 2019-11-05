@@ -36,3 +36,8 @@ regions:
 ckeditor_stylesheets:
   - 'css/components/ckeditor.css'
 
+# Libraries overrides
+libraries-override:
+  # Remove the entire Kiso (基礎) default styling (purely visual) library. We
+  # don't need it to be looded from your sub-theme.
+  kiso/visual-styling: false

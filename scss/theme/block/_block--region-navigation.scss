@@ -1,0 +1,66 @@
+
+//
+// @file
+// Blocks when embedded inside the Navigation sidebar (Left) region.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Blocks
+//
+#{$blocks} {
+
+  // Blocks (Navigation sidebar)
+  //
+  &--region-navigation {
+    @include rem('padding', (map-get($component-vertical-paddings, 'large') * 2) map-get($component-horizontal-paddings, 'xlarge'));
+    @include background($color: theme-color('primary'));
+    border-radius: map-get($component-border-radiuses, 'medium');
+    color: grayscale('400');
+
+    // Blocks (Navigation sidebar / Excepted the first child)
+    //
+    &:not(:first-child) {
+      @include rem('margin-top', map-get($component-margins, 'large'));
+    }
+
+    // Block elements
+    //
+    #{$blocks} {
+
+      // Blocks (Title)
+      //
+      &__title {
+        @include rem('margin-bottom', map-get($component-margins, 'medium'));
+        font: {
+          @include rem('size', $body-base-font-size);
+          weight: map-get($component-font-weights, 'semi-bold');
+        }
+        color: grayscale('100');
+        text-transform: uppercase;
+      }
+    }
+
+    // Inner navigation elements
+    //
+    #{$navigations} {
+
+      // Menu (Item links)
+      //
+      &__link {
+        color: grayscale('400');
+        
+        // Menu (Item links / Active state)
+        //
+        &.is-active {
+          color: map-get($component-state-colors, 'active');
+        }
+      }
+    }
+  }
+}

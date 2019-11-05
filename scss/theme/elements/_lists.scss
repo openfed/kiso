@@ -1,0 +1,29 @@
+
+//
+// @file
+// Set out default styles for all lists.
+//
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+
+// Lists default properties.
+//
+%lists-defaults {
+  @include rem('margin-bottom', map-get($component-margins, 'xlarge'));
+}
+
+// Unordered lists
+//
+ul {
+  @extend %lists-defaults;
+}
+// Ordered lists
+//
+ol {
+  @extend %lists-defaults;
+}

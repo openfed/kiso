@@ -1,7 +1,7 @@
 {#
 /**
  * @file
- * Default Kiso's theme implementation to display a complementary (Landmark Role) block.
+ * Default Kiso's theme implementation to display the "Search" (Landmark Role) form block.
  *
  * You will find same variables as in the core 'block.html.twig' template.
  *
@@ -23,6 +23,7 @@
  *     label cannot be used.
  *
  * @see template_preprocess_block()
+ * @see search_preprocess_block()
  * @see kiso_preprocess_block()
  * 
  * @ingroup themeable
@@ -34,21 +35,21 @@
     'block--' ~ configuration.provider|clean_class,
     'block--' ~ configuration.provider|clean_class ~ '--' ~ derivative_plugin_id|clean_class,
     'block--region-' ~ block_region|clean_class,
+    'container-inline',
   ]
 %}
 {# Provide WAI-ARIA attributes for screen readers according to the display settings for the label. #}
 {% set heading_id = attributes.id ? attributes.id|clean_id ~ '-heading' : 'block-' ~ plugin_id|clean_id ~ '-heading' %}
-{% set attributes = label ? attributes.setAttribute('aria-labelledby', heading_id) : attributes.setAttribute('aria-label', configuration.label) %}
+{% set attributes = label ? attributes.setAttribute('aria-labelledby', heading_id) : attributes.setAttribute('aria-label', 'Global') %}
 
-<aside{{ attributes|without('role').addClass(classes) }}>
+<div{{ attributes.addClass(classes).setAttribute('role', 'search') }}>
   {{ title_prefix }}
   {% if label %}
     <h2{{ title_attributes.addClass('block__title').setAttribute('id', heading_id) }}>{{ label }}</h2>
   {% endif %}
   {{ title_suffix }}
 
-  {# Complementary. #}
   {% block content %}
     {{ content }}
   {% endblock %}
-</aside>
+</div>

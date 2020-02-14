@@ -71,4 +71,28 @@ function kiso_page_attachments_alter(array &$attachments) {
     ),
     'theme-color',
   );
+
+  // Load the "External Links" (New Window) library.
+  $moduleHandler = \Drupal::service('module_handler');
+  if ($moduleHandler->moduleExists('extlink') && theme_get_setting('extlinkwindow_enabled')) {
+    $attachments['#attached']['library'][] = 'kiso/extlink-window';
+    $config = \Drupal::config('kiso.settings');
+    // Attach configurable JavaScript.
+    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['extlink']['defaultLabel'] = $config->get('extlinkwindow_extlink_label');
+    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['extlink']['customLabel'] = theme_get_setting('extlinkwindow_extlink_custom_label');
+    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['extlink']['label'] = theme_get_setting('extlinkwindow_extlink_label');
+    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['intlink']['enabled'] = theme_get_setting('extlinkwindow_intlink_enabled');
+    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['intlink']['defaultLabel'] = $config->get('extlinkwindow_intlink_label');
+    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['intlink']['customLabel'] = theme_get_setting('extlinkwindow_intlink_custom_label');
+    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['intlink']['label'] = theme_get_setting('extlinkwindow_intlink_label');
+  }
+
+  // Load the "Tooltip" library.
+  if (theme_get_setting('tooltip_enabled')) {
+    $attachments['#attached']['library'][] = 'kiso/tooltip';
+    $config = \Drupal::config('kiso.settings');
+    // Attach configurable JavaScript.
+    $attachments['#attached']['drupalSettings']['kiso']['tooltip']['delay'] = $config->get('tooltip_delay');
+    $attachments['#attached']['drupalSettings']['kiso']['tooltip']['customDelay'] = theme_get_setting('tooltip_delay');
+  }
 }

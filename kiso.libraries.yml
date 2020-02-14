@@ -156,3 +156,25 @@ smooth-scroll:
   dependencies:
     - core/jquery
     - core/drupalSettings
+
+tooltip:
+  version: VERSION
+  css:
+    component:
+      css/components/misc/tooltip.css: {}
+  js:
+    js/tooltip.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings
+
+extlink-window:
+  version: VERSION
+  css:
+    component:
+      css/components/misc/extlink-window.css: {}
+  js:
+    js/extlink-window.min.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupalSettings

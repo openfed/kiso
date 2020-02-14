@@ -32,7 +32,7 @@
 
 {% block content %}
   {% if site_logo or site_name %}
-    <a href="{{ path('<front>') }}" title="{{ 'Back to the home page'|t }}" rel="home" class="block__branding">
+    <a href="{{ path('<front>') }}" data-pattern="tooltip" title="{{ 'Back to the home page'|t }}" rel="home" class="block__branding">
 
       {% if site_logo %}
         <img src="{{ site_logo }}" alt="{{ 'Back to @site_name home page'|t({ '@site_name': alt_text }) }}" class="block__site-logo">

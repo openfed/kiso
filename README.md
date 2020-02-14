@@ -7,20 +7,21 @@ Drupal "Kiso" (基礎) base theme
 
 ## Topics
 
-* [Getting started](https://github.com/openfed/kiso/tree/master/STARTERKIT/README.md)
-* [Stylesheets (Baseline)](https://github.com/openfed/kiso/tree/master/scss/README.md)
+* [Getting started](docs/getting-started.md)
+* [Theme settings](docs/theme-settings.md)
+* [Stylesheets (Baseline)](scss/README.md)
 * [Sass framework](https://github.com/smillart/Framework-SASS-Source-Files)
-* [Templates](https://github.com/openfed/kiso/tree/master/templates/)
-* [Accessibility](https://github.com/openfed/kiso/blob/master/docs/accessibility.md)
+* [Templates](templates/)
+* [Accessibility](docs/accessibility.md)
 
 ## About Kiso
 
 **In a nutshell:**
 
- 1. *Kiso* rewrites [Templates](https://github.com/openfed/kiso/tree/master/templates/) from *Drupal* core only if it makes sense to do so, in order to meet specific requirements;
- 2. *Kiso* is built with [Accessibility](https://github.com/openfed/kiso/blob/master/docs/accessibility.md) and [CSS coding standards for Drupal](https://www.drupal.org/docs/develop/standards/css/css-coding-standards) in mind;
- 3. *Kiso* use a mobile-first [Flexbox grid system](https://github.com/openfed/kiso/tree/master/scss/layout/README.md) to build layouts of all shapes and sizes thanks to a twelve column system, five default responsive tiers, Sass variables and mixins, and dozens of predefined classes;
- 4. *Kiso* [Stylesheets (Baseline)](https://github.com/openfed/kiso/tree/master/scss/README.md) is based on the [Drupal 8's CSS (file) organization](https://www.drupal.org/docs/develop/standards/css/css-file-organization-for-drupal-8), [SMACSS](https://smacss.com/ "Scalable and Modular Architecture for CSS") & [BEM](http://bem.info/ "Block, Element, Modifier").
+ 1. *Kiso* rewrites [Templates](templates/) from *Drupal* core only if it makes sense to do so, in order to meet specific requirements;
+ 2. *Kiso* is built with [Accessibility](docs/accessibility.md) and [CSS coding standards for Drupal](https://www.drupal.org/docs/develop/standards/css/css-coding-standards) in mind;
+ 3. *Kiso* use a mobile-first [Flexbox grid system](scss/layout/README.md) to build layouts of all shapes and sizes thanks to a twelve column system, five default responsive tiers, Sass variables and mixins, and dozens of predefined classes;
+ 4. *Kiso* [Stylesheets (Baseline)](scss/README.md) is based on the [Drupal 8's CSS (file) organization](https://www.drupal.org/docs/develop/standards/css/css-file-organization-for-drupal-8), [SMACSS](https://smacss.com/ "Scalable and Modular Architecture for CSS") & [BEM](http://bem.info/ "Block, Element, Modifier").
 
 ## Browser Support
 
@@ -32,7 +33,7 @@ Alternative browsers which use the latest version of WebKit, Blink, or Gecko, wh
 
 ## Release
 
-**Last updated:** 5 Nov 2019 at 11:38 UTC  
+**Last updated:** 14 Feb 2020 at 16:51 UTC  
 **Theme version:** 8.x-2.x-dev  
-**Last packaged version:** 8.x-2.3-dev  
-**Development release from tag:** 2.3  
+**Last packaged version:** 8.x-2.4-dev  
+**Development release from tag:** 2.4  

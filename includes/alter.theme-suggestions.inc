@@ -63,6 +63,12 @@ function kiso_theme_suggestions_block_alter(array &$suggestions, array $variable
   // designed to be complementary to the main content (at a similar level
   // in the DOM hierarchy).
   if (isset($region) && $region == 'complementary') {
-    $suggestions[] = 'block__' . $region . '_block';
+    $suggestions[] = 'block__' . $region . '_landmark';
+  }
+
+  // Add template suggestion for the 'Language switcher' block which needs
+  // to use HTML5 '<nav>' element to assign the 'navigation' landmark role.
+  if (isset($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'language_block') {
+    $suggestions[] = 'block__navigation_landmark';
   }
 }

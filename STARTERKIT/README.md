@@ -32,4 +32,4 @@ By default, the *STARTERKIT* is designed to be used with the [***Kiso (基礎)**
 
 ### Enable Your New Sub-theme
 
-In your Drupal site, navigate to `admin/appearance` and click the `Enable and set default` link next to your newly created sub-theme. Now that you've enabled your starterkit, please refer to the [*Stylesheets (Baseline)*](https://github.com/openfed/kiso/tree/master/scss/README.md) page to customize.
+In your Drupal site, navigate to `admin/appearance` and click the `Enable and set default` link next to your newly created sub-theme. Now that you've enabled your starterkit, please refer to the [*Stylesheets (Baseline)*](../scss/README.md) page to customize.

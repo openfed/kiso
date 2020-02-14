@@ -12,3 +12,15 @@ backtotop_mobile_hide: 1
 
 # JavaScripts / Smooth Scroll
 smoothscroll_enable: 1
+
+# JavaScripts / External Links (New Window)
+extlinkwindow_enabled: 1
+extlinkwindow_extlink_custom_label: 0
+extlinkwindow_extlink_label: '(link is external and opens a new window)'
+extlinkwindow_intlink_enabled: 0
+extlinkwindow_intlink_custom_label: 0
+extlinkwindow_intlink_label: '(link opens a new window)'
+
+# JavaScripts / Tooltip Widget
+tooltip_enabled: 1
+tooltip_delay: 600

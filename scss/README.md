@@ -31,7 +31,7 @@ The ***Drupal Kiso (基礎)*** base theme includes, out of the box, a [powerful 
 
 ### Components
 
-Each [templates](https://github.com/openfed/kiso/tree/master/templates/) have their own *component* styles. *Components* are reusable, discrete UI elements. *Components* should be abstract and decoupled enough that you can build new *components* quickly from existing parts without having to recode patterns and problems you’ve already solved.
+Each [templates](../templates/) have their own *component* styles. *Components* are reusable, discrete UI elements. *Components* should be abstract and decoupled enough that you can build new *components* quickly from existing parts without having to recode patterns and problems you’ve already solved.
 
 ## Overriding and extending libraries
 

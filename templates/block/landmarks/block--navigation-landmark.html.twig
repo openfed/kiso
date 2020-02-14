@@ -1,0 +1,52 @@
+{#
+/**
+ * @file
+ * Kiso's theme override to display a "Navigation" (Landmark Role) block.
+ *
+ * You will find same variables as in the core 'block.html.twig' template.
+ *
+ * Custom variables:
+ * - derivative_plugin_id: Useful class according to the generated
+ *   module (Provider).
+ * - block_region: The block region embedding the current block.
+ * - heading_id: A valid HTML ID and guaranteed unique used as value for the
+ *   WAI-ARIA 'aria-labelledby' attribute to point to an existing element by
+ *   its (unique) ID. If a heading (hX) is present in the region, consider
+ *   using it as the label.
+ *
+ * Related WCAG resources:
+ * - SC 1.3.1 Info and Relationships (Level A):
+ *   - ARIA11: Using ARIA landmarks to identify regions of a page.
+ *   - ARIA13: Using aria-labelledby to name regions and landmarks.
+ * - SC 4.1.2 Name, Role, Value (Level A):
+ *   - ARIA14: Using aria-label to provide an invisible label where a visible
+ *     label cannot be used.
+ *
+ * @see template_preprocess_block()
+ * @see kiso_preprocess_block()
+ */
+#}
+{%
+  set classes = [
+    'block',
+    'block--' ~ configuration.provider|clean_class,
+    'block--' ~ configuration.provider|clean_class ~ '--' ~ derivative_plugin_id|clean_class,
+    'block--region-' ~ block_region|clean_class,
+  ]
+%}
+{# Provide WAI-ARIA attributes for screen readers according to the display settings for the label. #}
+{% set heading_id = attributes.id ? attributes.id|clean_id ~ '-heading' : 'block-' ~ plugin_id|clean_id ~ '-heading' %}
+{% set attributes = label ? attributes.setAttribute('aria-labelledby', heading_id) : attributes.setAttribute('aria-label', configuration.label) %}
+
+<nav{{ attributes|without('role').addClass(classes) }}>
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes.addClass('block__title').setAttribute('id', heading_id) }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+
+  {# Menu. #}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+</nav>

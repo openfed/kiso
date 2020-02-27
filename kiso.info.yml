@@ -37,12 +37,16 @@ ckeditor_stylesheets:
 
 # Libraries overrides
 libraries-override:
-  # Float clearing, Invisible content & Screenreaders
+  # Alignment classes,
+  # Float clearing,
+  # Display property,
+  # Invisible content & Screenreaders
   system/base:
     css:
       component:
-        css/components/container-inline.module.css: 'css/components/utilities/container-inline.css'
+        css/components/align.module.css: 'css/components/utilities/align.css'
         css/components/clearfix.module.css: 'css/components/utilities/clearfix.css'
+        css/components/container-inline.module.css: 'css/components/utilities/container-inline.css'
         css/components/hidden.module.css: 'css/components/utilities/hidden.css'
   # Federal Header
   openfed_federalheader/header :

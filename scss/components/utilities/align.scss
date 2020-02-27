@@ -1,0 +1,88 @@
+
+//
+// @file
+// Alignment classes.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Text and block level elements.
+//
+.text-align {
+
+  // Loop through all different text and block level element (left, right, center
+  // and justify) alignments.
+  //
+  @each $align in (
+    'left',
+    'right',
+    'center',
+    'justify',
+  ) {
+
+    // Text alignments.
+    //
+    &-#{$align} {
+      text-align: unquote($align);
+    }
+  }
+}
+
+// Block level elements (images, videos, blockquotes, etc.)
+//
+.align {
+
+  // Loop through all different Block level element (left, right and center) alignments.
+  //
+  @each $align in (
+    'left',
+    'right',
+    'center',
+  ) {
+
+    // Block level alignments.
+    //
+    &-#{$align} {
+      
+      // Apply specific properties for the 'center' alignment.
+      //
+      @if $align == 'center' {
+        @include rem('margin', 0 auto map-get($component-margins, 'medium'));
+        display: block;
+
+        // Responsiveness
+        // Properties for at least medium devices (Tablets, 768px and up).
+        //
+        @include breakpoint-up('medium') {
+          max-width: 70%;
+        }
+      }
+      @else {
+
+        // Set the correct margin side.
+        //
+        $side: if($align == 'right', 'left', 'right');
+
+        // Responsiveness
+        // Properties for at least medium devices (Tablets, 768px and up).
+        //
+        @include breakpoint-up('medium') {
+          @include rem('margin-#{$side}', map-get($component-margins, 'xlarge'));
+          float: unquote($align);
+          max-width: 50%;
+        }
+      }
+    }
+  }
+}

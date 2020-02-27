@@ -22,7 +22,6 @@
 {% if not is_front and breadcrumb %}
   <nav class="breadcrumb {{ container }}" aria-label="{{ 'Breadcrumb'|t }}">
     <ol>
-      <li><a href="{{ path('<front>') }}" title="{{ 'Home'|t }}" rel="home">{{ 'Home'|t }}</a></li>
       {% for item in breadcrumb %}
         <li>
           {%- if item.url -%}

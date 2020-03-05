@@ -82,10 +82,8 @@ libraries-override:
 `libraries-extend` provides a way for themes to alter the assets of a library by adding in additional theme-dependent library assets whenever a library is attached.  `libraries-extend` are specified by extending a library with any number of other libraries. This is perfect for styling certain components differently in your theme. I.e. to customize the look of a component without having to load the CSS to do so on every page.
 
 ```yml
-# Extend drupal.user: add assets from classy's user libraries.
+# Extend kiso/messages: add assets from your 'THEMENAME/status-messages' library.
 libraries-extend:
   kiso/messages: 
-    - THEMENAME/success-messages
-    - THEMENAME/error-messages
-    - THEMENAME/warning-messages
+    - THEMENAME/status-messages
 ```

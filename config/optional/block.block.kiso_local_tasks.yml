@@ -1,11 +1,8 @@
-uuid: a0cde541-9f69-4411-afc5-bbb3366149db
 langcode: en
 status: true
 dependencies:
   theme:
     - kiso
-_core:
-  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
 id: kiso_local_tasks
 theme: kiso
 region: content

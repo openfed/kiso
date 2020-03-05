@@ -1,4 +1,3 @@
-uuid: 8af188a2-cb1c-4fd1-827c-0926fa0f251a
 langcode: en
 status: true
 dependencies:
@@ -8,19 +7,18 @@ dependencies:
     - system
   theme:
     - kiso
-_core:
-  default_config_hash: rx9IrdDv7Ldc4kpalZAxdhIPZfYIeOMh1N-qKoQZwHo
 id: kiso_main_menu
 theme: kiso
 region: header_collapsible
-weight: -1
+weight: 10
 provider: null
 plugin: 'system_menu_block:main'
 settings:
   id: 'system_menu_block:main'
-  label: 'Main navigation'
+  label: 'Main menu'
   provider: system
   label_display: '0'
   level: 1
-  depth: 1
+  depth: 2
+  expand_all_items: false
 visibility: {  }

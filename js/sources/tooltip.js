@@ -6,17 +6,18 @@
 // Polyfills
 // @prepros-prepend polyfills/classList.js
 // @prepros-prepend polyfills/closest.js
+// @prepros-prepend polyfills/remove.js
 
-(function (Drupal, drupalSettings, window, document, undefined) {
+(function (Drupal, drupalSettings) {
 
   'use strict';
 
   /**
    * @constructor Tooltip
    */
-  var Tooltip = function (domNode) {
-    this.domNode = domNode;
-    this.delay = drupalSettings.kiso.tooltip.delay;
+  var Tooltip = function (domNode, context) {
+    this.tooltip = domNode;
+    this.context = context;
     this.trigger = false;
     this.globalEscapeBound;
     this.timeout;
@@ -38,16 +39,16 @@
       + '[contentEditable=true]:not([tabindex="-1"])';
     
     // Initialize focusable trigger elements.
-    if (this.domNode.getAttribute('data-pattern')) {
-      this.domNode.setAttribute('data-content', this.domNode.getAttribute('title'));
-      this.domNode.removeAttribute('title');
-      this.trigger = this.domNode;
+    if (this.tooltip.hasAttribute('data-pattern')) {
+      this.tooltip.setAttribute('data-content', this.tooltip.getAttribute('title'));
+      this.tooltip.removeAttribute('title');
+      this.trigger = this.tooltip;
     }
-    else if (this.domNode.closest(parentMatchSelector)) {
-      this.trigger = this.domNode.closest(parentMatchSelector);
+    else if (this.tooltip.closest(parentMatchSelector)) {
+      this.trigger = this.tooltip.closest(parentMatchSelector);
     }
     else {
-      this.trigger = this.domNode;
+      this.trigger = this.tooltip;
     }
 
     // Initialize event listener on focusable trigger elements.
@@ -57,23 +58,18 @@
     }
 
     // Initialize event listener on tooltip trigger elements.
-    this.domNode.addEventListener('mouseenter', this.show.bind(this));
-    this.domNode.addEventListener('mouseleave', this.hide.bind(this));
+    this.tooltip.addEventListener('mouseenter', this.show.bind(this));
+    this.tooltip.addEventListener('mouseleave', this.hide.bind(this));
 
     // Initialize the global 'Escape' bound.
     this.globalEscapeBound = this.globalEscape.bind(this);
-
-    // Initialize the amount of time to delay showing the tooltip (in milliseconds).
-    if (drupalSettings.kiso.tooltip.customDelay.length) {
-      this.delay = drupalSettings.kiso.tooltip.customDelay;
-    }
   };
 
   /*
    * @method Tooltip.prototype.show
    */
   Tooltip.prototype.show = function (event) {
-    this.timeout = setTimeout(this.invokeTooltip.bind(this), this.delay);
+    this.timeout = setTimeout(this.invokeTooltip.bind(this), drupalSettings.kiso.tooltip.delay);
   };
 
   /*
@@ -89,8 +85,9 @@
    */
   Tooltip.prototype.invokeTooltip = function () {
     if (this.trigger) {
+      if (this.tooltip.tagName === 'svg' && !this.tooltip.isSameNode(this.trigger)) this.addDummyWrapper();
       this.trigger.classList.add('js-tooltip-visible');
-      document.addEventListener('keyup', this.globalEscapeBound);
+      this.context.addEventListener('keyup', this.globalEscapeBound);
     }
   };
 
@@ -99,8 +96,9 @@
    */
   Tooltip.prototype.dismissTooltip = function () {
     if (this.trigger) {
+      if (this.tooltip.tagName === 'svg' && !this.tooltip.isSameNode(this.trigger)) this.removeDummyWrapper();
       this.trigger.classList.remove('js-tooltip-visible');
-      document.removeEventListener('keyup', this.globalEscapeBound);
+      this.context.removeEventListener('keyup', this.globalEscapeBound);
     }
   };
 
@@ -123,19 +121,46 @@
     }
   };
 
-  // To understand behaviors, see https://www.drupal.org/node/2269515
-  Drupal.behaviors.tooltip = {
-    attach: function (context, drupalSettings) {
-
-      // Initialize "Tooltip" elements.
-      window.addEventListener('load', function (event) {
-        var tooltips =  document.querySelectorAll('[role=img][aria-label], [data-pattern=tooltip][title]');
-        for (var i = 0; i < tooltips.length; i++) {
-          var tt = new Tooltip(tooltips[i]);
-          tt.init();
-        }
-      }, false);
+  /*
+   * @method Tooltip.prototype.addDummyWrapper
+   */
+  Tooltip.prototype.addDummyWrapper = function () {
+    if (this.tooltip.parentNode.className !== 'js-dummy-wrapper') {
+      var dummyWrapper = this.context.createElement('span');
+      dummyWrapper.classList.add('js-dummy-wrapper');
+      dummyWrapper.setAttribute('role', 'img');
+      dummyWrapper.setAttribute('aria-label', this.tooltip.getAttribute('aria-label'));
+      this.tooltip.setAttribute('aria-hidden', 'true');
+      this.tooltip.parentNode.insertBefore(dummyWrapper, this.tooltip);
+      dummyWrapper.appendChild(this.tooltip);
     }
   };
 
-}) (Drupal, drupalSettings, this, this.document);
+  /*
+   * @method Tooltip.prototype.removeDummyWrapper
+   */
+  Tooltip.prototype.removeDummyWrapper = function () {
+    if (this.tooltip.parentNode.className === 'js-dummy-wrapper') {
+      var dummyWrapper = this.tooltip.parentNode;
+      this.tooltip.removeAttribute('aria-hidden');
+      dummyWrapper.parentNode.insertBefore(this.tooltip, dummyWrapper);
+      dummyWrapper.remove();
+    }
+  };
+
+  /*
+   * Initialize "Tooltip" elements.
+   */
+  Drupal.behaviors.tooltip = {
+    // To understand behaviors, see https://www.drupal.org/node/2269515
+    attach: function (context, drupalSettings) {
+      var tooltips =  context.querySelectorAll('[role=img][aria-label], [data-pattern=tooltip][title]');
+
+      for (var i = 0; i < tooltips.length; i++) {
+        var tt = new Tooltip(tooltips[i], context);
+        tt.init();
+      }
+    }
+  };
+
+}) (Drupal, drupalSettings);

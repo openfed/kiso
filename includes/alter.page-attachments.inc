@@ -104,7 +104,8 @@ function kiso_page_attachments_alter(array &$attachments) {
     $attachments['#attached']['library'][] = 'kiso/tooltip';
     $config = \Drupal::config('kiso.settings');
     // Attach configurable JavaScript.
-    $attachments['#attached']['drupalSettings']['kiso']['tooltip']['delay'] = $config->get('tooltip_delay');
-    $attachments['#attached']['drupalSettings']['kiso']['tooltip']['customDelay'] = theme_get_setting('tooltip_delay');
+    $attachments['#attached']['drupalSettings']['kiso']['tooltip'] = [
+      'delay' => !empty(theme_get_setting('tooltip_delay')) ? theme_get_setting('tooltip_delay') : $config->get('tooltip_delay'),
+    ];
   }
 }

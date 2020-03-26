@@ -20,6 +20,8 @@ extlinkwindow_extlink_label: '(link is external and opens a new window)'
 extlinkwindow_intlink_enabled: 0
 extlinkwindow_intlink_custom_label: 0
 extlinkwindow_intlink_label: '(link opens a new window)'
+extlinkwindow_font_awesome_custom_class: 0
+extlinkwindow_font_awesome_class: 'fas fa-window-restore'
 
 # JavaScripts / Tooltip Widget
 tooltip_enabled: 1

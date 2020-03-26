@@ -49,7 +49,12 @@ libraries-override:
         css/components/container-inline.module.css: 'css/components/utilities/container-inline.css'
         css/components/hidden.module.css: 'css/components/utilities/hidden.css'
   # Federal Header
-  openfed_federalheader/header :
+  openfed_federalheader/header:
     css:
       theme:
         assets/styles/openfed_federalheader.css: 'css/components/openfed_federalheader/federalheader-block.css'
+  # External Links
+  extlink/drupal.extlink:
+    css:
+      theme:
+        extlink.css: 'css/components/extlink/extlink-window.css'

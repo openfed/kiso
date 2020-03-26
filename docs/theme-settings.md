@@ -10,16 +10,18 @@ Theme Settings
 
 ## JavaScript > External Links (New Window)
 
-Extends the Drupal "[External Links](https://www.drupal.org/project/extlink)" contributed module giving users advanced warning when opening a new window or tab.
+Extends the Drupal "[External Links  _(extlink 8.x-1.2)_](https://www.drupal.org/project/extlink)" contributed module giving users advanced warning when opening in a new window or tab.
 
 | Setting name | Description and default value |
 |:--|:--|
-| **extlinkwindow_enabled** | Enable the "External Links" (New Window) behavior for links which open in a new window.<br>`extlinkwindow_enabled: 1` |
-| **extlinkwindow_extlink_custom_label** | If you check this box you can choose which message will be used to warn users when external links open in a new window.<br>`extlinkwindow_extlink_custom_label: 0` |
-| **extlinkwindow_extlink_label** | Change the warning message of the external links if needed. Default value is "link is external and opens new window".<br>`extlinkwindow_extlink_label: '(link is external and opens a new window)'` |
-| **extlinkwindow_intlink_enabled** | Checking this box will automatically include all other internal links that open in a new window.<br>`extlinkwindow_intlink_enabled: 0` |
-| **extlinkwindow_intlink_custom_label** | If you check this box you can choose which message will be used to warn users when internal links open in a new window.<br>`extlinkwindow_intlink_custom_label: 0` |
-| **extlinkwindow_intlink_label** | Change the warning message of the internal (same domain) links if needed. Default value is "link opens new window".<br>`extlinkwindow_intlink_label: '(link opens a new window)'` |
+| **extlinkwindow_enabled** | Enable the "External Links" (New Window) behavior for links that open in a new window.<br>`extlinkwindow_enabled: 1` |
+| **extlinkwindow_extlink_custom_label** | If you check this box you can choose which message will be used to warn users when the external links open in a new window.<br>`extlinkwindow_extlink_custom_label: 0` |
+| **extlinkwindow_extlink_label** | Change the warning message of the external links opening in a new window if needed. Default value is "(link is external and opens a new window)".<br>`extlinkwindow_extlink_label: '(link is external and opens a new window)'` |
+| **extlinkwindow_intlink_enabled** | Checking this box will automatically include all other links having the same domain (internal) and which open in a new window.<br>`extlinkwindow_intlink_enabled: 0` |
+| **extlinkwindow_intlink_custom_label** | If you check this box you can choose which message will be used to warn users when the internal links open in a new window.<br>`extlinkwindow_intlink_custom_label: 0` |
+| **extlinkwindow_intlink_label** | Change the warning message of the internal links opening in a new window if needed. Default value is "(link opens a new window)".<br>`extlinkwindow_intlink_label: '(link opens a new window)'` |
+| **extlinkwindow_font_awesome_custom_class** | Checking this box will allow you to customize the Font Awesome icon (used instead of SVG image) for links opening in a new window (see the "External Links" settings page).<br>`extlinkwindow_font_awesome_custom_class: 0` |
+| **extlinkwindow_font_awesome_class** | Font Awesome icon class (links opening in a new window):<br>`extlinkwindow_font_awesome_class: 'fas fa-window-restore'` |
 
 ## JavaScript > Tooltip
 

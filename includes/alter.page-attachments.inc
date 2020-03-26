@@ -5,6 +5,8 @@
  * Page attachments alter hooks.
  */
 
+use Drupal\Component\Utility\Html;
+
 /**
  * Alter attachments (typically assets) to a page before it is rendered.
  *
@@ -77,14 +79,24 @@ function kiso_page_attachments_alter(array &$attachments) {
   if ($moduleHandler->moduleExists('extlink') && theme_get_setting('extlinkwindow_enabled')) {
     $attachments['#attached']['library'][] = 'kiso/extlink-window';
     $config = \Drupal::config('kiso.settings');
+
+    // Prepare configurable theme settings.
+    $extlink_label = (theme_get_setting('extlinkwindow_extlink_custom_label')) ? Html::escape(theme_get_setting('extlinkwindow_extlink_label')) : $config->get('extlinkwindow_extlink_label');
+    $intlink_label = (theme_get_setting('extlinkwindow_intlink_custom_label')) ? Html::escape(theme_get_setting('extlinkwindow_intlink_label')) : $config->get('extlinkwindow_intlink_label');
+    $font_awesome_class = (theme_get_setting('extlinkwindow_font_awesome_custom_class')) ? theme_get_setting('extlinkwindow_font_awesome_class') : $config->get('extlinkwindow_font_awesome_class');
+
     // Attach configurable JavaScript.
-    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['extlink']['defaultLabel'] = $config->get('extlinkwindow_extlink_label');
-    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['extlink']['customLabel'] = theme_get_setting('extlinkwindow_extlink_custom_label');
-    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['extlink']['label'] = theme_get_setting('extlinkwindow_extlink_label');
-    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['intlink']['enabled'] = theme_get_setting('extlinkwindow_intlink_enabled');
-    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['intlink']['defaultLabel'] = $config->get('extlinkwindow_intlink_label');
-    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['intlink']['customLabel'] = theme_get_setting('extlinkwindow_intlink_custom_label');
-    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow']['intlink']['label'] = theme_get_setting('extlinkwindow_intlink_label');
+    $attachments['#attached']['drupalSettings']['kiso']['extlinkWindow'] = [
+      'viewBoxSquare'    => '0 0 512 512',
+      'viewBoxRect'      => '0 0 448 512',
+      'extlinkLabel'     => t($extlink_label),
+      'intlinkLabel'     => t($intlink_label),
+      'fontAwesomeClass' => $font_awesome_class,
+      'intlinkEnabled'   => theme_get_setting('extlinkwindow_intlink_enabled'),
+      'extlinkShapeData' => 'M448 80v352c0 26.51-21.49 48-48 48H48c-26.51 0-48-21.49-48-48V80c0-26.51 21.49-48 48-48h352c26.51 0 48 21.49 48 48zm-88 16H248.029c-21.313 0-32.08 25.861-16.971 40.971l31.984 31.987L67.515 364.485c-4.686 4.686-4.686 12.284 0 16.971l31.029 31.029c4.687 4.686 12.285 4.686 16.971 0l195.526-195.526 31.988 31.991C358.058 263.977 384 253.425 384 231.979V120c0-13.255-10.745-24-24-24z',
+      'mailtoShapeData'  => 'M502.3 190.8c3.9-3.1 9.7-.2 9.7 4.7V400c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V195.6c0-5 5.7-7.8 9.7-4.7 22.4 17.4 52.1 39.5 154.1 113.6 21.1 15.4 56.7 47.8 92.2 47.6 35.7.3 72-32.8 92.3-47.6 102-74.1 131.6-96.3 154-113.7zM256 320c23.2.4 56.6-29.2 73.4-41.4 132.7-96.3 142.8-104.7 173.4-128.7 5.8-4.5 9.2-11.5 9.2-18.9v-19c0-26.5-21.5-48-48-48H48C21.5 64 0 85.5 0 112v19c0 7.4 3.4 14.3 9.2 18.9 30.6 23.9 40.7 32.4 173.4 128.7 16.8 12.2 50.2 41.8 73.4 41.4z',
+      'intlinkShapeData' => 'M512 48v288c0 26.5-21.5 48-48 48h-48V176c0-44.1-35.9-80-80-80H128V48c0-26.5 21.5-48 48-48h288c26.5 0 48 21.5 48 48zM384 176v288c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48h288c26.5 0 48 21.5 48 48zm-68 28c0-6.6-5.4-12-12-12H76c-6.6 0-12 5.4-12 12v52h252v-52z',
+    ];
   }
 
   // Load the "Tooltip" library.

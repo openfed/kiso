@@ -170,11 +170,8 @@ tooltip:
 
 extlink-window:
   version: VERSION
-  css:
-    component:
-      css/components/misc/extlink-window.css: {}
   js:
     js/extlink-window.min.js: {}
   dependencies:
-    - core/jquery
+    - core/drupal
     - core/drupalSettings

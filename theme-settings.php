@@ -26,13 +26,6 @@ use Drupal\Core\Messenger;
  */
 function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
 
-  // Display a warning if the "External Links" module is not enabled.
-  $moduleHandler = \Drupal::service('module_handler');
-  if (theme_get_setting('extlinkwindow_enabled') && !$moduleHandler->moduleExists('extlink')) {
-    $messenger = \Drupal::messenger();
-    $messenger->addMessage(t('The <strong><a href="https://www.drupal.org/project/extlink">External Links</a></strong> module is not enabled. The <strong>External Links (New Window)</strong> JavaScript requires this module to work with additional libraries.<br />Please enable <a href="https://www.drupal.org/project/extlink">External Links</a> 8.x-1.1 or higher, you must manually set this in the configuration after it is installed.'), $messenger::TYPE_ERROR);
-  }
-
   $form['kiso_settings'] = array(
     '#type' => 'vertical_tabs',
     '#title' => t('Kiso settings'),
@@ -52,8 +45,8 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['general']['container'] = array(
     '#type' => 'details',
     '#title' => t('Container'),
-    '#collapsible' => true,
-    '#collapsed' => true,
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
   );
   $form['general']['container']['container_fluid'] = array(
     '#type' => 'checkbox',
@@ -74,65 +67,88 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['extlinkwindow'] = array(
     '#type' => 'details',
     '#title' => t('External Links (New Window)'),
-    '#description' => t('Extends the Drupal "<a href="https://www.drupal.org/project/extlink">External Links</a>" contributed module giving users advanced warning when opening a new window or tab.'),
-    '#collapsible' => true,
-    '#collapsed' => true,
+    '#description' => t('Extends the Drupal "<a href="https://www.drupal.org/project/extlink">External Links <em>(extlink 8.x-1.2)</em></a>" contributed module giving users advanced warning when opening in a new window or tab.'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
   );
   $form['javascripts']['extlinkwindow']['extlinkwindow_enabled'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable "External Links" (New Window)'),
     '#default_value' => theme_get_setting('extlinkwindow_enabled'),
-    '#description' => t('Enable the "External Links" (New Window) behavior for links which open in a new window.'),
+    '#description' => t('Enable the "External Links" (New Window) behavior for links that open in a new window.'),
   );
   $form['javascripts']['extlinkwindow']['extlinkwindow_options'] = array(
     '#type' => 'details',
     '#title' => t('Options'),
-    '#collapsible' => true,
-    '#collapsed' => true,
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
     '#states' => [
       'visible' => [':input[name="extlinkwindow_enabled"]' => ['checked' => TRUE]],
     ],
   );
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_extlink_custom_label'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Customize the warning message when external links open a new window'),
+    '#title' => t('Customize the warning message for the external links'),
     '#default_value' => theme_get_setting('extlinkwindow_extlink_custom_label'),
-    '#description' => t('If you check this box you can choose which message will be used to warn users when external links open in a new window.'),
+    '#description' => t('If you check this box you can choose which message will be used to warn users when the external links open in a new window.'),
   );
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_extlink_label'] = array(
     '#type' => 'textfield',
-    '#title' => t('Text to use when external links open in a new window'),
+    '#title' => t('Text to use for the external links:'),
     '#default_value' => theme_get_setting('extlinkwindow_extlink_label'),
-    '#description' => t('Change the warning message of the external links if needed. Default value is "link is external and opens new window".'),
+    '#description' => t('Change the warning message of the external links opening in a new window if needed. Default value is "(link is external and opens a new window)".'),
     '#states' => [
       'visible' => [':input[name="extlinkwindow_extlink_custom_label"]' => ['checked' => TRUE]],
     ],
   );
-  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink_enabled'] = array(
+  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Internal links'),
+  );
+  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink']['extlinkwindow_intlink_enabled'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Include links with the same domain'),
+    '#title' => t('Include links having the same domain and opening in a new window'),
     '#default_value' => theme_get_setting('extlinkwindow_intlink_enabled'),
-    '#description' => t('Checking this box will automatically include all other internal links that open in a new window.'),
+    '#description' => t('Checking this box will automatically include all other links having the same domain (internal) and which open in a new window.'),
   );
-  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink_custom_label'] = array(
+  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink']['extlinkwindow_intlink_custom_label'] = array(
     '#type' => 'checkbox',
-    '#title' => t('Customize warning message for internal (same domain) links that open a new window'),
+    '#title' => t('Customize the warning message for the internal links'),
     '#default_value' => theme_get_setting('extlinkwindow_intlink_custom_label'),
-    '#description' => t('If you check this box you can choose which message will be used to warn users when internal links open in a new window.'),
-    '#states' => [
-      'visible' => [':input[name="extlinkwindow_intlink_enabled"]' => ['checked' => TRUE]],
-    ],
-  );
-  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink_label'] = array(
-    '#type' => 'textfield',
-    '#title' => t('Text to use when internal (same domain) links open in a new window'),
-    '#default_value' => theme_get_setting('extlinkwindow_intlink_label'),
-    '#description' => t('Change the warning message of the internal (same domain) links if needed. Default value is "link opens new window".'),
+    '#description' => t('If you check this box you can choose which message will be used to warn users when the internal links open in a new window.'),
     '#states' => [
       'visible' => [
         ':input[name="extlinkwindow_intlink_enabled"]' => ['checked' => TRUE],
+      ],
+    ],
+  );
+  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink']['extlinkwindow_intlink_label'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Text to use for the internal links:'),
+    '#default_value' => theme_get_setting('extlinkwindow_intlink_label'),
+    '#description' => t('Change the warning message of the internal links opening in a new window if needed. Default value is "(link opens a new window)".'),
+    '#states' => [
+      'visible' => [
         ':input[name="extlinkwindow_intlink_custom_label"]' => ['checked' => TRUE],
       ],
+    ],
+  );
+  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_font_awesome'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Font Awesome icons'),
+  );
+  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_font_awesome']['extlinkwindow_font_awesome_custom_class'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Customize the Font Awesome icon for links opening in a new window'),
+    '#default_value' => theme_get_setting('extlinkwindow_font_awesome_custom_class'),
+    '#description' => t('Checking this box will allow you to customize the Font Awesome icon (used instead of SVG image) for links opening in a new window (<a href="/admin/config/user-interface/extlink">see the "External Links" settings page</a>).'),
+  );
+  $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_font_awesome']['extlinkwindow_font_awesome_class'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Font Awesome icon class (links opening in a new window):'),
+    '#default_value' => theme_get_setting('extlinkwindow_font_awesome_class'),
+    '#states' => [
+      'visible' => [':input[name="extlinkwindow_font_awesome_custom_class"]' => ['checked' => TRUE]],
     ],
   );
   // Tooltip Widget
@@ -140,8 +156,8 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#type' => 'details',
     '#title' => t('Tooltip'),
     '#description' => t('<strong><a href="https://www.w3.org/TR/wai-aria-practices-1.1/#tooltip">Tooltip Widget</a></strong> are popups that display information related to a <strong>Semantic (Web Font) Icon</strong> when it receives keyboard focus or the mouse hovers over it. It typically appears after a small delay and disappears when <code>Escape</code> is pressed or on mouse out. <strong><a href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24.html">Semantic Icons</a></strong> are ones that you are using to convey meaning, rather than just pure decoration.'),
-    '#collapsible' => true,
-    '#collapsed' => true,
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
   );
   $form['javascripts']['tooltip']['tooltip_enabled'] = array(
     '#type' => 'checkbox',
@@ -162,8 +178,8 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['backtotop'] = array(
     '#type' => 'details',
     '#title' => t('Back to Top'),
-    '#collapsible' => true,
-    '#collapsed' => true,
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
   );
   $form['javascripts']['backtotop']['backtotop_enable'] = array(
     '#type' => 'checkbox',
@@ -197,8 +213,8 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['smoothscroll'] = array(
     '#type' => 'details',
     '#title' => t('Smooth Scroll'),
-    '#collapsible' => true,
-    '#collapsed' => true,
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
   );
   $form['javascripts']['smoothscroll']['smoothscroll_enable'] = array(
     '#type' => 'checkbox',
@@ -206,4 +222,19 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#default_value' => theme_get_setting('smoothscroll_enable'),
     '#description' => t("Enable the smooth scroll behavior for anchor links."),
   );
+
+  // Display a warning if the "External Links" module is not enabled.
+  $moduleHandler = \Drupal::service('module_handler');
+  if (theme_get_setting('extlinkwindow_enabled') && !$moduleHandler->moduleExists('extlink')) {
+    $messenger = \Drupal::messenger();
+    $messenger->addMessage(t('The <strong><a href="https://www.drupal.org/project/extlink">External Links</a></strong> module is not enabled. The <strong>External Links (New Window)</strong> JavaScript requires this module to work with additional libraries.<br />Please enable <a href="https://www.drupal.org/project/extlink">External Links</a> 8.x-1.1 or higher, you must manually set this in the configuration after it is installed.'), $messenger::TYPE_ERROR);
+  }
+  // Get the "External Links" module settings to manage form elements visibility.
+  if ($moduleHandler->moduleExists('extlink') && $config = \Drupal::config('extlink.settings')) {
+    $settings = $config->getRawData();
+    // Do not display icon customization settings if the "External Links" module does not use Font Awesome icons.
+    if (!$settings['extlink_use_font_awesome']) {
+      unset($form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_font_awesome']);
+    }
+  }
 }

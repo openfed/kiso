@@ -17,6 +17,8 @@ use Drupal\Component\Utility\Html;
  */
 function kiso_page_attachments_alter(array &$attachments) {
   $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
+
+  // Favicon for iOS - Web Clip.
   $attachments['#attached']['html_head_link'][] = array(
     array(
       'rel' => 'apple-touch-icon',
@@ -24,34 +26,62 @@ function kiso_page_attachments_alter(array &$attachments) {
       'href' => '/' . $theme_path . '/images/favicons/apple-touch-icon.png'
     )
   );
+
+  // Favicon for Desktop Browsers and Google Result Pages.
+  $attachments['#attached']['html_head_link'][] = array(
+    array(
+      'rel' => 'icon',
+      'type' => 'image/png',
+      'sizes' => '16x16',
+      'href' => '/' . $theme_path . '/images/favicons/favicon-16x16.png'
+    )
+  );
   $attachments['#attached']['html_head_link'][] = array(
     array(
       'rel' => 'icon',
       'type' => 'image/png',
       'sizes' => '32x32',
-      'href' => '/' . $theme_path . '/images/favicons/favicon.png'
+      'href' => '/' . $theme_path . '/images/favicons/favicon-32x32.png'
     )
   );
-  $attachments['#attached']['html_head_link'][] = array(
-    array(
-      'rel' => 'icon',
-      'type' => 'image/png',
-      'sizes' => '64x64',
-      'href' => '/' . $theme_path . '/images/favicons/favicon@2x.png'
-    )
-  );
+
+  // Favicon for Android Chrome.
   $attachments['#attached']['html_head_link'][] = array(
     array(
       'rel' => 'manifest',
       'href' => '/' . $theme_path . '/images/favicons/site.webmanifest'
     )
   );
+
+  // macOS Safari.
   $attachments['#attached']['html_head_link'][] = array(
     array(
       'rel' => 'mask-icon',
       'href' => '/' . $theme_path . '/images/favicons/safari-pinned-tab.svg',
-      'color' => '#817c00'
+      'color' => '#405b77'
     )
+  );
+
+  // Windows Metro.
+  $attachments['#attached']['html_head'][] = array(
+    array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'msapplication-TileColor',
+        'content' => '#405b77',
+      )
+    ),
+    'msapplication-tilecolor',
+  );
+  $attachments['#attached']['html_head'][] = array(
+    array(
+      '#tag' => 'meta',
+      '#attributes' => array(
+        'name' => 'msapplication-TileImage',
+        'content' => '/' . $theme_path . '/images/favicons/mstile-144x144.png',
+      )
+    ),
+    'msapplication-tileimage',
   );
   $attachments['#attached']['html_head'][] = array(
     array(
@@ -63,12 +93,14 @@ function kiso_page_attachments_alter(array &$attachments) {
     ),
     'msapplication-config',
   );
+
+  // Theme color.
   $attachments['#attached']['html_head'][] = array(
     array(
       '#tag' => 'meta',
       '#attributes' => array(
         'name' => 'theme-color',
-        'content' => '#ffffff',
+        'content' => '#405b77',
       )
     ),
     'theme-color',

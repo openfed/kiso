@@ -11,14 +11,14 @@ normalize:
 
 font-awesome:
   remote: https://fortawesome.github.io/Font-Awesome/
-  version: 5.13.0
+  version: 5.13.1
   license:
     name: MIT
     url: https://fontawesome.com/license/free/
     gpl-compatible: true
   css:
     theme:
-      //use.fontawesome.com/releases/v5.13.0/css/all.css: { type: external, minified: true }
+      //use.fontawesome.com/releases/v5.13.1/css/all.css: { type: external, minified: true }
 
 # Google Fonts: Open Sans
 font-open-sans:

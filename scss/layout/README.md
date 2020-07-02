@@ -15,15 +15,17 @@ Since ***Drupal "Kiso" (基礎)*** is developed to be mobile first, we use a han
 ```scss
 $grid-breakpoints: (
   // Extra small devices (Portrait phones, less than 576px)
-  xsmall: 0,
+  'xsmall': 0,
   // Small devices (Landscape phones, 576px and up)
-  small:  576px,
+  'small':  576px,
   // Medium devices (Tablets, 768px and up)
-  medium: 768px,
+  'medium': 768px,
   // Large devices (Desktops, 992px and up)
-  large:  992px,
-  // Extra large devices (Large desktops, 1200px and up)
-  xlarge: 1230px,
+  'large':  992px,
+  // Extra large devices (Large desktops, 1230px and up)
+  'xlarge': 1230px,
+  // Wide devices (Wide desktops, 1540px and up)
+  'xxlarge': 1540px,
 ) !default;
 ```
 
@@ -153,17 +155,18 @@ Use `.column-auto` class to size columns based on the natural width of their con
 ***Drupal "Kiso" (基礎)*** grid includes five tiers of predefined classes for building complex responsive layouts.
 **Grid system features across multiple devices within a handy table**
 
-|-|Max container width|Class prefix|Nestable|Reordering|
-|---|:---:|:---|:---:|:---:|:---:|
-|**Extra small**|None (auto)|`.column-{size}`|Yes|Yes|
-|**Small**|540px|`.column-small-{size}`|Yes|Yes|
-|**Medium**|750px|`.column-medium-{size}`|Yes|Yes|
-|**Large**|990px|`.column-large-{size}`|Yes|Yes|
-|**Extra large**|1200px|`.column-xlarge-{size}`|Yes|Yes|
+| - | Max container width | Class prefix | Nestable | Reordering |
+|--|:--:|:--|:--:|:--:|:--:|
+| **Extra small** | None (auto) | `.column-{size}` | Yes | Yes |
+| **Small** | 540px | `.column-small-{size}` | Yes | Yes |
+| **Medium** | 750px | `.column-medium-{size}` | Yes | Yes |
+| **Large** | 990px | `.column-large-{size}` | Yes | Yes |
+| **Extra large** | 1200px | `.column-xlarge-{size}` | Yes | Yes |
+| **Wide** | 1500px | `.column-xxlarge-{size}` | Yes | Yes |
 
 ### Mixing columns width through devices
 
-Customize the size of your columns on extra small, small, medium, large, or extra large devices however you see fit. Use a combination of different responsive classes for each tier as needed if you do not want your columns to stack in some grid tiers.
+Customize the size of your columns on extra small, small, medium, large, extra large, or wide devices however you see fit. Use a combination of different responsive classes for each tier as needed if you do not want your columns to stack in some grid tiers.
 
 **Example 1:**
 

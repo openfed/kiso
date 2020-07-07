@@ -156,8 +156,8 @@ Use `.column-auto` class to size columns based on the natural width of their con
 **Grid system features across multiple devices within a handy table**
 
 | - | Max container width | Class prefix | Nestable | Reordering |
-|--|:--:|:--|:--:|:--:|:--:|
-| **Extra small** | None (auto) | `.column-{size}` | Yes | Yes |
+|--|:--:|:--|:--:|:--:|
+| **Extra small** | None (auto)  | `.column-{size}` | Yes | Yes |
 | **Small** | 540px | `.column-small-{size}` | Yes | Yes |
 | **Medium** | 750px | `.column-medium-{size}` | Yes | Yes |
 | **Large** | 990px | `.column-large-{size}` | Yes | Yes |

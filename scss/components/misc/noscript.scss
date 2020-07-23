@@ -1,0 +1,78 @@
+
+//
+// @file
+// Styles for the "Warning message" when JavaScript disabled.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+/// Create local variables to manage the "JavaScript disabled" element height.
+///
+/// @type Number
+
+$noscript-font-size: ($body-base-font-size * 0.8);
+$noscript-small-font-size: $body-base-font-size;
+
+$noscript-vertical-padding: map-get($component-vertical-paddings, 'xlarge');
+$noscript-height: (($noscript-font-size * $body-base-line-height) * 4) + ($noscript-vertical-padding * 2);
+$noscript-small-height: (($noscript-small-font-size * $body-base-line-height) * 2) + ($noscript-vertical-padding * 2);
+
+// Page body (when JavaScript disabled)
+//
+html:not(.js) body {
+  @include rem('margin-bottom', $noscript-height);
+
+  // Responsiveness
+  // Properties for at least small devices (Landscape phones, 576px and up).
+  //
+  @include breakpoint-up('small') {
+    @include rem('margin-bottom', $noscript-small-height);
+  }
+
+  // JavaScript disabled
+  //
+  .noscript {
+    @include rem('padding', $noscript-vertical-padding map-get($component-horizontal-paddings, 'xlarge'));
+    @include rem('font-size', $noscript-font-size);
+    @include background($color: map-get($component-state-background-colors, 'dark'));
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 9999;
+    display: block;
+    width: 100%;
+    color: white;
+    text-align: center;
+
+    // Responsiveness
+    // Properties for at least small devices (Landscape phones, 576px and up).
+    //
+    @include breakpoint-up('small') {
+      @include rem('font-size', $noscript-small-font-size);
+    }
+
+    // Inner links
+    //
+    a {
+      color: white;
+      text-decoration: underline;
+
+      // Inner links (Hover state)
+      //
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+}

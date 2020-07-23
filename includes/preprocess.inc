@@ -11,9 +11,11 @@
 function kiso_preprocess(&$variables, $hook) {
   try {
     $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+    $variables['language'] = \Drupal::languageManager()->getCurrentLanguage()->getId();
   }
   catch (Exception $e) {
     $variables['is_front'] = FALSE;
+    $variables['language'] = FALSE;
   }
   // Ensure the cache varies correctly (new in Drupal 8.3).
   $variables['#cache']['contexts'][] = 'url.path.is_front';

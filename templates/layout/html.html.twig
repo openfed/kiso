@@ -49,10 +49,10 @@
     {{ page_bottom }}
     <js-bottom-placeholder token="{{ placeholder_token|raw }}">
     <noscript class="noscript">
-      {% set enable_js_url = 'http://www.enable-javascript.com/' %}
+      {% set enable_js_url = 'http://www.enable-javascript.com/' ~ language ~ '/' %}
       {% trans %}
         For full functionality of this site it is necessary to enable JavaScript.<br>
-        Here are the <a href="{{ enable_js_url|raw }}" target="_blank"> instructions how to enable JavaScript in your web browser</a>.
+        Here are the <a href="{{ enable_js_url }}" target="_blank">instructions how to enable JavaScript in your web browser</a>.
       {% endtrans %}
     </noscript>
   </body>

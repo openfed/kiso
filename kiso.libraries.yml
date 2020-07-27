@@ -121,6 +121,7 @@ miscs:
   css:
     component:
       css/components/misc/skip-link.css: {}
+      css/components/misc/noscript.css: {}
 
 messages:
   version: VERSION

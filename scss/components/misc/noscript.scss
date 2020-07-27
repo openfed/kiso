@@ -45,7 +45,7 @@ html:not(.js) body {
   .noscript {
     @include rem('padding', $noscript-vertical-padding map-get($component-horizontal-paddings, 'xlarge'));
     @include rem('font-size', $noscript-font-size);
-    @include background($color: map-get($component-state-background-colors, 'dark'));
+    @include background($color: theme-color('dark'));
     position: fixed;
     bottom: 0;
     left: 0;

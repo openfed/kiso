@@ -28,8 +28,8 @@
 <article{{ attributes.addClass(classes)|without('role') }}>
 
   {% if not page and content.field_image is defined %}
-    {% set content = content|without('field_image') %}
     {{ content.field_image }}
+    {% set content = content|without('field_image') %}
   {% endif %}
 
   {{ title_prefix }}

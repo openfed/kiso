@@ -140,4 +140,7 @@ function kiso_page_attachments_alter(array &$attachments) {
       'delay' => !empty(theme_get_setting('tooltip_delay')) ? theme_get_setting('tooltip_delay') : $config->get('tooltip_delay'),
     ];
   }
+
+  // Load the "Outdated Browser" library.
+  $attachments['#attached']['library'][] = 'kiso/outdated-browser';
 }

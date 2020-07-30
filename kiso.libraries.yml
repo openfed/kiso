@@ -176,3 +176,11 @@ extlink-window:
   dependencies:
     - core/drupal
     - core/drupalSettings
+
+outdated-browser:
+  version: VERSION
+  js:
+    js/outdated-browser.min.js: {}
+  dependencies:
+    - core/drupal
+    - core/drupalSettings

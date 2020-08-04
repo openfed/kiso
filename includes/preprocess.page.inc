@@ -15,7 +15,7 @@ function kiso_preprocess_page(&$variables) {
   $theme = \Drupal::theme()->getActiveTheme()->getName();
   $regions = system_region_list($theme);
   foreach ($regions as $key => $value) {
-    $variables['has_' . $key] = !empty(strip_tags(render($variables['page'][$key])));
+    $variables['has_' . $key] = !empty(trim(strip_tags(render($variables['page'][$key]))));
   }
 
   // Create variable for status code.

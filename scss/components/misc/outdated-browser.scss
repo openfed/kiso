@@ -30,7 +30,7 @@ $enable-legacy-support-for-ie6:  true;
   @include rem('padding', 3rem 8rem);
   /* Use a background image to prevent screen readers from announcing the text. */
   @include background(
-    $color: lighten(theme-color('info'), 15%),
+    $color: lighten(theme-color('info'), 10%),
     $image-path: '../../../images/icons',
     $image: 'internet-explorer',
     $image-extension: 'png',

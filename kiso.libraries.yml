@@ -184,6 +184,3 @@ outdated-browser:
       css/components/misc/outdated-browser.css: {}
   js:
     js/outdated-browser.min.js: {}
-  dependencies:
-    - core/drupal
-    - core/drupalSettings

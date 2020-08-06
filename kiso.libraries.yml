@@ -183,4 +183,4 @@ outdated-browser:
     component:
       css/components/misc/outdated-browser.css: {}
   js:
-    js/outdated-browser.min.js: {}
+    js/outdated-browser.min.js: { preprocess: false, weight: -50 }

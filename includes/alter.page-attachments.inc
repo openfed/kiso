@@ -142,5 +142,7 @@ function kiso_page_attachments_alter(array &$attachments) {
   }
 
   // Load the "Outdated Browser" library.
-  $attachments['#attached']['library'][] = 'kiso/outdated-browser';
+  if (theme_get_setting('outdatedbrowser_enable')) {
+    $attachments['#attached']['library'][] = 'kiso/outdated-browser';
+  }
 }

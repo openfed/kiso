@@ -63,6 +63,59 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#title' => t('JavaScripts'),
     '#group' => 'kiso_settings',
   );
+  // Outdated Browser
+  $form['javascripts']['outdatedbrowser'] = array(
+    '#type' => 'details',
+    '#title' => t('Outdated Browser'),
+    '#description' => t('<strong><a href="http://outdatedbrowser.com/en">Outdated Browser</a></strong> is a time saving tool for developers. With this solution it will be possible to check if the user’s <em>Microsoft</em> browser can handle your website. If not, it will show a notice advising the user to update his browser for latest versions. It will be up to the user to upgrade... or not.'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['javascripts']['outdatedbrowser']['outdatedbrowser_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable the "Outdated Browser" warning message'),
+    '#default_value' => theme_get_setting('outdatedbrowser_enable'),
+    '#description' => t('Detect outdated <em>Microsoft Internet Explorer</em> browsers and advise users to upgrade to a new version.'),
+  );
+  $form['javascripts']['outdatedbrowser']['outdatedbrowser_options'] = array(
+    '#type' => 'details',
+    '#title' => t('Options'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#states' => [
+      'visible' => [':input[name="outdatedbrowser_enable"]' => ['checked' => TRUE]],
+    ],
+  );
+  $form['javascripts']['outdatedbrowser']['outdatedbrowser_options']['outdatedbrowser_ie_target'] = array(
+    '#title' => t('IE target versions:'),
+    '#type' => 'select',
+    '#options' => array(
+      'ie9' => t('IE 9 and lower'),
+      'ie10' => t('IE 10 and lower'),
+      'ie11' => t('IE 11 and lower'),
+    ),
+    '#default_value' => theme_get_setting('outdatedbrowser_ie_target'),
+    '#description' => t('Select the <em>Microsoft Internet Explorer</em> versions that will trigger the warning message display (e.g. "IE 9 and lower" for IE 9, 8, 7 and 6 browser versions).'),
+  );
+  $form['javascripts']['outdatedbrowser']['outdatedbrowser_options']['css_matching'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('CSS Matching'),
+    '#description' => t('Use CSS selectors to only look inside explicitly or exclude entirely specified <code>&lt;body&gt;</code> classes which will identify specific Website pages to trigger the warning message display.'),
+  );
+  $form['javascripts']['outdatedbrowser']['outdatedbrowser_options']['css_matching']['outdatedbrowser_css_explicit'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Only look for Website pages inside these CSS selectors:'),
+    '#maxlength' => NULL,
+    '#default_value' => theme_get_setting('outdatedbrowser_css_explicit'),
+    '#description' => t('Enter a comma-separated list of CSS selectors (e.g. <code>.page--frontpage, .page--node-type-news, .not-logged-in</code>).'),
+  );
+  $form['javascripts']['outdatedbrowser']['outdatedbrowser_options']['css_matching']['outdatedbrowser_css_exclude'] = array(
+    '#type' => 'textarea',
+    '#title' => t('Exclude Website pages inside these CSS selectors:'),
+    '#maxlength' => NULL,
+    '#default_value' => theme_get_setting('outdatedbrowser_css_exclude'),
+    '#description' => t('Enter a comma-separated list of CSS selectors (e.g. <code>.page--contact, .logged-in, .no-sidebars</code>).'),
+  );
   // External Links (New Window)
   $form['javascripts']['extlinkwindow'] = array(
     '#type' => 'details',

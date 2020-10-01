@@ -144,5 +144,16 @@ function kiso_page_attachments_alter(array &$attachments) {
   // Load the "Outdated Browser" library.
   if (theme_get_setting('outdatedbrowser_enable')) {
     $attachments['#attached']['library'][] = 'kiso/outdated-browser';
+    // IE target versions.
+    $attachments['#attached']['html_head'][] = array(
+      array(
+        '#tag' => 'meta',
+        '#attributes' => array(
+          'name' => 'outdatedbrowser-ieTarget',
+          'content' => theme_get_setting('outdatedbrowser_ie_target'),
+        )
+      ),
+      'outdatedbrowser-ie-target',
+    );
   }
 }

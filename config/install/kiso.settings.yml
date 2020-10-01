@@ -29,6 +29,6 @@ tooltip_delay: 600
 
 # JavaScripts / Outdated Browser
 outdatedbrowser_enable: 0
-outdatedbrowser_ie_target: 'ie9'
+outdatedbrowser_ie_target: '9'
 outdatedbrowser_css_explicit: ''
 outdatedbrowser_css_exclude: ''

@@ -90,9 +90,9 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#title' => t('IE target versions:'),
     '#type' => 'select',
     '#options' => array(
-      'ie9' => t('IE 9 and lower'),
-      'ie10' => t('IE 10 and lower'),
-      'ie11' => t('IE 11 and lower'),
+      '9' => t('IE 9 and lower'),
+      '10' => t('IE 10 and lower'),
+      '11' => t('IE 11 and lower'),
     ),
     '#default_value' => theme_get_setting('outdatedbrowser_ie_target'),
     '#description' => t('Select the <em>Microsoft Internet Explorer</em> versions that will trigger the warning message display (e.g. "IE 9 and lower" for IE 9, 8, 7 and 6 browser versions).'),

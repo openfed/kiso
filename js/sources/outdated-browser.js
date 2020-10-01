@@ -63,12 +63,12 @@
   var outdatedBrowserClass = 'outdated-browser';
   var userLang = document.querySelector('html').getAttribute('lang');
   var textLang = languages[0]; // Default EN
-  var ieVersion = (!!window.ActiveXObject && +(/msie\s(\d+)/i.exec(navigator.userAgent)[1])) || NaN;
+  var ieTarget = parseInt(document.head.querySelector('meta[name="outdatedbrowser-ieTarget"]').getAttribute('content'));
 
   /*
    * @init outdatedBrowser
    */
-  if (ieVersion <= 9) {
+  if (isTarget(ieTarget)) {
     for (var key in languages) {
       var regex = new RegExp(languages[key].lang);
 
@@ -117,6 +117,28 @@
       // Added useful class on this <body> element.
       document.body.classList.add(outdatedBrowserClass + '--message-visible');
     }, 1000);
+  }
+
+  /*
+   * @method isTarget
+   */
+  function isTarget(ieTarget) {
+    var ua = window.navigator.userAgent;
+
+    // Microsoft Internet Explorer 10 or older.
+    var msie = ua.indexOf('MSIE ');
+    if (msie > 0) {
+      return parseInt(ua.substring(msie + 5, ua.indexOf('.', msie)), 10) <= ieTarget;
+    }
+
+    // Microsoft Internet Explorer 11.
+    var trident = ua.indexOf('Trident/');
+    if (trident > 0) {
+      var rv = ua.indexOf('rv:');
+      return parseInt(ua.substring(rv + 3, ua.indexOf('.', rv)), 10) <= ieTarget;
+    }
+
+    return false;
   }
 
   /*

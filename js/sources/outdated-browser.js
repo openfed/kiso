@@ -64,11 +64,13 @@
   var userLang = document.querySelector('html').getAttribute('lang');
   var textLang = languages[0]; // Default EN
   var ieTarget = parseInt(document.head.querySelector('meta[name="outdatedbrowser-ieTarget"]').getAttribute('content'));
+  var cssExplicit = document.head.querySelector('meta[name="outdatedbrowser-cssExplicit"]');
+  var cssExclude = document.head.querySelector('meta[name="outdatedbrowser-cssExclude"]');
 
   /*
    * @init outdatedBrowser
    */
-  if (isTarget(ieTarget)) {
+  if (isTarget(ieTarget) && isCssMatching(cssExplicit, cssExclude)) {
     for (var key in languages) {
       var regex = new RegExp(languages[key].lang);
 
@@ -139,6 +141,50 @@
     }
 
     return false;
+  }
+
+  /*
+   * @method isCssMatching
+   */
+  function isCssMatching(cssExplicit, cssExclude) {
+    var flag = true;
+    var websitePage;
+
+    // Only look for Website pages inside CSS selectors.
+    if (cssExplicit != null) {
+      var cssExplicits = cssExplicit.getAttribute('content').replace(' ', '').split(',');
+      for (var i=0; i < cssExplicits.length; i++) {
+        websitePage = document.querySelector('body' + cssExplicits[i]);
+
+        // Check whether we are looking for this Website page.
+        if (websitePage instanceof Element) {
+          flag = true;
+          break;
+        }
+        else {
+          flag = false;
+        }
+      }
+    }
+
+    // Exclude Website pages inside CSS selectors.
+    if (cssExclude != null) {
+      var cssExcludes = cssExclude.getAttribute('content').replace(' ', '').split(',');
+      for (var i=0; i < cssExcludes.length; i++) {
+        websitePage = document.querySelector('body' + cssExcludes[i]);
+
+        // Check whether we are excluding this Website page.
+        if (websitePage instanceof Element) {
+          flag = false;
+          break;
+        }
+        else {
+          flag = true;
+        }
+      }
+    }
+
+    return flag;
   }
 
   /*

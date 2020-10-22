@@ -144,6 +144,7 @@ function kiso_page_attachments_alter(array &$attachments) {
   // Load the "Outdated Browser" library.
   if (theme_get_setting('outdatedbrowser_enable')) {
     $attachments['#attached']['library'][] = 'kiso/outdated-browser';
+
     // IE target versions.
     $attachments['#attached']['html_head'][] = array(
       array(
@@ -155,5 +156,33 @@ function kiso_page_attachments_alter(array &$attachments) {
       ),
       'outdatedbrowser-ie-target',
     );
+
+    // Only look for Website pages inside CSS selectors.
+    if (!empty(theme_get_setting('outdatedbrowser_css_explicit'))) {
+      $attachments['#attached']['html_head'][] = array(
+        array(
+          '#tag' => 'meta',
+          '#attributes' => array(
+            'name' => 'outdatedbrowser-cssExplicit',
+            'content' => theme_get_setting('outdatedbrowser_css_explicit'),
+          )
+        ),
+        'outdatedbrowser-css-explicit',
+      );
+    }
+
+    // Exclude Website pages inside CSS selectors.
+    if (!empty(theme_get_setting('outdatedbrowser_css_exclude'))) {
+      $attachments['#attached']['html_head'][] = array(
+        array(
+          '#tag' => 'meta',
+          '#attributes' => array(
+            'name' => 'outdatedbrowser-cssExclude',
+            'content' => theme_get_setting('outdatedbrowser_css_exclude'),
+          )
+        ),
+        'outdatedbrowser-css-exclude',
+      );
+    }
   }
 }

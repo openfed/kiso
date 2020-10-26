@@ -63,9 +63,9 @@
   var outdatedBrowserClass = 'outdated-browser';
   var userLang = document.querySelector('html').getAttribute('lang');
   var textLang = languages[0]; // Default EN
-  var ieTarget = parseInt(document.head.querySelector('meta[name="outdatedbrowser-ieTarget"]').getAttribute('content'));
-  var cssExplicit = document.head.querySelector('meta[name="outdatedbrowser-cssExplicit"]');
-  var cssExclude = document.head.querySelector('meta[name="outdatedbrowser-cssExclude"]');
+  var ieTarget = parseInt(document.getElementsByTagName('head')[0].querySelector('meta[name="outdatedbrowser-ieTarget"]').getAttribute('content'));
+  var cssExplicit = document.getElementsByTagName('head')[0].querySelector('meta[name="outdatedbrowser-cssExplicit"]');
+  var cssExclude = document.getElementsByTagName('head')[0].querySelector('meta[name="outdatedbrowser-cssExclude"]');
 
   /*
    * @init outdatedBrowser

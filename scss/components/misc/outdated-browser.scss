@@ -103,6 +103,12 @@ $enable-legacy-support-for-ie6: true;
     @include breakpoint-up('medium') {
       @include rem('right', 2.5rem);
     }
+
+    // Outdated Browsers (Close button / Hover state)
+    //
+    &:hover {
+      font-weight: map-get($component-font-weights, 'regular');
+    }
   }
 
   // Inner paragraphs

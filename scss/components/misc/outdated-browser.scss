@@ -1,0 +1,145 @@
+
+//
+// @file
+// Styles for the "Outdated Browsers" warning message.
+//
+
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+/// Enable the browser support to the legacy IE9-.
+///
+/// @type Bool
+
+$enable-legacy-support-for-ie8: true;
+$enable-legacy-support-for-ie7: true;
+$enable-legacy-support-for-ie6: true;
+
+// Outdated Browsers (Wrapper)
+//
+.outdated-browser {
+  @include rem('padding', 2rem 4.5rem);
+  /* Use a background image to prevent screen readers from announcing the text. */
+  @include background(
+    $color: lighten(theme-color('info'), 10%),
+    $image-path: '../../../images/icons',
+    $image: 'internet-explorer',
+    $image-extension: 'png',
+    $image-position: 22px 32px,
+    $image-size: 30px 30px,
+    $retina-fallback: false
+  );
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  overflow: hidden;
+  width: 100%;
+  color: white;
+
+  // Responsiveness
+  // Properties for at least medium devices (Tablets, 768px and up).
+  //
+  @include breakpoint-up('medium') {
+    @include rem('padding', 2.5rem 8rem);
+    background: {
+      @include rem('position', 48px 48px);
+      size: auto auto;
+    }
+  }
+  // Properties for at least large devices (Desktops, 992px and up).
+  //
+  @include breakpoint-up('large') {
+    padding: {
+      @include rem('top', 3rem);
+      @include rem('bottom', 3rem);
+    }
+  }
+
+  // Outdated Browsers (Title)
+  //
+  &__title {
+    font: {
+      @include rem('size', ($body-base-font-size * 1.5));
+      weight: map-get($component-font-weights, 'extra-bold');
+    }
+
+    // Responsiveness
+    // Properties for at least large devices (Desktops, 992px and up).
+    //
+    @include breakpoint-up('large') {
+      @include rem('font-size', ($body-base-font-size * 2));
+    }
+  }
+
+  // Outdated Browsers (Close button)
+  //
+  &__close {
+    @include rem('top', 2rem);
+    @include rem('right', 1.5rem);
+    @include background($color: transparent);
+    @include fa-icon('times-circle') {
+      @include rem('font-size', ($body-base-font-size * 1.75));
+      color: white;
+    }
+    position: absolute;
+    padding: 0;
+    border: 0 none;
+    font-size: 0;
+
+    // Responsiveness
+    // Properties for at least medium devices (Tablets, 768px and up).
+    //
+    @include breakpoint-up('medium') {
+      @include rem('right', 2.5rem);
+    }
+
+    // Outdated Browsers (Close button / Hover state)
+    //
+    &:hover {
+      font-weight: map-get($component-font-weights, 'regular');
+    }
+  }
+
+  // Inner paragraphs
+  //
+  p {
+    @include rem('margin-bottom', map-get($component-margins, 'xsmall'));
+    font-weight: map-get($component-font-weights, 'semi-bold');
+
+    // Responsiveness
+    // Properties for at least large devices (Desktops, 992px and up).
+    //
+    @include breakpoint-up('large') {
+      @include rem('font-size', ($body-base-font-size * 1.25));
+    }
+  }
+
+  // Inner links
+  //
+  a {
+    border-bottom: {
+      @include rem('width', ($component-border-width * 2));
+      color: map-get($component-state-border-colors, 'light');
+      style: dashed;
+    }
+    color: map-get($component-state-colors, 'active');
+
+    // Inner links (Hover state)
+    //
+    &:hover {
+      border: 0 none;
+      text-decoration: none;
+    }
+  }
+}

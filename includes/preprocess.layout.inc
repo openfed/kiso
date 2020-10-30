@@ -19,8 +19,5 @@ function kiso_preprocess_layout(&$variables) {
     if (!empty(strip_tags(render($variables['content'][$name])))) {
       $variables['visible_region_classes'][] = 'is-visible--' . Html::cleanCssIdentifier($name);
     }
-
-    // Region provides a unique label which can be read by assistive technology.
-    $variables['region_attributes'][$name]['aria-label'] = isset($region_labels[$name]) ? $region_labels[$name] : 'Undefined';
   }
 }

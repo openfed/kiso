@@ -16,7 +16,7 @@ function kiso_preprocess_page(&$variables) {
   $regions = system_region_list($theme);
   foreach ($regions as $key => $value) {
     $rendered_region = render($variables['page'][$key]);
-    $cleaned_region_output = $rendered_region ? _kiso_strip_comments($rendered_region) : '';
+    $cleaned_region_output = _kiso_strip_comments($rendered_region);
     $variables['has_' . $key] = !empty(_kiso_strip_tags($cleaned_region_output));
   }
 

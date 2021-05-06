@@ -11,8 +11,8 @@
  *
  * Custom variables:
  * - is_hidden: A flag indicating if the logo is defined.
- * - alt_text: The specific text to be used to set the alternative
- *   text for the logo.
+ * - title_text: The specific text to be used as value of the title attribute
+ *   for the "Back to homepage" link.
  * - is_front: A flag indicating if the current page is the front page.
  *
  * Related WCAG resources:
@@ -28,23 +28,23 @@
  */
 #}
 {% set is_hidden = site_logo ? 'true' : 'false' %}
-{% set alt_text = site_name ? site_name : 'the' %}
+{% set title_text = not site_logo and site_name ? site_name : 'Back to the'|t %}
 
 {% block content %}
   {% if site_logo or site_name %}
-    <a href="{{ path('<front>') }}" data-pattern="tooltip" title="{{ 'Back to the home page'|t }}" rel="home" class="block__branding">
+    <a href="{{ path('<front>') }}" data-pattern="tooltip" title="{{ '@title_text homepage'|t({ '@title_text': title_text }) }}" rel="home" class="block__branding">
 
       {% if site_logo %}
-        <img src="{{ site_logo }}" alt="{{ 'Back to @site_name home page'|t({ '@site_name': alt_text }) }}" class="block__site-logo">
+        <img src="{{ site_logo }}" alt="{{ 'Back to the homepage'|t }}" class="block__site-logo">
       {% endif %}
 
       {% if site_name %}
-        <span class="block__site-name" aria-hidden="{{ is_hidden }}">{{ '@site_name <span class="visually-hidden">home page</span>'|t({ '@site_name': site_name }) }}</span>
+        <span class="block__site-name" aria-hidden="{{ is_hidden }}">{{ '@site_name <span class="visually-hidden">homepage</span>'|t({ '@site_name': site_name }) }}</span>
       {% endif %}
 
     </a>
     {% if site_name and is_front %}
-      <h1 class="visually-hidden">{{ '@site_name home page'|t({ '@site_name': site_name }) }}</h1>
+      <h1 class="visually-hidden">{{ '@site_name homepage'|t({ '@site_name': site_name }) }}</h1>
     {% endif %}
   {% endif %}
 

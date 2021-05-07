@@ -16,7 +16,7 @@ function kiso_preprocess_layout(&$variables) {
 
   foreach (Element::children($variables['content']) as $name) {
     // Add classes for each visible region.
-    if (!empty(strip_tags(render($variables['content'][$name])))) {
+    if (!empty(_kiso_strip_tags(render($variables['content'][$name])))) {
       $variables['visible_region_classes'][] = 'is-visible--' . Html::cleanCssIdentifier($name);
     }
   }

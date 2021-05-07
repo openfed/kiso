@@ -17,7 +17,7 @@ function kiso_preprocess_page(&$variables) {
   foreach ($regions as $key => $value) {
     $rendered_region = render($variables['page'][$key]);
     $cleaned_region_output = _kiso_strip_comments($rendered_region);
-    $variables['has_' . $key] = !empty(trim($cleaned_region_output));
+    $variables['has_' . $key] = !empty(_kiso_strip_tags($cleaned_region_output));
   }
 
   // Create variable for status code.

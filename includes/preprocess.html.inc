@@ -10,16 +10,16 @@
  */
 function kiso_preprocess_html(&$variables) {
   // Added body classes when sidebar(s) has (have) content.
-  if (!empty($variables['page']['navigation']) && !empty($variables['page']['complementary'])) {
+  if (_kiso_has_region(render($variables['page']['navigation'])) && _kiso_has_region(render($variables['page']['complementary']))) {
     $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'two-sidebars';
   }
-  elseif (!empty($variables['page']['navigation'])) {
+  elseif (_kiso_has_region(render($variables['page']['navigation']))) {
     $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'one-sidebar';
     $variables['attributes']['class'][] = 'is-visible--navigation';
   }
-  elseif (!empty($variables['page']['complementary'])) {
+  elseif (_kiso_has_region(render($variables['page']['complementary']))) {
     $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'one-sidebar';
     $variables['attributes']['class'][] = 'is-visible--complementary';

@@ -97,6 +97,24 @@
         }
       }
     }
+    // Ensure that nested ordered lists (within unordered lists) use a new counter
+    // for the `<li>` (direct child) tag.
+    //
+    ul ol {
+      counter-reset: newListCounter;
+
+      // List items (Direct children)
+      //
+      > li {
+        counter-increment: newListCounter;
+
+        // List items (Direct children / Before selectors / New autonumbering lists)
+        //
+        &::before {
+          content: counters(newListCounter, '.') '.';
+        }
+      }
+    }
     // Align ordered lists (Direct children) with the other unordered.
     //
     > ol {

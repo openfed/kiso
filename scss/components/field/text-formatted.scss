@@ -52,11 +52,11 @@
     ul {
       list-style: outside none none;
 
-      // List items
+      // List items (Direct children)
       //
-      li {
+      > li {
 
-        // List items (Before selectors / Change the bullets Color)
+        // List items (Direct children / Before selectors / Change the bullets Color)
         //
         &::before {
           @include rem('width', $body-base-font-size);
@@ -76,24 +76,42 @@
     // Body ordered lists (Autonumbering Nested Lists)
     //
     // Reset the count for each section of the `<ol>` tag. Set the desired counters
-    // format for the `<li>` tag. Each time you open the `<ol>` tag, the count starts
-    // anew.
+    // format for the `<li>` (direct child) tag. Each time you open the `<ol>` tag,
+    // the count starts anew.
     //
     ol {
-      counter-reset: item;
+      counter-reset: listCounter;
       list-style: outside none none;
 
-      // List items
+      // List items (Direct children)
       //
-      li {
-        counter-increment: item;
+      > li {
+        counter-increment: listCounter;
 
-        // List items (Before selectors / Autonumbering lists)
+        // List items (Direct children / Before selectors / Autonumbering lists)
         //
         &::before {
           @include rem('margin-right', map-get($component-margins, 'xsmall'));
-          content: counters(item, '.') '.';
+          content: counters(listCounter, '.') '.';
           display: inline-block;
+        }
+      }
+    }
+    // Ensure that nested ordered lists (within unordered lists) use a new counter
+    // for the `<li>` (direct child) tag.
+    //
+    ul ol {
+      counter-reset: newListCounter;
+
+      // List items (Direct children)
+      //
+      > li {
+        counter-increment: newListCounter;
+
+        // List items (Direct children / Before selectors / New autonumbering lists)
+        //
+        &::before {
+          content: counters(newListCounter, '.') '.';
         }
       }
     }

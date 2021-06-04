@@ -35,7 +35,7 @@ font-open-sans:
 font-muli:
   remote: https://fonts.google.com/specimen/Muli
   license:
-    name: Open Font License 
+    name: Open Font License
     url: http://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL_web
     gpl-compatible: true
   css:
@@ -184,3 +184,13 @@ outdated-browser:
       css/components/misc/outdated-browser.css: {}
   js:
     js/outdated-browser.min.js: { preprocess: false, weight: -50 }
+
+track-focus:
+  remote: https://github.com/ten1seven/what-input
+  version: v5.2.10
+  license:
+    name: MIT
+    url: https://github.com/ten1seven/what-input/blob/main/LICENSE
+    gpl-compatible: true
+  js:
+    //cdn.jsdelivr.net/gh/ten1seven/what-input@v5.2.10/dist/what-input.min.js: { type: external, minified: true }

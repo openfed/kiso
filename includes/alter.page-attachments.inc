@@ -185,4 +185,7 @@ function kiso_page_attachments_alter(array &$attachments) {
       );
     }
   }
+
+  // Load the "Keyboard Focus Tracking" library.
+  $attachments['#attached']['library'][] = 'kiso/track-focus';
 }

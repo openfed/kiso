@@ -1,0 +1,101 @@
+
+//
+// @file
+// Typography
+//
+// Default styles for tracking the current (keyboard) focus.
+//
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+
+// This file is compiled separately so we can pull in config dependencies
+// below while also maintaining Drupal's SMACSS structure.
+//
+// Import Sass variables, functions, mixins and placeholders.
+@import '../../config/imports';
+
+/// Provide an easy way to include the `Track Focus` properties.
+///
+/// @link https://github.com/ten1seven/what-input
+///   - A global utility for tracking the current input method.
+///     (mouse, keyboard or touch)
+///
+/// @param {Bool} $extend [true]
+///   - Choose either to '@extend' or to '@include', depending on whether
+///     you want to group selectors or not.
+///
+/// @requires {placeholder} track-focus-defaults
+/// @requires {variable} enable-extend-directive
+/// @requires {variable} component-state-colors
+/// @requires {mixin} rem
+
+@mixin track-focus(
+  $extend: $enable-extend-directive
+) {
+
+  @if $extend {
+    @extend %track-focus-defaults;
+  }
+  @else {
+
+    position: relative;
+    outline: {
+      @include rem('width', 3px);
+      @include rem('offset', 2px);
+      color: map-get($component-state-colors, 'link');
+      style: solid;
+    }
+    z-index: 999;
+  }
+}
+
+/// Track Focus (What Input) JavaScript default properties.
+///
+/// @requires {mixin} track-focus
+
+%track-focus-defaults {
+  @include track-focus($extend: false);
+}
+
+// Focusable elements
+//
+a,
+button,
+input,
+select,
+textarea,
+[tabindex='0'] {
+
+  // Focusable elements (Focus state)
+  //
+  &:focus {
+    @include track-focus;
+
+    // Focusable elements (Focus state / The mouse is being used indirectly)
+    //
+    // Only suppress the focus ring once `what-input` has successfully started.
+    //
+    [data-whatintent='mouse'] & {
+      outline: none;
+    }
+  }
+}
+
+// Button (Type) elements
+//
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+
+  // Button (Type) elements (Mozilla Firefox specific focus ring)
+  //
+  &:-moz-focusring {
+    @include track-focus($extend: false);
+  }
+}

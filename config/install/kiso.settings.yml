@@ -35,3 +35,4 @@ outdatedbrowser_css_exclude: ''
 
 # JavaScripts / Keyboard Focus Tracking
 trackfocus_enable: 0
+trackfocus_disable_persist: 0

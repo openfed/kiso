@@ -63,6 +63,25 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#title' => t('JavaScripts'),
     '#group' => 'kiso_settings',
   );
+  // Keyboard Focus Tracking
+  $form['javascripts']['trackfocus'] = array(
+    '#type' => 'details',
+    '#title' => t('Keyboard Focus Tracking'),
+    '#description' => t('The <em>Keyboard Focus Tracking</em> is based on the <em><a href="https://github.com/ten1seven/what-input">What Input</a></em> GitHub library, a global utility for tracking the current input method (mouse, keyboard or touch).'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['javascripts']['trackfocus']['trackfocus_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable the "Keyboard Focus Tracking" indicator'),
+    '#default_value' => theme_get_setting('trackfocus_enable'),
+    '#description' => t('Display a unique highly visible <em>keyboard only</em> focus indicator <strong>for all focusable elements</strong> using a combination of a highly contrasting style.'),
+  );
+  $form['javascripts']['trackfocus']['trackfocus_forms'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('Interacting with Forms'),
+    '#description' => t('Since interacting with a form always requires use of the keyboard, <em><a href="https://github.com/ten1seven/what-input">What Input</a></em> uses the <code>data-whatintent</code> attribute to display a "buffered" version of input events while form <code>&lt;input&gt;</code>s, <code>&lt;select&gt;</code>s, and <code>&lt;textarea&gt;</code>s are being interacted with (i.e. mouse user´s <code>data-whatintent</code> will be preserved as <code>mouse</code> while typing).'),
+  );
   // Outdated Browser
   $form['javascripts']['outdatedbrowser'] = array(
     '#type' => 'details',

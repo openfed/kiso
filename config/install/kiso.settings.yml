@@ -32,3 +32,6 @@ outdatedbrowser_enable: 0
 outdatedbrowser_ie_target: '9'
 outdatedbrowser_css_explicit: ''
 outdatedbrowser_css_exclude: ''
+
+# JavaScripts / Keyboard Focus Tracking
+trackfocus_enable: 0

@@ -47,7 +47,7 @@
     outline: {
       @include rem('width', 3px);
       @include rem('offset', 2px);
-      color: map-get($component-state-colors, 'link');
+      color: map-get($component-state-border-colors, 'dark');
       style: solid;
     }
     z-index: 999;

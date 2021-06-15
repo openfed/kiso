@@ -8,6 +8,33 @@ Theme Settings
 |:--|:--|
 | **container_fluid** | Uses the `.container-fluid` class instead of `.container` class.<br>`container_fluid: 0` |
 
+## JavaScript > Keyboard Focus Tracking
+
+The _Keyboard Focus Tracking_ is based on the [_What Input_](https://github.com/ten1seven/what-input) GitHub library, a global utility for tracking the current input method (mouse, keyboard or touch).
+
+**Note:** Since interacting with a form always requires use of the keyboard, _What Input_ uses the `data-whatintent` attribute to display a "buffered" version of input events while form `<input>`s, `<select>`s, and `<textarea>`s are being interacted with (i.e. mouse user's `data-whatintent` will be preserved as `mouse` while typing).
+
+| Setting name | Description and default value |
+|:--|:--|
+| **trackfocus_enable** | Display a unique highly visible _keyboard only_ focus indicator **for all focusable elements** using a combination of a highly contrasting style.<br>`trackfocus_enable: 0` |
+| **trackfocus_disable_persist** | By default, _What Input_ uses [session storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) to persist the input and intent values across pages. The benefit is that once a visitor has interacted with the page, subsequent pages won't have to wait for interactions to know the input method.<br>`trackfocus_disable_persist: 0` |
+
+## JavaScript > Outdated Browser
+
+[Outdated Browser](http://outdatedbrowser.com/en) is a time saving tool for developers. With this solution it will be possible to check if the user’s _Microsoft_ browser can handle your website. If not, it will show a notice advising the user to update his browser for latest versions. It will be up to the user to upgrade... or not.
+
+| Setting name | Description and default value |
+|:--|:--|
+| **outdatedbrowser_enable** | Detect outdated _Microsoft Internet Explorer_ browsers and advise users to upgrade to a new version.<br>`outdatedbrowser_enable: 0` |
+| **outdatedbrowser_ie_target** | Select the _Microsoft Internet Explorer_ versions that will trigger the warning message display (e.g. "IE 11 and lower" for IE 11, 10, 9 and 8 browser versions at least).<br>`outdatedbrowser_ie_target: '9'` |
+
+**CSS MATCHING:** Use CSS selectors to only look inside explicitly or exclude entirely specified `<body>` classes which will identify specific Website pages to trigger the warning message display.
+
+| Setting name | Description and default value |
+|:--|:--|
+| **outdatedbrowser_css_explicit** | Enter a comma-separated list of CSS selectors (e.g. `.page--frontpage`, `.page--node-type-news`, `.not-logged-in`).<br>`outdatedbrowser_css_explicit: ''` |
+| **outdatedbrowser_css_exclude** | Enter a comma-separated list of CSS selectors (e.g. .page--contact, .logged-in, .no-sidebars).<br>`outdatedbrowser_css_exclude: ''` |
+
 ## JavaScript > External Links (New Window)
 
 Extends the Drupal "[External Links  _(extlink 8.x-1.2)_](https://www.drupal.org/project/extlink)" contributed module giving users advanced warning when opening in a new window or tab.

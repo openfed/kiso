@@ -28,7 +28,9 @@ The _Keyboard Focus Tracking_ is based on the [_What Input_](https://github.com/
 | **outdatedbrowser_enable** | Detect outdated _Microsoft Internet Explorer_ browsers and advise users to upgrade to a new version.<br>`outdatedbrowser_enable: 0` |
 | **outdatedbrowser_ie_target** | Select the _Microsoft Internet Explorer_ versions that will trigger the warning message display (e.g. "IE 11 and lower" for IE 11, 10, 9 and 8 browser versions at least).<br>`outdatedbrowser_ie_target: '9'` |
 
-**CSS MATCHING:** Use CSS selectors to only look inside explicitly or exclude entirely specified `<body>` classes which will identify specific Website pages to trigger the warning message display.
+### CSS MATCHING
+
+Use CSS selectors to only look inside explicitly or exclude entirely specified `<body>` classes which will identify specific Website pages to trigger the warning message display.
 
 | Setting name | Description and default value |
 |:--|:--|

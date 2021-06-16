@@ -1,7 +1,7 @@
 
 //
 // @file
-// Typography
+// Keyboard Focus Tracking
 //
 // Default styles for tracking the current (keyboard) focus.
 //
@@ -31,7 +31,7 @@
 ///
 /// @requires {placeholder} track-focus-defaults
 /// @requires {variable} enable-extend-directive
-/// @requires {variable} component-state-colors
+/// @requires {variable} component-state-border-colors
 /// @requires {mixin} rem
 
 @mixin track-focus(

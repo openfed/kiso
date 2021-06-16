@@ -44,4 +44,10 @@ function kiso_preprocess_html(&$variables) {
     $language_id = $language->getId();
     $variables['html_attributes']->setAttribute('lang', $language_id);
   }
+
+  // Keyboard Focus Tracking (What Input) library.
+  // Disable persisting input/intent across pages.
+  if (theme_get_setting('trackfocus_enable') && theme_get_setting('trackfocus_disable_persist')) {
+    $variables['html_attributes']->setAttribute('data-whatpersist', 'false');
+  }
 }

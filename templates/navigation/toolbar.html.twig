@@ -23,17 +23,14 @@
         {{ tab.link }}
         {% spaceless %}
           <div{{ tray.attributes }}>
+            {% set tray_wrapper = tray.label ? 'nav' : 'div' %}
             {% if tray.label %}
               <nav class="toolbar-lining clearfix" aria-label="{{ tray.label }}">
             {% else %}
               <div class="toolbar-lining clearfix">
             {% endif %}
             {{ tray.links }}
-            {% if tray.label %}
-              </nav>
-            {% else %}
-              </div>
-            {% endif %}
+            </{{ tray_wrapper }}>
           </div>
         {% endspaceless %}
       </div>

@@ -16,10 +16,10 @@
  */
 #}
 <div{{ attributes.addClass('toolbar') }}>
-  <nav aria-label="{{ toolbar_heading }}"{{ toolbar_attributes.addClass('toolbar__bar', 'clearfix')|without('aria-label', 'role') }}>
+  <nav{{ toolbar_attributes.addClass('toolbar-bar').setAttribute('aria-label', toolbar_heading)|without('role') }}>
     {% for key, tab in tabs %}
       {% set tray = trays[key] %}
-      <div{{ tab.attributes.addClass('toolbar__tab') }}>
+      <div{{ tab.attributes.addClass('toolbar-tab') }}>
         {{ tab.link }}
         {% spaceless %}
           <div{{ tray.attributes }}>

@@ -7,7 +7,7 @@
 // wrapping it with an "anonymous closure". See:
 // - https://drupal.org/node/1446420
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
-(function ($, Drupal, window, document) {
+(function ($, Drupal, drupalSettings, window, document) {
 
   // Filter handling for a /dir/ OR /indexordefault.page.
   function filterPath(string) {
@@ -19,7 +19,7 @@
 
   // To understand behaviors, see https://www.drupal.org/node/2269515#s-drupalbehaviors
   Drupal.behaviors.smoothScroll = {
-    attach: function (context, settings) {
+    attach: function (context, drupalSettings) {
 
       var locationPath = filterPath(location.pathname);
 
@@ -39,7 +39,7 @@
 
                 $('html, body').animate({
                   scrollTop: $target.offset().top-20
-                }, 1000, function () {
+                }, drupalSettings.kiso.smoothscroll.speed, function () {
                   location.hash = target;
                   $target.focus();
 
@@ -62,4 +62,4 @@
     }
   };
 
-} (jQuery, Drupal, this, this.document));
+} (jQuery, Drupal, drupalSettings, this, this.document));

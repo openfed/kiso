@@ -39,7 +39,7 @@
 
                 $('html, body').animate({
                   scrollTop: $target.offset().top-20
-                }, drupalSettings.kiso.smoothscroll.speed, function () {
+                }, parseInt(drupalSettings.kiso.smoothscroll.speed), function () {
                   location.hash = target;
                   $target.focus();
 

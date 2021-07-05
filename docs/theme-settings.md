@@ -19,6 +19,22 @@ The _Keyboard Focus Tracking_ is based on the [_What Input_](https://github.com/
 | **trackfocus_enable** | Display a unique highly visible _keyboard only_ focus indicator **for all focusable elements** using a combination of a highly contrasting style.<br>`trackfocus_enable: 0` |
 | **trackfocus_disable_persist** | By default, _What Input_ uses [session storage](https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage) to persist the input and intent values across pages. The benefit is that once a visitor has interacted with the page, subsequent pages won't have to wait for interactions to know the input method.<br>`trackfocus_disable_persist: 0` |
 
+## JavaScript > Smooth Scroll
+
+The _Smooth Scrolling_ enhances your Web site with a nice effect that slows down the scrolling when jumping to another part of your page.
+
+| Setting name | Description and default value |
+|:--|:--|
+| **smoothscroll_enable** | Enable the smooth scroll effect for `#hash` links.<br>`smoothscroll_enable: 1` |
+
+### Motion and Accessibility
+
+Some people can [literally get sick](https://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea) from the fast movement on the screen. We would recommend a slow speed of the motion _(1000 milliseconds by default)_ because if the [user is going to jump across a lot of content](http://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity#section5), it can cause a dizzying effect if it’s too fast.
+
+| Setting name | Description and default value |
+|:--|:--|
+| **smoothscroll_speed** | The speed of the motion to jump across the content (in milliseconds).<br>`smoothscroll_speed: 1000` |
+
 ## JavaScript > Outdated Browser
 
 [Outdated Browser](http://outdatedbrowser.com/en) is a time saving tool for developers. With this solution it will be possible to check if the user’s _Microsoft_ browser can handle your website. If not, it will show a notice advising the user to update his browser for latest versions. It will be up to the user to upgrade... or not.
@@ -28,7 +44,7 @@ The _Keyboard Focus Tracking_ is based on the [_What Input_](https://github.com/
 | **outdatedbrowser_enable** | Detect outdated _Microsoft Internet Explorer_ browsers and advise users to upgrade to a new version.<br>`outdatedbrowser_enable: 0` |
 | **outdatedbrowser_ie_target** | Select the _Microsoft Internet Explorer_ versions that will trigger the warning message display (e.g. "IE 11 and lower" for IE 11, 10, 9 and 8 browser versions at least).<br>`outdatedbrowser_ie_target: '9'` |
 
-### CSS MATCHING
+### CSS Matching
 
 Use CSS selectors to only look inside explicitly or exclude entirely specified `<body>` classes which will identify specific Website pages to trigger the warning message display.
 
@@ -69,9 +85,3 @@ Extends the Drupal "[External Links  _(extlink 8.x-1.2)_](https://www.drupal.org
 | **backtotop_label** | Change title of the link if needed. Default value is "Back to top".<br>`backtotop_label: 'Back to top'` |
 | **backtotop_offset** | The offset coordinates is used to set after how many pixels of scrolling the link will appear. Default value is 300.<br>`backtotop_offset: 300` |
 | **backtotop_mobile_hide** | By checking this box, the back to top link won't appear on smaller devices according to the site's responsive breakpoints.<br>`backtotop_mobile_hide: 1` |
-
-## JavaScript > Smooth Scroll
-
-| Setting name | Description and default value |
-|:--|:--|
-| **smoothscroll_enable** | Enable the smooth scroll behavior for anchor links.<br>`smoothscroll_enable: 1` |

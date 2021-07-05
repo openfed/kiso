@@ -190,4 +190,14 @@ function kiso_page_attachments_alter(array &$attachments) {
   if (theme_get_setting('trackfocus_enable')) {
     $attachments['#attached']['library'][] = 'kiso/track-focus';
   }
+
+  // Load the "Smooth Scrolling" library.
+  if (theme_get_setting('smoothscroll_enable')) {
+    $attachments['#attached']['library'][] = 'kiso/smooth-scroll';
+    $config = \Drupal::config('kiso.settings');
+    // Attach configurable JavaScript.
+    $attachments['#attached']['drupalSettings']['kiso']['smoothscroll'] = [
+      'speed' => !empty(theme_get_setting('smoothscroll_speed')) ? theme_get_setting('smoothscroll_speed') : $config->get('smoothscroll_speed'),
+    ];
+  }
 }

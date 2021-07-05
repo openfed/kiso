@@ -7,35 +7,59 @@
 // wrapping it with an "anonymous closure". See:
 // - https://drupal.org/node/1446420
 // - http://www.adequatelygood.com/2010/3/JavaScript-Module-Pattern-In-Depth
-(function ($, Drupal, window, document) {
+(function ($, Drupal, drupalSettings, window, document) {
 
-  // To understand behaviors, see https://drupal.org/node/756722#behaviors
+  // Filter handling for a /dir/ OR /indexordefault.page.
+  function filterPath(string) {
+    return string
+      .replace(/^\//, '')
+      .replace(/(index|default).[a-zA-Z]{3,4}$/, '')
+      .replace(/\/$/, '');
+  }
+
+  // To understand behaviors, see https://www.drupal.org/node/2269515#s-drupalbehaviors
   Drupal.behaviors.smoothScroll = {
-    attach: function (context, settings) {
+    attach: function (context, drupalSettings) {
 
-      // Execute code once the DOM is ready.
-      $(document).ready(function () {
+      var locationPath = filterPath(location.pathname);
 
-        // Select all links with hashes and remove links that don't actually link to anything.
-        $('a[href*="#"]:not([href="#"]):not([href="#0"]):not([role="tab"]):not([role="button"])').click(function (event) {
+      $('a[href*="#"]', context).each(function () {
+        var thisPath = filterPath(this.pathname) || locationPath;
+        var hash = this.hash;
 
-          // Figure out element to scroll to.
-          var target = $(this.hash);
-          target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+        if ($('#' + hash.replace(/#/, '')).length) {
+          if (locationPath == thisPath && (location.hostname == this.hostname || !this.hostname) && this.hash.replace(/#/, '')) {
+            var $target = $(hash), target = this.hash;
 
-          // Does a scroll target exist?
-          if (target.length) {
+            if (target) {
+              $(this).click(function (event) {
 
-            // Only prevent default if animation is actually gonna happen.
-            event.preventDefault();
+                // Only prevent default if animation is actually gonna happen.
+                event.preventDefault();
 
-            $('html, body').animate({
-              scrollTop: target.offset().top-20
-            }, 1000);
+                $('html, body').animate({
+                  scrollTop: $target.offset().top-20
+                }, parseInt(drupalSettings.kiso.smoothscroll.speed), function () {
+                  location.hash = target;
+                  $target.focus();
+
+                  // Checking if the target was focused.
+                  if ($target.is(':focus')) {
+                    return false;
+                  }
+                  // Adding tabindex for elements not focusable.
+                  else {
+                    $target.attr('tabindex', '-1');
+                    // Setting focus...
+                    $target.focus();
+                  };
+                });
+              });
+            }
           }
-        });
+        }
       });
     }
   };
 
-} (jQuery, Drupal, this, this.document));
+} (jQuery, Drupal, drupalSettings, this, this.document));

@@ -52,9 +52,4 @@ function kiso_preprocess(&$variables, $hook) {
   if (isset($backtotop_mobile_hide)) {
     $variables['#attached']['drupalSettings']['kiso']['backtotop']['mobile_hide'] = $backtotop_mobile_hide;
   }
-
-  $smoothscroll_enable = theme_get_setting('smoothscroll_enable');
-  if (isset($smoothscroll_enable) and $smoothscroll_enable == '1') {
-    $variables['#attached']['library'][] = 'kiso/smooth-scroll';
-  }
 }

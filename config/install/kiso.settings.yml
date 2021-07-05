@@ -12,6 +12,7 @@ backtotop_mobile_hide: 1
 
 # JavaScripts / Smooth Scroll
 smoothscroll_enable: 1
+smoothscroll_speed: 1000
 
 # JavaScripts / External Links (New Window)
 extlinkwindow_enabled: 1

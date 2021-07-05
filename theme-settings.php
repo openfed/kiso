@@ -92,6 +92,36 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#default_value' => theme_get_setting('trackfocus_disable_persist'),
     '#description' => t('By default, <em>What Input</em> uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage">session storage</a> to persist the input and intent values across pages. The benefit is that once a visitor has interacted with the page, subsequent pages won\'t have to wait for interactions to know the input method.'),
   );
+  // Smooth Scroll
+  $form['javascripts']['smoothscroll'] = array(
+    '#type' => 'details',
+    '#title' => t('Smooth Scroll'),
+    '#description' => t('The <em>Smooth Scrolling</em> enhances your Web site with a nice effect that slows down the scrolling when jumping to another part of your page.'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['javascripts']['smoothscroll']['smoothscroll_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable the "Smooth Scroll" behavior'),
+    '#default_value' => theme_get_setting('smoothscroll_enable'),
+    '#description' => t('Enable the smooth scroll effect for <code>#hash</code> links.'),
+  );
+  $form['javascripts']['smoothscroll']['smoothscroll_a11y'] = array(
+    '#type' => 'details',
+    '#title' => t('Motion and Accessibility'),
+    '#description' => t('Some people can <a href="https://www.theguardian.com/technology/2013/sep/27/ios-7-motion-sickness-nausea">literally get sick</a> from the fast movement on the screen. We would recommend a slow speed of the motion <em>(1000 milliseconds by default)</em> because if the <a href="http://alistapart.com/article/designing-safer-web-animation-for-motion-sensitivity#section5">user is going to jump across a lot of content</a>, it can cause a dizzying effect if it’s too fast.'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#states' => [
+      'visible' => [':input[name="smoothscroll_enable"]' => ['checked' => TRUE]],
+    ],
+  );
+  $form['javascripts']['smoothscroll']['smoothscroll_a11y']['smoothscroll_speed'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Motion speed:'),
+    '#default_value' => theme_get_setting('smoothscroll_speed'),
+    '#description' => t('The speed of the motion to jump across the content (in milliseconds).'),
+  );
   // Outdated Browser
   $form['javascripts']['outdatedbrowser'] = array(
     '#type' => 'details',
@@ -290,19 +320,6 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#title' => t('Hide on mobile'),
     '#default_value' => theme_get_setting('backtotop_mobile_hide'),
     '#description' => t("By checking this box, the back to top link won't appear on smaller devices according to the site's responsive breakpoints."),
-  );
-  // Smooth Scroll
-  $form['javascripts']['smoothscroll'] = array(
-    '#type' => 'details',
-    '#title' => t('Smooth Scroll'),
-    '#collapsible' => TRUE,
-    '#collapsed' => TRUE,
-  );
-  $form['javascripts']['smoothscroll']['smoothscroll_enable'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Enable Smooth Scroll'),
-    '#default_value' => theme_get_setting('smoothscroll_enable'),
-    '#description' => t("Enable the smooth scroll behavior for anchor links."),
   );
 
   // Display a warning if the "External Links" module is not enabled.

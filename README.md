@@ -4,8 +4,8 @@ Drupal "Kiso" (基礎) base theme
 ==========
 
 ![GitHub updated](https://img.shields.io/badge/Last%20updated-8%20Jul%202021-green.svg)
-[![GitHub release](https://img.shields.io/badge/Release-2.7-blue.svg)](https://github.com/openfed/kiso/releases/tag/2.7)
-[![GitHub packaged version](https://img.shields.io/badge/Last%20packaged%20version-8.x-2.x-dev-red.svg)](https://github.com/openfed/kiso/tree/8.2.x-dev)
+[![GitHub release](https://img.shields.io/badge/Release-2.7-red.svg)](https://github.com/openfed/kiso/releases/tag/2.7)
+[![Drupal version](https://img.shields.io/badge/Drupal%20version-8.x|9.x-blue.svg)](https://github.com/openfed/kiso/tree/8.2.x-dev)
 
 > *Kiso* is a brand new base theme completely build from scratch. *Kiso* theme is fully built around and adapted to Drupal 8, with a strong focus on *accessibility*, *portability*, *simplicity* and *efficiency*.
 

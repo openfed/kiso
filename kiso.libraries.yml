@@ -156,7 +156,6 @@ smooth-scroll:
     js/smooth-scroll.min.js: {}
   dependencies:
     - core/jquery
-    - core/jquery.once
     - core/drupalSettings
 
 tooltip:

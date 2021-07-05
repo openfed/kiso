@@ -23,7 +23,7 @@
 
       var locationPath = filterPath(location.pathname);
 
-      $('a[href*="#"]', context).once().each(function () {
+      $('a[href*="#"]', context).each(function () {
         var thisPath = filterPath(this.pathname) || locationPath;
         var hash = this.hash;
 

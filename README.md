@@ -34,10 +34,3 @@ Drupal "Kiso" (基礎) base theme
 *Kiso* implemented a time saving tool for developers. With this solution you can check if the user’s _Microsoft_ browser can handle your website. If not, it will show a looking notice advising the user to update his browser for latest versions.
 
 Alternative browsers which use the latest version of WebKit, Blink, or Gecko, whether directly or via the platform’s web view API, are not explicitly supported. However, Kiso should (in most cases) display and function correctly in these browsers as well.
-
-## Release
-
-**Last updated:** 5 Jul 2021 at --:-- UTC  
-**Theme version:** 8.x-2.x-dev  
-**Last packaged version:** 8.x-2.7-dev  
-**Development release from tag:** 2.7  

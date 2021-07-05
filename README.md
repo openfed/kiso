@@ -3,6 +3,8 @@
 Drupal "Kiso" (基礎) base theme
 ==========
 
+[![GitHub release](https://img.shields.io/github/release/Naereen/StrapDown.js.svg)](https://github.com/openfed/kiso/releases/)
+
 > *Kiso* is a brand new base theme completely build from scratch. *Kiso* theme is fully built around and adapted to Drupal 8, with a strong focus on *accessibility*, *portability*, *simplicity* and *efficiency*.
 
 ## Topics

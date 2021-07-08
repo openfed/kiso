@@ -3,6 +3,10 @@
 Drupal "Kiso" (基礎) base theme
 ==========
 
+![GitHub updated](https://img.shields.io/badge/Last%20updated-July%208,%202021-405b77.svg)
+[![Drupal compatibility](https://img.shields.io/badge/Drupal%20compatibility-8.x|9.x-405b77.svg)](kiso.info.yml)
+[![GitHub release](https://img.shields.io/badge/Release-2.7-405b77.svg)](https://github.com/openfed/kiso/releases/tag/2.7)
+
 > *Kiso* is a brand new base theme completely build from scratch. *Kiso* theme is fully built around and adapted to Drupal 8, with a strong focus on *accessibility*, *portability*, *simplicity* and *efficiency*.
 
 ## Topics
@@ -30,10 +34,3 @@ Drupal "Kiso" (基礎) base theme
 *Kiso* implemented a time saving tool for developers. With this solution you can check if the user’s _Microsoft_ browser can handle your website. If not, it will show a looking notice advising the user to update his browser for latest versions.
 
 Alternative browsers which use the latest version of WebKit, Blink, or Gecko, whether directly or via the platform’s web view API, are not explicitly supported. However, Kiso should (in most cases) display and function correctly in these browsers as well.
-
-## Release
-
-**Last updated:** 9 Nov 2020 at 15:18 UTC  
-**Theme version:** 8.x-2.x-dev  
-**Last packaged version:** 8.x-2.6-dev  
-**Development release from tag:** 2.6  

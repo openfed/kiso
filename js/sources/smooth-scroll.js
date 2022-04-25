@@ -28,7 +28,6 @@
         var hash = this.hash;
 
         if (window.location.hash && $('#' + hash.replace(/#/, '')).length) {
-          console.log("test");
           if (locationPath == thisPath && (location.hostname == this.hostname || !this.hostname) && this.hash.replace(/#/, '')) {
             var $target = $(hash), target = this.hash;
 

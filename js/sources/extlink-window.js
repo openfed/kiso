@@ -95,7 +95,7 @@
       }
       else {
         this.linkClass = (this.isEmail) ? 'mailto' : 'ext';
-        this.ariaLabel = (this.isSvgImage) ? this.iconElement.getAttribute('aria-label') : this.iconElement.querySelector('span.visually-hidden').textContent;
+        this.ariaLabel = (this.isSvgImage) ? this.iconElement.getAttribute('aria-label') : this.iconElement.querySelector('span').getAttribute('aria-label');
         this.svgImageShapeData = (this.isEmail) ? drupalSettings.kiso.extlinkWindow.mailtoShapeData : drupalSettings.kiso.extlinkWindow.extlinkShapeData;
         this.svgImageViewBox = (this.isEmail) ? drupalSettings.kiso.extlinkWindow.viewBoxSquare : drupalSettings.kiso.extlinkWindow.viewBoxRect;
         this.fontAwesomeClass = (this.isEmail) ? drupalSettings.data.extlink.extFaMailtoClasses : drupalSettings.data.extlink.extFaLinkClasses;

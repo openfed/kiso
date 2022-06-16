@@ -27,7 +27,7 @@
         var thisPath = filterPath(this.pathname) || locationPath;
         var hash = this.hash;
 
-        if ($('#' + hash.replace(/#/, '')).length) {
+        if (window.location.hash && $('#' + hash.replace(/#/, '')).length) {
           if (locationPath == thisPath && (location.hostname == this.hostname || !this.hostname) && this.hash.replace(/#/, '')) {
             var $target = $(hash), target = this.hash;
 

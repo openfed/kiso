@@ -31,6 +31,8 @@ function kiso_preprocess_links__language_block(&$variables) {
     }
     else {
       $link['title'] = t('@language (unavailable)', ['@language' => $link['text']], ['langcode' => $langcode]);
+      $link['text_attributes']['lang'] = $langcode;
+      $link['text_attributes']['aria-label'] = $link['title'];
       $link['text'] = strtoupper($langcode);
     }
   }

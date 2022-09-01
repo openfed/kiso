@@ -25,7 +25,7 @@
           {{ item.link }}
         {%- elseif item.text_attributes -%}
           <del{{ item.text_attributes }}>
-            <abbr aria-hidden="true" title="{{ item.title }}">{{ item.text }}</abbr>
+            <abbr title="{{ item.title }}">{{ item.text }}</abbr>
           </del>
         {%- else -%}
           {{ item.text }}

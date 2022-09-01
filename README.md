@@ -3,7 +3,7 @@
 Drupal "Kiso" (基礎) base theme
 ==========
 
-![GitHub updated](https://img.shields.io/badge/Last%20updated-September%2022,%202001-405b77.svg)
+![GitHub updated](https://img.shields.io/badge/Last%20updated-September%2001,%202022-405b77.svg)
 [![Drupal compatibility](https://img.shields.io/badge/Drupal%20compatibility-8.x|9.x-405b77.svg)](kiso.info.yml)
 [![GitHub release](https://img.shields.io/badge/Release-2.7.2-405b77.svg)](https://github.com/openfed/kiso/releases/tag/2.7.2)
 

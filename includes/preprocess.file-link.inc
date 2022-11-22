@@ -27,7 +27,9 @@ function kiso_preprocess_file_link(&$variables) {
     'xlsx' => t("Spreadsheet"),
   ];
 
-  // Create attributes array for the <i> (Icon) element.
+  // WCAG 2.1 - Guideline 1.3.1 – Info and Relationships (Level A).
+  // Sufficient Technique ARIA24: Semantically identifying a font icon with `role="img"`:
+  // See: https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA24
   $variables['icon_attributes'] = [
     'role' => 'img',
     'aria-label' => array_key_exists($extension, $labels) ? $labels[$extension] : t("@ext file", array('@ext' => strtoupper($extension))),

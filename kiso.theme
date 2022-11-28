@@ -29,7 +29,7 @@ define('INCLUDES_FOLDER', 'includes');
 function kiso_include($theme, $path) {
   static $themes = array();
   if (!isset($themes[$theme])) {
-    $themes[$theme] = \Drupal::service("extension.list.theme")->getPath($theme);
+    $themes[$theme] = \Drupal::service('extension.list.theme')->getPath($theme);
   }
   if ($themes[$theme] && ($file = DRUPAL_ROOT . '/' . $themes[$theme] . '/' . $path) && file_exists($file) && pathinfo($file, PATHINFO_EXTENSION) === 'inc') {
     include_once $file;

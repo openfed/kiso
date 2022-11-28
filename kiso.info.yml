@@ -1,11 +1,10 @@
 # Defines theme information
 name: 'Kiso 基礎'
-description: 'Base theme for Drupal 8 websites build around accessibility and simplicity.'
+description: 'Base theme for Drupal 8/9/10 websites build around accessibility and simplicity.'
 type: theme
 base theme: false
-version: '8.x-2.x-dev'
-core: 8.x
 core_version_requirement: ^8 || ^9 || ^10
+version: '3.0'
 
 # Defines regions
 regions:

@@ -21,7 +21,7 @@
     not media.isPublished() ? 'media--unpublished',
   ]
 %}
-<article{{ attributes.addClass(classes)|without('role') }}>
+<div{{ attributes.addClass(classes)|without('role') }}>
   {{ title_suffix.contextual_links }}
 
   {% if content %}
@@ -30,4 +30,4 @@
     </div>
   {% endif %}
   
-</article>
+</div>

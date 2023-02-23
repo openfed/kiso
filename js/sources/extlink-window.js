@@ -159,7 +159,9 @@
   Drupal.behaviors.extlinkWindow = {
     // To understand behaviors, see https://www.drupal.org/node/2269515
     attach: function (context, drupalSettings) {
-      var links =  context.querySelectorAll('a[href]:not([href^="#"]):not([href^="tel:"]):not([role="tab"]):not([role="button"])');
+      var links =  context.querySelectorAll(
+        'a[href]:not([href^="#"]):not([href^="tel:"]):not([role="tab"]):not([role="button"]):not(:has(i.fa-external-link-square-alt, i.fa-envelope))'
+      );
 
       for (var i = 0; i < links.length; i++) {
         var ew = new ExtlinkWindow(links[i], context);

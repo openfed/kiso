@@ -160,7 +160,7 @@
     // To understand behaviors, see https://www.drupal.org/node/2269515
     attach: function (context, drupalSettings) {
       var links =  context.querySelectorAll(
-        'a[href]:not([href^="#"]):not([href^="tel:"]):not([role="tab"]):not([role="button"]):not(:has(i.fa-external-link-square-alt, i.fa-envelope))'
+        'a[href]:not([href^="#"]):not([href^="tel:"]):not([role="tab"]):not([role="button"]):not(data-extlink)'
       );
 
       for (var i = 0; i < links.length; i++) {

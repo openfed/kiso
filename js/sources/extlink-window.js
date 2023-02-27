@@ -120,6 +120,7 @@
         this.link.removeChild(this.iconElement);
       }
       this.link.appendChild(newIconElement);
+      this.link.setAttribute('data-extlink-window', '');
       this.logMessages.push(this.link);
 
       // Print console logs.
@@ -160,7 +161,7 @@
     // To understand behaviors, see https://www.drupal.org/node/2269515
     attach: function (context, drupalSettings) {
       var links =  context.querySelectorAll(
-        'a[href]:not([href^="#"]):not([href^="tel:"]):not([role="tab"]):not([role="button"]):not(data-extlink)'
+        'a[href]:not([href^="#"]):not([href^="tel:"]):not([role="tab"]):not([role="button"]):not(data-extlink-window)'
       );
 
       for (var i = 0; i < links.length; i++) {

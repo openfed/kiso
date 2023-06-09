@@ -21,7 +21,7 @@
  */
 function _kiso_has_region(?string $markup, string $allowed_tags = '') {
   $non_conditional_html_comments_pattern = '/<!--(.|\s)*?-->\s*|\r|\n/';
-  $cleaned_region_output = preg_replace($non_conditional_html_comments_pattern, '', $markup);
+  $cleaned_region_output = preg_replace($non_conditional_html_comments_pattern, '', $markup ?? '');
   return !empty(_kiso_strip_tags($cleaned_region_output, $allowed_tags));
 }
 

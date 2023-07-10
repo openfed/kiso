@@ -29,7 +29,7 @@ Drupal "Kiso" (基礎) base theme
 
 ## Browser Support
 
-*Kiso* supports the **latest, stable releases** of all major browsers and platforms. On Windows, **Kiso supports Internet Explorer 10-11 / Microsoft Edge**. ([Although Internet Explorer 10 support dropped from Drupal 8.4.x](https://www.drupal.org/node/2897971))
+*Kiso* supports the **latest, stable releases** of all major browsers and platforms. On Windows, **Kiso supports Internet Explorer 11 / Microsoft Edge**. ([Although Internet Explorer 11 support dropped in Drupal 10](https://www.drupal.org/node/3199540))
 
 *Kiso* implemented a time saving tool for developers. With this solution you can check if the user’s _Microsoft_ browser can handle your website. If not, it will show a looking notice advising the user to update his browser for latest versions.
 

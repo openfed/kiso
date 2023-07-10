@@ -10,16 +10,16 @@
  */
 function kiso_preprocess_html(&$variables) {
   // Added body classes when sidebar(s) has (have) content.
-  if (_kiso_has_region(render($variables['page']['navigation'])) && _kiso_has_region(render($variables['page']['complementary']))) {
+  if (_kiso_has_region(\Drupal::service('renderer')->render($variables['page']['navigation'])) && _kiso_has_region(\Drupal::service('renderer')->render($variables['page']['complementary']))) {
     $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'two-sidebars';
   }
-  elseif (_kiso_has_region(render($variables['page']['navigation']))) {
+  elseif (_kiso_has_region(\Drupal::service('renderer')->render($variables['page']['navigation']))) {
     $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'one-sidebar';
     $variables['attributes']['class'][] = 'is-visible--navigation';
   }
-  elseif (_kiso_has_region(render($variables['page']['complementary']))) {
+  elseif (_kiso_has_region(\Drupal::service('renderer')->render($variables['page']['complementary']))) {
     $variables['attributes']['class'][] = 'sidebar';
     $variables['attributes']['class'][] = 'one-sidebar';
     $variables['attributes']['class'][] = 'is-visible--complementary';

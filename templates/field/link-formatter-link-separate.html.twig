@@ -19,7 +19,7 @@
 #}
 {% set link_wrapper = title ? 'dl' : 'div' %}
 
-{% spaceless %}
+{% apply spaceless %}
   <{{ link_wrapper }}{{ attributes.addClass('link') }}>
     {% if title %}
       <dt class="link link__title">{{ title }}</dt>
@@ -28,4 +28,4 @@
       <div class="link link__url">{{ link }}</div>
     {% endif %}
   </{{ link_wrapper }}>
-{% endspaceless %}
+{% endapply %}

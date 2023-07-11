@@ -7,7 +7,7 @@ Drupal "Kiso" (基礎) base theme
 [![Drupal compatibility](https://img.shields.io/badge/Drupal%20compatibility-8.x|9.x-405b77.svg)](kiso.info.yml)
 [![GitHub release](https://img.shields.io/badge/Release-2.7.2-405b77.svg)](https://github.com/openfed/kiso/releases/tag/2.7.2)
 
-> *Kiso* is a brand new base theme completely build from scratch. *Kiso* theme is fully built around and adapted to Drupal 8, with a strong focus on *accessibility*, *portability*, *simplicity* and *efficiency*.
+> *Kiso* is a brand new base theme completely build from scratch. *Kiso* theme is fully built around and now compatible with Drupal 10, with a strong focus on *accessibility*, *portability*, *simplicity* and *efficiency*.
 
 ## Topics
 
@@ -25,7 +25,7 @@ Drupal "Kiso" (基礎) base theme
  1. *Kiso* rewrites [Templates](templates/) from *Drupal* core only if it makes sense to do so, in order to meet specific requirements;
  2. *Kiso* is built with [Accessibility](docs/accessibility.md) and [CSS coding standards for Drupal](https://www.drupal.org/docs/develop/standards/css/css-coding-standards) in mind;
  3. *Kiso* use a mobile-first [Flexbox grid system](scss/layout/README.md) to build layouts of all shapes and sizes thanks to a twelve column system, five default responsive tiers, Sass variables and mixins, and dozens of predefined classes;
- 4. *Kiso* [Stylesheets (Baseline)](scss/README.md) is based on the [Drupal 8's CSS (file) organization](https://www.drupal.org/docs/develop/standards/css/css-file-organization-for-drupal-8), [SMACSS](https://smacss.com/ "Scalable and Modular Architecture for CSS") & [BEM](http://bem.info/ "Block, Element, Modifier").
+ 4. *Kiso* [Stylesheets (Baseline)](scss/README.md) is based on the [Drupal 9's CSS (file) organization](https://www.drupal.org/docs/develop/standards/css/css-file-organization-for-drupal-9), [SMACSS](https://smacss.com/ "Scalable and Modular Architecture for CSS") & [BEM](http://bem.info/ "Block, Element, Modifier").
 
 ## Browser Support
 

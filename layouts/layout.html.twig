@@ -12,7 +12,6 @@
  *     region is 'sidebar_first' it would result in 'is-visible--sidebar-first'.
  *
  * @see template_preprocess_layout()
- * @see kiso_preprocess_layout()
  */
 #}
 {%
@@ -21,7 +20,17 @@
     'layout--' ~ layout.id|clean_class,
   ]
 %}
+{% set visible_region_classes = [] %}
+
 {% if content %}
+
+  {# Add classes for each visible region. #}
+  {% for region in layout.getRegionNames %}
+    {% if content[region]|render|striptags %}
+      {% set visible_region_classes = visible_region_classes|merge(['is-visible--' ~ region|clean_class]) %}
+    {% endif %}
+  {% endfor %}
+
   <div{{ attributes.addClass(classes, visible_region_classes) }}>
     {% for region in layout.getRegionNames %}
       {% if content[region]|render|striptags %}

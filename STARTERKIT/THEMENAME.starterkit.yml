@@ -2,9 +2,10 @@
 # The text you put in the "name:" line is free and doesn't need to exactly match your theme name.
 name: 'THEMETITLE'
 description: 'Custom sub-theme, inherits from the Kiso (基礎) base theme. Read the README.md from this folder.'
-core: 8.x
 type: theme
 base theme: kiso
+core_version_requirement: ^9 || ^10
+version: VERSION
 
 # Change "THEMENAME" to your theme machine name and
 # defines libraries group in which we can add css/js.

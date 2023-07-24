@@ -6,7 +6,8 @@
  * You will find same variables as in the core 'file-link.html.twig' template.
  *
  * @see template_preprocess_file_link()
+ * @see kiso_preprocess_file_link()
  */
 #}
 {{ attach_library('kiso/file') }}
-<span{{ attributes }}>{{ icon }} {{ link }}</span>
+<span{{ attributes }}><i{{ icon_attributes }}></i> {{ link }}</span>

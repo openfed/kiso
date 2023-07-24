@@ -110,6 +110,12 @@ fields:
       css/components/field/text-formatted.css: {}
       css/components/field/multiple-value-form.css: {}
 
+file:
+  version: VERSION
+  css:
+    component:
+      css/components/field/file.css: {}
+
 nodes:
   version: VERSION
   css:

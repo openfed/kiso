@@ -15,38 +15,16 @@
  * etc.
  */
 
-// Define constant variable for the `./includes` directory.
-define('INCLUDES_FOLDER', 'includes');
-
-/**
- * Includes a theme file.
- *
- * @param string $theme
- *   Name of the theme to use for base path.
- * @param string $path
- *   Path relative to $theme.
- */
-function kiso_include($theme, $path) {
-  static $themes = array();
-  if (!isset($themes[$theme])) {
-    $themes[$theme] = \Drupal::service('extension.list.theme')->getPath($theme);
-  }
-  if ($themes[$theme] && ($file = DRUPAL_ROOT . '/' . $themes[$theme] . '/' . $path) && file_exists($file) && pathinfo($file, PATHINFO_EXTENSION) === 'inc') {
-    include_once $file;
-  }
-}
-
-/**
- * Declare various [pre]process/hook functions.
- *
- * All [pre]process/hook functions must live (via include) inside this
- * file so they are properly detected when drupal_alter() is invoked.
- */
-if (is_dir(__DIR__ . '/' . INCLUDES_FOLDER)) {
-  $files = scandir(__DIR__ . '/' . INCLUDES_FOLDER);
-  if (!empty($files)) {
-    foreach ($files as $file) {
-      kiso_include('kiso', INCLUDES_FOLDER . '/' . $file);
-    }
-  }
-}
+// Include and evaluate [pre]process and hook functions from the `./includes` directory.
+include_once "includes/alter.page-attachments.inc";
+include_once "includes/alter.theme-suggestions.inc";
+include_once "includes/preprocess.block.inc";
+include_once "includes/preprocess.file-link.inc";
+include_once "includes/preprocess.html.inc";
+include_once "includes/preprocess.image.inc";
+include_once "includes/preprocess.inc";
+include_once "includes/preprocess.links.inc";
+include_once "includes/preprocess.maintenance-page.inc";
+include_once "includes/preprocess.menu-local-task.inc";
+include_once "includes/preprocess.page.inc";
+include_once "includes/preprocess.utils.inc";

@@ -47,15 +47,18 @@ function kiso_theme_suggestions_page_alter(array &$suggestions, array $variables
  * Implements hook_theme_suggestions_HOOK_alter() for `block` templates.
  */
 function kiso_theme_suggestions_block_alter(array &$suggestions, array $variables) {
+  $elements = $variables['elements'];
+  $provider = (isset($elements['#base_plugin_id'])) ? $elements['#base_plugin_id'] : '';
+
   // Prepare the '$region' variable to add specific block
   // templates according to the region it is placed in.
-  if (isset($variables['elements']['#id'])) {
-    $block = Block::load($variables['elements']['#id']);
+  if (isset($elements['#id'])) {
+    $block = Block::load($elements['#id']);
     $region = $block->getRegion();
   }
   // This 'else if' is only for 'page_manager' module.
-  else if (isset($variables['elements']['#configuration']['region'])) {
-    $region = $variables['elements']['#configuration']['region'];
+  else if (isset($elements['#configuration']['region'])) {
+    $region = $elements['#configuration']['region'];
   }
 
   // Add template suggestion for blocks which need to use HTML5 '<aside>'
@@ -66,9 +69,30 @@ function kiso_theme_suggestions_block_alter(array &$suggestions, array $variable
     $suggestions[] = 'block__' . $region . '_landmark';
   }
 
-  // Add template suggestion for the 'Language switcher' block which needs
-  // to use HTML5 '<nav>' element to assign the 'navigation' landmark role.
-  if (isset($variables['elements']['#base_plugin_id']) && $variables['elements']['#base_plugin_id'] == 'language_block') {
-    $suggestions[] = 'block__navigation_landmark';
+  // Manage blocks based on the generated module
+  // (Provider) and add template suggestions.
+  switch ($provider) {
+
+    // "Language switcher" provider that needs to use HTML5 '<nav>'
+    // element to assign the 'navigation' landmark role.
+    case 'language_block':
+      $suggestions[] = 'block__navigation_landmark';
+      break;
+
+    // "Custom block" provider.
+    case 'block_content':
+      if (!empty($elements['content']['#block_content'])) {
+        /** @var \Drupal\block_content\BlockContentInterface $block_content */
+        $block_content = $elements['content']['#block_content'];
+        $view_mode = strtr($elements['#configuration']['view_mode'], '.', '_');
+        $suggestions[] = 'block__block_content__' . $block_content->bundle();
+
+        // if custom view mode(s).
+        if ($view_mode !== 'default') {
+          $suggestions[] = 'block__block_content__' . $view_mode;
+          $suggestions[] = 'block__block_content__' . $block_content->bundle() . '__' . $view_mode;
+        }
+      }
+      break;
   }
 }

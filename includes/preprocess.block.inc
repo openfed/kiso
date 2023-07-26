@@ -20,7 +20,15 @@ function kiso_preprocess_block(&$variables) {
 
     // "Custom block" provider.
     case 'block_content':
-      $variables['derivative_plugin_id'] = (isset($elements['#id'])) ? $elements['#id'] : $elements['#derivative_plugin_id'];
+      if (!empty($variables['content']['#block_content'])) {
+        /** @var \Drupal\block_content\BlockContentInterface $block_content */
+        $block_content = $variables['content']['#block_content'];
+        $view_mode = strtr($elements['#configuration']['view_mode'], '.', '_');
+        $variables['derivative_plugin_id'] = ($view_mode !== 'default') ? $block_content->bundle() . '--' . $view_mode : $block_content->bundle();
+      }
+      else {
+        $variables['derivative_plugin_id'] = $elements['#derivative_plugin_id'];
+      }
       break;
 
     // Any other provider.

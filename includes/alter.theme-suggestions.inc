@@ -50,8 +50,9 @@ function kiso_theme_suggestions_block_alter(array &$suggestions, array $variable
   // Prepare the '$region' variable to add specific block
   // templates according to the region it is placed in.
   if (isset($variables['elements']['#id'])) {
-    $block = Block::load($variables['elements']['#id']);
-    $region = $block->getRegion();
+    if ($block = Block::load($variables['elements']['#id'])) {
+      $region = $block->getRegion();
+    }
   }
   // This 'else if' is only for 'page_manager' module.
   else if (isset($variables['elements']['#configuration']['region'])) {

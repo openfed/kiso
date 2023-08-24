@@ -33,9 +33,11 @@ function kiso_preprocess_block(&$variables) {
 
   // Prepare the '$variables['block_region']' variable to add specific
   // block class according to the region it is placed in.
+  $variables['block_region'] = '';
   if (isset($elements['#id'])) {
-    $block = Block::load($elements['#id']);
-    $variables['block_region'] = $block->getRegion();
+    if ($block = Block::load($elements['#id'])) {
+      $variables['block_region'] = $block->getRegion();
+    }
   }
   // This 'else if' is only for 'page_manager' module.
   else if (isset($elements['#configuration']['region'])) {

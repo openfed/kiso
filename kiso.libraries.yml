@@ -197,3 +197,12 @@ track-focus:
       css/base/elements/track-focus.css: {}
   js:
     //cdn.jsdelivr.net/gh/ten1seven/what-input@v5.2.10/dist/what-input.min.js: { type: external, minified: true }
+
+# Splide
+splide:
+  version: v4.1.4
+  header: true
+  css:
+    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css: { type: external, minified: true }
+  js:
+    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js: { type: external, minified: true }

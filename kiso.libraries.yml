@@ -203,6 +203,7 @@ splide:
   version: v4.1.4
   header: true
   css:
-    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css: { type: external, minified: true }
+    base:
+      https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css: { type: external, minified: true }
   js:
     https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js: { type: external, minified: true }

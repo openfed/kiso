@@ -24,6 +24,9 @@
   // Nodes (Unpublished)
   //
   &--unpublished {
-    @include background($color: lighten(color('red'), 45%));
+    border-color: #ff8f8f;
+    border-style: solid;
+    border-width: 5px;
+    padding: 1rem;
   }
 }

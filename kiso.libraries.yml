@@ -196,4 +196,4 @@ track-focus:
     base:
       css/base/elements/track-focus.css: {}
   js:
-    //cdn.jsdelivr.net/gh/ten1seven/what-input@v5.2.10/dist/what-input.min.js: { type: external, minified: true }
+    js/contrib/what-input/what-input.min.js: {}

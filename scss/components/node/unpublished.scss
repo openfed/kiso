@@ -24,6 +24,11 @@
   // Nodes (Unpublished)
   //
   &--unpublished {
-    @include background($color: lighten(color('red'), 45%));
+    @include rem('padding', map-get($component-vertical-paddings, 'large') map-get($component-horizontal-paddings, 'large'));
+    border: {
+      @include rem('width', ($component-border-width * 5));
+      color: lighten(color('red'), 20%);
+      style: $component-border-style;
+    }
   }
 }

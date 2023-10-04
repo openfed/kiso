@@ -198,12 +198,16 @@ track-focus:
   js:
     //cdn.jsdelivr.net/gh/ten1seven/what-input@v5.2.10/dist/what-input.min.js: { type: external, minified: true }
 
-# Splide
-splide:
+# Splide slider/carousel
+splide-carousel:
+  remote: https://github.com/Splidejs/splide
   version: ^4.1
-  header: true
+  license:
+    name: MIT
+    url: https://github.com/Splidejs/splide/blob/master/LICENSE
+    gpl-compatible: true
   css:
     base:
-      https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css: { type: external, minified: true }
+      /libraries/splide/dist/css/splide-core.min.css: { minified: true }
   js:
-    https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js: { type: external, minified: true }
+    /libraries/splide/dist/js/splide.min.js: { minified: true }

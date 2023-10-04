@@ -200,7 +200,7 @@ track-focus:
 
 # Splide
 splide:
-  version: v4.1.4
+  version: ^4.1
   header: true
   css:
     base:

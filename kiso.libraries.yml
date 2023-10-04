@@ -193,7 +193,7 @@ outdated-browser:
 
 track-focus:
   remote: https://github.com/ten1seven/what-input
-  version: v5.2.10
+  version: ^5.2
   license:
     name: MIT
     url: https://github.com/ten1seven/what-input/blob/main/LICENSE
@@ -202,4 +202,4 @@ track-focus:
     base:
       css/base/elements/track-focus.css: {}
   js:
-    //cdn.jsdelivr.net/gh/ten1seven/what-input@v5.2.10/dist/what-input.min.js: { type: external, minified: true }
+    /libraries/what-input/dist/what-input.min.js: { minified: true }

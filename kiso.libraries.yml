@@ -196,4 +196,4 @@ track-focus:
     base:
       css/base/elements/track-focus.css: {}
   js:
-    js/contrib/what-input/what-input.min.js: {}
+    /libraries/what-input/dist/what-input.min.js: { minified: true }

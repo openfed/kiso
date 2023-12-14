@@ -9,17 +9,6 @@ normalize:
     base:
       css/base/normalize.css: { weight: -20 }
 
-font-awesome:
-  remote: https://fortawesome.github.io/Font-Awesome/
-  version: 5.13.1
-  license:
-    name: MIT
-    url: https://fontawesome.com/license/free/
-    gpl-compatible: true
-  css:
-    theme:
-      //use.fontawesome.com/releases/v5.13.1/css/all.css: { type: external, minified: true }
-
 # Google Fonts: Open Sans
 font-open-sans:
   remote: https://fonts.google.com/specimen/Open+Sans

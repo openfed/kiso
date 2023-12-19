@@ -17,8 +17,8 @@ font-open-sans:
     url: http://www.apache.org/licenses/LICENSE-2.0
     gpl-compatible: true
   css:
-    theme:
-      //fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800&display=swap: { type: external }
+    base:
+      fonts/open-sans.css: { weight: -30 }
 
 # Google Fonts: Muli
 font-muli:

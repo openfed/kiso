@@ -29,7 +29,7 @@ font-open-sans:
     gpl-compatible: true
   css:
     base:
-      fonts/open-sans.css: { weight: -30 }
+      fonts/open-sans/open-sans.css: { weight: -30 }
 
 reboot:
   version: VERSION

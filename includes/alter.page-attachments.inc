@@ -106,6 +106,19 @@ function kiso_page_attachments_alter(array &$attachments) {
     'theme-color',
   );
 
+  // Load the "Base" (Structural rules) libraries.
+  $attachments['#attached']['library'][] = 'kiso/reboot';
+  $attachments['#attached']['library'][] = 'kiso/elements';
+  // Load the "Layout" (Styles) library.
+  $attachments['#attached']['library'][] = 'kiso/layout';
+  // Load the "Components" (Structural rules) libraries.
+  $attachments['#attached']['library'][] = 'kiso/blocks';
+  $attachments['#attached']['library'][] = 'kiso/navigations';
+  $attachments['#attached']['library'][] = 'kiso/forms';
+  $attachments['#attached']['library'][] = 'kiso/fields';
+  $attachments['#attached']['library'][] = 'kiso/nodes';
+  $attachments['#attached']['library'][] = 'kiso/miscs';
+
   // Load the "External Links" (New Window) library.
   $moduleHandler = \Drupal::service('module_handler');
   if ($moduleHandler->moduleExists('extlink') && theme_get_setting('extlinkwindow_enabled')) {

@@ -1,11 +1,18 @@
 
 //
 // @file
-// Visual styles for the "Language switcher" set of links.
+// Structural rules for the "Language switcher" set of links.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/list';
+@use '../../../_sass-framework/utilities/spacing';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -24,18 +31,29 @@ ul.links {
   // Links name: "Language switcher" (System).
   //
   &--language-block {
-    @include list-variant('inline',
-      $list-inline-item-margin-left: map-get($component-margins, 'xsmall')
+    --links-language-block-link-padding-vertical: var(--padding-vertical-small);
+    --links-language-block-link-padding-horizontal: var(--padding-horizontal-small);
+    --links-language-block-link-color: currentcolor;
+    --links-language-block-link-font-size: inherit;
+    --links-language-block-link-hover-color: currentcolor;
+    --links-language-block-link-hover-background-color: transparent;
+    --links-language-block-link-active-color: currentcolor;
+    --links-language-block-link-active-background-color: transparent;
+    --links-language-block-link-disabled-color: currentcolor;
+
+    @include list.unstyled;
+    @include list.inline-block(
+      $item-margin-left: spacing.margin('xsmall')
     );
     margin-bottom: 0;
 
     // Links (Language link)
     //
     .language-link {
-      @include rem('padding', map-get($component-vertical-paddings, 'small') map-get($component-horizontal-paddings, 'small'));
-      @include rem('font-size', ($body-base-font-size * 0.8));
-      color: $body-base-color;
       display: block;
+      padding: var(--links-language-block-link-padding-vertical) var(--links-language-block-link-padding-horizontal);
+      color: var(--links-language-block-link-color);
+      font-size: var(--links-language-block-link-font-size);
 
       // Links (Language link / Excepted disabled)
       //
@@ -44,15 +62,16 @@ ul.links {
         // Links (Language link / Hover state)
         //
         &:hover {
-          @include background($color: map-get($component-state-background-colors, 'muted'));
+          color: var(--links-language-block-link-hover-color);
+          background-color: var(--links-language-block-link-hover-background-color);
           text-decoration: none;
         }
 
         // Links (Language link / Activated state)
         //
         &.is-active {
-          @include background($color: map-get($component-state-background-colors, 'dark'));
-          color: map-get($component-state-colors, 'active');
+          color: var(--links-language-block-link-active-color);
+          background-color: var(--links-language-block-link-active-background-color);
           cursor: default;
         }
       }
@@ -60,7 +79,7 @@ ul.links {
       // Links (Language link / Disabled state)
       //
       &.disabled {
-        color: map-get($component-state-colors, 'muted');
+        color: var(--links-language-block-link-disabled-color);
         cursor: not-allowed;
       }
     }

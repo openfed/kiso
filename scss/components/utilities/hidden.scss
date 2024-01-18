@@ -6,8 +6,14 @@
 // Utility classes to hide elements in different ways.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/helpers/a11y';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -44,13 +50,13 @@ html.js .js-hide {
 // "!important" is used to prevent unintentional overrides.
 //
 .visually-hidden {
-  @include visually-hidden;
+  @include a11y.visually-hidden;
 
   // The ".focusable" class extends the ".visually-hidden" class to allow
   // the element to be focusable when navigated to via the keyboard.
   //
   &.focusable {
-    @include focusable;
+    @include a11y.focusable;
   }
 }
 

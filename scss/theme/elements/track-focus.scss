@@ -1,0 +1,55 @@
+
+//
+// @file
+// Keyboard Focus Tracking
+//
+// Stylistic rules for the current (keyboard) focus tracking.
+//
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Focusable elements
+//
+a,
+button,
+input,
+select,
+textarea,
+[tabindex='0'] {
+
+  // Focusable elements (Focus state)
+  //
+  &:focus {
+    --track-focus-outline-color: var(--state-focus);
+  }
+}
+
+// Button (Type) elements
+//
+button,
+[type='button'],
+[type='reset'],
+[type='submit'] {
+
+  // Button (Type) elements (Mozilla Firefox specific focus ring)
+  //
+  &:-moz-focusring {
+    --track-focus-outline-color: var(--state-focus);
+  }
+}

@@ -3,8 +3,17 @@
 // @file
 // Keyboard Focus Tracking
 //
-// Default styles for tracking the current (keyboard) focus.
+// Structural rules for the current (keyboard) focus tracking.
 //
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/helpers/units';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -12,12 +21,9 @@
 // @see https://www.drupal.org/docs/develop/standards/css/
 // @see https://css-tricks.com/sass-style-guide/
 // @see https://sass-guidelin.es
-
-// This file is compiled separately so we can pull in config dependencies
-// below while also maintaining Drupal's SMACSS structure.
 //
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
 
 /// Provide an easy way to include the `Track Focus` properties.
 ///
@@ -29,13 +35,11 @@
 ///   - Choose either to '@extend' or to '@include', depending on whether
 ///     you want to group selectors or not.
 ///
-/// @requires {placeholder} track-focus-defaults
-/// @requires {variable} enable-extend-directive
-/// @requires {variable} component-state-border-colors
-/// @requires {mixin} rem
+/// @require {mixin} units.rem
+/// @require {placeholder} track-focus-defaults
 
 @mixin track-focus(
-  $extend: $enable-extend-directive
+  $extend: true
 ) {
 
   @if $extend {
@@ -43,11 +47,15 @@
   }
   @else {
 
+    --track-focus-outline-width: #{units.rem(3px)};
+    --track-focus-outline-offset: #{units.rem(2px)};
+    --track-focus-outline-color: inherit;
+
     position: relative;
     outline: {
-      @include rem('width', 3px);
-      @include rem('offset', 2px);
-      color: map-get($component-state-border-colors, 'dark');
+      width: var(--track-focus-outline-width);
+      offset: var(--track-focus-outline-offset);
+      color: var(--track-focus-outline-color);
       style: solid;
     }
     z-index: 999;
@@ -56,7 +64,7 @@
 
 /// Track Focus (What Input) JavaScript default properties.
 ///
-/// @requires {mixin} track-focus
+/// @require {mixin} track-focus
 
 %track-focus-defaults {
   @include track-focus($extend: false);

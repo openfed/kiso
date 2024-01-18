@@ -1,14 +1,13 @@
 
 //
 // @file
-// Lists
+// Media
 //
-// Structural rules for all lists.
+// Stylistic rules for images and lightweight styles.
 //
 
 // Load required `Framework SASS` modules.
 @use '../../config/variable-overrides';
-@use '../../../_sass-framework/elements/list';
 
 // The following comment starts with a "!". So it will not be removed during
 // the (SASS) compilation. It is just to alert project contributors that the
@@ -25,33 +24,9 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-// (Un)ordered lists
+// Figures (Caption)
 //
-ul, ol {
-  @include list.styles;
-}
-
-// Definition lists
-//
-dl {
-  --definition-list-margin-bottom: var(--margin-xlarge);
-  --definition-title-font-weight: normal;
-  --definition-data-margin-bottom: var(--margin-xsmall);
-
-  margin-bottom: var(--definition-lists-margin-bottom);
-
-  // Definition titles
-  //
-  dt {
-    font-weight: var(--definition-title-font-weight);
-  }
-
-  // Definition data
-  //
-  dd {
-    margin: {
-      bottom: var(--definition-data-margin-bottom);
-      left: 0;
-    }
-  }
+figcaption {
+  --figcaption-color: var(--gray-700);
+  --figcaption-font-size: calc(var(--body-base-font-size) * 0.9);
 }

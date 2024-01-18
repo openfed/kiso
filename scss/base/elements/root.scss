@@ -1,11 +1,18 @@
 
 //
 // @file
-// Default root styles to provide better page-wide.
+// Structural rules for the root to provide better page-wide.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/root';
+@use '../../../_sass-framework/elements/body';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -17,17 +24,15 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-// Page body
+// Root element
+//
+:root {
+  @include root.spacings;
+  @include root.grid-system;
+}
+
+// Document body
 //
 body {
-  // As a best practice, apply a default `background-color`.
-  @include background($color: $body-base-background-color);
-  // Go easy on the eyes and use something other than "#000" for text.
-  color: $body-base-color;
-  font: {
-    @include rem('size', $body-base-font-size);
-    family: $body-base-font-family;
-    weight: $body-base-font-weight;
-  }
-  line-height: $body-base-line-height;
+  @include body.styles;
 }

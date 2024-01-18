@@ -3,11 +3,17 @@
 // @file
 // Tables
 //
-// Opt-in styles for data tables.
+// Structural opt-in rules for data tables.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/table';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -22,55 +28,9 @@
 // Basic tables
 //
 table {
-  @include rem('margin-bottom', map-get($component-margins, 'medium'));
-  @include background($color: transparent);
-
-  // Nested tables
-  //
-  table {
-    @include background($color: $body-base-background-color);
-  }
-}
-
-// Table cells
-//
-th,
-td {
-  @include rem('padding', map-get($component-vertical-paddings, 'large'));
-  border-top: {
-    @include rem('width', $component-border-width);
-    color: map-get($component-border-colors, 'neutral');
-    style: $component-border-style;
-  }
-}
-
-// Table captions
-//
-caption {
-  padding: {
-    @include rem('top', map-get($component-vertical-paddings, 'large'));
-    @include rem('bottom', map-get($component-vertical-paddings, 'large'));
-  }
-  color: map-get($component-state-colors, 'muted');
-  caption-side: bottom;
-}
-
-// Table cells (Headers)
-//
-thead th {
-  border-bottom: {
-    @include rem('width', ($component-border-width * 2));
-    color: map-get($component-border-colors, 'neutral');
-    style: $component-border-style;
-  }
-}
-
-// Table bodies (Start from the second)
-//
-tbody + tbody {
-  border-top: {
-    @include rem('width', ($component-border-width * 2));
-    color: map-get($component-border-colors, 'neutral');
-    style: $component-border-style;
-  }
+  @include table.styles;
+  @include table.bordered(
+    $flow: row,
+    $border-color: currentcolor
+  );
 }

@@ -1,14 +1,15 @@
 
 //
 // @file
-// Lists
+// Headings
 //
-// Structural rules for all lists.
+// Stylistic rules for HTML headings, <h1> through <h6>.
 //
 
 // Load required `Framework SASS` modules.
 @use '../../config/variable-overrides';
-@use '../../../_sass-framework/elements/list';
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/elements/heading';
 
 // The following comment starts with a "!". So it will not be removed during
 // the (SASS) compilation. It is just to alert project contributors that the
@@ -25,33 +26,17 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-// (Un)ordered lists
+/// Create list type local variable to manage all heading levels.
+///
+/// @type List
+
+$headings: h1, h2, h3, h4, h5, h6;
+
+// Headings (Font sizes)
 //
-ul, ol {
-  @include list.styles;
-}
-
-// Definition lists
-//
-dl {
-  --definition-list-margin-bottom: var(--margin-xlarge);
-  --definition-title-font-weight: normal;
-  --definition-data-margin-bottom: var(--margin-xsmall);
-
-  margin-bottom: var(--definition-lists-margin-bottom);
-
-  // Definition titles
-  //
-  dt {
-    font-weight: var(--definition-title-font-weight);
-  }
-
-  // Definition data
-  //
-  dd {
-    margin: {
-      bottom: var(--definition-data-margin-bottom);
-      left: 0;
-    }
+@each $heading in $headings {
+  #{$heading} {
+    // Note: Custom variable values only support SassScript inside `#{}`.
+    --heading-font-size: #{units.rem(heading.font-size($heading))};
   }
 }

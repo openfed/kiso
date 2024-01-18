@@ -3,11 +3,17 @@
 // @file
 // Typography
 //
-// Default styles for body text, inline elements, lists, and more.
+// Structural rules for body text, inline elements, lists, and more.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/link';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -22,52 +28,59 @@
 // Paragraphs
 //
 p {
-  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  --typography-paragraph-margin-bottom: var(--margin-medium);
+
+  margin-bottom: var(--typography-paragraph-margin-bottom);
 }
 
 // Links
 //
 a {
-  color: map-get($component-state-colors, 'link');
-  text-decoration: none;
-
-  // Links (Hover state)
-  //
-  &:hover {
-    color: map-get($component-state-colors, 'hover');
-    text-decoration: underline;
-  }
+  @include link.styles;
 }
 
 // Inline text elements
 //
 small {
+  --typography-small-font-size: inherit;
+  --typography-small-font-weight: normal;
+
   font: {
-    @include rem('size', ($body-base-font-size * 0.8));
-    weight: map-get($component-font-weights, 'regular');
+    size: var(--typography-small-font-size);
+    weight: var(--typography-small-font-weight);
   }
 }
 // Strong emphasis (Bolder text)
 //
 strong {
-  font-weight: map-get($component-font-weights, 'extra-bold');
+  --typography-strong-font-weight: normal;
+
+  font-weight: var(--typography-strong-font-weight);
   color: inherit;
 }
 // Mark (Highlighted text)
 //
 mark {
-  @include rem('padding', map-get($component-vertical-paddings, 'small'));
-  @include background($color: lighten(yellow, 43%));
+  --typography-mark-padding: var(--padding-vertical-small);
+  --typography-mark-background-color: transparent;
+
+  padding: var(--typography-mark-padding);
+  background-color: var(--typography-mark-background-color);
 }
 
 // Acronyms
 //
 acronym[title] {
-  @include rem('font-size', ($body-base-font-size * 0.9));
+  --typography-acronym-title-font-size: inherit;
+
+  font-size: var(--typography-acronym-title-font-size);
+  text-transform: uppercase;
 }
 
 // Addresses
 //
 address {
-  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  --typography-address-margin-bottom: var(--margin-medium);
+
+  margin-bottom: var(--typography-address-margin-bottom);
 }

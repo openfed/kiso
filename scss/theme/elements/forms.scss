@@ -1,14 +1,16 @@
 
 //
 // @file
-// Lists
+// Forms
 //
-// Structural rules for all lists.
+// Stylistic rules for creating a wide variety of forms.
 //
 
 // Load required `Framework SASS` modules.
 @use '../../config/variable-overrides';
-@use '../../../_sass-framework/elements/list';
+@use '../../../_sass-framework/elements/heading';
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/utilities/border';
 
 // The following comment starts with a "!". So it will not be removed during
 // the (SASS) compilation. It is just to alert project contributors that the
@@ -25,33 +27,21 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-// (Un)ordered lists
+// Form labels
 //
-ul, ol {
-  @include list.styles;
+label {
+  --form-element-label-font-weight: var(--font-bold);
 }
 
-// Definition lists
+// Fieldsets
 //
-dl {
-  --definition-list-margin-bottom: var(--margin-xlarge);
-  --definition-title-font-weight: normal;
-  --definition-data-margin-bottom: var(--margin-xsmall);
+fieldset {
+  --form-fieldset-border-bottom-color: #{border.color('neutral')};
+}
 
-  margin-bottom: var(--definition-lists-margin-bottom);
-
-  // Definition titles
-  //
-  dt {
-    font-weight: var(--definition-title-font-weight);
-  }
-
-  // Definition data
-  //
-  dd {
-    margin: {
-      bottom: var(--definition-data-margin-bottom);
-      left: 0;
-    }
-  }
+// Fieldset legends
+//
+legend {
+  --form-legend-font-size: #{units.rem(heading.font-size('h2'))};
+  --form-legend-font-weight: var(--font-bold);
 }

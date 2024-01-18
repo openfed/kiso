@@ -3,11 +3,13 @@
 // @file
 // Text selection color.
 //
-// Overriding the default text selection color.
+// Structural rules for the text selection color.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -22,6 +24,9 @@
 // WebKit/Blink browsers
 //
 *::selection {
-  @include background($color: theme-color('primary'));
-  color: $body-base-background-color;
+  --selection-text-color: white;
+  --selection-text-background-color: royalblue;
+
+  color: var(--selection-text-color);
+  background-color: var(--selection-text-background-color);
 }

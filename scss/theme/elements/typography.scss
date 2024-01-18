@@ -1,14 +1,14 @@
 
 //
 // @file
-// Lists
+// Typography
 //
-// Structural rules for all lists.
+// Stylistic rules for body text, inline elements, lists, and more.
 //
 
 // Load required `Framework SASS` modules.
 @use '../../config/variable-overrides';
-@use '../../../_sass-framework/elements/list';
+@use 'sass:color';
 
 // The following comment starts with a "!". So it will not be removed during
 // the (SASS) compilation. It is just to alert project contributors that the
@@ -25,33 +25,25 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-// (Un)ordered lists
+// Inline text elements
 //
-ul, ol {
-  @include list.styles;
+small {
+  --typography-small-font-size: calc(var(--body-base-font-size) * 0.875);
+  --typography-small-font-weight: var(--font-regular);
+}
+// Strong emphasis (Bolder text)
+//
+strong {
+  --typography-strong-font-weight: var(--font-extra-bold);
+}
+// Mark (Highlighted text)
+//
+mark {
+  --typography-mark-background-color: #{color.scale(yellow, $lightness: 57%)};
 }
 
-// Definition lists
+// Acronyms
 //
-dl {
-  --definition-list-margin-bottom: var(--margin-xlarge);
-  --definition-title-font-weight: normal;
-  --definition-data-margin-bottom: var(--margin-xsmall);
-
-  margin-bottom: var(--definition-lists-margin-bottom);
-
-  // Definition titles
-  //
-  dt {
-    font-weight: var(--definition-title-font-weight);
-  }
-
-  // Definition data
-  //
-  dd {
-    margin: {
-      bottom: var(--definition-data-margin-bottom);
-      left: 0;
-    }
-  }
+acronym[title] {
+  --typography-acronym-title-font-size: calc(var(--body-base-font-size) * 0.9);
 }

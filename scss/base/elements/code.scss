@@ -3,11 +3,16 @@
 // @file
 // Code
 //
-// Styles for inline and multiline blocks of code.
+// Structural rules for inline and multiline blocks of code.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -21,53 +26,67 @@
 
 // 'All kind of code' default properties.
 //
-// Use the following '%code-defaults' placeholder to create
-// default properties which will be extended to all kind of code.
-//
-%code-defaults {
+code, pre, kbd {
+  --code-font-size: inherit;
+  --code-font-family: inherit;
+
   font: {
-    @include rem('size', ($body-base-font-size * 0.9));
-    family: $font-family-monospace;
+    size: var(--code-font-size);
+    family: var(--code-font-family);
   }
 }
 
 // Inline code
 //
 code {
-  @extend %code-defaults;
   color: red;
 }
 
 // Code blocks
 //
 pre {
-  @extend %code-defaults;
-  @include rem('padding', map-get($component-vertical-paddings, 'medium') map-get($component-horizontal-paddings, 'medium'));
-  @include rem('margin-bottom', map-get($component-margins, 'medium'));
-  @include rem('border-radius', map-get($component-border-radiuses, 'medium'));
-  @include rem('max-height', 340px);
-  @include background($color: map-get($component-state-background-colors, 'light'));
-  color: map-get($component-state-colors, 'dark');
+  --code-pre-max-height: fit-content;
+  --code-pre-padding-vertical: var(--padding-vertical-medium);
+  --code-pre-padding-horizontal: var(--padding-horizontal-medium);
+  --code-pre-margin-bottom: var(--margin-medium);
+  --code-pre-border-color: currentcolor;
+  --code-pre-border-radius: unset;
+  --code-pre-color: currentcolor;
+  --code-pre-background-color: transparent;
+
+  max-height: var(--code-pre-max-height);
+  padding: var(--code-pre-padding-vertical) var(--code-pre-padding-horizontal);
+  margin-bottom: var(--code-pre-margin-bottom);
   border: {
-    @include rem('width', $component-border-width);
-    color: map-get($component-border-colors, 'dark');
-    style: $component-border-style;
+    width: 1px;
+    color: var(--code-pre-border-color);
+    style: solid;
+    radius: var(--code-pre-border-radius);
   }
+  color: var(--code-pre-color);
+  background-color: var(--code-pre-background-color);
 }
 
 // Keyboard code
 //
 kbd {
-  @extend %code-defaults;
-  @include rem('padding', map-get($component-vertical-paddings, 'small') map-get($component-horizontal-paddings, 'small'));
-  @include rem('border-radius', map-get($component-border-radiuses, 'small'));
-  @include background($color: map-get($component-state-background-colors, 'dark'));
-  color: $body-base-background-color;
-  box-shadow: map-get($component-box-shadows, 'inset');
+  --code-kbd-padding-vertical: var(--padding-vertical-small);
+  --code-kbd-padding-horizontal: var(--padding-horizontal-small);
+  --code-kbd-border-radius: unset;
+  --code-kbd-color: currentcolor;
+  --code-kbd-background-color: transparent;
+  --code-kbd-box-shadow: unset;
+  --code-kbd-nested-font-weight: normal;
+
+  padding: var(--code-kbd-padding-vertical) var(--code-kbd-padding-horizontal);
+  border-radius: var(--code-kbd-border-radius);
+  color: var(--code-kbd-color);
+  background-color: var(--code-kbd-background-color);
+  box-shadow: var(--code-kbd-box-shadow);
 
   // Nested code (Keyboard)
   //
   kbd {
-    font-weight: map-get($component-font-weights, 'bold');
+    font-weight: var(--code-kbd-nested-font-weight);
   }
 }

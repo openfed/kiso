@@ -3,11 +3,17 @@
 // @file
 // Headings
 //
-// All HTML headings, <h1> through <h6>.
+// Structural rules for HTML headings, <h1> through <h6>.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/heading';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -19,50 +25,20 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-/// Headings default properties.
+/// Create list type local variable to manage all heading levels.
 ///
-/// @requires {mixin} headings
-///   - See the mixin for available local variables
-///     to customize `Headings` visual style.
+/// @type List
 
-%headings-defaults {
-  @include headings;
+$headings: h1, h2, h3, h4, h5, h6;
+
+// All headings
+//
+#{$headings} {
+  @include heading.styles;
 }
 
-// Headings 1
+// `<h1>` specific bottom margin.
 //
 h1 {
-  @extend %headings-defaults;
-  @include rem('margin-bottom', map-get($component-margins, 'medium'));
-  @include rem('font-size', $heading-1-font-size);
-}
-// Headings 2
-//
-h2 {
-  @extend %headings-defaults;
-  @include rem('font-size', $heading-2-font-size);
-}
-// Headings 3
-//
-h3 {
-  @extend %headings-defaults;
-  @include rem('font-size', $heading-3-font-size);
-}
-// Headings 4
-//
-h4 {
-  @extend %headings-defaults;
-  @include rem('font-size', $heading-4-font-size);
-}
-// Headings 5
-//
-h5 {
-  @extend %headings-defaults;
-  @include rem('font-size', $heading-5-font-size);
-}
-// Headings 6
-//
-h6 {
-  @extend %headings-defaults;
-  @include rem('font-size', $heading-6-font-size);
+  --heading-margin-bottom: var(--margin-medium);
 }

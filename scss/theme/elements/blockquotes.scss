@@ -1,14 +1,15 @@
 
 //
 // @file
-// Lists
+// Blockquotes
 //
-// Structural rules for all lists.
+// Stylistic rules for quoting blocks of content from another source within your document.
 //
 
 // Load required `Framework SASS` modules.
 @use '../../config/variable-overrides';
-@use '../../../_sass-framework/elements/list';
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/utilities/border';
 
 // The following comment starts with a "!". So it will not be removed during
 // the (SASS) compilation. It is just to alert project contributors that the
@@ -25,33 +26,11 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-// (Un)ordered lists
+// Blockquotes
 //
-ul, ol {
-  @include list.styles;
-}
-
-// Definition lists
-//
-dl {
-  --definition-list-margin-bottom: var(--margin-xlarge);
-  --definition-title-font-weight: normal;
-  --definition-data-margin-bottom: var(--margin-xsmall);
-
-  margin-bottom: var(--definition-lists-margin-bottom);
-
-  // Definition titles
-  //
-  dt {
-    font-weight: var(--definition-title-font-weight);
-  }
-
-  // Definition data
-  //
-  dd {
-    margin: {
-      bottom: var(--definition-data-margin-bottom);
-      left: 0;
-    }
-  }
+blockquote {
+  --blockquote-font-size: calc(var(--body-base-font-size) * 1.25);
+  --blockquote-border-left-width: #{units.rem(5px)};
+  --blockquote-border-left-color: var(--primary);
+  --blockquote-footer-color: var(--gray-700);
 }

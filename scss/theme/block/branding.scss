@@ -9,7 +9,6 @@
 // Load required `Framework SASS` modules.
 @use '../../config/variable-overrides';
 @use '../../../_sass-framework/helpers/css';
-@use '../../../_sass-framework/helpers/units';
 
 // The following comment starts with a "!". So it will not be removed during
 // the (SASS) compilation. It is just to alert project contributors that the
@@ -37,43 +36,9 @@
     // Branding
     //
     &__branding {
-      --branding-margin-right: var(--margin-medium);
-      --branding-color: currentcolor;
-      --branding-font-size: inherit;
-      --branding-hover-color: currentcolor;
-
-      display: inline-block;
-      margin-right: var(--branding-margin-right);
-      color: var(--branding-color);
-      font-size: var(--branding-font-size);
-      line-height: inherit;
-      white-space: nowrap;
-
-      // Branding (Hover state)
-      //
-      &:hover {
-        color: var(--branding-hover-color);
-        text-decoration: none;
-      }
-    }
-
-    // Site logo
-    //
-    &__site-logo {
-      --site-logo-width: #{units.rem(3.75rem)};
-      --site-logo-height: #{units.rem(3.75rem)};
-
-      display: inline-block;
-      width: var(--site-logo-width);
-      height: var(--site-logo-height);
-    }
-
-    // Site name
-    //
-    &__site-name {
-      --site-name-margin-left: var(--margin-small);
-
-      margin-left: var(--site-name-margin-left);
+      --branding-color: var(--body-base-color);
+      --branding-font-size: calc(var(--body-base-font-size) * 1.25);
+      --branding-hover-color: var(--body-base-color);
     }
   }
 }

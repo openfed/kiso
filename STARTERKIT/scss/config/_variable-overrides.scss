@@ -5,19 +5,40 @@
 //
 // Every Sass variable and map in the `Framework SASS` source files includes
 // the '!default' flag allowing you to override the default value from here
-// without modifying the `Framework SASS` source files code. Copy and paste
-// variables or maps as needed, modify their values, and remove the
-// '!default' flag.
+// without modifying the `Framework SASS` source files code.
 //
 // If a variable has already been assigned, then it won’t be re-assigned by
 // the default values comig from the the `Framework SASS` source files.
 //
 // You will find the complete list of the `Framework SASS` variables and
-// maps in the following files:
-// ./THEMENAME/_sass-framework/variables/_options.scss
-// ./THEMENAME/_sass-framework/variables/_colors.scss
-// ./THEMENAME/_sass-framework/variables/_base.scss
-// ./THEMENAME/_sass-framework/variables/_layout.scss
-// ./THEMENAME/_sass-framework/variables/_components.scss
-// ./THEMENAME/_sass-framework/variables/_selectors.scss
+// maps at the following URL address:
+// https://github.com/smillart/Framework-SASS-Source-Files/blob/2.0.x/SASS-REFERENCE.md#variables
+//
+// To load a module with configuration, write:
+//
+// @forward <url> with (
+//   <variable>: <value>,
+//   <variable>: <value>,
+// );
+//
+// Example:
+//
+// $new-blue: #1e90ff;
+// $new-red: #b22222;
+// $aqua: #00ffff;
+// $fire: #ff0000;
+//
+// @forward '../../_sass-framework/utilities/color/colors' with (
+//   $blue: $new-blue,
+//   $red: $new-red,
+// );
+//
+// @forward '../../_sass-framework/utilities/color/schemes' with (
+//   $schemes: (
+//     'aqua': $aqua,
+//     'fire': $fire,
+//   ),
+// );
+//
+// The configured values will override the variables’ default values.
 //

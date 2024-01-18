@@ -4,8 +4,14 @@
 // Styles for the "External" (New Window) links.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/helpers/units';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -24,13 +30,20 @@ svg {
   // SVG images (Ext/Internal & Email links)
   //
   &.ext, &.int, &.mailto {
-    @include rem('width', 1em);
-    @include rem('height', 1em);
-    @include rem('vertical-align', 0.125em);
-    @include rem('margin-left', map-get($component-margins, 'xsmall'));
+    --extlink-window-svg-width: #{units.rem(1em)};
+    --extlink-window-svg-height: #{units.rem(1em)};
+    --extlink-window-svg-margin-left: var(--margin-xsmall);
+    --extlink-window-svg-fill: var(--gray-700);
+    --extlink-window-svg-vertical-align: {units.rem(0.125em)};
+    --extlink-window-svg-font-size: inherit;
+
     display: inline-block;
-    font-size: inherit;
-    fill: grayscale('700');
+    width: var(--extlink-window-svg-width);
+    height: var(--extlink-window-svg-height);
+    margin-left: var(--extlink-window-svg-margin-left);
+    font-size: var(--extlink-window-svg-font-size);
+    fill: var(--extlink-window-svg-fill);
+    vertical-align: var(--extlink-window-svg-vertical-align);
 
     // Hide them when printing.
     //
@@ -41,7 +54,7 @@ svg {
     // SVG images (Ext/Internal & Email links) / Sizing scale (Smaller)
     //
     &--smaller {
-      @include rem('font-size', 0.7em);
+      --extlink-window-svg-font-size: #{units.rem(0.7em)};
     }
   }
 }
@@ -53,9 +66,13 @@ svg {
   // Font Awesome icons (Ext/Internal & Email links)
   //
   &-ext, &-int, &-mailto {
-    @include rem('margin-left', map-get($component-margins, 'xsmall'));
-    font-size: 0.7em;
-    vertical-align: 0.3em;
+    --extlink-window-fa-margin-left: var(--margin-xsmall);
+    --extlink-window-fa-font-size: #{units.rem(0.7em)};
+    --extlink-window-fa-vertical-align: {units.rem(0.3em)};
+
+    margin-left: var(--extlink-window-fa-margin-left);
+    font-size: var(--extlink-window-fa-font-size);
+    vertical-align: var(--extlink-window-fa-vertical-align);
 
     // Hide them when printing.
     //

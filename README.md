@@ -3,12 +3,12 @@
 Drupal "Kiso" (基礎) base theme
 ==========
 
-![GitHub updated](https://img.shields.io/badge/Last%20updated-July%2026,%202023-405b77.svg)
+![GitHub updated](https://img.shields.io/badge/Last%20updated-January%2012,%202024-405b77.svg)
 [![Drupal compatibility](https://img.shields.io/badge/Drupal%20compatibility-9.x|10.x-405b77.svg)](kiso.info.yml)
-[![GitHub release](https://img.shields.io/badge/Release-3.0.1-405b77.svg)](https://github.com/openfed/kiso/releases/tag/3.0.1)
+[![GitHub release](https://img.shields.io/badge/Release-3.0.2-405b77.svg)](https://github.com/openfed/kiso/releases/tag/3.0.2)
 
 > **Note**
-> This *Kiso* release (3.0) is compatible with **Drupal 10**.
+> *Kiso* releases (3.0.x) are compatible with **Drupal 10**.
 
 > *Kiso* is a brand new base theme completely build from scratch. *Kiso* theme is fully built around and adapted to Drupal 9/10, with a strong focus on *accessibility*, *portability*, *simplicity* and *efficiency*.
 

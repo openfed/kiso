@@ -13,12 +13,11 @@
  *   - ARIA19: Using ARIA role=alert or Live Regions to Identify Errors.
  * - SC 4.1.2 Name, Role, Value (Level A):
  *   - ARIA14: Using aria-label to provide an invisible label where a visible
- *     label cannot be used. 
+ *     label cannot be used.
  */
 #}
 {% block messages %}
 {{ attach_library('kiso/messages') }}
-{% set container = container_fluid ? 'container-fluid' : 'container' %}
 {% for type, messages in message_list %}
   {%
     set classes = [
@@ -29,18 +28,16 @@
   {% if status_headings[type] %}
     {% set attributes = attributes.setAttribute('aria-label', status_headings[type]) %}
   {% endif %}
-  <div class="{{ container }}">
-    <div role="alert"{{ attributes.addClass(classes)|without('role') }}>
-      {% if messages|length > 1 %}
-        <ul class="messages__items">
-          {% for message in messages %}
-            <li class="messages__item">{{ message }}</li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        {{ messages|first }}
-      {% endif %}
-    </div>
+  <div role="alert"{{ attributes.addClass(classes)|without('role') }}>
+    {% if messages|length > 1 %}
+      <ul class="messages__items">
+        {% for message in messages %}
+          <li class="messages__item">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      {{ messages|first }}
+    {% endif %}
   </div>
   {# Remove type specific status and classes. #}
   {% set attributes = attributes.removeAttribute('aria-label').removeClass(classes) %}

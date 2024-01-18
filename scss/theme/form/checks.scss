@@ -1,7 +1,7 @@
 
 //
 // @file
-// Structural rules for 'Checkboxes and Radio buttons' form elements.
+// Stylistic rules for 'Checkboxes and Radio buttons' form elements.
 //
 
 // Load required `Framework SASS` modules.
@@ -23,17 +23,14 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-/// Form check-lists default properties.
+/// Form check-lists "Theme" default properties.
 ///
-/// @require {mixin} form.styles
+/// @require {mixin} form.theme
 ///   - See the mixins for available local variables
 ///     to customize `Form check-lists` visual style.
 
-%form-check-defaults {
-  @include form.styles(
-    $border-color: currentcolor,
-    $background-color: currentcolor
-  );
+%form-check-theme-defaults {
+  @include form.theme('primary');
 }
 
 // Form elements
@@ -43,21 +40,12 @@
   // Checkboxes
   //
   &-checkbox {
-    @extend %form-check-defaults;
-    @include form.check(
-      $checkbox-checked-background-image-path: '../../../images/icons',
-      $checkbox-checked-background-image-name: 'check',
-      $checkbox-checked-background-image-extension: 'svg',
-      $checked-background-size: 10px 10px,
-    );
+    @extend %form-check-theme-defaults;
   }
 
   // Radios
   //
   &-radio {
-    @extend %form-check-defaults;
-    @include form.check(
-      $radio-checked-background-image-color: white
-    );
+    @extend %form-check-theme-defaults;
   }
 }

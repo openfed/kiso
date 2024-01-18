@@ -1,11 +1,22 @@
 
 //
 // @file
-// Visual styles for buttons.
+// Structural rules for buttons.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use 'sass:map';
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/button';
+@use '../../../_sass-framework/helpers/a11y';
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/layout/breakpoint';
+@use '../../../_sass-framework/utilities/font/awesome';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -20,59 +31,43 @@
 // Buttons
 //
 .button {
-  @include button;
+  @include button.styles(
+    $color: currentcolor,
+    $border-color: currentcolor
+  );
 
-  // Toggle button
+  // Toggle button (Mobile menu)
   //
   &--toggler {
+    --button-toggler-width: #{units.rem(28px)};
+    --button-toggler-height: #{units.rem(28px)};
+    --button-toggler-icon-font-size: inherit;
+
+    @include awesome.icon('bars', $position: 'after') {
+      font-size: var(--button-toggler-icon-font-size);
+    }
+    width: var(--button-toggler-width);
+    height: var(--button-toggler-height);
+    padding: 0;
+    border: 0 none;
+    margin-left: auto;
+
+    // Toggle button (Mobile menu / Expanded state)
+    //
+    &[aria-expanded="true"] {
+      @include awesome.icon('xmark', $position: 'after');
+    }
+
+    // Inner "MENU" text.
+    //
+    span {
+      @include a11y.visually-hidden;
+    }
 
     // Responsiveness
-    // Properties for at most medium devices (Tablets, 991px and down).
-    //
-    @include breakpoint-down('medium') {
-      /* Use a background image to prevent screen readers from announcing the text. */
-      @include background(
-        $color: transparent,
-        $image-path: '../../../images/icons',
-        $image: 'hamburger',
-        $image-extension: 'svg',
-        $image-size: 28px 28px,
-        $retina-fallback: false
-      );
-      @include rem('width', 1.75rem);
-      @include rem('height', 1.75rem);
-      padding: 0;
-      border: 0 none;
-      margin-left: auto;
-
-      // Toggle button (Hover and focus states)
-      //
-      &:hover,
-      &:focus {
-        @include background($color: transparent);
-      }
-
-      // Toggle button (Expanded state)
-      //
-      &[aria-expanded="true"] {
-        /* Use a background image to prevent screen readers from announcing the text. */
-        @include background(
-          $image-path: '../../../images/icons',
-          $image: 'ex',
-          $image-extension: 'svg',
-          $retina-fallback: false
-        );
-      }
-
-      // Inner "MENU" text.
-      //
-      span {
-        @include visually-hidden($extend: false);
-      }
-    }
     // Properties for at least large devices (Desktops, 992px and up).
     //
-    @include breakpoint-up('large') {
+    @include breakpoint.up('large') {
       display: none;
     }
   }

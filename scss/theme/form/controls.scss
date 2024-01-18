@@ -1,7 +1,7 @@
 
 //
 // @file
-// Structural rules for 'Controls' form elements.
+// Stylistic rules for 'Controls' form elements.
 //
 
 // Load required `Framework SASS` modules.
@@ -23,18 +23,14 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-/// Control default properties.
+/// Control "Theme" default properties.
 ///
-/// @require {mixin} form.styles
-/// @require {mixin} form.control
+/// @require {mixin} form.theme
 ///   - See the mixins for available local variables
 ///     to customize `Form controls` visual style.
 
-%form-control-defaults {
-  @include form.styles(
-    $border-color: currentcolor
-  );
-  @include form.control;
+%form-control-theme-defaults {
+  @include form.theme('primary');
 }
 
 // Form elements
@@ -63,22 +59,7 @@
     // 'Textfield' types
     //
     &-#{$input-type} {
-      @extend %form-control-defaults;
-    }
-  }
-
-  // File uploads
-  //
-  &-file {
-    @include form.file;
-
-    // File and button uploads which need to be on a signle line.
-    //
-    .form-managed-file & {
-      display: inline-block;
-      width: auto;
-      text-align: initial;
-      vertical-align: middle;
+      @extend %form-control-theme-defaults;
     }
   }
 
@@ -89,21 +70,7 @@
     // Selects (Excepted for Pop-up calendars)
     //
     &:not([class*="datepicker"]) {
-      @include form.styles(
-        $border-color: currentcolor
-      );
-      @include form.control;
-      @include form.select(
-        $background-image-path: '../../../images/icons',
-        $background-image-name: 'twistie-down',
-        $background-image-extension: 'svg'
-      );
+      @include form.theme('primary');
     }
-  }
-
-  // Textareas
-  //
-  &-textarea {
-    @include form.textarea;
   }
 }

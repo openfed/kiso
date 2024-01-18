@@ -1,13 +1,13 @@
 
 //
 // @file
-// Structural rules for the "Footer" menu.
+// Stylistic rules for the "Menu bar" menu.
 //
 
 // Load required `Framework SASS` modules.
 @use '../../config/variable-overrides';
-@use '../../../_sass-framework/elements/list';
 @use '../../../_sass-framework/helpers/css';
+@use '../../../_sass-framework/utilities/background';
 
 // The following comment starts with a "!". So it will not be removed during
 // the (SASS) compilation. It is just to alert project contributors that the
@@ -29,28 +29,15 @@
 //
 .menu {
 
-  // Navigation elements when embedded inside the Footer (Contentinfo) region.
+  // Navigation elements when embedded inside the Header (Collapsible) region.
   //
-  #{css.selector('region-footer')} & {
-    @include list.inline;
-    margin-bottom: 0;
-
-    // Menu (List items)
-    //
-    &__item {
-      padding: 0;
-
-      // Menu (List items / Expanded & Collapsed)
-      //
-      &--expanded,
-      &--collapsed {
-
-        // Menu (List items / Expanded & Collapsed / Before selector)
-        //
-        &::before {
-          display: none;
-        }
-      }
-    }
+  #{css.selector('region-header-collapsible')} & {
+    --menu-menubar-item-font-size: calc(var(--body-base-font-size) * 1.25);
+    --menu-menubar-link-color: var(--gray-700);
+    --menu-menubar-link-hover-color: var(--state-dark);
+    --menu-menubar-link-active-background-color: #{background.state('muted')};
+    --menu-menubar-link-active-color: var(--state-dark);
+    --menu-menubar-link-active-trail-color: var(--state-dark);
+    --menu-menubar-link-active-trail-background-color: #{background.state('muted')};
   }
 }

@@ -1,11 +1,18 @@
 
 //
 // @file
-// Visual styles for tabs (Primary and secondary local tasks).
+// Structural rules for tabs (Primary and secondary local tasks).
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/list';
+@use '../../../_sass-framework/utilities/display';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -28,8 +35,14 @@
     // Tabs (Unordered list / Primary)
     //
     &--primary {
-      @include flex(baseline);
-      @include list-variant('unstyled');
+      --tabs-primary-item-not-first-child-margin-left: var(--margin-xsmall);
+      --tabs-primary-link-padding-vertical: var(--padding-vertical-large);
+      --tabs-primary-link-padding-horizontal: var(--padding-horizontal-large);
+      --tabs-primary-link-hover-background-color: currentcolor;
+      --tabs-primary-link-active-background-color: currentcolor;
+
+      @include display.flex(baseline);
+      @include list.unstyled;
 
       // Tabs (Primary)
       //
@@ -42,27 +55,27 @@
           // Tabs (List items / Primary / Excepted the first child)
           //
           &:not(:first-child) {
-            @include rem('margin-left', map-get($component-margins, 'xsmall'));
+            margin-left: var(--tabs-primary-item-not-first-child-margin-left);
           }
         }
 
         // Tabs (Item links / Primary)
         //
         &__link {
-          @include rem('padding', map-get($component-vertical-paddings, 'large') map-get($component-horizontal-paddings, 'large'));
           display: block;
-
-          // Tabs (Item links / Primary / Active state)
-          //
-          &.is-active {
-            @include background($color: map-get($component-state-background-colors, 'muted'));
-          }
+          padding: var(--tabs-primary-link-padding-vertical) var(--tabs-primary-link-padding-horizontal);
 
           // Tabs (Item links / Primary / Hover state)
           //
           &:hover {
-            @include background($color: map-get($component-state-background-colors, 'light'));
+            background-color: var(--tabs-primary-link-hover-background-color);
             text-decoration: none;
+          }
+
+          // Tabs (Item links / Primary / Active state)
+          //
+          &.is-active {
+            background-color: var(--tabs-primary-link-active-background-color);
           }
         }
       }

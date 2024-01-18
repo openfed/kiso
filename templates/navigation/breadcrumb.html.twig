@@ -17,10 +17,8 @@
  *     label cannot be used.
  */
 #}
-{% set container = container_fluid ? 'container-fluid' : 'container' %}
-
 {% if not is_front and breadcrumb %}
-  <nav class="breadcrumb {{ container }}" aria-label="{{ 'Breadcrumb'|t }}">
+  <nav class="breadcrumb" aria-label="{{ 'Breadcrumb'|t }}">
     <ol>
       {% for item in breadcrumb %}
         <li>

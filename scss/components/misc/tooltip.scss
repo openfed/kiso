@@ -1,11 +1,17 @@
 
 //
 // @file
-// Styles for the "Tooltip" popup.
+// Structural rules for the "Tooltip" popup.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/utilities/font';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -21,7 +27,7 @@
 //
 [role="img"] {
   @extend %tooltip-pseudo-element-defaults;
-  
+
   // After selector
   //
   &::after {
@@ -40,7 +46,7 @@
 //
 [data-pattern="tooltip"] {
   @extend %tooltip-pseudo-element-defaults;
-  
+
   // After selector
   //
   &::after {
@@ -52,27 +58,37 @@
 // Common properties for "Tooltip" pseudo-element.
 //
 %tooltip-pseudo-element-defaults {
+  --tooltip-pseudo-element-padding-vertical: var(--padding-vertical-small);
+  --tooltip-pseudo-element-padding-horizontal: var(--padding-horizontal-small);
+  --tooltip-pseudo-element-border-radius: unset;
+  --tooltip-pseudo-element-margin-bottom: var(--margin-xsmall);
+  --tooltip-pseudo-element-color: currentcolor;
+  --tooltip-pseudo-element-background-color: transparent;
+  --tooltip-pseudo-element-font-size: inherit;
+  --tooltip-pseudo-element-font-weight: normal;
+  --tooltip-pseudo-element-box-shadow: unset;
+
   position: relative;
 
   // Tooltips (After selector)
   //
   &::after {
-    @include rem('padding', map-get($component-vertical-paddings, 'small') map-get($component-horizontal-paddings, 'small'));
-    @include rem('border-radius', map-get($component-border-radiuses, 'small'));
-    @include rem('margin-bottom', map-get($component-margins, 'xsmall'));
-    @include background($color: map-get($component-state-background-colors, 'dark'));
-    font: {
-      @include rem('size', ($body-base-font-size * 0.8));
-      family: $font-family-sans-serif;
-      weight: map-get($component-font-weights, 'regular');
-    }
-    line-height: 1.3;
-    box-shadow: map-get($component-box-shadows, 'small');
-    color: $body-base-background-color;
     position: absolute;
     left: 50%;
     display: none;
     min-width: max-content;
+    padding: var(--tooltip-pseudo-element-padding-vertical) var(--tooltip-pseudo-element-padding-horizontal);
+    border-radius: var(--tooltip-pseudo-element-border-radius);
+    margin-bottom: var(--tooltip-pseudo-element-margin-bottom);
+    color: var(--tooltip-pseudo-element-color);
+    background-color: var(--tooltip-pseudo-element-background-color);
+    font: {
+      size: var(--tooltip-pseudo-element-font-size);
+      family: font.family('sans-serif');
+      weight: var(--tooltip-pseudo-element-font-weight);
+    }
+    line-height: 1.3;
+    box-shadow: var(--tooltip-pseudo-element-box-shadow);
     white-space: nowrap;
     transform: translateX(-50%);
 

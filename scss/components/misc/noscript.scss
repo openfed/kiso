@@ -1,11 +1,20 @@
 
 //
 // @file
-// Styles for the "Warning message" when JavaScript disabled.
+// Structural rules for the "Warning message" when JavaScript disabled.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/body/base' as *;
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/layout/breakpoint';
+@use '../../../_sass-framework/utilities/spacing';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -21,51 +30,60 @@
 ///
 /// @type Number
 
-$noscript-font-size: ($body-base-font-size * 0.8);
-$noscript-small-font-size: $body-base-font-size;
+$noscript-font-size: calc($base-font-size * 0.8);
+$noscript-small-font-size: $base-font-size;
 
-$noscript-vertical-padding: map-get($component-vertical-paddings, 'xlarge');
-$noscript-height: (($noscript-font-size * $body-base-line-height) * 4) + ($noscript-vertical-padding * 2);
-$noscript-small-height: (($noscript-small-font-size * $body-base-line-height) * 2) + ($noscript-vertical-padding * 2);
+$noscript-vertical-padding: spacing.padding('xlarge', 'vertical');
+$noscript-height: calc(calc($noscript-font-size * $base-line-height) * 4) + calc($noscript-vertical-padding * 2);
+$noscript-small-height: calc(calc($noscript-small-font-size * $base-line-height) * 2) + calc($noscript-vertical-padding * 2);
 
 // Page body (when JavaScript disabled)
 //
 html:not(.js) body {
-  @include rem('margin-bottom', $noscript-height);
+  --noscript-body-margin-bottom: units.rem($noscript-height);
+
+  margin-bottom: var(--noscript-body-margin-bottom);
 
   // Responsiveness
   // Properties for at least small devices (Landscape phones, 576px and up).
   //
-  @include breakpoint-up('small') {
-    @include rem('margin-bottom', $noscript-small-height);
+  @include breakpoint.up('small') {
+    --noscript-body-margin-bottom: units.rem($noscript-small-height);
   }
 
   // JavaScript disabled
   //
   .noscript {
-    @include rem('padding', $noscript-vertical-padding map-get($component-horizontal-paddings, 'xlarge'));
-    @include rem('font-size', $noscript-font-size);
-    @include background($color: theme-color('dark'));
+    --noscript-warning-message-padding-vertical: #{units.rem($noscript-vertical-padding)};
+    --noscript-warning-message-padding-horizontal: var(--padding-horizontal-xlarge);
+    --noscript-warning-message-color: currentcolor;
+    --noscript-warning-message-background-color: transparent;
+    --noscript-warning-message-font-size: inherit;
+    --noscript-warning-message-inner-link-color: currentcolor;
+
     position: fixed;
     bottom: 0;
     left: 0;
     z-index: 9999;
     display: block;
     width: 100%;
-    color: white;
+    padding: var(--noscript-warning-message-padding-vertical) var(--noscript-warning-message-padding-horizontal);
+    color: var(--noscript-warning-message-color);
+    background-color: var(--noscript-warning-message-background-color);
+    font-size: var(--noscript-warning-message-font-size);
     text-align: center;
 
     // Responsiveness
     // Properties for at least small devices (Landscape phones, 576px and up).
     //
-    @include breakpoint-up('small') {
-      @include rem('font-size', $noscript-small-font-size);
+    @include breakpoint.up('small') {
+      --noscript-warning-message-font-size: #{units.rem($noscript-small-font-size)};
     }
 
     // Inner links
     //
     a {
-      color: white;
+      color: var(--noscript-warning-message-inner-link-color);
       text-decoration: underline;
 
       // Inner links (Hover state)

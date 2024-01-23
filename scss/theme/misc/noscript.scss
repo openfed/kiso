@@ -1,0 +1,40 @@
+
+//
+// @file
+// Stylistic rules for the "Warning message" when JavaScript disabled.
+//
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/body/base' as *;
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/utilities/background';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Page body (when JavaScript disabled)
+//
+html:not(.js) body {
+
+  // JavaScript disabled
+  //
+  .noscript {
+    --noscript-warning-message-color: white;
+    --noscript-warning-message-background-color: #{background.state('dark')};
+    --noscript-warning-message-font-size: #{units.rem(calc($base-font-size * 0.8))};
+    --noscript-warning-message-inner-link-color: white;
+  }
+}

@@ -7,8 +7,16 @@
 // and sizes using a twelve column system and five responsive tiers.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import "../config/imports";
+// Load required `Framework SASS` modules.
+@use '../config/variable-overrides';
+@use '../../_sass-framework/layout/breakpoint';
+@use '../../_sass-framework/layout/grid';
+@use '../../_sass-framework/options/enable/grid' as *;
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -25,10 +33,10 @@
 //
 // Set the container width, and override it for fixed navbars in media queries.
 //
-@if $enable-grid-classes {
+@if $grid-classes {
   .container {
-    @include make-container;
-    @include make-container-max-widths;
+    @include grid.make-container;
+    @include grid.make-container-max-widths;
   }
 }
 
@@ -37,9 +45,9 @@
 // Utilizes the mixin meant for fixed width containers, but with 100% width for
 // fluid, full width layouts.
 //
-@if $enable-grid-classes {
+@if $grid-classes {
   .container-fluid {
-    @include make-container;
+    @include grid.make-container;
     width: 100%;
   }
 }
@@ -48,15 +56,15 @@
 //
 // Rows contain and clear the floats of your columns.
 //
-@if $enable-grid-classes {
+@if $grid-classes {
   .row {
-    @include make-row;
+    @include grid.make-row;
   }
 
   // Reset gutters
   //
   .no-gutters {
-    @extend %row-reset-defaults;
+    @include grid.make-row-reset;
   }
 }
 
@@ -64,13 +72,13 @@
 //
 // Common styles for small and large grid columns
 //
-@if $enable-grid-classes {
-  @each $breakpoint in map-keys($grid-breakpoints) {
-    $infix: breakpoint-infix($breakpoint);
+@if $grid-classes {
+  @each $breakpoint in map-keys(breakpoint.$breakpoints) {
+    $infix: breakpoint.infix($breakpoint);
 
     // Allow columns to stretch full width below their breakpoints.
     //
-    @for $i from 1 through $grid-columns {
+    @for $i from 1 through grid.$columns {
       .column#{$infix}-#{$i} {
         @extend %column-ready-defaults;
       }
@@ -80,7 +88,7 @@
       @extend %column-ready-defaults;
     }
 
-    @include breakpoint-up($breakpoint) {
+    @include breakpoint.up($breakpoint) {
 
       // Provide basic `.column-{breakpoint}` classes
       // for equal-width flexbox columns.
@@ -103,27 +111,27 @@
       // Provide `.column-{breakpoint}-{size}` classes
       // for spanning flexbox columns.
       //
-      @for $i from 1 through $grid-columns {
+      @for $i from 1 through grid.$columns {
         .column#{$infix}-#{$i} {
-          @include make-column($i);
+          @include grid.make-column($i);
         }
       }
 
       // Provide `.order-{breakpoint}-{size}` classes
       // for reordering flexbox columns.
       //
-      @for $i from 1 through $grid-columns {
+      @for $i from 1 through grid.$columns {
         .order#{$infix}-#{$i} {
-          @include make-column-order($i);
+          @include grid.make-column-order($i);
         }
       }
 
       // Provide `.offset-{breakpoint}-{size}` classes
       // for offsetting flexbox columns.
       //
-      @for $i from 0 through $grid-columns {
+      @for $i from 0 through grid.$columns {
         .offset#{$infix}-#{$i} {
-          @include make-column-offset($i);
+          @include grid.make-column-offset($i);
         }
       }
     }

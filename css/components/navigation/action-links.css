@@ -1,1 +1,1 @@
-/*! Compiled SASS file | Do NOT modify from here !*/.action-links ul{padding-left:0;list-style:outside none none}.action-links ul>li{display:inline-block;vertical-align:top}.action-links ul>li:not(:first-child){margin-left:1rem}
+/*! Compiled SASS file | Do NOT modify from here !*/.action-links ul{--list-item-not-first-child-margin-left:1rem}.action-links ul>li{display:inline}

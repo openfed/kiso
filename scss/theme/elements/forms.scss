@@ -1,0 +1,47 @@
+
+//
+// @file
+// Forms
+//
+// Stylistic rules for creating a wide variety of forms.
+//
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/heading';
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/utilities/border';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Form labels
+//
+label {
+  --form-element-label-font-weight: var(--font-bold);
+}
+
+// Fieldsets
+//
+fieldset {
+  --form-fieldset-border-bottom-color: #{border.color('neutral')};
+}
+
+// Fieldset legends
+//
+legend {
+  --form-legend-font-size: #{units.rem(heading.font-size('h2'))};
+  --form-legend-font-weight: var(--font-bold);
+}

@@ -24,7 +24,6 @@
     not node.isPublished() ? 'node--unpublished',
   ]
 %}
-{{ attach_library('kiso/node') }}
 <article{{ attributes.addClass(classes)|without('role') }}>
 
   {% if not page and content.field_image is defined %}

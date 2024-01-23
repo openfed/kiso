@@ -1,1 +1,1 @@
-/*! Compiled SASS file | Do NOT modify from here !*/::-moz-selection{background-color:#0071eb;color:white}::selection{background-color:#0071eb;color:white}
+/*! Compiled SASS file | Do NOT modify from here !*/::-moz-selection{--selection-text-color:white;--selection-text-background-color:royalblue;color:var(--selection-text-color);background-color:var(--selection-text-background-color)}::selection{--selection-text-color:white;--selection-text-background-color:royalblue;color:var(--selection-text-color);background-color:var(--selection-text-background-color)}

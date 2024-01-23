@@ -3,7 +3,7 @@
 // @file
 // Reboot definition.
 //
-// A collection of element-specific CSS changes in a single file, 
+// A collection of element-specific CSS changes in a single file,
 // best practices kickstart to provide an elegant, consistent, and
 // simple baseline to build upon.
 //
@@ -40,7 +40,7 @@ html {
 //
 * {
   box-sizing: inherit; // 1
-  
+
   // Pseudo-elements
   //
   &::before,
@@ -155,13 +155,6 @@ abbr {
     cursor: help; // 2
     text-decoration-skip-ink: none; // 3
   }
-}
-
-// Acronyms
-//
-acronym[title] {
-  @extend abbr[title];
-  text-transform: uppercase;
 }
 
 // Addresses

@@ -1,0 +1,32 @@
+
+//
+// @file
+// Media
+//
+// Stylistic rules for images and lightweight styles.
+//
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Figures (Caption)
+//
+figcaption {
+  --figcaption-color: var(--gray-700);
+  --figcaption-font-size: calc(var(--body-base-font-size) * 0.9);
+}

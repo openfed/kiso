@@ -16,9 +16,6 @@ Be aware Kiso (基礎) base theme (including the 'Framework SASS') already provi
 *Take a look at (without modifying):*
 
 * ./kiso/scss/components/
-* ./THEMENAME/_sass-framework/mixins/library/general/_abbreviations.scss
-* ./THEMENAME/_sass-framework/mixins/library/general/_buttons.scss
-* ./THEMENAME/_sass-framework/mixins/library/general/_forms.scss
-* ./THEMENAME/_sass-framework/mixins/library/general/_item-list.scss
-* ./THEMENAME/_sass-framework/mixins/library/general/_paragraphs.scss
-* ./THEMENAME/_sass-framework/mixins/library/general/_tables.scss
+* ./THEMENAME/_sass-framework/elements/buttons
+* ./THEMENAME/_sass-framework/elements/form
+* ./THEMENAME/_sass-framework/elements/list

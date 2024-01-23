@@ -3,11 +3,16 @@
 // @file
 // Forms
 //
-// Styles for creating a wide variety of forms.
+// Structural rules for creating a wide variety of forms.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -22,28 +27,42 @@
 // Form labels
 //
 label {
-  @include rem('margin-bottom', map-get($component-margins, 'xsmall'));
-  font-weight: map-get($component-font-weights, 'bold');
+  --form-element-label-margin-bottom: var(--margin-xsmall);
+  --form-element-label-color: currentcolor;
+  --form-element-label-font-weight: normal;
+
+  margin-bottom: var(--form-element-label-margin-bottom);
+  color: var(--form-element-label-color);
+  font-weight: var(--form-element-label-font-weight);
 }
 
 // Fieldsets
 //
 fieldset {
-  @include rem('padding-bottom', map-get($component-vertical-paddings, 'xlarge'));
+  --form-fieldset-padding-bottom: var(--padding-vertical-xlarge);
+  --form-fieldset-margin-bottom: var(--margin-medium);
+  --form-fieldset-border-bottom-width: 1px;
+  --form-fieldset-border-bottom-color: currentcolor;
+
+  padding-bottom: var(--form-fieldset-padding-bottom);
+  margin-bottom: var(--form-fieldset-margin-bottom);
   border-bottom: {
-    @include rem('width', $component-border-width);
-    color: map-get($component-border-colors, 'neutral');
-    style: $component-border-style;
+    width: var(--form-fieldset-border-bottom-width);
+    color: var(--form-fieldset-border-bottom-color);
+    style: solid;
   }
-  @include rem('margin-bottom', map-get($component-margins, 'medium'));
 }
 
 // Fieldset legends
 //
 legend {
-  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  --form-legend-margin-bottom: var(--margin-medium);
+  --form-legend-font-size: inherit;
+  --form-legend-font-weight: normal;
+
+  margin-bottom: var(--form-legend-margin-bottom);
   font: {
-    @include rem('size', $heading-2-font-size);
-    weight: map-get($component-font-weights, 'bold');
+    size: var(--form-legend-font-size);
+    weight: var(--form-legend-font-weight);
   }
 }

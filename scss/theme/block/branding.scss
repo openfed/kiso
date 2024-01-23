@@ -1,0 +1,44 @@
+
+//
+// @file
+// Branding
+//
+// Structural rules for the site identity (Logo image, name and slogan of the site).
+//
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/helpers/css';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Branding block
+//
+.block {
+
+  // Branding block when embedded inside the Header (Banner) region.
+  //
+  #{css.selector('region-header')} & {
+
+    // Branding
+    //
+    &__branding {
+      --branding-color: var(--body-base-color);
+      --branding-font-size: calc(var(--body-base-font-size) * 1.25);
+      --branding-hover-color: var(--body-base-color);
+    }
+  }
+}

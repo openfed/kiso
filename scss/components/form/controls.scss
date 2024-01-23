@@ -1,11 +1,17 @@
 
 //
 // @file
-// Visual styles for 'Controls' form elements.
+// Structural rules for 'Controls' form elements.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/form';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -17,19 +23,23 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-/// Form controls default properties.
+/// Control default properties.
 ///
-/// @requires {mixin} form-control
-///   - See the mixin for available local variables
+/// @require {mixin} form.styles
+/// @require {mixin} form.control
+///   - See the mixins for available local variables
 ///     to customize `Form controls` visual style.
 
 %form-control-defaults {
-  @include form-control;
+  @include form.styles(
+    $border-color: currentcolor
+  );
+  @include form.control;
 }
 
 // Form elements
 //
-#{$forms} {
+.form {
 
   // Loop through all different 'Textfield' #type form elements
   // (Textfields, Telephone number, E-mail address, Entering a URL, Search field,
@@ -46,6 +56,8 @@
     'color',
     'date',
     'time',
+    'file',
+    'textarea',
   ) {
 
     // 'Textfield' types
@@ -58,12 +70,11 @@
   // File uploads
   //
   &-file {
-    display: block;
-    width: 100%;
+    @include form.file;
 
     // File and button uploads which need to be on a signle line.
     //
-    #{$forms}-managed-file & {
+    .form-managed-file & {
       display: inline-block;
       width: auto;
       text-align: initial;
@@ -78,59 +89,21 @@
     // Selects (Excepted for Pop-up calendars)
     //
     &:not([class*="datepicker"]) {
-      @extend %form-control-defaults;
-      @include rem('padding-right', (map-get($component-horizontal-paddings, 'medium') + $body-base-font-size));
-      /* Use a background image to prevent screen readers from announcing the text. */
-      @include background(
-        $image-path: '../../../images/icons',
-        $image: 'twistie-down',
-        $image-extension: 'svg',
-        $image-position: right 0.5rem center,
-        $retina-fallback: false
+      @include form.styles(
+        $border-color: currentcolor
       );
-      appearance: none;
-      display: inline-block;
-      vertical-align: middle;
-
-      // MS IE selected option text (Focus state).
-      //
-      // Suppress the nested default white text on blue background highlight given to
-      // the selected option text when the (still closed) <select> receives focus
-      // in IE and (under certain conditions) Edge, as it looks bad and cannot be made to
-      // match the appearance of the native widget.
-      //
-      &:focus::-ms-value {
-        @include background($color: white);
-        color: $body-base-color;
-      }
-
-      // Selects with `size` & `multiple` attributes.
-      //
-      &[multiple],
-      &[size]:not([size="1"]) {
-        @include rem('padding-right', map-get($component-horizontal-paddings, 'medium'));
-        background-image: none;
-        height: auto;
-      }
+      @include form.control;
+      @include form.select(
+        $background-image-path: '../../../images/icons',
+        $background-image-name: 'twistie-down',
+        $background-image-extension: 'svg'
+      );
     }
   }
 
   // Textareas
   //
   &-textarea {
-    @extend %form-control-defaults;
-    height: auto;
-    margin: 0;
-
-    // Resizable
-    //
-    &--resize {
-
-      // Horizontal resize
-      //
-      &-horizontal {
-        resize: horizontal;
-      }
-    }
+    @include form.textarea;
   }
 }

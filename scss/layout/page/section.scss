@@ -7,8 +7,17 @@
 // how general layout should look like through pages.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/helpers/css';
+@use '../../../_sass-framework/layout/breakpoint';
+@use '../../../_sass-framework/layout/grid';
+@use '../../../_sass-framework/utilities/display';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -20,20 +29,22 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
+
 /// Create local variables to manage the column widths.
 ///
 /// @type Number (unitless)
 
-$column-navigation-medium-width:    6;
+$column-navigation-medium-width: 6;
 $column-complementary-medium-width: 6;
 
-$column-content-large-width:        6;
-$column-navigation-large-width:     3;
-$column-complementary-large-width:  3;
+$column-content-large-width: 6;
+$column-navigation-large-width: 3;
+$column-complementary-large-width: 3;
+
 
 // Page sections
 //
-#{$pages} {
+.page {
 
   // All sections
   //
@@ -42,13 +53,13 @@ $column-complementary-large-width:  3;
     // Toolbar section
     //
     &--tools {
-      @include flex(justify middle);
+      @include display.flex(justify middle);
     }
 
     // Header (Banner) section
     //
     &--header {
-      @include flex(left middle);
+      @include display.flex(left middle);
     }
 
     // Content (Main) section
@@ -57,43 +68,43 @@ $column-complementary-large-width:  3;
 
       // Content (Main) section when there is at least one visible sidebar.
       //
-      #{$sidebar-visible} & {
-        @include make-column-ready;
+      #{css.selector('sidebar-visible')} & {
+        @include grid.make-column-ready;
       }
 
       // Content (Main) section when sidebars together.
       //
-      #{$sidebar-both-visible} & {
+      #{css.selector('sidebar-both-visible')} & {
 
         // Responsiveness
         // Properties for at least large devices (Desktops, 992px and up).
         //
-        @include breakpoint-up('large') {
-          @include make-column($column-content-large-width);
+        @include breakpoint.up('large') {
+          @include grid.make-column($column-content-large-width);
         }
       }
 
       // Content (Main) section when there is the Navigation sidebar (Left) only.
       //
-      #{$sidebar-navigation-visible} & {
+      #{css.selector('sidebar-navigation-visible')} & {
 
         // Responsiveness
         // Properties for at least large devices (Desktops, 992px and up).
         //
-        @include breakpoint-up('large') {
-          @include make-column($column-content-large-width + $column-complementary-large-width);
+        @include breakpoint.up('large') {
+          @include grid.make-column(calc($column-content-large-width + $column-complementary-large-width));
         }
       }
 
       // Content (Main) section when there is the Related content sidebar (Right) only.
       //
-      #{$sidebar-complementary-visible} & {
+      #{css.selector('sidebar-complementary-visible')} & {
 
         // Responsiveness
         // Properties for at least large devices (Desktops, 992px and up).
         //
-        @include breakpoint-up('large') {
-          @include make-column($column-content-large-width + $column-navigation-large-width);
+        @include breakpoint.up('large') {
+          @include grid.make-column(calc($column-content-large-width + $column-navigation-large-width));
         }
       }
     }
@@ -101,30 +112,30 @@ $column-complementary-large-width:  3;
     // Navigation sidebar (Left) section
     //
     &--navigation {
-      @include make-column-ready;
+      @include grid.make-column-ready;
 
       // Navigation sidebar (Left) section when sidebars together.
       //
-      #{$sidebar-both-visible} & {
+      #{css.selector('sidebar-both-visible')} & {
 
         // Responsiveness
         // Properties for at least medium devices (Tablets, 768px and up).
         //
-        @include breakpoint-up('medium') {
-          @include make-column($column-navigation-medium-width);
+        @include breakpoint.up('medium') {
+          @include grid.make-column($column-navigation-medium-width);
         }
       }
 
       // Navigation sidebar (Left) section when it is the only one to be visible.
       //
-      #{$sidebar-visible} & {
+      #{css.selector('sidebar-visible')} & {
 
         // Responsiveness
         // Properties for at least large devices (Desktops, 992px and up).
         //
-        @include breakpoint-up('large') {
-          @include make-column($column-navigation-large-width);
-          @include make-column-order(-1);
+        @include breakpoint.up('large') {
+          @include grid.make-column($column-navigation-large-width);
+          @include grid.make-column-order(-1);
         }
       }
     }
@@ -132,29 +143,29 @@ $column-complementary-large-width:  3;
     // Related content sidebar (Right) section
     //
     &--complementary {
-      @include make-column-ready;
+      @include grid.make-column-ready;
 
       // Related content sidebar (Right) section when sidebars together.
       //
-      #{$sidebar-both-visible} & {
+      #{css.selector('sidebar-both-visible')} & {
 
         // Responsiveness
         // Properties for at least medium devices (Tablets, 768px and up).
         //
-        @include breakpoint-up('medium') {
-          @include make-column($column-complementary-medium-width);
+        @include breakpoint.up('medium') {
+          @include grid.make-column($column-complementary-medium-width);
         }
       }
 
       // Related content sidebar (Right) section when it is the only one to be visible.
       //
-      #{$sidebar-visible} & {
+      #{css.selector('sidebar-visible')} & {
 
         // Responsiveness
         // Properties for at least large devices (Desktops, 992px and up).
         //
-        @include breakpoint-up('large') {
-          @include make-column($column-complementary-large-width);
+        @include breakpoint.up('large') {
+          @include grid.make-column($column-complementary-large-width);
         }
       }
     }
@@ -162,7 +173,7 @@ $column-complementary-large-width:  3;
     // Footer (Contentinfo) section
     //
     &--footer {
-      @include flex(center middle);
+      @include display.flex(center middle);
     }
   }
 }

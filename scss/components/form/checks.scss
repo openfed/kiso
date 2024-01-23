@@ -1,11 +1,17 @@
 
 //
 // @file
-// Visual styles for 'Checkboxes and Radio buttons' form elements.
+// Structural rules for 'Checkboxes and Radio buttons' form elements.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/form';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -19,68 +25,39 @@
 
 /// Form check-lists default properties.
 ///
-/// @requires {mixin} form-check
-///   - See the mixin for available local variables
+/// @require {mixin} form.styles
+///   - See the mixins for available local variables
 ///     to customize `Form check-lists` visual style.
 
 %form-check-defaults {
-  @include form-check;
+  @include form.styles(
+    $border-color: currentcolor,
+    $background-color: currentcolor
+  );
 }
 
 // Form elements
 //
-#{$forms} {
+.form {
 
   // Checkboxes
   //
   &-checkbox {
     @extend %form-check-defaults;
-
-    // Indicators
-    //
-    ~ label.option::before {
-
-      // Conditionally set a `border-radius`.
-      //
-      @if $enable-rounded {
-        @include rem('border-radius', map-get($component-border-radiuses, 'medium'));
-      }
-    }
-
-    // Indicators (Checked state)
-    //
-    &:checked ~ label.option::before {
-      /* Use a background image to prevent screen readers from announcing the text. */
-      @include background(
-        $color: map-get($component-state-background-colors, 'dark'),
-        $image-path: '../../../images/icons',
-        $image: 'check',
-        $image-extension: 'svg',
-        $image-size: 10px 10px,
-        $retina-fallback: false
-      );
-      border-color: map-get($component-state-border-colors, 'dark');
-    }
+    @include form.check(
+      $checkbox-checked-background-image-path: '../../../images/icons',
+      $checkbox-checked-background-image-name: 'check',
+      $checkbox-checked-background-image-extension: 'svg',
+      $checked-background-size: 10px 10px,
+    );
   }
 
   // Radios
   //
   &-radio {
     @extend %form-check-defaults;
-
-    // Indicators
-    //
-    ~ label.option::before {
-      border-radius: 50%;
-    }
-
-    // Indicators (Checked state)
-    //
-    &:checked ~ label.option::before {
-      border: {
-        @include rem('width', ($component-border-width * 5));
-        color: map-get($component-state-border-colors, 'dark');
-      }
-    }
+    @include form.check(
+      $radio-checked-background-image-color: white
+    );
   }
 }

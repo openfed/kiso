@@ -11,7 +11,7 @@ normalize:
 
 font-awesome:
   remote: https://fortawesome.github.io/Font-Awesome/
-  version: 5.13.1
+  version: 6.2.0
   license:
     name: MIT
     url: https://fontawesome.com/license/free/
@@ -134,7 +134,39 @@ visual-styling:
   version: VERSION
   css:
     theme:
-      css/theme/theme--kiso.css: {}
+      css/theme/elements/selection.css: {}
+      css/theme/elements/root.css: {}
+      css/theme/elements/headings.css: {}
+      css/theme/elements/typography.css: {}
+      css/theme/elements/blockquotes.css: {}
+      css/theme/elements/lists.css: {}
+      css/theme/elements/media.css: {}
+      css/theme/elements/code.css: {}
+      css/theme/elements/tables.css: {}
+      css/theme/elements/forms.css: {}
+      css/theme/elements/track-focus.css: {}
+      css/theme/block/branding.css: {}
+      css/theme/navigation/menu.css: {}
+      css/theme/navigation/menu-menubar.css: {}
+      css/theme/navigation/links.css: {}
+      css/theme/navigation/links--language-block.css: {}
+      css/theme/navigation/tabs.css: {}
+      css/theme/navigation/pager.css: {}
+      css/theme/dataset/item-list.css: {}
+      css/theme/form/button.css: {}
+      css/theme/form/element.css: {}
+      css/theme/form/element-label.css: {}
+      css/theme/form/controls.css: {}
+      css/theme/form/checks.css: {}
+      css/theme/field/file.css: {}
+      css/theme/field/label-inline.css: {}
+      css/theme/field/text-formatted.css: {}
+      css/theme/misc/messages.css: {}
+      css/theme/misc/skip-link.css: {}
+      css/theme/misc/noscript.css: {}
+      css/theme/misc/back-to-top.css: {}
+      css/theme/misc/tooltip.css: {}
+      css/theme/node/unpublished.css: {}
 
 back-to-top:
   css:

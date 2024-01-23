@@ -1,1 +1,1 @@
-/*! Compiled SASS file | Do NOT modify from here !*/img{vertical-align:middle}figure{margin-bottom:1rem}figcaption{margin-top:0.5rem;font-size:0.9rem;color:#868e96}
+/*! Compiled SASS file | Do NOT modify from here !*/img{vertical-align:middle}figure{--figure-margin-bottom:var(--margin-medium);margin-bottom:var(--figure-margin-bottom)}figcaption{--figcaption-margin-top:var(--margin-small);--figcaption-color:currentcolor;--figcaption-font-size:inherit;margin-top:var(--figcaption-margin-top);color:var(--figcaption-color);font-size:var(--figcaption-font-size)}

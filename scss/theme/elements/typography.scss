@@ -1,0 +1,49 @@
+
+//
+// @file
+// Typography
+//
+// Stylistic rules for body text, inline elements, lists, and more.
+//
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use 'sass:color';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// Inline text elements
+//
+small {
+  --typography-small-font-size: calc(var(--body-base-font-size) * 0.875);
+  --typography-small-font-weight: var(--font-regular);
+}
+// Strong emphasis (Bolder text)
+//
+strong {
+  --typography-strong-font-weight: var(--font-extra-bold);
+}
+// Mark (Highlighted text)
+//
+mark {
+  --typography-mark-background-color: #{color.scale(yellow, $lightness: 57%)};
+}
+
+// Acronyms
+//
+acronym[title] {
+  --typography-acronym-title-font-size: calc(var(--body-base-font-size) * 0.9);
+}

@@ -23,20 +23,6 @@ function kiso_preprocess(&$variables, $hook) {
   // Creates variables from theme settings.
   $variables['container_fluid'] = theme_get_setting('container_fluid');
 
-  // Load expected asset libraries.
-  $variables['#attached']['library'][] = 'kiso/reboot';
-  // Base styles:
-  $variables['#attached']['library'][] = 'kiso/elements';
-  // layout styles:
-  $variables['#attached']['library'][] = 'kiso/layout';
-  // Components styles:
-  $variables['#attached']['library'][] = 'kiso/blocks';
-  $variables['#attached']['library'][] = 'kiso/navigations';
-  $variables['#attached']['library'][] = 'kiso/forms';
-  $variables['#attached']['library'][] = 'kiso/fields';
-  $variables['#attached']['library'][] = 'kiso/nodes';
-  $variables['#attached']['library'][] = 'kiso/miscs';
-
   // Enable the "Back to top" button.
   $variables['backtotop_enable'] = theme_get_setting('backtotop_enable');
   $variables['backtotop_label'] = theme_get_setting('backtotop_label');

@@ -28,7 +28,6 @@ libraries:
   - 'kiso/normalize'
   - 'kiso/font-awesome'
   - 'kiso/font-open-sans'
-  - 'kiso/font-muli'
   - 'kiso/visual-styling'
 
 # Defines CKEditor styles

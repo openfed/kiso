@@ -1,0 +1,56 @@
+
+//
+// @file
+// Code
+//
+// Stylistic rules for inline and multiline blocks of code.
+//
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/utilities/border';
+@use '../../../_sass-framework/utilities/background';
+@use '../../../_sass-framework/utilities/effect';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+// 'All kind of code' default properties.
+//
+code, pre, kbd {
+  --code-font-size: calc(var(--body-base-font-size) * 0.9);
+  --code-font-family: var(--font-monospace);
+}
+
+// Code blocks
+//
+pre {
+  --code-pre-max-height: #{units.rem(340px)};
+  --code-pre-border-color: #{border.color('dark')};
+  --code-pre-border-radius: #{border.radius('medium')};
+  --code-pre-color: var(--state-dark);
+  --code-pre-background-color: #{background.state('light')};
+}
+
+// Keyboard code
+//
+kbd {
+  --code-kbd-border-radius: #{border.radius('small')};
+  --code-kbd-color: var(--body-base-background-color);
+  --code-kbd-background-color: #{background.state('dark')};
+  --code-kbd-box-shadow: #{effect.shadow('inset')};
+  --code-kbd-nested-font-weight: var(--font-bold);
+}

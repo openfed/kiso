@@ -4,8 +4,15 @@
 // General arrangement for the Header (Collapsible) region layout.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/layout/breakpoint';
+@use '../../../_sass-framework/utilities/display';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -19,15 +26,22 @@
 
 // Regions
 //
-#{$regions} {
+.region {
 
   // Header (Collapsible) region
   //
   &--header-collapsible {
-    @include flex(right middle, row nowrap);
+    @include display.flex(right middle, row nowrap);
     flex: {
       basis: auto;
       grow: 1;
+    }
+
+    // Responsiveness
+    // Properties for at most medium devices (Tablets, 991px and down).
+    //
+    @include breakpoint.down('medium') {
+      display: none;
     }
   }
 }

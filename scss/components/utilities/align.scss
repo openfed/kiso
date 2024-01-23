@@ -4,8 +4,15 @@
 // Alignment classes.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use 'sass:string';
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/layout/breakpoint';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -34,7 +41,7 @@
     // Text alignments.
     //
     &-#{$align} {
-      text-align: unquote($align);
+      text-align: string.unquote($align);
     }
   }
 }
@@ -54,18 +61,22 @@
     // Block level alignments.
     //
     &-#{$align} {
-      
+
       // Apply specific properties for the 'center' alignment.
       //
       @if $align == 'center' {
-        @include rem('margin', 0 auto map-get($component-margins, 'medium'));
+        --align-center-margin-bottom: var(--margin-medium);
+        --align-center-max-width: 70%;
+
         display: block;
+        margin: 0 auto var(--align-center-margin-bottom);
+        text-align: center;
 
         // Responsiveness
         // Properties for at least medium devices (Tablets, 768px and up).
         //
-        @include breakpoint-up('medium') {
-          max-width: 70%;
+        @include breakpoint.up('medium') {
+          max-width: var(--align-center-max-width);
         }
       }
       @else {
@@ -74,13 +85,16 @@
         //
         $side: if($align == 'right', 'left', 'right');
 
+        --align-#{$align}-margin-#{$side}: var(--margin-xlarge);
+        --align-#{$align}-max-width: 50%;
+
         // Responsiveness
         // Properties for at least medium devices (Tablets, 768px and up).
         //
-        @include breakpoint-up('medium') {
-          @include rem('margin-#{$side}', map-get($component-margins, 'xlarge'));
-          float: unquote($align);
-          max-width: 50%;
+        @include breakpoint.up('medium') {
+          float: string.unquote($align);
+          max-width: var(--align-#{$align}-max-width);
+          margin-#{$side}: var(--align-#{$align}-margin-#{$side});
         }
       }
     }

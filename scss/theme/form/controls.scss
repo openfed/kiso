@@ -1,0 +1,76 @@
+
+//
+// @file
+// Stylistic rules for 'Controls' form elements.
+//
+
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/form';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
+
+// This document follows Drupal CSS coding standards, Sass Guidelines
+// and Sass Style Guide. Read more about these topics:
+//
+// @see https://www.drupal.org/docs/develop/standards/css/
+// @see https://css-tricks.com/sass-style-guide/
+// @see https://sass-guidelin.es
+//
+// This file is compiled separately so we can pull in config dependencies
+// above while also maintaining Drupal's SMACSS structure.
+
+/// Control "Theme" default properties.
+///
+/// @require {mixin} form.theme
+///   - See the mixins for available local variables
+///     to customize `Form controls` visual style.
+
+%form-control-theme-defaults {
+  @include form.theme('primary');
+}
+
+// Form elements
+//
+.form {
+
+  // Loop through all different 'Textfield' #type form elements
+  // (Textfields, Telephone number, E-mail address, Entering a URL, Search field,
+  // Numeric input -- with special numeric validation, Color picker, Date and Time
+  // picker) to set default properties.
+  //
+  @each $input-type in (
+    'text',
+    'tel',
+    'email',
+    'url',
+    'search',
+    'number',
+    'color',
+    'date',
+    'time',
+    'file',
+    'textarea',
+  ) {
+
+    // 'Textfield' types
+    //
+    &-#{$input-type} {
+      @extend %form-control-theme-defaults;
+    }
+  }
+
+  // Selects
+  //
+  &-select {
+
+    // Selects (Excepted for Pop-up calendars)
+    //
+    &:not([class*="datepicker"]) {
+      @include form.theme('primary');
+    }
+  }
+}

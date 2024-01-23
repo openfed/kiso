@@ -3,11 +3,17 @@
 // @file
 // Lists
 //
-// Set out default styles for all lists.
+// Structural rules for all lists.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/elements/list';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -19,43 +25,32 @@
 // This file is compiled separately so we can pull in config dependencies
 // above while also maintaining Drupal's SMACSS structure.
 
-/// Lists default properties.
-///
-/// @requires {mixin} lists
-///   - See the mixin for available local variables
-///     to customize `Lists` visual style.
-
-%lists-defaults {
-  @include lists;
-}
-
-// Unordered lists
+// (Un)ordered lists
 //
-ul {
-  @extend %lists-defaults;
-}
-// Ordered lists
-//
-ol {
-  @extend %lists-defaults;
+ul, ol {
+  @include list.styles;
 }
 
 // Definition lists
 //
 dl {
-  @include rem('margin-bottom', map-get($component-margins, 'xlarge'));
+  --definition-list-margin-bottom: var(--margin-xlarge);
+  --definition-title-font-weight: normal;
+  --definition-data-margin-bottom: var(--margin-xsmall);
+
+  margin-bottom: var(--definition-lists-margin-bottom);
 
   // Definition titles
   //
   dt {
-    font-weight: map-get($component-font-weights, 'bold');
+    font-weight: var(--definition-title-font-weight);
   }
 
   // Definition data
   //
   dd {
     margin: {
-      @include rem('bottom', map-get($component-margins, 'xsmall'));
+      bottom: var(--definition-data-margin-bottom);
       left: 0;
     }
   }

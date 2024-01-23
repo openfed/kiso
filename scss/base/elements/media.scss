@@ -3,11 +3,16 @@
 // @file
 // Media
 //
-// Media styles for images and lightweight styles.
+// Structural rules for images and lightweight styles.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -28,13 +33,19 @@ img {
 // Figures
 //
 figure {
-  @include rem('margin-bottom', map-get($component-margins, 'medium'));
+  --figure-margin-bottom: var(--margin-medium);
+
+  margin-bottom: var(--figure-margin-bottom);
 }
 
 // Figures (Caption)
 //
 figcaption {
-  @include rem('margin-top', map-get($component-margins, 'small'));
-  @include rem('font-size', ($body-base-font-size * 0.9));
-  color: map-get($component-state-colors, 'muted');
+  --figcaption-margin-top: var(--margin-small);
+  --figcaption-color: currentcolor;
+  --figcaption-font-size: inherit;
+
+  margin-top: var(--figcaption-margin-top);
+  color: var(--figcaption-color);
+  font-size: var(--figcaption-font-size);
 }

@@ -3,11 +3,18 @@
 // @file
 // Branding
 //
-// Site identity (Logo image, name and slogan of the site).
+// Structural rules for the site identity (Logo image, name and slogan of the site).
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/helpers/css';
+@use '../../../_sass-framework/helpers/units';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -21,26 +28,31 @@
 
 // Branding block
 //
-#{$blocks} {
+.block {
 
   // Branding block when embedded inside the Header (Banner) region.
   //
-  #{$region-header} & {
-    
+  #{css.selector('region-header')} & {
+
     // Branding
     //
     &__branding {
-      @include rem('margin-right', map-get($component-margins, 'medium'));
-      @include rem('font-size', ($body-base-font-size * 1.25));
+      --branding-margin-right: var(--margin-medium);
+      --branding-color: currentcolor;
+      --branding-font-size: inherit;
+      --branding-hover-color: currentcolor;
+
       display: inline-block;
-      color: $body-base-color;
+      margin-right: var(--branding-margin-right);
+      color: var(--branding-color);
+      font-size: var(--branding-font-size);
       line-height: inherit;
       white-space: nowrap;
 
       // Branding (Hover state)
       //
       &:hover {
-        color: $body-base-color;
+        color: var(--branding-hover-color);
         text-decoration: none;
       }
     }
@@ -48,15 +60,20 @@
     // Site logo
     //
     &__site-logo {
-      @include rem('width', 3.75rem);
-      @include rem('height', 3.75rem);
+      --site-logo-width: #{units.rem(3.75rem)};
+      --site-logo-height: #{units.rem(3.75rem)};
+
       display: inline-block;
+      width: var(--site-logo-width);
+      height: var(--site-logo-height);
     }
 
     // Site name
     //
     &__site-name {
-      @include rem('margin-left', map-get($component-margins, 'small'));
+      --site-name-margin-left: var(--margin-small);
+
+      margin-left: var(--site-name-margin-left);
     }
   }
 }

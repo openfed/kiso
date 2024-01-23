@@ -1,11 +1,18 @@
 
 //
 // @file
-// Visual styles for form element labels.
+// Structural rules for form element labels.
 //
 
-// Import Sass variables, functions, mixins and placeholders.
-@import '../../config/imports';
+// Load required `Framework SASS` modules.
+@use '../../config/variable-overrides';
+@use '../../../_sass-framework/helpers/units';
+@use '../../../_sass-framework/utilities/background';
+
+// The following comment starts with a "!". So it will not be removed during
+// the (SASS) compilation. It is just to alert project contributors that the
+// (CSS) output file can not be modified under any circumstances.
+/*! Compiled SASS file | Do NOT modify from here !*/
 
 // This document follows Drupal CSS coding standards, Sass Guidelines
 // and Sass Style Guide. Read more about these topics:
@@ -19,43 +26,65 @@
 
 // Form elements
 //
-#{$forms} {
+.form {
 
-  // Looks like a label but don't use the `<label>` markup.
+  // Form elements (Wrapper)
   //
-  &-wrapper .label {
-    @include rem('margin-bottom', map-get($component-margins, 'xsmall'));
-    display: inline-block;
-    width: auto;
-    font: {
-      size: inherit;
-      weight: map-get($component-font-weights, 'bold');
+  &-wrapper {
+    --form-element-label-faked-margin-bottom: var(--margin-xsmall);
+    --form-element-label-faked-font-weight: normal;
+
+    // Looks like a label but don't use the `<label>` markup.
+    //
+    .label,
+    &.checkboxes--wrapper legend,
+    &.radios--wrapper legend {
+      display: inline-block;
+      width: auto;
+      margin-bottom: var(--form-element-label-faked-margin-bottom);
+      font: {
+        size: inherit;
+        weight: var(--form-element-label-faked-font-weight);
+      }
     }
   }
 
-  // Identify required fields with a star icon (SVG image).
+  // Form elements (Required fields)
   //
-  &-required::after {
-    @include rem('width', 6px);
-    @include rem('height', 6px);
-    @include rem('margin', 0 map-get($component-margins, 'xsmall'));
-    /* Use a background image to prevent screen readers from announcing the text. */
-    @include background(
-      $image-path: '../../../images/icons',
-      $image: 'required',
-      $image-extension: 'svg',
-      $image-size: 6px 6px,
-      $retina-fallback: false
-    );
-    content: '';
-    display: inline-block;
-    vertical-align: super;
+  &-required {
+    --form-element-required-icon-width: #{units.rem(6px)};
+    --form-element-required-icon-height: #{units.rem(6px)};
+    --form-element-required-icon-horizontal-margin: var(--margin-xsmall);
+
+    // Identify required fields with a star icon (SVG image).
+    //
+    &::after {
+      /* Use a background image to prevent screen readers from announcing the text. */
+      @include background.image(
+        $folder-path: '../../../images/icons',
+        $name: 'required',
+        $fallback-extension: 'svg',
+        $size: 6px 6px
+      );
+      content: '';
+      display: inline-block;
+      width: var(--form-element-required-icon-width);
+      height: var(--form-element-required-icon-height);
+      margin: 0 var(--form-element-required-icon-horizontal-margin);
+      vertical-align: super;
+    }
   }
 }
 
-// Override default bottom margin of the checkbox/radio label options.
+// Form labels
 //
-label.option {
-  margin-bottom: 0;
-  font-weight: map-get($component-font-weights, 'regular');
+label {
+
+  // Override default bottom margin of the checkbox/radio label options.
+  //
+  &.option {
+    --form-element-label-font-weight: normal;
+
+    margin-bottom: 0;
+  }
 }

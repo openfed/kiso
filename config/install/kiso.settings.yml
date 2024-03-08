@@ -37,3 +37,46 @@ outdatedbrowser_css_exclude: ''
 # JavaScripts / Keyboard Focus Tracking
 trackfocus_enable: 0
 trackfocus_disable_persist: 0
+
+# Structural css rules
+structure_check_all: 1
+reboot_enable: 1
+elements_enable: 1
+elements_options: 1
+elements_selection_enable: 1
+elements_root_enable: 1
+elements_headings_enable: 1
+elements_typography_enable: 1
+elements_blockquotes_enable: 1
+elements_lists_enable: 1
+elements_media_enable: 1
+elements_code_enable: 1
+elements_tables_enable: 1
+elements_forms_enable: 1
+grid_enable: 1
+page_wrapper_enable: 1
+page_section_enable: 1
+header_collapsible_enable: 1
+branding_enable: 1
+breadcrumb_enable: 1
+menu_enable: 1
+menu_menubar_enable: 1
+menu_footer_enable: 1
+action_links_enable: 1
+links_enable: 1
+tabs_enable: 1
+pager_enable: 1
+item_list_enable: 1
+form_button_enable: 1
+form_element_enable: 1
+form_element_label_enable: 1
+form_controls_enable: 1
+form_checks_enable: 1
+inline_labels_enable: 1
+text_formatted_enable: 1
+multiple_value_form_enable: 1
+unpublished_node_enable: 1
+skip_link_enable: 1
+noscript_enable: 1
+messages_enable: 1
+language_block_links_enable: 1

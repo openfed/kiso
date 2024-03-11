@@ -341,13 +341,13 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['base']['reboot'] = array(
+  $form['style_sheets']['structure_styles']['base']['reboot_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable reboot'),
     '#default_value' => theme_get_setting('reboot_enable'),
     '#description' => t("Enable the reboot css."),
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_enable'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable elements'),
     '#default_value' => theme_get_setting('elements_enable'),
@@ -359,64 +359,67 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#description' => t('Enable each structural element css individually.'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
+    '#states' => [
+      'visible' => [':input[name="elements_enable"]' => ['checked' => TRUE]],
+    ],
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['selection'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_selection_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable selection'),
     '#default_value' => theme_get_setting('elements_selection_enable'),
     '#description' => t("By checking this you'll enable the css rules for the text selection color."),
   );
   // Base Root
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['root'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_root_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable root'),
     '#default_value' => theme_get_setting('elements_root_enable'),
     '#description' => t('By checking this, you will enable the CSS rules for the root elements.'),
   );
   // Base Elements
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['headings'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_headings_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable headings'),
     '#default_value' => theme_get_setting('elements_headings_enable'),
     '#description' => t('By checking this, you will enable the CSS rules for the headings elements.'),
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['typography'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_typography_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable typography'),
     '#default_value' => theme_get_setting('elements_typography_enable'),
     '#description' => t('By checking this, you will enable the CSS rules for the typography elements.'),
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['blockquotes'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_blockquotes_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable blockquotes'),
     '#default_value' => theme_get_setting('elements_blockquotes_enable'),
     '#description' => t('By checking this, you will enable the CSS rules for the blockquotes elements.'),
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['lists'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_lists_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable lists'),
     '#default_value' => theme_get_setting('elements_lists_enable'),
     '#description' => t('By checking this, you will enable the CSS rules for the lists elements.'),
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['media'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_media_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable media'),
     '#default_value' => theme_get_setting('elements_media_enable'),
     '#description' => t('By checking this, you will enable the CSS rules for the media elements.'),
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['code'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_code_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable code'),
     '#default_value' => theme_get_setting('elements_code_enable'),
     '#description' => t('By checking this, you will enable the CSS rules for the code elements.'),
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['tables'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_tables_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable tables'),
     '#default_value' => theme_get_setting('elements_tables_enable'),
     '#description' => t('By checking this, you will enable the CSS rules for the tables elements.'),
   );
-  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['forms'] = array(
+  $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['elements_forms_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable forms'),
     '#default_value' => theme_get_setting('elements_forms_enable'),
@@ -429,25 +432,40 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['layout_styles']['grid'] = array(
+  $form['style_sheets']['structure_styles']['layout_styles']['layout_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable layout'),
+    '#default_value' => theme_get_setting('layout_enable'),
+    '#description' => t("Enable the layout css."),
+  );
+  $form['style_sheets']['structure_styles']['layout_styles']['layout_options'] = array(
+    '#type' => 'details',
+    '#title' => t('Layout options'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#states' => [
+      'visible' => [':input[name="layout_enable"]' => ['checked' => TRUE]],
+    ],
+  );
+  $form['style_sheets']['structure_styles']['layout_styles']['layout_options']['grid_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable grid'),
     '#default_value' => theme_get_setting('grid_enable'),
     '#description' => t("Enable the grid css."),
   );
-  $form['style_sheets']['structure_styles']['layout_styles']['page']['wrapper'] = array(
+  $form['style_sheets']['structure_styles']['layout_styles']['layout_options']['page_wrapper_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable page wrapper'),
     '#default_value' => theme_get_setting('page_wrapper_enable'),
     '#description' => t("Enable the page wrapper css."),
   );
-  $form['style_sheets']['structure_styles']['layout_styles']['page']['section'] = array(
+  $form['style_sheets']['structure_styles']['layout_styles']['layout_options']['page_section_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable page section'),
     '#default_value' => theme_get_setting('page_section_enable'),
     '#description' => t("Enable the page section css."),
   );
-  $form['style_sheets']['structure_styles']['layout_styles']['region']['header_collapsible'] = array(
+  $form['style_sheets']['structure_styles']['layout_styles']['layout_options']['header_collapsible_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable collapsible header region'),
     '#default_value' => theme_get_setting('header_collapsible_enable'),
@@ -460,195 +478,223 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
+  $form['style_sheets']['structure_styles']['component_styles']['components_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable components'),
+    '#default_value' => theme_get_setting('components_enable'),
+    '#description' => t("Enable the components css."),
+  );
+  $form['style_sheets']['structure_styles']['component_styles']['component_options'] = array(
+    '#type' => 'details',
+    '#title' => t('Component options'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+    '#states' => [
+      'visible' => [':input[name="components_enable"]' => ['checked' => TRUE]],
+    ],
+  );
   // Component Block styles
-  $form['style_sheets']['structure_styles']['component_styles']['blocks'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['blocks'] = array(
     '#type' => 'details',
     '#title' => t('Block Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['component_styles']['blocks']['branding'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['blocks']['branding_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable branding block'),
     '#default_value' => theme_get_setting('branding_enable'),
     '#description' => t("Enable the branding block css."),
   );
   // Components Navigation Styles
-  $form['style_sheets']['structure_styles']['component_styles']['navigations'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations'] = array(
     '#type' => 'details',
     '#title' => t('Navigation Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['breadcrumb'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['breadcrumb_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable breadcrumb'),
     '#default_value' => theme_get_setting('breadcrumb_enable'),
     '#description' => t("Enable the breadcrumb css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['menu'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['menu_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable menu'),
     '#default_value' => theme_get_setting('menu_enable'),
     '#description' => t("Enable the menu css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['menu_menubar'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['menu_menubar_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable menu menubar'),
     '#default_value' => theme_get_setting('menu_menubar_enable'),
     '#description' => t("Enable the menu menubar css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['menu_footer'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['menu_footer_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable menu footer'),
     '#default_value' => theme_get_setting('menu_footer_enable'),
     '#description' => t("Enable the menu footer css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['action_links'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['action_links_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable action links'),
     '#default_value' => theme_get_setting('action_links_enable'),
     '#description' => t("Enable the action links css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['links'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['links_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable links'),
     '#default_value' => theme_get_setting('links_enable'),
     '#description' => t("Enable the links css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['tabs'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['tabs_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable tabs'),
     '#default_value' => theme_get_setting('tabs_enable'),
     '#description' => t("Enable the tabs css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['pager'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['pager_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable pager'),
     '#default_value' => theme_get_setting('pager_enable'),
     '#description' => t("Enable the pager css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['navigations']['item_list'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['navigations']['item_list_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable item list'),
     '#default_value' => theme_get_setting('item_list_enable'),
     '#description' => t("Enable the item list css."),
   );
   // Component Form Styles
-  $form['style_sheets']['structure_styles']['component_styles']['forms'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['forms'] = array(
     '#type' => 'details',
     '#title' => t('Form Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['component_styles']['forms']['button'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['forms']['form_button_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable form button'),
     '#default_value' => theme_get_setting('form_button_enable'),
     '#description' => t("Enable the form button css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['forms']['element'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['forms']['form_element_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable form element'),
     '#default_value' => theme_get_setting('form_element_enable'),
     '#description' => t("Enable the form element css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['forms']['element_label'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['forms']['form_element_label_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable form element label'),
     '#default_value' => theme_get_setting('form_element_label_enable'),
     '#description' => t("Enable the form element label css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['forms']['controls'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['forms']['form_controls_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable form controls'),
     '#default_value' => theme_get_setting('form_controls_enable'),
     '#description' => t("Enable the form controls css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['forms']['checks'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['forms']['form_checks_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable form checks'),
     '#default_value' => theme_get_setting('form_checks_enable'),
     '#description' => t("Enable the form checks css."),
   );
   // Component Field Styles
-  $form['style_sheets']['structure_styles']['component_styles']['fields'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['file'] = array(
+    '#type' => 'details',
+    '#title' => t('File Styles'),
+    '#collapsible' => TRUE,
+    '#collapsed' => TRUE,
+  );
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['file']['file_enable'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Enable file styles'),
+    '#default_value' => theme_get_setting('file_enable'),
+    '#description' => t("Enable the file css."),
+  );
+  // Component Field Styles
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['fields'] = array(
     '#type' => 'details',
     '#title' => t('Field Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['component_styles']['fields']['label_inline'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['fields']['inline_labels_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable inline labels'),
     '#default_value' => theme_get_setting('inline_labels_enable'),
     '#description' => t("Enable the inline labels css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['fields']['text_formatted'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['fields']['text_formatted_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable text formatted'),
     '#default_value' => theme_get_setting('text_formatted_enable'),
     '#description' => t("Enable the text formatted css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['fields']['multiple_value_form'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['fields']['multiple_value_form_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable multiple value form'),
     '#default_value' => theme_get_setting('multiple_value_form_enable'),
     '#description' => t("Enable the multiple value form css."),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['nodes'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['nodes'] = array(
     '#type' => 'details',
     '#title' => t('Node Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
   // Component Nodes Styles
-  $form['style_sheets']['structure_styles']['component_styles']['nodes']['unpublished'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['nodes']['unpublished_node_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable unpublished node'),
     '#default_value' => theme_get_setting('unpublished_node_enable'),
     '#description' => t("Enable the unpublished node css."),
   );
   // Component Miscs Styles
-  $form['style_sheets']['structure_styles']['component_styles']['miscs'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['miscs'] = array(
     '#type' => 'details',
     '#title' => t('Miscellaneous Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['component_styles']['miscs']['skip_link'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['miscs']['skip_link_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable skip link'),
     '#default_value' => theme_get_setting('skip_link_enable'),
     '#description' => t("Enable the skip link css"),
   );
-  $form['style_sheets']['structure_styles']['component_styles']['miscs']['noscript'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['miscs']['noscript_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable noscript'),
     '#default_value' => theme_get_setting('noscript_enable'),
     '#description' => t("Enable the noscript css."),
   );
   // Component Messages Styles
-  $form['style_sheets']['structure_styles']['component_styles']['messages'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['messages'] = array(
     '#type' => 'details',
     '#title' => t('Message Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['component_styles']['messages']['messages'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['messages']['messages_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable messages'),
     '#default_value' => theme_get_setting('messages_enable'),
     '#description' => t("Enable the messages css."),
   );
   // Component Language block Styles
-  $form['style_sheets']['structure_styles']['component_styles']['links--language-block'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['links--language-block'] = array(
     '#type' => 'details',
     '#title' => t('Language Block Links Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['component_styles']['links--language-block']['links--language-block'] = array(
+  $form['style_sheets']['structure_styles']['component_styles']['component_options']['links--language-block']['language_block_links_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable language block links'),
     '#default_value' => theme_get_setting('language_block_links_enable'),

@@ -15,7 +15,8 @@ use Drupal\Component\Utility\Html;
  *
  * @see hook_page_attachments_alter()
  */
-function kiso_page_attachments_alter(array &$attachments) {
+function kiso_page_attachments_alter(array &$attachments)
+{
   $theme_path = \Drupal::theme()->getActiveTheme()->getPath();
 
   // Favicon for iOS - Web Clip.
@@ -202,16 +203,80 @@ function kiso_page_attachments_alter(array &$attachments) {
   }
 
   // Enabling the css depending on the option given in the theme settings
-  // Load the "Base" (Structural rules) libraries.
-  $attachments['#attached']['library'][] = 'kiso/reboot';
-  $attachments['#attached']['library'][] = 'kiso/elements';
+
+  // Load the "Reboot" (Structural rules) libraries.
+  if (theme_get_setting('reboot_enable')) {
+    $attachments['#attached']['library'][] = 'kiso/reboot';
+  }
+  // Load the "Elements" (Styles) library.
+  if (theme_get_setting('elements_enable')) {
+    $attachments['#attached']['library'][] = 'kiso/elements';
+  }
+
   // Load the "Layout" (Styles) library.
-  $attachments['#attached']['library'][] = 'kiso/layout';
+  if (theme_get_setting('layout_enable')) {
+    $attachments['#attached']['library'][] = 'kiso/layout';
+  }
   // Load the "Components" (Structural rules) libraries.
-  $attachments['#attached']['library'][] = 'kiso/blocks';
-  $attachments['#attached']['library'][] = 'kiso/navigations';
-  $attachments['#attached']['library'][] = 'kiso/forms';
-  $attachments['#attached']['library'][] = 'kiso/fields';
-  $attachments['#attached']['library'][] = 'kiso/nodes';
-  $attachments['#attached']['library'][] = 'kiso/miscs';
+  if (theme_get_setting('components_enable')) {
+    $attachments['#attached']['library'][] = 'kiso/blocks';
+    $attachments['#attached']['library'][] = 'kiso/navigations';
+    $attachments['#attached']['library'][] = 'kiso/forms';
+    $attachments['#attached']['library'][] = 'kiso/fields';
+    $attachments['#attached']['library'][] = 'kiso/nodes';
+    $attachments['#attached']['library'][] = 'kiso/miscs';
+  }
+}
+function kiso_css_alter(&$css) {
+  $settings = [
+    // Base elements.
+    'themes/contrib/kiso/css/base/elements/selection.css' => 'elements_selection_enable',
+    'themes/contrib/kiso/css/base/elements/root.css' => 'elements_root_enable',
+    'themes/contrib/kiso/css/base/elements/headings.css' => 'elements_headings_enable',
+    'themes/contrib/kiso/css/base/elements/typography.css' => 'elements_typography_enable',
+    'themes/contrib/kiso/css/base/elements/blockquotes.css' => 'elements_blockquotes_enable',
+    'themes/contrib/kiso/css/base/elements/lists.css' => 'elements_lists_enable',
+    'themes/contrib/kiso/css/base/elements/media.css' => 'elements_media_enable',
+    'themes/contrib/kiso/css/base/elements/code.css' => 'elements_code_enable',
+    'themes/contrib/kiso/css/base/elements/tables.css' => 'elements_tables_enable',
+    'themes/contrib/kiso/css/base/elements/forms.css' => 'elements_forms_enable',
+
+    // Layout.
+    'themes/contrib/kiso/css/layout/grid.css' => 'grid_enable',
+    'themes/contrib/kiso/css/layout/page/wrapper.css' => 'page_wrapper_enable',
+    'themes/contrib/kiso/css/layout/page/section.css' => 'page_section_enable',
+    'themes/contrib/kiso/css/layout/region/header-collapsible.css' => 'header_collapsible_enable',
+
+    // Components.
+    'themes/contrib/kiso/css/components/block/branding.css' => 'branding_enable',
+    'themes/contrib/kiso/css/components/navigation/breadcrumb.css' => 'breadcrumb_enable',
+    'themes/contrib/kiso/css/components/navigation/menu.css' => 'menu_enable',
+    'themes/contrib/kiso/css/components/navigation/menu-menubar.css' => 'menu_menubar_enable',
+    'themes/contrib/kiso/css/components/navigation/menu-footer.css' => 'menu_footer_enable',
+    'themes/contrib/kiso/css/components/navigation/action-links.css' => 'action_links_enable',
+    'themes/contrib/kiso/css/components/navigation/links.css' => 'links_enable',
+    'themes/contrib/kiso/css/components/navigation/tabs.css' => 'tabs_enable',
+    'themes/contrib/kiso/css/components/navigation/pager.css' => 'pager_enable',
+    'themes/contrib/kiso/css/components/dataset/item-list.css' => 'item_list_enable',
+    'themes/contrib/kiso/css/components/form/button.css' => 'form_button_enable',
+    'themes/contrib/kiso/css/components/form/element.css' => 'form_element_enable',
+    'themes/contrib/kiso/css/components/form/element-label.css' => 'form_element_label_enable',
+    'themes/contrib/kiso/css/components/form/controls.css' => 'form_controls_enable',
+    'themes/contrib/kiso/css/components/form/checks.css' => 'form_checks_enable',
+    'themes/contrib/kiso/css/components/field/label-inline.css' => 'inline_labels_enable',
+    'themes/contrib/kiso/css/components/field/text-formatted.css' => 'text_formatted_enable',
+    'themes/contrib/kiso/css/components/field/multiple-value-form.css' => 'multiple_value_form_enable',
+    'themes/contrib/kiso/css/components/field/file.css' => 'file_enable',
+    'themes/contrib/kiso/css/components/node/unpublished.css' => 'unpublished_node_enable',
+    'themes/contrib/kiso/css/components/misc/skip-link.css' => 'skip_link_enable',
+    'themes/contrib/kiso/css/components/misc/noscript.css' => 'noscript_enable',
+    'themes/contrib/kiso/css/components/misc/messages.css' => 'messages_enable',
+    'themes/contrib/kiso/css/components/navigation/links--language-block.css' => 'language_block_links_enable'
+  ];
+
+  foreach ($settings as $css_file => $setting) {
+    if (!theme_get_setting($setting)) {
+      unset($css[$css_file]);
+    }
+  }
 }

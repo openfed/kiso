@@ -334,20 +334,12 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
   );
-  $form['style_sheets']['structure_styles']['structure_check_all'] = array(
-    '#type' => 'checkbox',
-    '#title' => t('Use all structural styles'),
-    '#default_value' => theme_get_setting('structure_check_all'),
-  );
   // Base styles
   $form['style_sheets']['structure_styles']['base'] = array(
     '#type' => 'details',
     '#title' => t('Base Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#states' => [
-      'visible' => [':input[name="structure_check_all"]' => ['checked' => FALSE]],
-    ],
   );
   $form['style_sheets']['structure_styles']['base']['reboot'] = array(
     '#type' => 'checkbox',
@@ -367,9 +359,6 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#description' => t('Enable each structural element css individually.'),
     '#collapsible' => TRUE,
     '#collapsed' => FALSE,
-    '#states' => [
-      'visible' => [':input[name="elements_enable"]' => ['checked' => TRUE]],
-    ],
   );
   $form['style_sheets']['structure_styles']['base']['elements']['elements_options']['selection'] = array(
     '#type' => 'checkbox',
@@ -439,9 +428,6 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#title' => t('Layout Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#states' => [
-      'visible' => [':input[name="structure_check_all"]' => ['checked' => FALSE]],
-    ],
   );
   $form['style_sheets']['structure_styles']['layout_styles']['grid'] = array(
     '#type' => 'checkbox',
@@ -473,9 +459,6 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#title' => t('Component Styles'),
     '#collapsible' => TRUE,
     '#collapsed' => TRUE,
-    '#states' => [
-      'visible' => [':input[name="structure_check_all"]' => ['checked' => FALSE]],
-    ],
   );
   // Component Block styles
   $form['style_sheets']['structure_styles']['component_styles']['blocks'] = array(

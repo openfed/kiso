@@ -27,6 +27,17 @@
     db_offline ? 'db-offline',
   ]
 %}
+{% set page_navigaton = page.navigation|render %}
+{% set page_complementary = page.complementary|render %}
+{% if page_navigation is real_content and page_complementary is real_content %}
+  {% set body_classes = body_classes|merge(['sidebar', 'two-sidebars']) %}
+{% elseif page_navigaton is real_content %}
+  {% set body_classes = body_classes|merge(['sidebar', 'one-sidebar', 'is-visible--navigation']) %}
+{% elseif page_complementary is real_content %}
+  {% set body_classes = body_classes|merge(['sidebar', 'one-sidebar', 'is-visible--complementary']) %}
+{% else %}
+  {% set body_classes = body_classes|merge(['no-sidebars']) %}
+{% endif %}
 {# Enable the "Back to top" button. #}
 {% if backtotop_enable %}
   {% set attributes = attributes.setAttribute('id', 'top') %}

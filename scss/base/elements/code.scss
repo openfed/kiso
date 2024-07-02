@@ -45,7 +45,6 @@ code {
 // Code blocks
 //
 pre {
-  --code-pre-max-height: fit-content;
   --code-pre-padding-vertical: var(--padding-vertical-medium);
   --code-pre-padding-horizontal: var(--padding-horizontal-medium);
   --code-pre-margin-bottom: var(--margin-medium);
@@ -54,7 +53,6 @@ pre {
   --code-pre-color: currentcolor;
   --code-pre-background-color: transparent;
 
-  max-height: var(--code-pre-max-height);
   padding: var(--code-pre-padding-vertical) var(--code-pre-padding-horizontal);
   margin-bottom: var(--code-pre-margin-bottom);
   border: {

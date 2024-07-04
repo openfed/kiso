@@ -58,3 +58,7 @@ libraries-override:
     css:
       theme:
         extlink.css: 'css/components/extlink/extlink-window.css'
+
+# Defines module dependencies
+dependencies:
+  - drupal:twig_real_content

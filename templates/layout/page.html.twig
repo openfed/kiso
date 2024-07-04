@@ -7,6 +7,10 @@
  * can be found in the 'html.html.twig' template in this directory.
  *
  * You will find same variables as in the core 'page.html.twig' template.
+ * 
+ * Custom variables:
+ * - has_tools, has_header, has_header_collapsible, has_highlighted, has_navigation,
+ *   has_complementary, has_postscript, has_footer: Properly detect if regions are empty.
  *
  * Regions:
  * - page.tools: Items for the Toolbar region.
@@ -36,7 +40,7 @@
 {% set container = container_fluid ? 'container-fluid' : 'container' %}
 
 {# Toolbar Area #}
-{% if page.tools|render is real_content %}
+{% if has_tools %}
   {% block tools %}
     <div class="page__wrapper page__wrapper--tools">
       <div class="page__section page__section--tools {{ container }}">
@@ -47,7 +51,7 @@
 {% endif %}
 
 {# Banner Landmark #}
-{% if page.header|render is real_content or page.header_collapsible|render is real_content %}
+{% if has_header or has_header_collapsible %}
   {% block header %}
     <div class="page__wrapper page__wrapper--header">
       <header class="page__section page__section--header {{ container }}">
@@ -61,7 +65,7 @@
 {% endif %}
 
 {# Featured content Area #}
-{% if page.highlighted|render is real_content %}
+{% if has_highlighted %}
   {% block highlighted %}
     <div class="page__wrapper page__wrapper--highlighted">
       <div class="page__section page__section--highlighted {{ container }}">
@@ -85,7 +89,7 @@
       {{ page.breadcrumb }}
     {% endblock %}
 
-    {% if page.navigation|render is real_content or page.complementary|render is real_content %}
+    {% if has_navigation or has_complementary %}
       <div class="{{ container }}">
         <div class="row">
     {% endif %}
@@ -95,7 +99,7 @@
         set content_classes = [
           'page__section',
           'page__section--content',
-          page.navigation|render is real_content or page.complementary|render is real_content ? '' : container,
+          has_navigation or has_complementary ? '' : container,
         ]
       %}
       {% block content %}
@@ -110,7 +114,7 @@
       {% endblock %}
 
       {# Navigation sidebar (Left) #}
-      {% if page.navigation|render is real_content %}
+      {% if has_navigation %}
         {% block navigation %}
           <div class="page__section page__section--navigation">
             {{ page.navigation }}
@@ -119,7 +123,7 @@
       {% endif %}
 
       {# Related content sidebar (Right) #}
-      {% if page.complementary|render is real_content %}
+      {% if has_complementary %}
         {% block complementary %}
           <div class="page__section page__section--complementary">
             {{ page.complementary }}
@@ -127,7 +131,7 @@
         {% endblock %}
       {% endif %}
 
-    {% if page.navigation|render is real_content or page.complementary|render is real_content %}
+    {% if has_navigation or has_complementary %}
         </div>
       </div>
     {% endif %}
@@ -136,7 +140,7 @@
 {% endblock %}
 
 {# Footnotes Area #}
-{% if page.postscript|render is real_content %}
+{% if has_postscript %}
   {% block postscript %}
     <div class="page__wrapper page__wrapper--postscript">
       <div class="page__section page__section--postscript {{ container }}">
@@ -147,7 +151,7 @@
 {% endif %}
 
 {# Contentinfo Landmark #}
-{% if page.footer|render is real_content %}
+{% if has_footer %}
   {% block footer %}
     <div class="page__wrapper page__wrapper--footer">
       <footer class="page__section page__section--footer {{ container }}">

@@ -9,6 +9,25 @@
  * Implements hook_preprocess_HOOK() for html.html.twig.
  */
 function kiso_preprocess_html(&$variables) {
+  // Added body classes when sidebar(s) has (have) content.
+  if (_kiso_has_region(\Drupal::service('renderer')->render($variables['page']['navigation'])) && _kiso_has_region(\Drupal::service('renderer')->render($variables['page']['complementary']))) {
+    $variables['attributes']['class'][] = 'sidebar';
+    $variables['attributes']['class'][] = 'two-sidebars';
+  }
+  elseif (_kiso_has_region(\Drupal::service('renderer')->render($variables['page']['navigation']))) {
+    $variables['attributes']['class'][] = 'sidebar';
+    $variables['attributes']['class'][] = 'one-sidebar';
+    $variables['attributes']['class'][] = 'is-visible--navigation';
+  }
+  elseif (_kiso_has_region(\Drupal::service('renderer')->render($variables['page']['complementary']))) {
+    $variables['attributes']['class'][] = 'sidebar';
+    $variables['attributes']['class'][] = 'one-sidebar';
+    $variables['attributes']['class'][] = 'is-visible--complementary';
+  }
+  else {
+    $variables['attributes']['class'][] = 'no-sidebars';
+  }
+
   // Add body classes related to node content.
   $node = \Drupal::routeMatch()->getParameter('node');
   if ($node) {

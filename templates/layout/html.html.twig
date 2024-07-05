@@ -27,6 +27,16 @@
     db_offline ? 'db-offline',
   ]
 %}
+{% if has_navigation and has_complementary %}
+  {% set body_classes = body_classes|merge(['sidebar', 'two-sidebars']) %}
+{% elseif has_navigaton %}
+  {% set body_classes = body_classes|merge(['sidebar', 'one-sidebar', 'is-visible--navigation']) %}
+{% elseif has_complementary %}
+  {% set body_classes = body_classes|merge(['sidebar', 'one-sidebar', 'is-visible--complementary']) %}
+{% else %}
+  {% set body_classes = body_classes|merge(['no-sidebars']) %}
+{% endif %}
+
 {# Enable the "Back to top" button. #}
 {% if backtotop_enable %}
   {% set attributes = attributes.setAttribute('id', 'top') %}

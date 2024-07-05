@@ -45,7 +45,6 @@ pre {
   @include rem('padding', map-get($component-vertical-paddings, 'medium') map-get($component-horizontal-paddings, 'medium'));
   @include rem('margin-bottom', map-get($component-margins, 'medium'));
   @include rem('border-radius', map-get($component-border-radiuses, 'medium'));
-  @include rem('max-height', 340px);
   @include background($color: map-get($component-state-background-colors, 'light'));
   color: map-get($component-state-colors, 'dark');
   border: {

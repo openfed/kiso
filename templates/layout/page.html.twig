@@ -7,7 +7,7 @@
  * can be found in the 'html.html.twig' template in this directory.
  *
  * You will find same variables as in the core 'page.html.twig' template.
- * 
+ *
  * Custom variables:
  * - has_tools, has_header, has_header_collapsible, has_highlighted, has_navigation,
  *   has_complementary, has_postscript, has_footer: Properly detect if regions are empty.
@@ -44,7 +44,7 @@
   {% block tools %}
     <div class="page__wrapper page__wrapper--tools">
       <div class="page__section page__section--tools {{ container }}">
-        {{ page.tools }}
+        {{ page_tools }}
       </div>
     </div>
   {% endblock %}
@@ -55,10 +55,10 @@
   {% block header %}
     <div class="page__wrapper page__wrapper--header">
       <header class="page__section page__section--header {{ container }}">
-        {{ page.header }}
+        {{ page_header }}
         {# This button is used as the toggle for the Header (Collapsible) #}
         <button type="button" class="button button--toggler" aria-controls="headerCollapsible" aria-expanded="false"><span>Menu</span></button>
-        {{ page.header_collapsible }}
+        {{ page_header_collapsible }}
       </header>
     </div>
   {% endblock %}
@@ -69,7 +69,7 @@
   {% block highlighted %}
     <div class="page__wrapper page__wrapper--highlighted">
       <div class="page__section page__section--highlighted {{ container }}">
-        {{ page.highlighted }}
+        {{ page_highlighted }}
       </div>
     </div>
   {% endblock %}
@@ -81,12 +81,12 @@
 
     {# Dynamic help text #}
     {% block help %}
-      {{ page.help }}
+      {{ page_help }}
     {% endblock %}
 
     {# Breadcrumb #}
     {% block breadcrumb %}
-      {{ page.breadcrumb }}
+      {{ page_breadcrumb }}
     {% endblock %}
 
     {% if has_navigation or has_complementary %}
@@ -104,7 +104,7 @@
       %}
       {% block content %}
         <main{{ content_attributes.addClass(content_classes).setAttribute('role', 'main') }}>
-          {{ page.content }}
+          {{ page_content }}
 
           {# Enable and display the "Back to top" button. #}
           {% if backtotop_enable %}
@@ -117,7 +117,7 @@
       {% if has_navigation %}
         {% block navigation %}
           <div class="page__section page__section--navigation">
-            {{ page.navigation }}
+            {{ page_navigation }}
           </div>
         {% endblock %}
       {% endif %}
@@ -126,7 +126,7 @@
       {% if has_complementary %}
         {% block complementary %}
           <div class="page__section page__section--complementary">
-            {{ page.complementary }}
+            {{ page_complementary }}
           </div>
         {% endblock %}
       {% endif %}
@@ -144,7 +144,7 @@
   {% block postscript %}
     <div class="page__wrapper page__wrapper--postscript">
       <div class="page__section page__section--postscript {{ container }}">
-        {{ page.postscript }}
+        {{ page_postscript }}
       </div>
     </div>
   {% endblock %}
@@ -155,7 +155,7 @@
   {% block footer %}
     <div class="page__wrapper page__wrapper--footer">
       <footer class="page__section page__section--footer {{ container }}">
-        {{ page.footer }}
+        {{ page_footer }}
       </footer>
     </div>
   {% endblock %}

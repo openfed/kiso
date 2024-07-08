@@ -1,6 +1,17 @@
 <?php
 
 /**
+ * Small function to render the regions without passing them by reference.
+ * 
+ * @param $region
+ *
+ * @return mixed
+ */
+function _kiso_render_region($region){
+  return \Drupal::service('renderer')->render($region);
+}
+
+/**
  * @file
  * Utilities used by the theme preprocess functions.
  */

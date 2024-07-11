@@ -1,14 +1,16 @@
 <?php
 
+use Twig\TwigFilter;
+
 /**
  * Small function to render the regions without passing them by reference.
- * 
+ *
  * @param $region
  *
  * @return mixed
  */
-function _kiso_render_region($region){
-  return \Drupal::service('renderer')->render($region);
+function _kiso_render_region($region) {
+  return Drupal::service('renderer')->render($region);
 }
 
 /**
@@ -31,9 +33,25 @@ function _kiso_render_region($region){
  * @see https://drupal.stackexchange.com/questions/175389/how-do-i-properly-detect-if-region-is-empty
  */
 function _kiso_has_region(?string $markup, string $allowed_tags = '') {
-  $non_conditional_html_comments_pattern = '/<!--(.|\s)*?-->\s*|\r|\n/';
-  $cleaned_region_output = preg_replace($non_conditional_html_comments_pattern, '', $markup);
-  return !empty(_kiso_strip_tags($cleaned_region_output));
+  $moduleHandler = Drupal::service('module_handler');
+  if ($moduleHandler->moduleExists('twig_real_content')) {
+    $filters = Drupal::service('twig_real_content.twig_extension')
+      ->getFilters();
+    $key = array_search('real_content', array_map(function(TwigFilter $filter) {
+      return $filter->getName();
+    }, $filters), TRUE);
+    $callable = $filters[$key]->getCallable();
+
+    $real_content = $callable($markup);
+
+    return !empty($real_content);
+  }
+  else {
+    $non_conditional_html_comments_pattern = '/<!--(.|\s)*?-->\s*|\r|\n/';
+    $cleaned_region_output = preg_replace($non_conditional_html_comments_pattern, '', $markup);
+
+    return !empty(_kiso_strip_tags($cleaned_region_output, $allowed_tags));
+  }
 }
 
 /**

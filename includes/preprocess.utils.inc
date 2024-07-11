@@ -56,9 +56,17 @@ function _kiso_has_region(?string $markup, string $allowed_tags = '') {
 
 /**
  * Strips html tags, except allowed, returning a trimmed clean markup.
+ *
+ * @param string $markup
+ *  Original markup.
+ * @param string|array $allowed_tags
+ *  Allowed tags, can be an array of tag of a string.
+ *
+ * @return string
+ * @throws \Twig\Error\RuntimeError
  */
-function _kiso_strip_tags(string $markup, string $allowed_tags = '') {
-  $text = strip_tags($markup, [
+function _kiso_strip_tags(string $markup, string|array $allowed_tags) {
+  $allowed_tags_base = [
     '<drupal-render-placeholder>',
     '<embed>',
     '<hr>',
@@ -71,7 +79,16 @@ function _kiso_strip_tags(string $markup, string $allowed_tags = '') {
     '<source>',
     '<style>',
     '<video>',
-  ]);
+  ];
+
+  if (is_string($allowed_tags)) {
+    $allowed_tags .= implode('', $allowed_tags_base);
+  }
+  elseif (is_array($allowed_tags)) {
+    $allowed_tags = array_merge($allowed_tags_base, $allowed_tags);
+  }
+
+  $text = strip_tags($markup, $allowed_tags);
   $text = twig_trim_filter($text);
   return $text;
 }

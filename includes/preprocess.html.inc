@@ -10,7 +10,6 @@
  */
 function kiso_preprocess_html(&$variables) {
 
-  $variables['page_tools'] = _kiso_render_region($variables['page']['tools']);
   $variables['page_navigation'] = _kiso_render_region($variables['page']['navigation']);
   $variables['page_complementary'] = _kiso_render_region($variables['page']['complementary']);
   $has_navigation = _kiso_has_region($variables['page_navigation']);

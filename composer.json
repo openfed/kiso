@@ -16,7 +16,8 @@
         }
     },
     "require": {
-        "drupal/core": "^9 || ^10"
+        "drupal/core": "^9 || ^10",
+        "drupal/twig_real_content": "^1.0"
     },
     "require-dev": {},
     "minimum-stability": "dev",

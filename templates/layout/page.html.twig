@@ -8,6 +8,10 @@
  *
  * You will find same variables as in the core 'page.html.twig' template.
  *
+ * Custom variables:
+ * - has_tools, has_header, has_header_collapsible, has_highlighted, has_navigation,
+ *   has_complementary, has_postscript, has_footer: Properly detect if regions are empty.
+ *
  * Regions:
  * - page.tools: Items for the Toolbar region.
  * - page.header: Items for the Header region.
@@ -36,36 +40,36 @@
 {% set container = container_fluid ? 'container-fluid' : 'container' %}
 
 {# Toolbar Area #}
-{% if page.tools|render is real_content %}
+{% if has_tools %}
   {% block tools %}
     <div class="page__wrapper page__wrapper--tools">
       <div class="page__section page__section--tools {{ container }}">
-        {{ page.tools }}
+        {{ page_tools }}
       </div>
     </div>
   {% endblock %}
 {% endif %}
 
 {# Banner Landmark #}
-{% if page.header|render is real_content or page.header_collapsible|render is real_content %}
+{% if has_header or has_header_collapsible %}
   {% block header %}
     <div class="page__wrapper page__wrapper--header">
       <header class="page__section page__section--header {{ container }}">
-        {{ page.header }}
+        {{ page_header }}
         {# This button is used as the toggle for the Header (Collapsible) #}
         <button type="button" class="button button--toggler" aria-controls="headerCollapsible" aria-expanded="false"><span>Menu</span></button>
-        {{ page.header_collapsible }}
+        {{ page_header_collapsible }}
       </header>
     </div>
   {% endblock %}
 {% endif %}
 
 {# Featured content Area #}
-{% if page.highlighted|render is real_content %}
+{% if has_highlighted %}
   {% block highlighted %}
     <div class="page__wrapper page__wrapper--highlighted">
       <div class="page__section page__section--highlighted {{ container }}">
-        {{ page.highlighted }}
+        {{ page_highlighted }}
       </div>
     </div>
   {% endblock %}
@@ -77,15 +81,15 @@
 
     {# Dynamic help text #}
     {% block help %}
-      {{ page.help }}
+      {{ page_help }}
     {% endblock %}
 
     {# Breadcrumb #}
     {% block breadcrumb %}
-      {{ page.breadcrumb }}
+      {{ page_breadcrumb }}
     {% endblock %}
 
-    {% if page.navigation|render is real_content or page.complementary|render is real_content %}
+    {% if has_navigation or has_complementary %}
       <div class="{{ container }}">
         <div class="row">
     {% endif %}
@@ -95,12 +99,12 @@
         set content_classes = [
           'page__section',
           'page__section--content',
-          page.navigation|render is real_content or page.complementary|render is real_content ? '' : container,
+          has_navigation or has_complementary ? '' : container,
         ]
       %}
       {% block content %}
         <main{{ content_attributes.addClass(content_classes).setAttribute('role', 'main') }}>
-          {{ page.content }}
+          {{ page_content }}
 
           {# Enable and display the "Back to top" button. #}
           {% if backtotop_enable %}
@@ -110,24 +114,24 @@
       {% endblock %}
 
       {# Navigation sidebar (Left) #}
-      {% if page.navigation|render is real_content %}
+      {% if has_navigation %}
         {% block navigation %}
           <div class="page__section page__section--navigation">
-            {{ page.navigation }}
+            {{ page_navigation }}
           </div>
         {% endblock %}
       {% endif %}
 
       {# Related content sidebar (Right) #}
-      {% if page.complementary|render is real_content %}
+      {% if has_complementary %}
         {% block complementary %}
           <div class="page__section page__section--complementary">
-            {{ page.complementary }}
+            {{ page_complementary }}
           </div>
         {% endblock %}
       {% endif %}
 
-    {% if page.navigation|render is real_content or page.complementary|render is real_content %}
+    {% if has_navigation or has_complementary %}
         </div>
       </div>
     {% endif %}
@@ -136,22 +140,22 @@
 {% endblock %}
 
 {# Footnotes Area #}
-{% if page.postscript|render is real_content %}
+{% if has_postscript %}
   {% block postscript %}
     <div class="page__wrapper page__wrapper--postscript">
       <div class="page__section page__section--postscript {{ container }}">
-        {{ page.postscript }}
+        {{ page_postscript }}
       </div>
     </div>
   {% endblock %}
 {% endif %}
 
 {# Contentinfo Landmark #}
-{% if page.footer|render is real_content %}
+{% if has_footer %}
   {% block footer %}
     <div class="page__wrapper page__wrapper--footer">
       <footer class="page__section page__section--footer {{ container }}">
-        {{ page.footer }}
+        {{ page_footer }}
       </footer>
     </div>
   {% endblock %}

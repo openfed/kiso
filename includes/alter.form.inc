@@ -5,6 +5,7 @@
  * Perform alterations before a form is rendered.
  */
 
+use Drupal\Component\Utility\Html;
 use Drupal\Core\Form\FormStateInterface;
 
 /**

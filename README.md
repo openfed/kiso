@@ -3,9 +3,9 @@
 Drupal "Kiso" (基礎) base theme
 ==========
 
-![GitHub updated](https://img.shields.io/badge/Last%20updated-July%2012,%202024-405b77.svg)
+![GitHub updated](https://img.shields.io/badge/Last%20updated-July%2016,%202024-405b77.svg)
 [![Drupal compatibility](https://img.shields.io/badge/Drupal%20compatibility-9.x|10.x-405b77.svg)](kiso.info.yml)
-[![GitHub release](https://img.shields.io/badge/Release-3.0.3-405b77.svg)](https://github.com/openfed/kiso/releases/tag/3.0.3)
+[![GitHub release](https://img.shields.io/badge/Release-3.0.4-405b77.svg)](https://github.com/openfed/kiso/releases/tag/3.0.4)
 
 > **Note**
 > *Kiso* releases (3.0.x) are compatible with **Drupal 10**.

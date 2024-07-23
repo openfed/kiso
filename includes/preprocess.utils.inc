@@ -89,6 +89,6 @@ function _kiso_strip_tags(string $markup, string|array $allowed_tags) {
   }
 
   $text = strip_tags($markup, $allowed_tags);
-  $text = twig_trim_filter($text);
+  $text = trim($text);
   return $text;
 }

@@ -42,10 +42,3 @@ figcaption {
   margin-top: 0;
   box-shadow: map-get($component-box-shadows, 'small');
 }
-
-// Media Embed Resize
-// Fixing Responsiveness of resized media
-//
-.media-embed-resized {
-  max-width: 100%;
-}

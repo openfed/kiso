@@ -117,6 +117,7 @@ miscs:
     component:
       css/components/misc/skip-link.css: {}
       css/components/misc/noscript.css: {}
+      css/components/misc/media-embed-resized.css: {}
 
 messages:
   version: VERSION

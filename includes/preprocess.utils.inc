@@ -34,6 +34,11 @@ function _kiso_render_region($region) {
  */
 function _kiso_has_region(?string $markup, string $allowed_tags = '') {
   $moduleHandler = Drupal::service('module_handler');
+
+  if (empty($markup)) {
+    return false;
+  }
+
   if ($moduleHandler->moduleExists('twig_real_content')) {
     $filters = Drupal::service('twig_real_content.twig_extension')
       ->getFilters();

@@ -24,7 +24,8 @@ use Drupal\Core\Messenger;
  * @param $form_state
  *   The current state of the form.
  */
-function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
+{
 
   $form['kiso_settings'] = array(
     '#type' => 'vertical_tabs',
@@ -328,12 +329,30 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     $messenger = \Drupal::messenger();
     $messenger->addMessage(t('The <strong><a href="https://www.drupal.org/project/extlink">External Links</a></strong> module is not enabled. The <strong>External Links (New Window)</strong> JavaScript requires this module to work with additional libraries.<br />Please enable <a href="https://www.drupal.org/project/extlink">External Links</a> 8.x-1.1 or higher, you must manually set this in the configuration after it is installed.'), $messenger::TYPE_ERROR);
   }
+
   // Get the "External Links" module settings to manage form elements visibility.
   if ($moduleHandler->moduleExists('extlink') && $config = \Drupal::config('extlink.settings')) {
     $settings = $config->getRawData();
+
     // Do not display icon customization settings if the "External Links" module does not use Font Awesome icons.
     if (!$settings['extlink_use_font_awesome']) {
       unset($form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_font_awesome']);
+    }
+
+    // Check if the icon placement is set to "before" or "after" and display a warning.
+    if (
+      theme_get_setting('extlinkwindow_enabled') &&
+      isset($settings['extlink_icon_placement']) &&
+      in_array($settings['extlink_icon_placement'], ['before', 'after'])
+    ) {
+      $messenger = \Drupal::messenger();
+      $messenger->addMessage(
+        t(
+          'The <strong>External Links</strong> module has icon placement set to "@placement". For optimal compatibility with the <strong>External Links (New Window)</strong> feature, please change the icon placement to "prepend" or "append" in the <a href="@config_url">External Links configuration</a>.',
+          ['@placement' => $settings['extlink_icon_placement'], '@config_url' => '/admin/config/user-interface/extlink']
+        ),
+        $messenger::TYPE_WARNING
+      );
     }
   }
 }

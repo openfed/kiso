@@ -36,7 +36,7 @@ function kiso_preprocess_html(&$variables) {
 
   // Add body classes related to node content.
   $node = \Drupal::routeMatch()->getParameter('node');
-  if ($node) {
+  if ($node instanceof \Drupal\node\NodeInterface) {
     // Set the a class on unpublished nodes.
     if (!$node->status->value) {
       $variables['attributes']['class'][] = 'page--node--unpublished';

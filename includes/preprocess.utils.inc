@@ -33,8 +33,11 @@ function _kiso_render_region($region) {
  * @see https://drupal.stackexchange.com/questions/175389/how-do-i-properly-detect-if-region-is-empty
  */
 function _kiso_has_region(?string $markup, string $allowed_tags = '') {
-  $moduleHandler = Drupal::service('module_handler');
-  if ($moduleHandler->moduleExists('twig_real_content')) {
+  if (empty($markup)) {
+    return FALSE;
+  }
+
+  if (Drupal::service('module_handler')->moduleExists('twig_real_content')) {
     $filters = Drupal::service('twig_real_content.twig_extension')
       ->getFilters();
     $key = array_search('real_content', array_map(function(TwigFilter $filter) {

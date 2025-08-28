@@ -16,7 +16,6 @@
  */
 
 // Include and evaluate [pre]process and hook functions from the `./includes` directory.
-include_once "includes/alter.form.inc";
 include_once "includes/alter.page-attachments.inc";
 include_once "includes/alter.theme-suggestions.inc";
 include_once "includes/preprocess.block.inc";

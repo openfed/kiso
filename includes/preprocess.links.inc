@@ -23,7 +23,7 @@ function kiso_preprocess_links__language_block(&$variables) {
   //      label cannot be used 
   // 
   foreach ($variables['links'] as $langcode => &$link) {
-    if (isset($link['link'])) {
+    if ($link['link']['#url']->getRouteName() !== '<nolink>') {
       $language_name = t('@language', ['@language' => $link['text']], ['langcode' => $langcode]);
       $link['link']['#options']['attributes']['lang'] = $langcode;
       $link['link']['#options']['attributes']['aria-label'] = $language_name;
@@ -34,6 +34,7 @@ function kiso_preprocess_links__language_block(&$variables) {
       $link['text_attributes']['lang'] = $langcode;
       $link['text_attributes']['aria-label'] = $link['title'];
       $link['text'] = strtoupper($langcode);
+      unset($link['attributes']['data-drupal-link-system-path']);
     }
   }
 }

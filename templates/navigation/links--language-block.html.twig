@@ -21,7 +21,7 @@
   <ul{{ attributes.addClass('links--language-block') }}>
     {%- for item in links -%}
       <li{{ item.attributes.removeAttribute('hreflang') }}>
-        {%- if item.link -%}
+        {% if item.link['#url'].routeName != '<nolink>' %}
           {{ item.link }}
         {%- elseif item.text_attributes -%}
           <del{{ item.text_attributes }}>

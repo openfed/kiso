@@ -20,10 +20,10 @@ function kiso_preprocess_links__language_block(&$variables) {
   //    - H28: Providing definitions for abbreviations by using the abbr element.
   //  - SC 4.1.2 Name, Role, Value (Level A):
   //    - ARIA14: Using aria-label to provide an invisible label where a visible
-  //      label cannot be used 
-  // 
+  //      label cannot be used
+  //
   foreach ($variables['links'] as $langcode => &$link) {
-    if (isset($link['link'])) {
+    if ($link['link']['#url']->getRouteName() !== '<nolink>') {
       $language_name = t('@language', ['@language' => $link['text']], ['langcode' => $langcode]);
       $link['link']['#options']['attributes']['lang'] = $langcode;
       $link['link']['#options']['attributes']['aria-label'] = $language_name;
@@ -34,6 +34,10 @@ function kiso_preprocess_links__language_block(&$variables) {
       $link['text_attributes']['lang'] = $langcode;
       $link['text_attributes']['aria-label'] = $link['title'];
       $link['text'] = strtoupper($langcode);
+      // Remove the link to maintain compatibility with existing Twig templates.
+      // Also, remove the 'data-drupal-link-system-path' attribute to prevent
+      // misinterpretation when the route is '<nolink>'.
+      unset($link['link'], $link['attributes']['data-drupal-link-system-path']);
     }
   }
 }

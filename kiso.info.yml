@@ -62,3 +62,7 @@ libraries-override:
 # Defines module dependencies
 dependencies:
   - drupal:twig_real_content
+
+# Defines translation information
+'interface translation project': kiso
+'interface translation server pattern': themes/custom/kiso/translations/%project-%version.%language.po

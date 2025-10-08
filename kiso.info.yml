@@ -65,4 +65,4 @@ dependencies:
 
 # Defines translation information
 'interface translation project': kiso
-'interface translation server pattern': themes/custom/kiso/translations/%project-%version.%language.po
+'interface translation server pattern': themes/contrib/kiso/translations/%project-%version.%language.po

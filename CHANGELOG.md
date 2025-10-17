@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+17 October 2025 - Version 3.1.1
+-------------------------------
+- Fixed #143: Accessibility issue with pager ellipsis links not having discernible text
+
 10 September 2025 - Version 3.1.0
 ---------------------------------
 - Fixed #133: Warning: undefined array key "navigation" and "complementary"

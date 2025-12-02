@@ -57,7 +57,7 @@ libraries-override:
   extlink/drupal.extlink:
     css:
       theme:
-        extlink.css: 'css/components/extlink/extlink-window.css'
+        css/extlink.css: 'css/components/extlink/extlink-window.css'
 
 # Defines module dependencies
 dependencies:

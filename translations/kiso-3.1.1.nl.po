@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Kiso 3.1.1\n"
 "POT-Creation-Date: 2025-09-25 12:00+0100\n"
-"PO-Revision-Date: 2025-09-25 12:00+0100\n"
+"PO-Revision-Date: 2025-12-08 12:00+0100\n"
 "Last-Translator: NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Dutch\n"
 "MIME-Version: 1.0\n"
@@ -14,3 +14,9 @@ msgstr ""
 
 msgid "Ellipsis indicating non-visible pages"
 msgstr "Beletselteken die niet-zichtbare pagina's aangeeft"
+
+msgid "Open details page"
+msgstr "Open detailpagina"
+
+msgid "Open details page - @label"
+msgstr "Open detailpagina - @label"

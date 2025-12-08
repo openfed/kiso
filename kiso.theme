@@ -23,6 +23,7 @@ include_once "includes/preprocess.block.inc";
 include_once "includes/preprocess.file-link.inc";
 include_once "includes/preprocess.html.inc";
 include_once "includes/preprocess.image.inc";
+include_once "includes/preprocess.image_formatter.inc";
 include_once "includes/preprocess.inc";
 include_once "includes/preprocess.links.inc";
 include_once "includes/preprocess.maintenance-page.inc";

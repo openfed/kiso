@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+09 December 2025 - Version 3.1.2
+-------------------------------
+- Fixed #143: Different accessibility approach with pager ellipsis links not having discernible text
+- Fixed #148: Add accessible text to image formatter links
+
 17 October 2025 - Version 3.1.1
 -------------------------------
 - Fixed #143: Accessibility issue with pager ellipsis links not having discernible text

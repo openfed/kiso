@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+09 December 2025 - Version 4.0.0
+-------------------------------
+- Fixed #146: Update path to override the extlink library after module upgrade
+
 09 December 2025 - Version 3.1.2
 -------------------------------
 - Fixed #143: Different accessibility approach with pager ellipsis links not having discernible text

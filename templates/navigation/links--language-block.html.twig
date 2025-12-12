@@ -20,7 +20,7 @@
 {% if links -%}
   <ul{{ attributes.addClass('links--language-block') }}>
     {%- for item in links -%}
-      <li{{ item.attributes.removeAttribute('hreflang') }}>
+      <li{{ item.attributes }}>
         {%- if item.link -%}
           {{ item.link }}
         {%- elseif item.text_attributes -%}

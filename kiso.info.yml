@@ -32,7 +32,7 @@ libraries:
   - 'kiso/visual-styling'
 
 # Defines CKEditor styles
-ckeditor_stylesheets:
+ckeditor5-stylesheets:
   - 'css/components/ckeditor.css'
 
 # Libraries overrides

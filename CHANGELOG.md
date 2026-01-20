@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+20 January 2026 - Version 4.0.1
+-------------------------------
+- Fixed #151: Only the current page can have the aria-current attribute on language links
+
 09 December 2025 - Version 4.0.0
 -------------------------------
 - Fixed #146: Update path to override the extlink library after module upgrade

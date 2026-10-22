@@ -1,6 +1,8 @@
 # Default settings should not be located here. This file is only used to
 # initially install a theme's "settings".
 
+langcode: en
+
 # General / Container
 container_fluid: 0
 

@@ -10,7 +10,7 @@
  * @ingroup themeable
  */
 #}
-{% set label = backtotop_label ? backtotop_label : 'Back to top'|t %}
+{% set label = backtotop_label %}
 {% block backtotop %}
 {{ attach_library('kiso/back-to-top') }}
 <a href="#top" class="back-to-top" title="{{ label }}">{{ label }}</a>

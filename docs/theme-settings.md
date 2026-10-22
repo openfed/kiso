@@ -57,6 +57,10 @@ Use CSS selectors to only look inside explicitly or exclude entirely specified `
 
 Extends the Drupal "[External Links  _(extlink 8.x-1.2)_](https://www.drupal.org/project/extlink)" contributed module giving users advanced warning when opening in a new window or tab.
 
+Translate the warning labels through Configuration Translation at
+`/admin/config/regional/config-translation`. These configuration values are
+passed directly to JavaScript without additional interface translation.
+
 | Setting name | Description and default value |
 |:--|:--|
 | **extlinkwindow_enabled** | Enable the "External Links" (New Window) behavior for links that open in a new window.<br>`extlinkwindow_enabled: 1` |
@@ -78,6 +82,10 @@ Extends the Drupal "[External Links  _(extlink 8.x-1.2)_](https://www.drupal.org
 | **tooltip_delay** | The amount of time to delay showing the tooltip (in milliseconds).<br>`tooltip_delay: 600` |
 
 ## JavaScript > Back to Top
+
+Translate `backtotop_label` through Configuration Translation. Preprocess passes
+the configured label to Twig without additional interface translation, using
+the interface-translated "Back to top" only when the configured label is empty.
 
 | Setting name | Description and default value |
 |:--|:--|

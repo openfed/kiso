@@ -21,7 +21,7 @@ function kiso_theme_suggestions_page_alter(array &$suggestions, array $variables
     '403',
     '404',
   ];
-  if ($exception = \Drupal::request()->get('exception')) {
+  if ($exception = \Drupal::request()->attributes->get('exception')) {
     $status_code = $exception->getStatusCode();
     if (in_array($status_code, $http_error_suggestions)) {
       $suggestions[] = 'page__error';

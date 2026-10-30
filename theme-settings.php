@@ -1,6 +1,7 @@
 <?php
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Extension\ThemeSettingsProvider;
 use Drupal\Core\Theme\ThemeSettings;
 use Drupal\system\Form\ThemeSettingsForm;
 use Drupal\Core\Form;
@@ -26,6 +27,7 @@ use Drupal\Core\Messenger;
  */
 function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state)
 {
+  $theme_settings = \Drupal::service(ThemeSettingsProvider::class);
 
   $form['kiso_settings'] = array(
     '#type' => 'vertical_tabs',
@@ -52,7 +54,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['general']['container']['container_fluid'] = array(
     '#type' => 'checkbox',
     '#title' => t('Fluid container'),
-    '#default_value' => theme_get_setting('container_fluid'),
+    '#default_value' => $theme_settings->getSetting('container_fluid'),
     '#description' => t("Uses the .container-fluid class instead of .container class."),
   );
 
@@ -75,7 +77,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['trackfocus']['trackfocus_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable the "Keyboard Focus Tracking" indicator'),
-    '#default_value' => theme_get_setting('trackfocus_enable'),
+    '#default_value' => $theme_settings->getSetting('trackfocus_enable'),
     '#description' => t('Display a unique highly visible <em>keyboard only</em> focus indicator <strong>for all focusable elements</strong> using a combination of a highly contrasting style.'),
   );
   $form['javascripts']['trackfocus']['trackfocus_options'] = array(
@@ -90,7 +92,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['trackfocus']['trackfocus_options']['trackfocus_disable_persist'] = array(
     '#type' => 'checkbox',
     '#title' => t('Disable persisting input/intent across pages'),
-    '#default_value' => theme_get_setting('trackfocus_disable_persist'),
+    '#default_value' => $theme_settings->getSetting('trackfocus_disable_persist'),
     '#description' => t('By default, <em>What Input</em> uses <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/sessionStorage">session storage</a> to persist the input and intent values across pages. The benefit is that once a visitor has interacted with the page, subsequent pages won\'t have to wait for interactions to know the input method.'),
   );
   // Smooth Scroll
@@ -104,7 +106,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['smoothscroll']['smoothscroll_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable the "Smooth Scroll" behavior'),
-    '#default_value' => theme_get_setting('smoothscroll_enable'),
+    '#default_value' => $theme_settings->getSetting('smoothscroll_enable'),
     '#description' => t('Enable the smooth scroll effect for <code>#hash</code> links.'),
   );
   $form['javascripts']['smoothscroll']['smoothscroll_a11y'] = array(
@@ -120,7 +122,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['smoothscroll']['smoothscroll_a11y']['smoothscroll_speed'] = array(
     '#type' => 'textfield',
     '#title' => t('Motion speed:'),
-    '#default_value' => theme_get_setting('smoothscroll_speed'),
+    '#default_value' => $theme_settings->getSetting('smoothscroll_speed'),
     '#description' => t('The speed of the motion to jump across the content (in milliseconds).'),
   );
   // Outdated Browser
@@ -134,7 +136,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['outdatedbrowser']['outdatedbrowser_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable the "Outdated Browser" warning message'),
-    '#default_value' => theme_get_setting('outdatedbrowser_enable'),
+    '#default_value' => $theme_settings->getSetting('outdatedbrowser_enable'),
     '#description' => t('Detect outdated <em>Microsoft Internet Explorer</em> browsers and advise users to upgrade to a new version.'),
   );
   $form['javascripts']['outdatedbrowser']['outdatedbrowser_options'] = array(
@@ -154,7 +156,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
       '10' => t('IE 10 and lower'),
       '11' => t('IE 11 and lower'),
     ),
-    '#default_value' => theme_get_setting('outdatedbrowser_ie_target'),
+    '#default_value' => $theme_settings->getSetting('outdatedbrowser_ie_target'),
     '#description' => t('Select the <em>Microsoft Internet Explorer</em> versions that will trigger the warning message display (e.g. "IE 11 and lower" for IE 11, 10, 9 and 8 browser versions at least).'),
   );
   $form['javascripts']['outdatedbrowser']['outdatedbrowser_options']['css_matching'] = array(
@@ -166,14 +168,14 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
     '#type' => 'textarea',
     '#title' => t('Only look for Website pages inside these CSS selectors:'),
     '#maxlength' => NULL,
-    '#default_value' => theme_get_setting('outdatedbrowser_css_explicit'),
+    '#default_value' => $theme_settings->getSetting('outdatedbrowser_css_explicit'),
     '#description' => t('Enter a comma-separated list of CSS selectors (e.g. <code>.page--frontpage, .page--node-type-news, .not-logged-in</code>).'),
   );
   $form['javascripts']['outdatedbrowser']['outdatedbrowser_options']['css_matching']['outdatedbrowser_css_exclude'] = array(
     '#type' => 'textarea',
     '#title' => t('Exclude Website pages inside these CSS selectors:'),
     '#maxlength' => NULL,
-    '#default_value' => theme_get_setting('outdatedbrowser_css_exclude'),
+    '#default_value' => $theme_settings->getSetting('outdatedbrowser_css_exclude'),
     '#description' => t('Enter a comma-separated list of CSS selectors (e.g. <code>.page--contact, .logged-in, .no-sidebars</code>).'),
   );
   // External Links (New Window)
@@ -187,7 +189,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['extlinkwindow']['extlinkwindow_enabled'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable "External Links" (New Window)'),
-    '#default_value' => theme_get_setting('extlinkwindow_enabled'),
+    '#default_value' => $theme_settings->getSetting('extlinkwindow_enabled'),
     '#description' => t('Enable the "External Links" (New Window) behavior for links that open in a new window.'),
   );
   $form['javascripts']['extlinkwindow']['extlinkwindow_options'] = array(
@@ -202,13 +204,13 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_extlink_custom_label'] = array(
     '#type' => 'checkbox',
     '#title' => t('Customize the warning message for the external links'),
-    '#default_value' => theme_get_setting('extlinkwindow_extlink_custom_label'),
+    '#default_value' => $theme_settings->getSetting('extlinkwindow_extlink_custom_label'),
     '#description' => t('If you check this box you can choose which message will be used to warn users when the external links open in a new window.'),
   );
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_extlink_label'] = array(
     '#type' => 'textfield',
     '#title' => t('Text to use for the external links:'),
-    '#default_value' => theme_get_setting('extlinkwindow_extlink_label'),
+    '#default_value' => $theme_settings->getSetting('extlinkwindow_extlink_label'),
     '#description' => t('Change the warning message of the external links opening in a new window if needed. Default value is "(link is external and opens a new window)".'),
     '#states' => [
       'visible' => [':input[name="extlinkwindow_extlink_custom_label"]' => ['checked' => TRUE]],
@@ -221,13 +223,13 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink']['extlinkwindow_intlink_enabled'] = array(
     '#type' => 'checkbox',
     '#title' => t('Include links having the same domain and opening in a new window'),
-    '#default_value' => theme_get_setting('extlinkwindow_intlink_enabled'),
+    '#default_value' => $theme_settings->getSetting('extlinkwindow_intlink_enabled'),
     '#description' => t('Checking this box will automatically include all other links having the same domain (internal) and which open in a new window.'),
   );
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink']['extlinkwindow_intlink_custom_label'] = array(
     '#type' => 'checkbox',
     '#title' => t('Customize the warning message for the internal links'),
-    '#default_value' => theme_get_setting('extlinkwindow_intlink_custom_label'),
+    '#default_value' => $theme_settings->getSetting('extlinkwindow_intlink_custom_label'),
     '#description' => t('If you check this box you can choose which message will be used to warn users when the internal links open in a new window.'),
     '#states' => [
       'visible' => [
@@ -238,7 +240,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_intlink']['extlinkwindow_intlink_label'] = array(
     '#type' => 'textfield',
     '#title' => t('Text to use for the internal links:'),
-    '#default_value' => theme_get_setting('extlinkwindow_intlink_label'),
+    '#default_value' => $theme_settings->getSetting('extlinkwindow_intlink_label'),
     '#description' => t('Change the warning message of the internal links opening in a new window if needed. Default value is "(link opens a new window)".'),
     '#states' => [
       'visible' => [
@@ -253,13 +255,13 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_font_awesome']['extlinkwindow_font_awesome_custom_class'] = array(
     '#type' => 'checkbox',
     '#title' => t('Customize the Font Awesome icon for links opening in a new window'),
-    '#default_value' => theme_get_setting('extlinkwindow_font_awesome_custom_class'),
+    '#default_value' => $theme_settings->getSetting('extlinkwindow_font_awesome_custom_class'),
     '#description' => t('Checking this box will allow you to customize the Font Awesome icon (used instead of SVG image) for links opening in a new window (<a href="/admin/config/user-interface/extlink">see the "External Links" settings page</a>).'),
   );
   $form['javascripts']['extlinkwindow']['extlinkwindow_options']['extlinkwindow_font_awesome']['extlinkwindow_font_awesome_class'] = array(
     '#type' => 'textfield',
     '#title' => t('Font Awesome icon class (links opening in a new window):'),
-    '#default_value' => theme_get_setting('extlinkwindow_font_awesome_class'),
+    '#default_value' => $theme_settings->getSetting('extlinkwindow_font_awesome_class'),
     '#states' => [
       'visible' => [':input[name="extlinkwindow_font_awesome_custom_class"]' => ['checked' => TRUE]],
     ],
@@ -275,13 +277,13 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['tooltip']['tooltip_enabled'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable Tooltip Widget'),
-    '#default_value' => theme_get_setting('tooltip_enabled'),
+    '#default_value' => $theme_settings->getSetting('tooltip_enabled'),
     '#description' => t('Elements that have <code>[role="img"][aria-label]</code> or <code>[data-pattern="tooltip"][title]</code> attributes set will automatically initialize the tooltip upon page load.'),
   );
   $form['javascripts']['tooltip']['tooltip_delay'] = array(
     '#type' => 'textfield',
     '#title' => t('Delay'),
-    '#default_value' => theme_get_setting('tooltip_delay'),
+    '#default_value' => $theme_settings->getSetting('tooltip_delay'),
     '#description' => t('The amount of time to delay showing the tooltip (in milliseconds).'),
     '#states' => [
       'visible' => [':input[name="tooltip_enabled"]' => ['checked' => TRUE]],
@@ -297,7 +299,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['backtotop']['backtotop_enable'] = array(
     '#type' => 'checkbox',
     '#title' => t('Enable Back to Top'),
-    '#default_value' => theme_get_setting('backtotop_enable'),
+    '#default_value' => $theme_settings->getSetting('backtotop_enable'),
     '#description' => t("Enable the back to top button."),
   );
   $form['javascripts']['backtotop']['backtotop_options'] = array(
@@ -307,25 +309,25 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
   $form['javascripts']['backtotop']['backtotop_options']['backtotop_label'] = array(
     '#type' => 'textfield',
     '#title' => t('Label'),
-    '#default_value' => theme_get_setting('backtotop_label'),
+    '#default_value' => $theme_settings->getSetting('backtotop_label'),
     '#description' => t("Change title of the link if needed. Default value is \"Back to top\""),
   );
   $form['javascripts']['backtotop']['backtotop_options']['backtotop_offset'] = array(
     '#type' => 'number',
     '#title' => t('Offset'),
-    '#default_value' => theme_get_setting('backtotop_offset'),
+    '#default_value' => $theme_settings->getSetting('backtotop_offset'),
     '#description' => t("The offset coordinates is used to set after how many pixels of scrolling the link will appear. Default value is 300."),
   );
   $form['javascripts']['backtotop']['backtotop_options']['backtotop_mobile_hide'] = array(
     '#type' => 'checkbox',
     '#title' => t('Hide on mobile'),
-    '#default_value' => theme_get_setting('backtotop_mobile_hide'),
+    '#default_value' => $theme_settings->getSetting('backtotop_mobile_hide'),
     '#description' => t("By checking this box, the back to top link won't appear on smaller devices according to the site's responsive breakpoints."),
   );
 
   // Display a warning if the "External Links" module is not enabled.
   $moduleHandler = \Drupal::service('module_handler');
-  if (theme_get_setting('extlinkwindow_enabled') && !$moduleHandler->moduleExists('extlink')) {
+  if ($theme_settings->getSetting('extlinkwindow_enabled') && !$moduleHandler->moduleExists('extlink')) {
     $messenger = \Drupal::messenger();
     $messenger->addMessage(t('The <strong><a href="https://www.drupal.org/project/extlink">External Links</a></strong> module is not enabled. The <strong>External Links (New Window)</strong> JavaScript requires this module to work with additional libraries.<br />Please enable <a href="https://www.drupal.org/project/extlink">External Links</a> 8.x-1.1 or higher, you must manually set this in the configuration after it is installed.'), $messenger::TYPE_ERROR);
   }
@@ -341,7 +343,7 @@ function kiso_form_system_theme_settings_alter(&$form, \Drupal\Core\Form\FormSta
 
     // Check if the icon placement is set to "before" or "after" and display a warning.
     if (
-      theme_get_setting('extlinkwindow_enabled') &&
+      $theme_settings->getSetting('extlinkwindow_enabled') &&
       isset($settings['extlink_icon_placement']) &&
       in_array($settings['extlink_icon_placement'], ['before', 'after'])
     ) {

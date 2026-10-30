@@ -6,6 +6,7 @@
  */
 
 use Drupal\Core\Template\Attribute;
+use Drupal\file\IconMimeTypes;
 
 /**
  * Implements hook_preprocess_HOOK() for file-link.html.twig.
@@ -39,7 +40,7 @@ function kiso_preprocess_file_link(&$variables) {
   $classes = [
     'icon',
     // Add a more general class for groups of well known MIME types.
-    'icon--' . file_icon_class($mime_type),
+    'icon--' . IconMimeTypes::getIconClass($mime_type),
   ];
 
   // Set file classes to the attribute object.

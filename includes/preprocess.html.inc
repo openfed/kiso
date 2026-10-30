@@ -5,6 +5,8 @@
  * Prepares variables for HTML document templates.
  */
 
+use Drupal\Core\Extension\ThemeSettingsProvider;
+
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
  */
@@ -53,7 +55,8 @@ function kiso_preprocess_html(&$variables) {
 
   // Keyboard Focus Tracking (What Input) library.
   // Disable persisting input/intent across pages.
-  if (theme_get_setting('trackfocus_enable') && theme_get_setting('trackfocus_disable_persist')) {
+  $theme_settings = \Drupal::service(ThemeSettingsProvider::class);
+  if ($theme_settings->getSetting('trackfocus_enable') && $theme_settings->getSetting('trackfocus_disable_persist')) {
     $variables['html_attributes']->setAttribute('data-whatpersist', 'false');
   }
 }

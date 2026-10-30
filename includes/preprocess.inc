@@ -5,6 +5,8 @@
  * Prepares variables for all templates.
  */
 
+use Drupal\Core\Extension\ThemeSettingsProvider;
+
 /**
  * Implements hook_preprocess().
  */
@@ -21,7 +23,8 @@ function kiso_preprocess(&$variables, $hook) {
   $variables['#cache']['contexts'][] = 'url.path.is_front';
 
   // Creates variables from theme settings.
-  $variables['container_fluid'] = theme_get_setting('container_fluid');
+  $theme_settings = \Drupal::service(ThemeSettingsProvider::class);
+  $variables['container_fluid'] = $theme_settings->getSetting('container_fluid');
 
   // Load expected asset libraries.
   $variables['#attached']['library'][] = 'kiso/reboot';
@@ -38,11 +41,11 @@ function kiso_preprocess(&$variables, $hook) {
   $variables['#attached']['library'][] = 'kiso/miscs';
 
   // Enable the "Back to top" button.
-  $variables['backtotop_enable'] = theme_get_setting('backtotop_enable');
-  $variables['backtotop_label'] = theme_get_setting('backtotop_label');
-  $backtotop_enable = theme_get_setting('backtotop_enable');
-  $backtotop_offset = theme_get_setting('backtotop_offset');
-  $backtotop_mobile_hide = theme_get_setting('backtotop_mobile_hide');
+  $variables['backtotop_enable'] = $theme_settings->getSetting('backtotop_enable');
+  $variables['backtotop_label'] = $theme_settings->getSetting('backtotop_label');
+  $backtotop_enable = $theme_settings->getSetting('backtotop_enable');
+  $backtotop_offset = $theme_settings->getSetting('backtotop_offset');
+  $backtotop_mobile_hide = $theme_settings->getSetting('backtotop_mobile_hide');
   if (isset($backtotop_enable) and $backtotop_enable == '1') {
     $variables['#attached']['library'][] = 'kiso/back-to-top';
   }

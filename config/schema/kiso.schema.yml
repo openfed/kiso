@@ -3,3 +3,73 @@
 kiso.settings:
   type: theme_settings
   label: 'Kiso settings'
+  mapping:
+    container_fluid:
+      type: integer
+      label: 'Fluid container'
+    backtotop_enable:
+      type: integer
+      label: 'Enable the "Back to top" button'
+    backtotop_label:
+      type: label
+      label: 'Back to top label'
+    backtotop_offset:
+      type: integer
+      label: 'Back to top offset'
+    backtotop_mobile_hide:
+      type: integer
+      label: 'Hide the "Back to top" button on mobile'
+    smoothscroll_enable:
+      type: integer
+      label: 'Enable the "Smooth Scroll" behavior'
+    smoothscroll_speed:
+      type: integer
+      label: 'Smooth scroll speed'
+    extlinkwindow_enabled:
+      type: integer
+      label: 'Enable the "External Links (New Window)" behavior'
+    extlinkwindow_extlink_custom_label:
+      type: integer
+      label: 'Use a custom label for external links'
+    extlinkwindow_extlink_label:
+      type: label
+      label: 'External links label'
+    extlinkwindow_intlink_enabled:
+      type: integer
+      label: 'Enable the behavior for internal links'
+    extlinkwindow_intlink_custom_label:
+      type: integer
+      label: 'Use a custom label for internal links'
+    extlinkwindow_intlink_label:
+      type: label
+      label: 'Internal links label'
+    extlinkwindow_font_awesome_custom_class:
+      type: integer
+      label: 'Use a custom Font Awesome class'
+    extlinkwindow_font_awesome_class:
+      type: string
+      label: 'Font Awesome class'
+    tooltip_enabled:
+      type: integer
+      label: 'Enable the "Tooltip" widget'
+    tooltip_delay:
+      type: integer
+      label: 'Tooltip delay'
+    outdatedbrowser_enable:
+      type: integer
+      label: 'Enable the "Outdated Browser" warning message'
+    outdatedbrowser_ie_target:
+      type: string
+      label: 'Internet Explorer target version'
+    outdatedbrowser_css_explicit:
+      type: string
+      label: 'CSS selectors to explicitly check'
+    outdatedbrowser_css_exclude:
+      type: string
+      label: 'CSS selectors to exclude'
+    trackfocus_enable:
+      type: integer
+      label: 'Enable the "Keyboard Focus Tracking" indicator'
+    trackfocus_disable_persist:
+      type: integer
+      label: 'Disable persisting input/intent across pages'

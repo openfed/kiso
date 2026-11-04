@@ -1,6 +1,6 @@
 {
     "name": "openfed/kiso",
-    "description": "Drupal Kiso (基礎) base theme for Drupal 9/10 themes",
+    "description": "Drupal Kiso (基礎) base theme for Drupal 11 themes",
     "type": "drupal-theme",
     "license": "GPL-2.0-or-later",
     "authors": [
@@ -16,7 +16,7 @@
         }
     },
     "require": {
-        "drupal/core": "^9 || ^10",
+        "drupal/core": "^11.4",
         "drupal/twig_real_content": "^1.0"
     },
     "require-dev": {},

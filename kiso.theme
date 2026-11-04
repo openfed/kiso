@@ -4,29 +4,8 @@
  * @file
  * Theme file.
  *
- * The Drupal "Kiso" (基礎) base theme provides a custom solution for keeping this file
- * as clean as possible while the code grows. All [pre]process and hook functions live
- * inside the `./includes` directory (rather than directly in this file).
- *
- * [THEMENAME]_page_attachments_alter() = ./includes/alter.page-attachments.inc
- * [THEMENAME]_theme_suggestions_alter() = ./includes/alter.theme-suggestions.inc
- * [THEMENAME]_[pre]process_html() = ./includes/[pre]process.html.inc
- * [THEMENAME]_[pre]process_comment_wrapper() = ./includes/[pre]process.comment-wrapper.inc
- * etc.
+ * Hook implementations live in src/Hook and are autowired by Drupal.
+ * The procedural region helpers remain available for existing subthemes.
  */
 
-// Include and evaluate [pre]process and hook functions from the `./includes` directory.
-include_once "includes/alter.form.inc";
-include_once "includes/alter.page-attachments.inc";
-include_once "includes/alter.theme-suggestions.inc";
-include_once "includes/preprocess.block.inc";
-include_once "includes/preprocess.file-link.inc";
-include_once "includes/preprocess.html.inc";
-include_once "includes/preprocess.image.inc";
-include_once "includes/preprocess.image_formatter.inc";
-include_once "includes/preprocess.inc";
-include_once "includes/preprocess.links.inc";
-include_once "includes/preprocess.maintenance-page.inc";
-include_once "includes/preprocess.menu-local-task.inc";
-include_once "includes/preprocess.page.inc";
-include_once "includes/preprocess.utils.inc";
+include_once 'includes/preprocess.utils.inc';
